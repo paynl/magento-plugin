@@ -35,36 +35,18 @@ class Pay_Payment_OrderController extends Mage_Core_Controller_Front_Action {
         } elseif ($status == Pay_Payment_Model_Transaction::STATE_PENDING) {
             $this->_redirect($pagePending);
         } else {
-            
-            $restoreCart = Mage::getStoreConfig('pay_payment/general/restore_cart', Mage::app()->getStore()) && 
-                    (
-                        // Wanneer persistent shopping cart aan staat, wordt bij NIET ingelogde gebruikers de winkelwagen, dubbel gerestored.
-                        // Bij wel ingelogde gebruikers lijkt persistent shopping cart niet te werken.
-                        // Vandaar dat ik hier controleer of de gebruiker is ingelogd, of persistent shopping cart uit staat
-                        Mage::getSingleton('customer/session')->isLoggedIn() || 
-                        Mage::getStoreConfig('persistent/options/enabled', Mage::app()->getStore()) == 0
-                    );      
-            if ($restoreCart) {
-                $items = $order->getItemsCollection();
-                foreach ($items as $item) {
-                    try {
-                        $cart = Mage::getSingleton('checkout/cart');
 
-                        $cart->addOrderItem($item);
-                    } catch (Mage_Core_Exception $e) {
-                        if (Mage::getSingleton('checkout/session')->getUseNotice(true)) {
-                            Mage::getSingleton('checkout/session')->addNotice($e->getMessage());
-                        } else {
-                            Mage::getSingleton('checkout/session')->addError($e->getMessage());
-                        }
-                        $this->_redirect($pageCanceled);
-                    } catch (Exception $e) {
-                        Mage::getSingleton('checkout/session')->addException($e, Mage::helper('checkout')->__('Cannot add the item to shopping cart.')
-                        );
-                        $this->_redirect($pageCanceled);
-                    }
-                }
-                $cart->save();
+            $restoreCart = Mage::getStoreConfig('pay_payment/general/restore_cart', Mage::app()->getStore());
+            if ($restoreCart) {
+                $quoteModel = Mage::getModel('sales/quote');
+                $quoteId = $order->getQuoteId();
+
+                /**
+                 * @var $quote Mage_Sales_Model_Quote
+                 */
+                $quote = $quoteModel->load($quoteId);
+
+                $quote->setIsActive(true)->save();
             }
 
             $this->_redirect($pageCanceled);
