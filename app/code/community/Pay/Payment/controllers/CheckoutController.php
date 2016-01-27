@@ -242,8 +242,8 @@ class Pay_Payment_CheckoutController extends Mage_Core_Controller_Front_Action
 
                 $statusPending = Mage::getStoreConfig('payment/' . $payment->getMethod() . '/order_status', Mage::app()->getStore());
 
-                $order->setState(
-                    Mage_Sales_Model_Order::STATE_PENDING_PAYMENT, $statusPending, 'Transactie gestart, transactieId: ' . $transactionId . " \nBetaalUrl: " . $url
+                $order->addStatusHistoryComment(
+                    'Transactie gestart, transactieId: ' . $transactionId . " \nBetaalUrl: " . $url
                 );
 
 

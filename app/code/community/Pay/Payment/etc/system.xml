@@ -8,8 +8,9 @@
     </tabs>-->
     <sections>
         <!--        Algemene instellingen-->
-        <pay_payment translate="label" module="pay_payment">           
-            <label><![CDATA[<img alt='Pay.nl instellingen' title='Pay.nl instellingen' style='margin-top:3px;margin-bottom:-3px;height:14px;' src='/media/pay_payment/logo.png' />]]></label>
+        <pay_payment translate="label" module="pay_payment">
+            <label>
+                <![CDATA[<img alt='Pay.nl instellingen' title='Pay.nl instellingen' style='margin-top:3px;margin-bottom:-3px;height:14px;' src='/media/pay_payment/logo.png' />]]></label>
             <tab>sales</tab>
             <sort_order>350</sort_order>
             <show_in_default>1</show_in_default>
@@ -17,44 +18,47 @@
             <show_in_store>1</show_in_store>
             <groups>
                 <general translate="label" module="pay_payment">
-                    <label>Algemene instellingen</label>                    
+                    <label>Algemene instellingen</label>
                     <sort_order>1</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
                     <expanded>1</expanded>
-                    <fields>                        
+                    <fields>
                         <apitoken translate="label comment">
                             <label>API token</label>
-                            <comment><![CDATA[Uw API token, deze kunt u vinden op <a href='https://admin.pay.nl/my_merchant'>admin.pay.nl/my_merchant</a>]]></comment>
-                            <frontend_type>text</frontend_type>                            
+                            <comment>
+                                <![CDATA[Uw API token, deze kunt u vinden op <a href='https://admin.pay.nl/my_merchant'>admin.pay.nl/my_merchant</a>]]></comment>
+                            <frontend_type>text</frontend_type>
                             <backend_model>pay_payment/Backend_Trim</backend_model>
                             <sort_order>2</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </apitoken>                       
+                        </apitoken>
                         <serviceid translate="label comment">
                             <label>Service id</label>
-                            <comment><![CDATA[Uw service id, deze kunt u vinden op <a href='https://admin.pay.nl/programs/programs'>admin.pay.nl/programs/programs</a>]]></comment>
+                            <comment>
+                                <![CDATA[Uw service id, deze kunt u vinden op <a href='https://admin.pay.nl/programs/programs'>admin.pay.nl/programs/programs</a>]]></comment>
                             <frontend_type>text</frontend_type>
                             <backend_model>pay_payment/Backend_Trim</backend_model>
                             <sort_order>3</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </serviceid>       
-                            
+                        </serviceid>
+
                         <auto_invoice translate="label comment">
                             <label>Automatisch factureren</label>
-                            <comment><![CDATA[Betaalde orders automatisch factureren, LET OP! Als dit op NEE staat kun je orders ook niet refunden]]></comment>
+                            <comment>
+                                <![CDATA[Betaalde orders automatisch factureren, LET OP! Als dit op NEE staat kun je orders ook niet refunden]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>4</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </auto_invoice>        
+                        </auto_invoice>
                         <invoice_email translate="label comment">
                             <label>Emailen bij factureren</label>
                             <comment><![CDATA[Een email sturen met de factuur]]></comment>
@@ -64,7 +68,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </invoice_email>        
+                        </invoice_email>
                         <send_statusupdates translate="label comment">
                             <label>Statusupdates sturen</label>
                             <comment><![CDATA[Updates sturen wanner de status van de order wijzigt]]></comment>
@@ -74,30 +78,33 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </send_statusupdates>        
+                        </send_statusupdates>
                         <send_order_data translate="label comment">
                             <label>Order data sturen</label>
-                            <comment><![CDATA[Klantgegeven en orderdata naar pay versturen, verplicht indien u gebruik maakt van een achteraf betaalmethode, of wanneer u gebruik wilt maken van Second Chance]]></comment>
+                            <comment>
+                                <![CDATA[Klantgegeven en orderdata naar pay versturen, verplicht indien u gebruik maakt van een achteraf betaalmethode, of wanneer u gebruik wilt maken van Second Chance]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>7</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </send_order_data>        
+                        </send_order_data>
                         <restore_cart translate="label comment">
                             <label>Winkelwagen vullen bij cancel</label>
-                            <comment><![CDATA[Geef aan of u wilt dat de winkelwagen weer wordt gevuld met de producten die waren besteld als de gebruiker op het betaalscherm op annuleren heeft geklikt]]></comment>
+                            <comment>
+                                <![CDATA[Geef aan of u wilt dat de winkelwagen weer wordt gevuld met de producten die waren besteld als de gebruiker op het betaalscherm op annuleren heeft geklikt]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>8</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </restore_cart>        
+                        </restore_cart>
                         <page_success>
                             <label>Success pagina</label>
-                            <comment><![CDATA[De pagina waar de gebruiker naartoe gestuurd moet worden bij een geslaagde betaling]]></comment>
+                            <comment>
+                                <![CDATA[De pagina waar de gebruiker naartoe gestuurd moet worden bij een geslaagde betaling]]></comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>9</sort_order>
                             <show_in_default>1</show_in_default>
@@ -106,7 +113,8 @@
                         </page_success>
                         <page_pending>
                             <label>Pending pagina</label>
-                            <comment><![CDATA[De pagina waar de gebruiker naartoe gestuurd moet worden wanneer de betaalstatus nog pending is (bijv. bij paypal komt de statusupdate later)]]></comment>
+                            <comment>
+                                <![CDATA[De pagina waar de gebruiker naartoe gestuurd moet worden wanneer de betaalstatus nog pending is (bijv. bij paypal komt de statusupdate later)]]></comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>10</sort_order>
                             <show_in_default>1</show_in_default>
@@ -115,7 +123,8 @@
                         </page_pending>
                         <page_canceled>
                             <label>Mislukt pagina</label>
-                            <comment><![CDATA[De pagina waar de gebruiker naartoe gestuurd moet worden bij een mislukte/geannuleerde betaling]]></comment>
+                            <comment>
+                                <![CDATA[De pagina waar de gebruiker naartoe gestuurd moet worden bij een mislukte/geannuleerde betaling]]></comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
@@ -124,9 +133,10 @@
                         </page_canceled>
                         <user_language>
                             <label>Gebruikers taal</label>
-                            <comment><![CDATA[De taalcode die naar pay.nl moet worden gestuurd, dit is van invloed op de taal van het betaalscherm en de eventuele email die naar de gebruiker wordt gestuurd door pay (bijvoorbeeld bij bankoverschrijving).]]></comment>
+                            <comment>
+                                <![CDATA[De taalcode die naar pay.nl moet worden gestuurd, dit is van invloed op de taal van het betaalscherm en de eventuele email die naar de gebruiker wordt gestuurd door pay (bijvoorbeeld bij bankoverschrijving).]]></comment>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_language</source_model>     
+                            <source_model>pay_payment/source_language</source_model>
                             <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
@@ -136,7 +146,7 @@
                             <label>Icoontjes weergeven</label>
                             <comment><![CDATA[Icoontjes bij de betaalmethoden weergeven]]></comment>
                             <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>     
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>13</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
@@ -144,9 +154,10 @@
                         </show_icons>
                         <icon_size>
                             <label>Grootte van icoontjes</label>
-                            <comment><![CDATA[Selecteer hoe groot de icoontjes van de betaalmethoden moeten zijn]]></comment>
+                            <comment>
+                                <![CDATA[Selecteer hoe groot de icoontjes van de betaalmethoden moeten zijn]]></comment>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_iconsize</source_model>     
+                            <source_model>pay_payment/source_iconsize</source_model>
                             <sort_order>14</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
@@ -160,20 +171,22 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </text_payment_charge>    
+                        </text_payment_charge>
                     </fields>
                 </general>
                 <loaded_payment_methods translate="label" module="pay_payment">
-                    <label>Betaalmethoden</label>                    
+                    <label>Betaalmethoden</label>
                     <sort_order>2</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
                     <expanded>1</expanded>
-                    <fields>   
-                        <test123> 
+                    <fields>
+                        <test123>
                             <label>Beschikbaar</label>
-                            <comment>Hierboven ziet u de betaalmethoden die voor uw account bij pay.nl beschikbaar zijn</comment>                           
+                            <comment>Hierboven ziet u de betaalmethoden die voor uw account bij pay.nl beschikbaar
+                                zijn
+                            </comment>
                             <sort_order>3</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
@@ -203,24 +216,23 @@
         </sales>
         <payment>
             <groups>
-                <!--  Afterpay -->
                 <pay_payment_afterpay translate="label" module="paygate">
-                    <label>Pay.nl - Afterpay</label>        
-                    <model>pay_payment/Model_Paymentmethod_Afterpay</model>            
+                    <label>Pay.nl - Afterpay</label>
+                    <model>pay_payment/Model_Paymentmethod_Afterpay</model>
                     <sort_order>1010</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
-                    <fields>   
+                    <fields>
                         <active translate="label">
                             <label>Actief</label>
-                            <comment>Wilt u deze betaalmethode gebruiken</comment>                           
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_paymentmethod_afterpay_active</source_model>                            
+                            <source_model>pay_payment/source_paymentmethod_afterpay_active</source_model>
                         </active>
                         <title translate="label">
                             <depends>
@@ -233,7 +245,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </title>
-                        
+
                         <sort_order translate="label">
                             <depends>
                                 <active>1</active>
@@ -326,7 +338,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het
+                                totaalbedrag of een vast bedrag
+                            </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -339,7 +353,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen,
+                                als u geen extra kosten wilt rekenen vult u niets in
+                            </comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -363,34 +379,33 @@
                                 <active>1</active>
                             </depends>
                             <label>Bevestigingsmail sturen</label>
-                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>                           
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
                             <sort_order>300</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_sendmail</source_model>                            
+                            <source_model>pay_payment/source_sendmail</source_model>
                         </send_mail>
                     </fields>
                 </pay_payment_afterpay>
-                
-                <pay_payment_billink>
-                    <label>Pay.nl - Billink</label>        
-                    <model>pay_payment/Model_Paymentmethod_Billink</model>            
-                    <sort_order>1015</sort_order>
+                <pay_payment_amex translate="label" module="paygate">
+                    <label>Pay.nl - American Express (AMEX)</label>
+                    <model>pay_payment/Model_Paymentmethod_Amex</model>
+                    <sort_order>1012</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
-                    <fields>   
+                    <fields>
                         <active translate="label">
                             <label>Actief</label>
-                            <comment>Wilt u deze betaalmethode gebruiken</comment>                           
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_paymentmethod_billink_active</source_model>                            
+                            <source_model>pay_payment/source_paymentmethod_amex_active</source_model>
                         </active>
                         <title translate="label">
                             <depends>
@@ -403,7 +418,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </title>
-                        
+
                         <sort_order translate="label">
                             <depends>
                                 <active>1</active>
@@ -427,7 +442,180 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </min_order_total>
-                        
+                        <max_order_total translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Maximum bedrag</label>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </max_order_total>
+                        <allowspecific translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Beschikbaarheid per land</label>
+                            <frontend_type>allowspecific</frontend_type>
+                            <source_model>adminhtml/system_config_source_payment_allspecificcountries</source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </allowspecific>
+                        <specificcountry translate="label">
+                            <depends>
+                                <active>1</active>
+                                <allowspecific>1</allowspecific>
+                            </depends>
+                            <label>Toegestane landen</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_country</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
+                        </specificcountry>
+                        <order_status translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Nieuwe order status</label>
+                            <comment>De status die een order moet krijgen bij het toevoegen</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_pendingPayment</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </order_status>
+                        <order_status_success translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Gelukt order status</label>
+                            <comment>De status die een order moet krijgen na succesvolle betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </order_status_success>
+                        <charge_type translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Extra kosten rekenen</label>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het
+                                totaalbedrag of een vast bedrag
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/system_config_source_chargetype</source_model>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </charge_type>
+                        <charge_value translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Extra kosten</label>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen,
+                                als u geen extra kosten wilt rekenen vult u niets in
+                            </comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>201</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </charge_value>
+                        <charge_tax_class translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Btw voor extra kosten</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_taxclass</source_model>
+                            <sort_order>202</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </charge_tax_class>
+                        <send_mail translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Bevestigingsmail sturen</label>
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
+                            <sort_order>300</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_sendmail</source_model>
+                        </send_mail>
+                    </fields>
+                </pay_payment_amex>
+                <pay_payment_billink translate="label" module="paygate">
+                    <label>Pay.nl - Billink</label>
+                    <model>pay_payment/Model_Paymentmethod_Billink</model>
+                    <sort_order>1015</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Actief</label>
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_paymentmethod_billink_active</source_model>
+                        </active>
+                        <title translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Titel van de betaalmethode</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </title>
+
+                        <sort_order translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Betaalmethode sorteer volgorde</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sort_order>
+                        <min_order_total translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Minimum bedrag</label>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </min_order_total>
+
                         <max_order_total translate="label">
                             <depends>
                                 <active>1</active>
@@ -445,7 +633,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Persoonlijk inschakelen</label>
-                            <comment>Geboortedatum vragen, zodat persoonlijke bestellingen rechtstreeks worden doorgestuurd zonder tussenscherm</comment>
+                            <comment>Geboortedatum vragen, zodat persoonlijke bestellingen rechtstreeks worden
+                                doorgestuurd zonder tussenscherm
+                            </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>7</sort_order>
@@ -453,19 +643,19 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </ask_data_personal>
-<!--                        <ask_data_business translate="label"> Uitgeschakeld, omdat de api deze nog niet accepteert
-                            <depends>
-                                <active>1</active>
-                            </depends>
-                            <label>Zakelijk inschakelen</label>
-                            <comment>Bedrijfsgegven vragen, zodat zakelijke bestellingen rechtstreeks worden doorgestuurd zonder tussenscherm</comment>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>8</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </ask_data_business>-->
+                        <!--                        <ask_data_business translate="label"> Uitgeschakeld, omdat de api deze nog niet accepteert
+                                                    <depends>
+                                                        <active>1</active>
+                                                    </depends>
+                                                    <label>Zakelijk inschakelen</label>
+                                                    <comment>Bedrijfsgegven vragen, zodat zakelijke bestellingen rechtstreeks worden doorgestuurd zonder tussenscherm</comment>
+                                                    <frontend_type>select</frontend_type>
+                                                    <source_model>adminhtml/system_config_source_yesno</source_model>
+                                                    <sort_order>8</sort_order>
+                                                    <show_in_default>1</show_in_default>
+                                                    <show_in_website>1</show_in_website>
+                                                    <show_in_store>1</show_in_store>
+                                                </ask_data_business>-->
                         <allowspecific translate="label">
                             <depends>
                                 <active>1</active>
@@ -523,7 +713,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het
+                                totaalbedrag of een vast bedrag
+                            </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -536,7 +728,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen,
+                                als u geen extra kosten wilt rekenen vult u niets in
+                            </comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -560,34 +754,33 @@
                                 <active>1</active>
                             </depends>
                             <label>Bevestigingsmail sturen</label>
-                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>                           
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
                             <sort_order>300</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_sendmail</source_model>                            
+                            <source_model>pay_payment/source_sendmail</source_model>
                         </send_mail>
                     </fields>
                 </pay_payment_billink>
-                <!--  Bitcoin -->
                 <pay_payment_bitcoin translate="label" module="paygate">
-                    <label>Pay.nl - Bitcoin</label>        
-                    <model>pay_payment/Model_Paymentmethod_Bitcoin</model>            
+                    <label>Pay.nl - Bitcoin</label>
+                    <model>pay_payment/Model_Paymentmethod_Bitcoin</model>
                     <sort_order>1020</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
-                    <fields>   
+                    <fields>
                         <active translate="label">
                             <label>Actief</label>
-                            <comment>Wilt u deze betaalmethode gebruiken</comment>                           
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_paymentmethod_bitcoin_active</source_model>                            
+                            <source_model>pay_payment/source_paymentmethod_bitcoin_active</source_model>
                         </active>
                         <title translate="label">
                             <depends>
@@ -600,7 +793,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </title>
-                        
+
                         <sort_order translate="label">
                             <depends>
                                 <active>1</active>
@@ -693,7 +886,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het
+                                totaalbedrag of een vast bedrag
+                            </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -706,7 +901,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen,
+                                als u geen extra kosten wilt rekenen vult u niets in
+                            </comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -730,34 +927,33 @@
                                 <active>1</active>
                             </depends>
                             <label>Bevestigingsmail sturen</label>
-                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>                           
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
                             <sort_order>300</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_sendmail</source_model>                            
+                            <source_model>pay_payment/source_sendmail</source_model>
                         </send_mail>
                     </fields>
                 </pay_payment_bitcoin>
-                <!-- Cartebleue -->
                 <pay_payment_cartebleue translate="label" module="paygate">
-                    <label>Pay.nl - Cartebleue</label>        
-                    <model>pay_payment/Model_Paymentmethod_Cartebleue</model>            
+                    <label>Pay.nl - Cartebleue</label>
+                    <model>pay_payment/Model_Paymentmethod_Cartebleue</model>
                     <sort_order>1030</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
-                    <fields>   
+                    <fields>
                         <active translate="label">
                             <label>Actief</label>
-                            <comment>Wilt u deze betaalmethode gebruiken</comment>                           
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_paymentmethod_cartebleue_active</source_model>                            
+                            <source_model>pay_payment/source_paymentmethod_cartebleue_active</source_model>
                         </active>
                         <title translate="label">
                             <depends>
@@ -769,8 +965,8 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </title>                        
-                                   
+                        </title>
+
                         <sort_order translate="label">
                             <depends>
                                 <active>1</active>
@@ -863,7 +1059,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het
+                                totaalbedrag of een vast bedrag
+                            </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -876,7 +1074,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen,
+                                als u geen extra kosten wilt rekenen vult u niets in
+                            </comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -900,34 +1100,33 @@
                                 <active>1</active>
                             </depends>
                             <label>Bevestigingsmail sturen</label>
-                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>                           
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
                             <sort_order>300</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_sendmail</source_model>                            
+                            <source_model>pay_payment/source_sendmail</source_model>
                         </send_mail>
                     </fields>
                 </pay_payment_cartebleue>
-                <!--  ClickAndBuy  -->
                 <pay_payment_clickandbuy translate="label" module="paygate">
-                    <label>Pay.nl - ClickAndBuy</label>        
-                    <model>pay_payment/Model_Paymentmethod_Clickandbuy</model>            
+                    <label>Pay.nl - ClickAndBuy</label>
+                    <model>pay_payment/Model_Paymentmethod_Clickandbuy</model>
                     <sort_order>1040</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
-                    <fields>   
+                    <fields>
                         <active translate="label">
                             <label>Actief</label>
-                            <comment>Wilt u deze betaalmethode gebruiken</comment>                           
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_paymentmethod_clickandbuy_active</source_model>                            
+                            <source_model>pay_payment/source_paymentmethod_clickandbuy_active</source_model>
                         </active>
                         <title translate="label">
                             <depends>
@@ -940,7 +1139,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </title>
-                        
+
                         <sort_order translate="label">
                             <depends>
                                 <active>1</active>
@@ -1033,7 +1232,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het
+                                totaalbedrag of een vast bedrag
+                            </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -1046,7 +1247,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen,
+                                als u geen extra kosten wilt rekenen vult u niets in
+                            </comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -1070,34 +1273,33 @@
                                 <active>1</active>
                             </depends>
                             <label>Bevestigingsmail sturen</label>
-                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>                           
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
                             <sort_order>300</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_sendmail</source_model>                            
+                            <source_model>pay_payment/source_sendmail</source_model>
                         </send_mail>
                     </fields>
-                </pay_payment_clickandbuy>   
-                <!--  E-Bon -->
+                </pay_payment_clickandbuy>
                 <pay_payment_ebon translate="label" module="paygate">
-                    <label>Pay.nl - E-bon</label>        
-                    <model>pay_payment/Model_Paymentmethod_Ebon</model>            
+                    <label>Pay.nl - E-bon</label>
+                    <model>pay_payment/Model_Paymentmethod_Ebon</model>
                     <sort_order>1050</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
-                    <fields>   
+                    <fields>
                         <active translate="label">
                             <label>Actief</label>
-                            <comment>Wilt u deze betaalmethode gebruiken</comment>                           
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_paymentmethod_ebon_active</source_model>                            
+                            <source_model>pay_payment/source_paymentmethod_ebon_active</source_model>
                         </active>
                         <title translate="label">
                             <depends>
@@ -1109,8 +1311,8 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </title>                        
-                                   
+                        </title>
+
                         <sort_order translate="label">
                             <depends>
                                 <active>1</active>
@@ -1203,7 +1405,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het
+                                totaalbedrag of een vast bedrag
+                            </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -1216,7 +1420,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen,
+                                als u geen extra kosten wilt rekenen vult u niets in
+                            </comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -1240,33 +1446,33 @@
                                 <active>1</active>
                             </depends>
                             <label>Bevestigingsmail sturen</label>
-                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>                           
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
                             <sort_order>300</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_sendmail</source_model>                            
+                            <source_model>pay_payment/source_sendmail</source_model>
                         </send_mail>
                     </fields>
-                </pay_payment_ebon>      
+                </pay_payment_ebon>
                 <pay_payment_fashioncheque translate="label" module="paygate">
-                    <label>Pay.nl - Fashioncheque</label>        
-                    <model>pay_payment/Model_Paymentmethod_Fashioncheque</model>            
+                    <label>Pay.nl - Fashioncheque</label>
+                    <model>pay_payment/Model_Paymentmethod_Fashioncheque</model>
                     <sort_order>1055</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
-                    <fields>   
+                    <fields>
                         <active translate="label">
                             <label>Actief</label>
-                            <comment>Wilt u deze betaalmethode gebruiken</comment>                           
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_paymentmethod_fashioncheque_active</source_model>                            
+                            <source_model>pay_payment/source_paymentmethod_fashioncheque_active</source_model>
                         </active>
                         <title translate="label">
                             <depends>
@@ -1278,8 +1484,8 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </title>                       
-                                   
+                        </title>
+
                         <sort_order translate="label">
                             <depends>
                                 <active>1</active>
@@ -1372,7 +1578,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het
+                                totaalbedrag of een vast bedrag
+                            </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -1385,7 +1593,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen,
+                                als u geen extra kosten wilt rekenen vult u niets in
+                            </comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -1409,33 +1619,206 @@
                                 <active>1</active>
                             </depends>
                             <label>Bevestigingsmail sturen</label>
-                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>                           
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
                             <sort_order>300</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_sendmail</source_model>                            
+                            <source_model>pay_payment/source_sendmail</source_model>
                         </send_mail>
                     </fields>
-                </pay_payment_fashioncheque> 
+                </pay_payment_fashioncheque>
+                <pay_payment_focum translate="label" module="paygate">
+                    <label>Pay.nl - Focum</label>
+                    <model>pay_payment/Model_Paymentmethod_Focum</model>
+                    <sort_order>1057</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Actief</label>
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_paymentmethod_focum_active</source_model>
+                        </active>
+                        <title translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Titel van de betaalmethode</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </title>
+
+                        <sort_order translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Betaalmethode sorteer volgorde</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sort_order>
+                        <min_order_total translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Minimum bedrag</label>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </min_order_total>
+                        <max_order_total translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Maximum bedrag</label>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </max_order_total>
+                        <allowspecific translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Beschikbaarheid per land</label>
+                            <frontend_type>allowspecific</frontend_type>
+                            <source_model>adminhtml/system_config_source_payment_allspecificcountries</source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </allowspecific>
+                        <specificcountry translate="label">
+                            <depends>
+                                <active>1</active>
+                                <allowspecific>1</allowspecific>
+                            </depends>
+                            <label>Toegestane landen</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_country</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
+                        </specificcountry>
+                        <order_status translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Nieuwe order status</label>
+                            <comment>De status die een order moet krijgen bij het toevoegen</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_pendingPayment</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </order_status>
+                        <order_status_success translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Gelukt order status</label>
+                            <comment>De status die een order moet krijgen na succesvolle betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </order_status_success>
+                        <charge_type translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Extra kosten rekenen</label>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het
+                                totaalbedrag of een vast bedrag
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/system_config_source_chargetype</source_model>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </charge_type>
+                        <charge_value translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Extra kosten</label>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen,
+                                als u geen extra kosten wilt rekenen vult u niets in
+                            </comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>201</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </charge_value>
+                        <charge_tax_class translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Btw voor extra kosten</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_taxclass</source_model>
+                            <sort_order>202</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </charge_tax_class>
+                        <send_mail translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Bevestigingsmail sturen</label>
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
+                            <sort_order>300</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_sendmail</source_model>
+                        </send_mail>
+                    </fields>
+                </pay_payment_focum>
                 <pay_payment_gezondheidsbon translate="label" module="paygate">
-                    <label>Pay.nl - Gezondheidsbon</label>        
-                    <model>pay_payment/Model_Paymentmethod_Gezondheidsbon</model>            
+                    <label>Pay.nl - Gezondheidsbon</label>
+                    <model>pay_payment/Model_Paymentmethod_Gezondheidsbon</model>
                     <sort_order>1060</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
-                    <fields>   
+                    <fields>
                         <active translate="label">
                             <label>Actief</label>
-                            <comment>Wilt u deze betaalmethode gebruiken</comment>                           
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_paymentmethod_gezondheidsbon_active</source_model>                            
+                            <source_model>pay_payment/source_paymentmethod_gezondheidsbon_active</source_model>
                         </active>
                         <title translate="label">
                             <depends>
@@ -1447,8 +1830,8 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </title>                        
-                                   
+                        </title>
+
                         <sort_order translate="label">
                             <depends>
                                 <active>1</active>
@@ -1541,7 +1924,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het
+                                totaalbedrag of een vast bedrag
+                            </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -1554,7 +1939,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen,
+                                als u geen extra kosten wilt rekenen vult u niets in
+                            </comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -1578,34 +1965,33 @@
                                 <active>1</active>
                             </depends>
                             <label>Bevestigingsmail sturen</label>
-                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>                           
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
                             <sort_order>300</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_sendmail</source_model>                            
+                            <source_model>pay_payment/source_sendmail</source_model>
                         </send_mail>
                     </fields>
-                </pay_payment_gezondheidsbon>      
-                <!--  Giropay  -->
+                </pay_payment_gezondheidsbon>
                 <pay_payment_giropay translate="label" module="paygate">
-                    <label>Pay.nl - Giropay</label>        
-                    <model>pay_payment/Model_Paymentmethod_Giropay</model>            
+                    <label>Pay.nl - Giropay</label>
+                    <model>pay_payment/Model_Paymentmethod_Giropay</model>
                     <sort_order>1070</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
-                    <fields>   
+                    <fields>
                         <active translate="label">
                             <label>Actief</label>
-                            <comment>Wilt u deze betaalmethode gebruiken</comment>                           
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_paymentmethod_giropay_active</source_model>                            
+                            <source_model>pay_payment/source_paymentmethod_giropay_active</source_model>
                         </active>
                         <title translate="label">
                             <depends>
@@ -1618,7 +2004,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </title>
-                        
+
                         <sort_order translate="label">
                             <depends>
                                 <active>1</active>
@@ -1711,7 +2097,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het
+                                totaalbedrag of een vast bedrag
+                            </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -1724,7 +2112,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen,
+                                als u geen extra kosten wilt rekenen vult u niets in
+                            </comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -1748,33 +2138,33 @@
                                 <active>1</active>
                             </depends>
                             <label>Bevestigingsmail sturen</label>
-                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>                           
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
                             <sort_order>300</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_sendmail</source_model>                            
+                            <source_model>pay_payment/source_sendmail</source_model>
                         </send_mail>
                     </fields>
                 </pay_payment_giropay>
-                <pay_payment_givacard>
-                    <label>Pay.nl - Givacard</label>        
-                    <model>pay_payment/Model_Paymentmethod_Givacard</model>            
+                <pay_payment_givacard translate="label" module="paygate">
+                    <label>Pay.nl - Givacard</label>
+                    <model>pay_payment/Model_Paymentmethod_Givacard</model>
                     <sort_order>1075</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
-                    <fields>   
+                    <fields>
                         <active translate="label">
                             <label>Actief</label>
-                            <comment>Wilt u deze betaalmethode gebruiken</comment>                           
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_paymentmethod_givacard_active</source_model>                            
+                            <source_model>pay_payment/source_paymentmethod_givacard_active</source_model>
                         </active>
                         <title translate="label">
                             <depends>
@@ -1787,7 +2177,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </title>
-                        
+
                         <sort_order translate="label">
                             <depends>
                                 <active>1</active>
@@ -1880,7 +2270,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het
+                                totaalbedrag of een vast bedrag
+                            </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -1893,7 +2285,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen,
+                                als u geen extra kosten wilt rekenen vult u niets in
+                            </comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -1917,36 +2311,35 @@
                                 <active>1</active>
                             </depends>
                             <label>Bevestigingsmail sturen</label>
-                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>                           
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
                             <sort_order>300</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_sendmail</source_model>                            
+                            <source_model>pay_payment/source_sendmail</source_model>
                         </send_mail>
                     </fields>
                 </pay_payment_givacard>
-                <!--  IDEAL  -->               
                 <pay_payment_ideal translate="label" module="paygate">
-                    <label>Pay.nl - Ideal</label>        
-                    <model>pay_payment/Model_Paymentmethod_Ideal</model>            
+                    <label>Pay.nl - Ideal</label>
+                    <model>pay_payment/Model_Paymentmethod_Ideal</model>
                     <sort_order>1080</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
-                    <fields>   
+                    <fields>
                         <active translate="label">
                             <label>Actief</label>
-                            <comment>Wilt u deze betaalmethode gebruiken</comment>                           
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_paymentmethod_ideal_active</source_model>                            
+                            <source_model>pay_payment/source_paymentmethod_ideal_active</source_model>
                         </active>
-                        
+
                         <title translate="label">
                             <depends>
                                 <active>1</active>
@@ -1957,20 +2350,22 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </title>                        
+                        </title>
                         <bank_select_type translate="label">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Bank selectie type</label>
-                            <comment>Kies of je de bankselectie met een selectbox of met radiobuttons wilt weergeven in checkout</comment>
+                            <comment>Kies of je de bankselectie met een selectbox of met radiobuttons wilt weergeven in
+                                checkout
+                            </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_paymentmethod_ideal_selecttype</source_model>
                             <sort_order>3</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </bank_select_type>   
+                        </bank_select_type>
                         <text_bankselect translate="label">
                             <depends>
                                 <active>1</active>
@@ -1981,7 +2376,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </text_bankselect>                        
+                        </text_bankselect>
                         <sort_order translate="label">
                             <depends>
                                 <active>1</active>
@@ -2074,7 +2469,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het
+                                totaalbedrag of een vast bedrag
+                            </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -2087,7 +2484,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen,
+                                als u geen extra kosten wilt rekenen vult u niets in
+                            </comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -2111,34 +2510,33 @@
                                 <active>1</active>
                             </depends>
                             <label>Bevestigingsmail sturen</label>
-                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>                           
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
                             <sort_order>300</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_sendmail</source_model>                            
+                            <source_model>pay_payment/source_sendmail</source_model>
                         </send_mail>
                     </fields>
                 </pay_payment_ideal>
-                <!--  Incasso  -->                
                 <pay_payment_incasso translate="label" module="paygate">
-                    <label>Pay.nl - Incasso</label>        
-                    <model>pay_payment/Model_Paymentmethod_Incasso</model>            
+                    <label>Pay.nl - Incasso</label>
+                    <model>pay_payment/Model_Paymentmethod_Incasso</model>
                     <sort_order>1080</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
-                    <fields>   
+                    <fields>
                         <active translate="label">
                             <label>Actief</label>
-                            <comment>Wilt u deze betaalmethode gebruiken</comment>                           
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_paymentmethod_incasso_active</source_model>                            
+                            <source_model>pay_payment/source_paymentmethod_incasso_active</source_model>
                         </active>
                         <title translate="label">
                             <depends>
@@ -2151,7 +2549,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </title>
-                        
+
                         <sort_order translate="label">
                             <depends>
                                 <active>1</active>
@@ -2244,7 +2642,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het
+                                totaalbedrag of een vast bedrag
+                            </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -2257,7 +2657,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen,
+                                als u geen extra kosten wilt rekenen vult u niets in
+                            </comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -2281,34 +2683,33 @@
                                 <active>1</active>
                             </depends>
                             <label>Bevestigingsmail sturen</label>
-                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>                           
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
                             <sort_order>300</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_sendmail</source_model>                            
+                            <source_model>pay_payment/source_sendmail</source_model>
                         </send_mail>
                     </fields>
-                </pay_payment_incasso>   
-                <!--  Maestro -->
+                </pay_payment_incasso>
                 <pay_payment_maestro translate="label" module="paygate">
-                    <label>Pay.nl - Maestro</label>        
-                    <model>pay_payment/Model_Paymentmethod_Maestro</model>            
+                    <label>Pay.nl - Maestro</label>
+                    <model>pay_payment/Model_Paymentmethod_Maestro</model>
                     <sort_order>1090</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
-                    <fields>   
+                    <fields>
                         <active translate="label">
                             <label>Actief</label>
-                            <comment>Wilt u deze betaalmethode gebruiken</comment>                           
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_paymentmethod_maestro_active</source_model>                            
+                            <source_model>pay_payment/source_paymentmethod_maestro_active</source_model>
                         </active>
                         <title translate="label">
                             <depends>
@@ -2321,7 +2722,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </title>
-                        
+
                         <sort_order translate="label">
                             <depends>
                                 <active>1</active>
@@ -2414,7 +2815,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het
+                                totaalbedrag of een vast bedrag
+                            </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -2427,7 +2830,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen,
+                                als u geen extra kosten wilt rekenen vult u niets in
+                            </comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -2451,34 +2856,33 @@
                                 <active>1</active>
                             </depends>
                             <label>Bevestigingsmail sturen</label>
-                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>                           
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
                             <sort_order>300</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_sendmail</source_model>                            
+                            <source_model>pay_payment/source_sendmail</source_model>
                         </send_mail>
                     </fields>
-                </pay_payment_maestro>  
-                <!--  Minitix sms -->
+                </pay_payment_maestro>
                 <pay_payment_minitixsms translate="label" module="paygate">
-                    <label>Pay.nl - Minitix SMS</label>        
-                    <model>pay_payment/Model_Paymentmethod_Minitixsms</model>            
+                    <label>Pay.nl - Minitix SMS</label>
+                    <model>pay_payment/Model_Paymentmethod_Minitixsms</model>
                     <sort_order>1100</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
-                    <fields>   
+                    <fields>
                         <active translate="label">
                             <label>Actief</label>
-                            <comment>Wilt u deze betaalmethode gebruiken</comment>                           
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_paymentmethod_minitixsms_active</source_model>                            
+                            <source_model>pay_payment/source_paymentmethod_minitixsms_active</source_model>
                         </active>
                         <title translate="label">
                             <depends>
@@ -2491,7 +2895,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </title>
-                        
+
                         <sort_order translate="label">
                             <depends>
                                 <active>1</active>
@@ -2584,7 +2988,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het
+                                totaalbedrag of een vast bedrag
+                            </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -2597,7 +3003,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen,
+                                als u geen extra kosten wilt rekenen vult u niets in
+                            </comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -2621,34 +3029,33 @@
                                 <active>1</active>
                             </depends>
                             <label>Bevestigingsmail sturen</label>
-                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>                           
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
                             <sort_order>300</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_sendmail</source_model>                            
+                            <source_model>pay_payment/source_sendmail</source_model>
                         </send_mail>
                     </fields>
-                </pay_payment_minitixsms> 
-                <!--  Mistercash-->
+                </pay_payment_minitixsms>
                 <pay_payment_mistercash translate="label" module="paygate">
-                    <label>Pay.nl - Mistercash</label>        
-                    <model>pay_payment/Model_Paymentmethod_Mistercash</model>            
+                    <label>Pay.nl - Mistercash</label>
+                    <model>pay_payment/Model_Paymentmethod_Mistercash</model>
                     <sort_order>1110</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
-                    <fields>   
+                    <fields>
                         <active translate="label">
                             <label>Actief</label>
-                            <comment>Wilt u deze betaalmethode gebruiken</comment>                           
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_paymentmethod_mistercash_active</source_model>                            
+                            <source_model>pay_payment/source_paymentmethod_mistercash_active</source_model>
                         </active>
                         <title translate="label">
                             <depends>
@@ -2661,7 +3068,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </title>
-                        
+
                         <sort_order translate="label">
                             <depends>
                                 <active>1</active>
@@ -2754,7 +3161,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het
+                                totaalbedrag of een vast bedrag
+                            </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -2767,7 +3176,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen,
+                                als u geen extra kosten wilt rekenen vult u niets in
+                            </comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -2791,35 +3202,33 @@
                                 <active>1</active>
                             </depends>
                             <label>Bevestigingsmail sturen</label>
-                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>                           
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
                             <sort_order>300</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_sendmail</source_model>                            
+                            <source_model>pay_payment/source_sendmail</source_model>
                         </send_mail>
                     </fields>
-                </pay_payment_mistercash>    
-                
-                <!--  Mybank -->
+                </pay_payment_mistercash>
                 <pay_payment_mybank translate="label" module="paygate">
-                    <label>Pay.nl - Mybank</label>        
-                    <model>pay_payment/Model_Paymentmethod_Mybank</model>            
+                    <label>Pay.nl - Mybank</label>
+                    <model>pay_payment/Model_Paymentmethod_Mybank</model>
                     <sort_order>1120</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
-                    <fields>   
+                    <fields>
                         <active translate="label">
                             <label>Actief</label>
-                            <comment>Wilt u deze betaalmethode gebruiken</comment>                           
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_paymentmethod_mybank_active</source_model>                            
+                            <source_model>pay_payment/source_paymentmethod_mybank_active</source_model>
                         </active>
                         <title translate="label">
                             <depends>
@@ -2832,7 +3241,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </title>
-                        
+
                         <sort_order translate="label">
                             <depends>
                                 <active>1</active>
@@ -2925,7 +3334,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het
+                                totaalbedrag of een vast bedrag
+                            </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -2938,7 +3349,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen,
+                                als u geen extra kosten wilt rekenen vult u niets in
+                            </comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -2962,34 +3375,33 @@
                                 <active>1</active>
                             </depends>
                             <label>Bevestigingsmail sturen</label>
-                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>                           
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
                             <sort_order>300</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_sendmail</source_model>                            
+                            <source_model>pay_payment/source_sendmail</source_model>
                         </send_mail>
                     </fields>
                 </pay_payment_mybank>
-                <!--  Overboeking  -->                
                 <pay_payment_overboeking translate="label" module="paygate">
-                    <label>Pay.nl - Overboeking</label>        
-                    <model>pay_payment/Model_Paymentmethod_Overboeking</model>            
+                    <label>Pay.nl - Overboeking</label>
+                    <model>pay_payment/Model_Paymentmethod_Overboeking</model>
                     <sort_order>1130</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
-                    <fields>   
+                    <fields>
                         <active translate="label">
                             <label>Actief</label>
-                            <comment>Wilt u deze betaalmethode gebruiken</comment>                           
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_paymentmethod_overboeking_active</source_model>                            
+                            <source_model>pay_payment/source_paymentmethod_overboeking_active</source_model>
                         </active>
                         <title translate="label">
                             <depends>
@@ -3002,7 +3414,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </title>
-                        
+
                         <sort_order translate="label">
                             <depends>
                                 <active>1</active>
@@ -3095,7 +3507,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het
+                                totaalbedrag of een vast bedrag
+                            </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -3108,7 +3522,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen,
+                                als u geen extra kosten wilt rekenen vult u niets in
+                            </comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -3132,34 +3548,33 @@
                                 <active>1</active>
                             </depends>
                             <label>Bevestigingsmail sturen</label>
-                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>                           
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
                             <sort_order>300</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_sendmail</source_model>                            
+                            <source_model>pay_payment/source_sendmail</source_model>
                         </send_mail>
                     </fields>
-                </pay_payment_overboeking>          
-                <!--  PayPal  -->
+                </pay_payment_overboeking>
                 <pay_payment_paypal translate="label" module="paygate">
-                    <label>Pay.nl - PayPal</label>        
-                    <model>pay_payment/Model_Paymentmethod_Paypal</model>            
+                    <label>Pay.nl - PayPal</label>
+                    <model>pay_payment/Model_Paymentmethod_Paypal</model>
                     <sort_order>1140</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
-                    <fields>   
+                    <fields>
                         <active translate="label">
                             <label>Actief</label>
-                            <comment>Wilt u deze betaalmethode gebruiken</comment>                           
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_paymentmethod_paypal_active</source_model>                            
+                            <source_model>pay_payment/source_paymentmethod_paypal_active</source_model>
                         </active>
                         <title translate="label">
                             <depends>
@@ -3172,7 +3587,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </title>
-                        
+
                         <sort_order translate="label">
                             <depends>
                                 <active>1</active>
@@ -3265,7 +3680,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het
+                                totaalbedrag of een vast bedrag
+                            </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -3278,7 +3695,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen,
+                                als u geen extra kosten wilt rekenen vult u niets in
+                            </comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -3302,34 +3721,33 @@
                                 <active>1</active>
                             </depends>
                             <label>Bevestigingsmail sturen</label>
-                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>                           
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
                             <sort_order>300</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_sendmail</source_model>                            
+                            <source_model>pay_payment/source_sendmail</source_model>
                         </send_mail>
                     </fields>
-                </pay_payment_paypal>   
-                <!--  Paysafecard -->
+                </pay_payment_paypal>
                 <pay_payment_paysafecard translate="label" module="paygate">
-                    <label>Pay.nl - Paysafecard</label>        
-                    <model>pay_payment/Model_Paymentmethod_Paysafecard</model>            
+                    <label>Pay.nl - Paysafecard</label>
+                    <model>pay_payment/Model_Paymentmethod_Paysafecard</model>
                     <sort_order>1150</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
-                    <fields>   
+                    <fields>
                         <active translate="label">
                             <label>Actief</label>
-                            <comment>Wilt u deze betaalmethode gebruiken</comment>                           
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_paymentmethod_paysafecard_active</source_model>                            
+                            <source_model>pay_payment/source_paymentmethod_paysafecard_active</source_model>
                         </active>
                         <title translate="label">
                             <depends>
@@ -3342,7 +3760,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </title>
-                        
+
                         <sort_order translate="label">
                             <depends>
                                 <active>1</active>
@@ -3435,7 +3853,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het
+                                totaalbedrag of een vast bedrag
+                            </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -3448,7 +3868,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen,
+                                als u geen extra kosten wilt rekenen vult u niets in
+                            </comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -3472,34 +3894,33 @@
                                 <active>1</active>
                             </depends>
                             <label>Bevestigingsmail sturen</label>
-                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>                           
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
                             <sort_order>300</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_sendmail</source_model>                            
+                            <source_model>pay_payment/source_sendmail</source_model>
                         </send_mail>
                     </fields>
-                </pay_payment_paysafecard> 
-                <!-- Podiumkadokaart -->  
+                </pay_payment_paysafecard>
                 <pay_payment_podiumkadokaart translate="label" module="paygate">
-                    <label>Pay.nl - Podiumkadokaart</label>        
-                    <model>pay_payment/Model_Paymentmethod_Podiumkadokaart</model>            
+                    <label>Pay.nl - Podiumkadokaart</label>
+                    <model>pay_payment/Model_Paymentmethod_Podiumkadokaart</model>
                     <sort_order>1155</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
-                    <fields>   
+                    <fields>
                         <active translate="label">
                             <label>Actief</label>
-                            <comment>Wilt u deze betaalmethode gebruiken</comment>                           
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_paymentmethod_podiumkadokaart_active</source_model>                            
+                            <source_model>pay_payment/source_paymentmethod_podiumkadokaart_active</source_model>
                         </active>
                         <title translate="label">
                             <depends>
@@ -3511,8 +3932,8 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </title>                       
-                                   
+                        </title>
+
                         <sort_order translate="label">
                             <depends>
                                 <active>1</active>
@@ -3605,7 +4026,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het
+                                totaalbedrag of een vast bedrag
+                            </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -3618,7 +4041,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen,
+                                als u geen extra kosten wilt rekenen vult u niets in
+                            </comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -3642,34 +4067,33 @@
                                 <active>1</active>
                             </depends>
                             <label>Bevestigingsmail sturen</label>
-                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>                           
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
                             <sort_order>300</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_sendmail</source_model>                            
+                            <source_model>pay_payment/source_sendmail</source_model>
                         </send_mail>
                     </fields>
-                </pay_payment_podiumkadokaart> 
-                <!--  Postepay  -->
+                </pay_payment_podiumkadokaart>
                 <pay_payment_postepay translate="label" module="paygate">
-                    <label>Pay.nl - Postepay</label>        
-                    <model>pay_payment/Model_Paymentmethod_Postepay</model>            
+                    <label>Pay.nl - Postepay</label>
+                    <model>pay_payment/Model_Paymentmethod_Postepay</model>
                     <sort_order>1160</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
-                    <fields>   
+                    <fields>
                         <active translate="label">
                             <label>Actief</label>
-                            <comment>Wilt u deze betaalmethode gebruiken</comment>                           
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_paymentmethod_postepay_active</source_model>                            
+                            <source_model>pay_payment/source_paymentmethod_postepay_active</source_model>
                         </active>
                         <title translate="label">
                             <depends>
@@ -3681,8 +4105,8 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </title>                        
-                                   
+                        </title>
+
                         <sort_order translate="label">
                             <depends>
                                 <active>1</active>
@@ -3775,7 +4199,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het
+                                totaalbedrag of een vast bedrag
+                            </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -3788,7 +4214,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen,
+                                als u geen extra kosten wilt rekenen vult u niets in
+                            </comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -3812,34 +4240,33 @@
                                 <active>1</active>
                             </depends>
                             <label>Bevestigingsmail sturen</label>
-                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>                           
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
                             <sort_order>300</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_sendmail</source_model>                            
+                            <source_model>pay_payment/source_sendmail</source_model>
                         </send_mail>
                     </fields>
-                </pay_payment_postepay>          
-                <!--  Sofortbanking  -->
+                </pay_payment_postepay>
                 <pay_payment_sofortbanking translate="label" module="paygate">
-                    <label>Pay.nl - Sofortbanking</label>        
-                    <model>pay_payment/Model_Paymentmethod_Sofortbanking</model>            
+                    <label>Pay.nl - Sofortbanking</label>
+                    <model>pay_payment/Model_Paymentmethod_Sofortbanking</model>
                     <sort_order>1170</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
-                    <fields>   
+                    <fields>
                         <active translate="label">
                             <label>Actief</label>
-                            <comment>Wilt u deze betaalmethode gebruiken</comment>                           
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_paymentmethod_sofortbanking_active</source_model>                            
+                            <source_model>pay_payment/source_paymentmethod_sofortbanking_active</source_model>
                         </active>
                         <title translate="label">
                             <depends>
@@ -3852,7 +4279,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </title>
-                        
+
                         <sort_order translate="label">
                             <depends>
                                 <active>1</active>
@@ -3945,7 +4372,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het
+                                totaalbedrag of een vast bedrag
+                            </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -3958,7 +4387,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen,
+                                als u geen extra kosten wilt rekenen vult u niets in
+                            </comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -3982,34 +4413,33 @@
                                 <active>1</active>
                             </depends>
                             <label>Bevestigingsmail sturen</label>
-                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>                           
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
                             <sort_order>300</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_sendmail</source_model>                            
+                            <source_model>pay_payment/source_sendmail</source_model>
                         </send_mail>
                     </fields>
                 </pay_payment_sofortbanking>
-                <!--  Telefoon  -->
                 <pay_payment_telefoon translate="label" module="paygate">
-                    <label>Pay.nl - Betalen per telefoon</label>        
-                    <model>pay_payment/Model_Paymentmethod_Telefoon</model>            
+                    <label>Pay.nl - Betalen per telefoon</label>
+                    <model>pay_payment/Model_Paymentmethod_Telefoon</model>
                     <sort_order>1175</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
-                    <fields>   
+                    <fields>
                         <active translate="label">
                             <label>Actief</label>
-                            <comment>Wilt u deze betaalmethode gebruiken</comment>                           
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_paymentmethod_telefoon_active</source_model>                            
+                            <source_model>pay_payment/source_paymentmethod_telefoon_active</source_model>
                         </active>
                         <title translate="label">
                             <depends>
@@ -4022,7 +4452,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </title>
-                        
+
                         <sort_order translate="label">
                             <depends>
                                 <active>1</active>
@@ -4115,7 +4545,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het
+                                totaalbedrag of een vast bedrag
+                            </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -4128,7 +4560,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen,
+                                als u geen extra kosten wilt rekenen vult u niets in
+                            </comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -4152,34 +4586,33 @@
                                 <active>1</active>
                             </depends>
                             <label>Bevestigingsmail sturen</label>
-                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>                           
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
                             <sort_order>300</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_sendmail</source_model>                            
+                            <source_model>pay_payment/source_sendmail</source_model>
                         </send_mail>
                     </fields>
                 </pay_payment_telefoon>
-                <!--  Visa/Mastercard -->
                 <pay_payment_visamastercard translate="label" module="paygate">
-                    <label>Pay.nl - Visa/Mastercard</label>        
-                    <model>pay_payment/Model_Paymentmethod_Visamastercard</model>            
+                    <label>Pay.nl - Visa/Mastercard</label>
+                    <model>pay_payment/Model_Paymentmethod_Visamastercard</model>
                     <sort_order>1180</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
-                    <fields>   
+                    <fields>
                         <active translate="label">
                             <label>Actief</label>
-                            <comment>Wilt u deze betaalmethode gebruiken</comment>                           
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_paymentmethod_visamastercard_active</source_model>                            
+                            <source_model>pay_payment/source_paymentmethod_visamastercard_active</source_model>
                         </active>
                         <title translate="label">
                             <depends>
@@ -4192,7 +4625,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </title>
-                       
+
                         <sort_order translate="label">
                             <depends>
                                 <active>1</active>
@@ -4285,7 +4718,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het
+                                totaalbedrag of een vast bedrag
+                            </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -4298,7 +4733,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen,
+                                als u geen extra kosten wilt rekenen vult u niets in
+                            </comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -4322,203 +4759,205 @@
                                 <active>1</active>
                             </depends>
                             <label>Bevestigingsmail sturen</label>
-                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>                           
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
                             <sort_order>300</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_sendmail</source_model>                            
+                            <source_model>pay_payment/source_sendmail</source_model>
                         </send_mail>
                     </fields>
-                </pay_payment_visamastercard>                
-                <!-- Webshopgiftcard -->
+                </pay_payment_visamastercard>
+                <pay_payment_vvvgiftcard translate="label" module="paygate">
+                    <label>Pay.nl - VVV Giftcard</label>
+                    <model>pay_payment/Model_Paymentmethod_Vvvgiftcard</model>
+                    <sort_order>1185</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Actief</label>
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_paymentmethod_vvvgiftcard_active</source_model>
+                        </active>
+                        <title translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Titel van de betaalmethode</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </title>
+                        <sort_order translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Betaalmethode sorteer volgorde</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sort_order>
+                        <min_order_total translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Minimum bedrag</label>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </min_order_total>
+                        <max_order_total translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Maximum bedrag</label>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </max_order_total>
+                        <allowspecific translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Beschikbaarheid per land</label>
+                            <frontend_type>allowspecific</frontend_type>
+                            <source_model>adminhtml/system_config_source_payment_allspecificcountries</source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </allowspecific>
+                        <specificcountry translate="label">
+                            <depends>
+                                <active>1</active>
+                                <allowspecific>1</allowspecific>
+                            </depends>
+                            <label>Toegestane landen</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_country</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
+                        </specificcountry>
+                        <order_status translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Nieuwe order status</label>
+                            <comment>De status die een order moet krijgen bij het toevoegen</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_pendingPayment</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </order_status>
+                        <order_status_success translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Gelukt order status</label>
+                            <comment>De status die een order moet krijgen na succesvolle betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </order_status_success>
+                        <charge_type translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Extra kosten rekenen</label>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het
+                                totaalbedrag of een vast bedrag
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/system_config_source_chargetype</source_model>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </charge_type>
+                        <charge_value translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Extra kosten</label>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen,
+                                als u geen extra kosten wilt rekenen vult u niets in
+                            </comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>201</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </charge_value>
+                        <charge_tax_class translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Btw voor extra kosten</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_taxclass</source_model>
+                            <sort_order>202</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </charge_tax_class>
+                        <send_mail translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Bevestigingsmail sturen</label>
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
+                            <sort_order>300</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_sendmail</source_model>
+                        </send_mail>
+                    </fields>
+                </pay_payment_vvvgiftcard>
                 <pay_payment_webshopgiftcard translate="label" module="paygate">
-                    <label>Pay.nl - Webshopgiftcard</label>        
-                    <model>pay_payment/Model_Paymentmethod_Webshopgiftcard</model>            
+                    <label>Pay.nl - Webshopgiftcard</label>
+                    <model>pay_payment/Model_Paymentmethod_Webshopgiftcard</model>
                     <sort_order>1190</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
-                    <fields>   
+                    <fields>
                         <active translate="label">
                             <label>Actief</label>
-                            <comment>Wilt u deze betaalmethode gebruiken</comment>                           
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_paymentmethod_webshopgiftcard_active</source_model>                            
-                        </active>
-                        <title translate="label">
-                            <depends>
-                                <active>1</active>
-                            </depends>
-                            <label>Titel van de betaalmethode</label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>2</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </title>                        
-                                   
-                        <sort_order translate="label">
-                            <depends>
-                                <active>1</active>
-                            </depends>
-                            <label>Betaalmethode sorteer volgorde</label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>4</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </sort_order>
-                        <min_order_total translate="label">
-                            <depends>
-                                <active>1</active>
-                            </depends>
-                            <label>Minimum bedrag</label>
-                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>5</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </min_order_total>
-                        <max_order_total translate="label">
-                            <depends>
-                                <active>1</active>
-                            </depends>
-                            <label>Maximum bedrag</label>
-                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>6</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </max_order_total>
-                        <allowspecific translate="label">
-                            <depends>
-                                <active>1</active>
-                            </depends>
-                            <label>Beschikbaarheid per land</label>
-                            <frontend_type>allowspecific</frontend_type>
-                            <source_model>adminhtml/system_config_source_payment_allspecificcountries</source_model>
-                            <sort_order>7</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </allowspecific>
-                        <specificcountry translate="label">
-                            <depends>
-                                <active>1</active>
-                                <allowspecific>1</allowspecific>
-                            </depends>
-                            <label>Toegestane landen</label>
-                            <frontend_type>multiselect</frontend_type>
-                            <source_model>adminhtml/system_config_source_country</source_model>
-                            <sort_order>8</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
-                        </specificcountry>
-                        <order_status translate="label">
-                            <depends>
-                                <active>1</active>
-                            </depends>
-                            <label>Nieuwe order status</label>
-                            <comment>De status die een order moet krijgen bij het toevoegen</comment>
-                            <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_status_pendingPayment</source_model>
-                            <sort_order>9</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </order_status>
-                        <order_status_success translate="label">
-                            <depends>
-                                <active>1</active>
-                            </depends>
-                            <label>Gelukt order status</label>
-                            <comment>De status die een order moet krijgen na succesvolle betaling</comment>
-                            <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_status_processing</source_model>
-                            <sort_order>10</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </order_status_success>
-                        <charge_type translate="label">
-                            <depends>
-                                <active>1</active>
-                            </depends>
-                            <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
-                            <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/system_config_source_chargetype</source_model>
-                            <sort_order>200</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </charge_type>
-                        <charge_value translate="label">
-                            <depends>
-                                <active>1</active>
-                            </depends>
-                            <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>201</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </charge_value>
-                        <charge_tax_class translate="label">
-                            <depends>
-                                <active>1</active>
-                            </depends>
-                            <label>Btw voor extra kosten</label>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_shipping_taxclass</source_model>
-                            <sort_order>202</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </charge_tax_class>
-                        <send_mail translate="label">
-                            <depends>
-                                <active>1</active>
-                            </depends>
-                            <label>Bevestigingsmail sturen</label>
-                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>                           
-                            <sort_order>300</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_sendmail</source_model>                            
-                        </send_mail>
-                    </fields>
-                </pay_payment_webshopgiftcard>
-                <pay_payment_wijncadeau>
-                    <label>Pay.nl - Wijncadeau</label>        
-                    <model>pay_payment/Model_Paymentmethod_Wijncadeau</model>            
-                    <sort_order>1195</sort_order>
-                    <show_in_default>1</show_in_default>
-                    <show_in_website>1</show_in_website>
-                    <show_in_store>1</show_in_store>
-                    <fields>   
-                        <active translate="label">
-                            <label>Actief</label>
-                            <comment>Wilt u deze betaalmethode gebruiken</comment>                           
-                            <sort_order>1</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_paymentmethod_wijncadeau_active</source_model>                            
+                            <source_model>pay_payment/source_paymentmethod_webshopgiftcard_active</source_model>
                         </active>
                         <title translate="label">
                             <depends>
@@ -4531,7 +4970,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </title>
-                        
+
                         <sort_order translate="label">
                             <depends>
                                 <active>1</active>
@@ -4624,7 +5063,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het
+                                totaalbedrag of een vast bedrag
+                            </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -4637,7 +5078,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen,
+                                als u geen extra kosten wilt rekenen vult u niets in
+                            </comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -4661,34 +5104,33 @@
                                 <active>1</active>
                             </depends>
                             <label>Bevestigingsmail sturen</label>
-                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>                           
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
                             <sort_order>300</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_sendmail</source_model>                            
+                            <source_model>pay_payment/source_sendmail</source_model>
                         </send_mail>
                     </fields>
-                </pay_payment_wijncadeau>
-                <!-- Yourgift -->  
-                <pay_payment_yourgift translate="label" module="paygate">
-                    <label>Pay.nl - YourGift</label>        
-                    <model>pay_payment/Model_Paymentmethod_Yourgift</model>            
-                    <sort_order>1200</sort_order>
+                </pay_payment_webshopgiftcard>
+                <pay_payment_wijncadeau translate="label" module="paygate">
+                    <label>Pay.nl - Wijncadeau</label>
+                    <model>pay_payment/Model_Paymentmethod_Wijncadeau</model>
+                    <sort_order>1195</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
-                    <fields>   
+                    <fields>
                         <active translate="label">
                             <label>Actief</label>
-                            <comment>Wilt u deze betaalmethode gebruiken</comment>                           
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_paymentmethod_yourgift_active</source_model>                            
+                            <source_model>pay_payment/source_paymentmethod_wijncadeau_active</source_model>
                         </active>
                         <title translate="label">
                             <depends>
@@ -4700,8 +5142,8 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </title>                       
-                                   
+                        </title>
+
                         <sort_order translate="label">
                             <depends>
                                 <active>1</active>
@@ -4794,7 +5236,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het
+                                totaalbedrag of een vast bedrag
+                            </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -4807,7 +5251,9 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen,
+                                als u geen extra kosten wilt rekenen vult u niets in
+                            </comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -4831,19 +5277,192 @@
                                 <active>1</active>
                             </depends>
                             <label>Bevestigingsmail sturen</label>
-                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>                           
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
                             <sort_order>300</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_sendmail</source_model>                            
+                            <source_model>pay_payment/source_sendmail</source_model>
                         </send_mail>
                     </fields>
-                </pay_payment_yourgift> 
+                </pay_payment_wijncadeau>
+                <pay_payment_yourgift translate="label" module="paygate">
+                    <label>Pay.nl - YourGift</label>
+                    <model>pay_payment/Model_Paymentmethod_Yourgift</model>
+                    <sort_order>1200</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Actief</label>
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_paymentmethod_yourgift_active</source_model>
+                        </active>
+                        <title translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Titel van de betaalmethode</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </title>
+
+                        <sort_order translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Betaalmethode sorteer volgorde</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sort_order>
+                        <min_order_total translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Minimum bedrag</label>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </min_order_total>
+                        <max_order_total translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Maximum bedrag</label>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </max_order_total>
+                        <allowspecific translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Beschikbaarheid per land</label>
+                            <frontend_type>allowspecific</frontend_type>
+                            <source_model>adminhtml/system_config_source_payment_allspecificcountries</source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </allowspecific>
+                        <specificcountry translate="label">
+                            <depends>
+                                <active>1</active>
+                                <allowspecific>1</allowspecific>
+                            </depends>
+                            <label>Toegestane landen</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_country</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
+                        </specificcountry>
+                        <order_status translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Nieuwe order status</label>
+                            <comment>De status die een order moet krijgen bij het toevoegen</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_pendingPayment</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </order_status>
+                        <order_status_success translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Gelukt order status</label>
+                            <comment>De status die een order moet krijgen na succesvolle betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </order_status_success>
+                        <charge_type translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Extra kosten rekenen</label>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het
+                                totaalbedrag of een vast bedrag
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/system_config_source_chargetype</source_model>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </charge_type>
+                        <charge_value translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Extra kosten</label>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen,
+                                als u geen extra kosten wilt rekenen vult u niets in
+                            </comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>201</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </charge_value>
+                        <charge_tax_class translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Btw voor extra kosten</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_taxclass</source_model>
+                            <sort_order>202</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </charge_tax_class>
+                        <send_mail translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Bevestigingsmail sturen</label>
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
+                            <sort_order>300</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_sendmail</source_model>
+                        </send_mail>
+                    </fields>
+                </pay_payment_yourgift>
             </groups>
         </payment>
-        
+
     </sections>
 </config>
 

@@ -139,7 +139,7 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
                 $order->addStatusHistoryComment('Bedrag komt niet overeen. Order bedrag: ' . ($orderAmount / 100) . ' Betaald: ' . ($paidAmount / 100));
             }
             $payment = $order->getPayment();
-            $payment instanceof Mage_Sales_Model_Order_Payment;
+
             $autoInvoice = $store->getConfig('pay_payment/general/auto_invoice');
             $invoiceEmail = $store->getConfig('pay_payment/general/invoice_email');
 

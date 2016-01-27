@@ -212,7 +212,6 @@
                 <order_status_success>processing</order_status_success>
                 <send_mail>success</send_mail>
             </pay_payment_mybank>
-            
             <pay_payment_ebon>
                 <active>0</active>
                 <model>pay_payment/Paymentmethod_Ebon</model>
@@ -267,7 +266,6 @@
                 <order_status_success>processing</order_status_success>
                 <send_mail>success</send_mail>
             </pay_payment_overboeking>
-            
             <pay_payment_incasso>
                 <active>0</active>
                 <model>pay_payment/Paymentmethod_Incasso</model>
@@ -277,7 +275,6 @@
                 <order_status_success>processing</order_status_success>
                 <send_mail>success</send_mail>
             </pay_payment_incasso>
-            
             <pay_payment_paypal>
                 <active>0</active>
                 <model>pay_payment/Paymentmethod_Paypal</model>
@@ -287,7 +284,6 @@
                 <order_status_success>processing</order_status_success>
                 <send_mail>success</send_mail>
             </pay_payment_paypal>
-            
             <pay_payment_clickandbuy>
                 <active>0</active>
                 <model>pay_payment/Paymentmethod_Clickandbuy</model>
@@ -297,7 +293,6 @@
                 <order_status_success>processing</order_status_success>
                 <send_mail>success</send_mail>
             </pay_payment_clickandbuy>
-            
             <pay_payment_mistercash>
                 <active>0</active>
                 <model>pay_payment/Paymentmethod_Mistercash</model>
@@ -307,7 +302,6 @@
                 <order_status_success>processing</order_status_success>
                 <send_mail>success</send_mail>
             </pay_payment_mistercash>
-            
             <pay_payment_cashticket>
                 <active>0</active>
                 <model>pay_payment/Paymentmethod_Cashticket</model>
@@ -326,7 +320,6 @@
                 <order_status_success>processing</order_status_success>
                 <send_mail>success</send_mail>
             </pay_payment_sofortbanking>
-            
             <pay_payment_fasterpay>
                 <active>0</active>
                 <model>pay_payment/Paymentmethod_Fasterpay</model>
@@ -336,7 +329,6 @@
                 <order_status_success>processing</order_status_success>
                 <send_mail>success</send_mail>
             </pay_payment_fasterpay>
-                        
             <pay_payment_giropay>
                 <active>0</active>
                 <model>pay_payment/Paymentmethod_Giropay</model>
@@ -346,7 +338,6 @@
                 <order_status_success>processing</order_status_success>
                 <send_mail>success</send_mail>
             </pay_payment_giropay>
-                        
             <pay_payment_visamastercard>
                 <active>0</active>
                 <model>pay_payment/Paymentmethod_Visamastercard</model>
@@ -356,7 +347,6 @@
                 <order_status_success>processing</order_status_success>
                 <send_mail>success</send_mail>
             </pay_payment_visamastercard>
-                        
             <pay_payment_maestro>
                 <active>0</active>
                 <model>pay_payment/Paymentmethod_Maestro</model>
@@ -366,7 +356,6 @@
                 <order_status_success>processing</order_status_success>
                 <send_mail>success</send_mail>
             </pay_payment_maestro>
-            
             <pay_payment_afterpay>
                 <active>0</active>
                 <model>pay_payment/Paymentmethod_Afterpay</model>
@@ -394,7 +383,6 @@
                 <order_status_success>processing</order_status_success>
                 <send_mail>success</send_mail>
             </pay_payment_minitixsms>
-            
             <pay_payment_paysafecard>
                 <active>0</active>
                 <model>pay_payment/Paymentmethod_Paysafecard</model>
@@ -460,6 +448,36 @@
                 <order_status_success>processing</order_status_success>
                 <send_mail>success</send_mail>
             </pay_payment_wijncadeau>
+
+            <pay_payment_amex>
+                <active>0</active>
+                <model>pay_payment/Paymentmethod_Amex</model>
+                <title>American Express (AMEX)</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <order_status_success>processing</order_status_success>
+                <send_mail>success</send_mail>
+                <ask_data_personal>0</ask_data_personal>
+                <ask_data_business>0</ask_data_business>
+            </pay_payment_amex>
+            <pay_payment_focum>
+                <active>0</active>
+                <model>pay_payment/Paymentmethod_Focum</model>
+                <title>AchterafBetalen.nl</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <order_status_success>processing</order_status_success>
+                <send_mail>success</send_mail>
+            </pay_payment_focum>
+            <pay_payment_vvvgiftcard>
+                <active>0</active>
+                <model>pay_payment/Paymentmethod_Vvvgiftcard</model>
+                <title>VVV Giftcard</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <order_status_success>processing</order_status_success>
+                <send_mail>success</send_mail>
+            </pay_payment_vvvgiftcard>
         </payment>
     </default>
 </config>
