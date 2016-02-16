@@ -7,7 +7,6 @@ class Pay_Payment_Model_Sales_Order_Creditmemo_Total_Paymentcharge extends Mage_
     	$creditmemo->setPaymentCharge(0);
         $creditmemo->setBasePaymentCharge(0);
         
-        
         $paymentCharge = $creditmemo->getOrder()->getPaymentCharge();     
         $basePaymentCharge = $creditmemo->getOrder()->getBasePaymentCharge();
         
@@ -33,6 +32,9 @@ class Pay_Payment_Model_Sales_Order_Creditmemo_Total_Paymentcharge extends Mage_
     
         $creditmemo->setPaymentCharge($paymentCharge);
         $creditmemo->setBasePaymentCharge($basePaymentCharge);
+
+        $creditmemo->setBaseTaxAmount($creditmemo->getBaseTaxAmount() + $baseChargeTax);
+        $creditmemo->setTaxAmount($creditmemo->getTaxAmount() + $chargeTax);
         
         $creditmemo->setGrandTotal($creditmemo->getGrandTotal() + $creditmemo->getPaymentCharge());
         $creditmemo->setBaseGrandTotal($creditmemo->getBaseGrandTotal() + $creditmemo->getBasePaymentCharge());
