@@ -156,6 +156,12 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
         $apiToken  = $store->getConfig('pay_payment/general/apitoken');
         //$apiToken = Mage::getStoreConfig('pay_payment/general/apitoken', $store);
 
+        $useBackupApi = Mage::getStoreConfig('pay_payment/general/use_backup_api', $store);
+        $backupApiUrl = Mage::getStoreConfig('pay_payment/general/backup_api_url', $store);
+        if($useBackupApi == 1){
+            Pay_Payment_Helper_Api::_setBackupApiUrl($backupApiUrl);
+        }
+
         $api = Mage::helper('pay_payment/api_getservice');
 
         /* @var $api Pay_Payment_Helper_Api_GetService */

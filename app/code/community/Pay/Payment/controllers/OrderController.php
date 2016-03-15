@@ -11,7 +11,6 @@ class Pay_Payment_OrderController extends Mage_Core_Controller_Front_Action {
 
             $orderHelper = Mage::helper('pay_payment/order');
             /** @var $orderHelper Pay_Payment_Helper_Order */
-            $orderHelper instanceof Pay_Payment_Helper_Order;
             
             $status = $orderHelper->getTransactionStatus($transactionId);
             $order = $orderHelper->getOrderByTransactionId($transactionId);

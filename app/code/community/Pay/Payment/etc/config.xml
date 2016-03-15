@@ -180,6 +180,7 @@
                 <page_success>checkout/onepage/success</page_success>
                 <page_pending>checkout/onepage/success</page_pending>
                 <page_canceled>checkout/cart</page_canceled>
+                <use_backup_api>0</use_backup_api>
             </general>
         </pay_payment>
         <payment>

@@ -172,6 +172,22 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </text_payment_charge>
+                        <use_backup_api>
+                            <label>Gateway</label>
+                            <comment><![CDATA[Gebruik de standard gateway, op <a href='http://status-pay.nl'>status-pay.nl</a> kunt u de status van onze techniek volgen]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_gateway</source_model>
+                            <sort_order>16</sort_order>
+                            <show_in_default>1</show_in_default>
+                        </use_backup_api>
+                        <backup_api_url>
+                            <depends><use_backup_api>1</use_backup_api></depends>
+                            <comment>Vul hier de locatie van de failover gateway in die door pay.nl is verstrekt</comment>
+                            <label>Failover gateway</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>17</sort_order>
+                            <show_in_default>1</show_in_default>
+                        </backup_api_url>
                     </fields>
                 </general>
                 <loaded_payment_methods translate="label" module="pay_payment">

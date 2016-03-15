@@ -37,6 +37,11 @@ class Pay_Payment_CheckoutController extends Mage_Core_Controller_Front_Action
                 $serviceId = Mage::getStoreConfig('pay_payment/general/serviceid', Mage::app()->getStore());
 
                 $apiToken = Mage::getStoreConfig('pay_payment/general/apitoken', Mage::app()->getStore());
+                $useBackupApi = Mage::getStoreConfig('pay_payment/general/use_backup_api', Mage::app()->getStore());
+                $backupApiUrl = Mage::getStoreConfig('pay_payment/general/backup_api_url', Mage::app()->getStore());
+                if($useBackupApi == 1){
+                    Pay_Payment_Helper_Api::_setBackupApiUrl($backupApiUrl);
+                }
 
                 $amount = $order->getGrandTotal();
 

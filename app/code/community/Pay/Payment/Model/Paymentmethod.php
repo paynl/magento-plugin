@@ -27,7 +27,13 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         
         $serviceId = Mage::getStoreConfig('pay_payment/general/serviceid', $store);
         $apiToken = Mage::getStoreConfig('pay_payment/general/apitoken', $store);
-        
+
+        $useBackupApi = Mage::getStoreConfig('pay_payment/general/use_backup_api', $store);
+        $backupApiUrl = Mage::getStoreConfig('pay_payment/general/backup_api_url', $store);
+        if($useBackupApi == 1){
+            Pay_Payment_Helper_Api::_setBackupApiUrl($backupApiUrl);
+        }
+
         //todo: Doe iets met de api
         $parentTransactionId = $payment->getParentTransactionId();
         

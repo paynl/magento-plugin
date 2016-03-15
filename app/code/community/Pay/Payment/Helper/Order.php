@@ -288,6 +288,12 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
         $apiToken = $store->getConfig('pay_payment/general/apitoken');
 
 
+        $useBackupApi = Mage::getStoreConfig('pay_payment/general/use_backup_api', $store);
+        $backupApiUrl = Mage::getStoreConfig('pay_payment/general/backup_api_url', $store);
+        if($useBackupApi == 1){
+            Pay_Payment_Helper_Api::_setBackupApiUrl($backupApiUrl);
+        }
+
         $helperApi->setApiToken($apiToken);
         $helperApi->setTransactionId($transactionId);
 

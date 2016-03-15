@@ -14,6 +14,12 @@ class Pay_Payment_Helper_Api extends Mage_Core_Helper_Abstract {
     protected $_requestType = self::REQUEST_TYPE_POST;
     protected $_postData = array();
 
+    protected static $_backupApiUrl;
+
+    public static function _setBackupApiUrl($url){
+        self::$_backupApiUrl = $url;
+    }
+
     public function setServiceId($serviceId) {
         $this->_serviceId = $serviceId;
     }
@@ -42,7 +48,12 @@ class Pay_Payment_Helper_Api extends Mage_Core_Helper_Abstract {
             throw Mage::exception('Pay_Payment_Helper_Api', 'action not set', 1);
         }
 
-        return $this->_apiUrl . '/' . $this->_version . '/' . $this->_controller . '/' . $this->_action . '/json/';
+        $apiUrl = $this->_apiUrl;
+        if(!empty(self::$_backupApiUrl)){
+            $apiUrl = self::$_backupApiUrl;
+        }
+
+        return $apiUrl . '/' . $this->_version . '/' . $this->_controller . '/' . $this->_action . '/json/';
     }
 
     public function doRequest() {
@@ -72,7 +83,7 @@ class Pay_Payment_Helper_Api extends Mage_Core_Helper_Abstract {
 
             if ($result == false) {
                 $error = curl_error($ch);
-                throw Mage::exception('Pay_Payment_Helper_Api', 'Curl Exception: '.$error);
+                throw Mage::exception('Pay_Payment_Helper_Api', 'Curl Exception: '.$error, 1);
             }
             
             curl_close($ch);
