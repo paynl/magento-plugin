@@ -20,10 +20,6 @@ class Pay_Payment_CheckoutController extends Mage_Core_Controller_Front_Action
                 $optionId = $session->getOptionId();
                 $optionSubId = $session->getOptionSubId();
 
-                //TODO: deze gegevens ook posten
-                $kvknummer = $session->getKvknummer();
-                $companyname = $order->getBillingAddress()->getCompany();
-
                 $birthdayDay = $session->getBirthdayDay();
                 $birthdayMonth = $session->getBirthdayMonth();
                 $birthdayYear = $session->getBirthdayYear();
@@ -33,6 +29,7 @@ class Pay_Payment_CheckoutController extends Mage_Core_Controller_Front_Action
                     $birthdate = $birthdayDay . '-' . $birthdayMonth . '-' . $birthdayYear;
                 }
 
+                $iban = $session->getIban();
 
                 $serviceId = Mage::getStoreConfig('pay_payment/general/serviceid', Mage::app()->getStore());
 
@@ -115,6 +112,9 @@ class Pay_Payment_CheckoutController extends Mage_Core_Controller_Front_Action
                             list($year, $month, $day) = explode('-', $birthdate);
                             $birthdate = $day . '-' . $month . '-' . $year;
                         }
+                    }
+                    if(isset($iban)){
+                        $arrEnduser['iban'] = $iban;
                     }
 
                     $arrEnduser['dob'] = $birthdate;

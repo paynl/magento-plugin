@@ -6,7 +6,7 @@ class Pay_Payment_Helper_Api extends Mage_Core_Helper_Abstract {
     const REQUEST_TYPE_GET = 0;
 
     protected $_apiUrl = 'https://rest-api.pay.nl';
-    protected $_version = 'v3';
+    protected $_version = 'v5';
     protected $_controller = '';
     protected $_action = '';
     protected $_serviceId = '';
