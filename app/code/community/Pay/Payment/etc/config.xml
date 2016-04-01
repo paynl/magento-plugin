@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Pay_Payment>
-            <version>3.5.1</version>
+            <version>3.5.3</version>
         </Pay_Payment>
     </modules> 
        
@@ -114,7 +114,7 @@
                 <payment_charge translate="title">
                     <title>Pay.nl betaalmethode kosten</title>
                     <source_field>payment_charge</source_field>
-                    <amount_prefix></amount_prefix>
+                    <amount_prefix> </amount_prefix>
                     <font_size>7</font_size>
                     <display_zero>0</display_zero>
                     <sort_order>200</sort_order>
@@ -366,6 +366,15 @@
                 <order_status_success>processing</order_status_success>
                 <send_mail>success</send_mail>
             </pay_payment_afterpay>
+            <pay_payment_afterpayem>
+                <active>0</active>
+                <model>pay_payment/Paymentmethod_Afterpayem</model>
+                <title>Afterpay Eenmalige Machtiging</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <order_status_success>processing</order_status_success>
+                <send_mail>success</send_mail>
+            </pay_payment_afterpayem>
             <pay_payment_telefoon>
                 <active>0</active>
                 <model>pay_payment/Paymentmethod_Telefoon</model>
