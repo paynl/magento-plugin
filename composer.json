@@ -1,0 +1,12 @@
+{
+    "name": "paynl/magento-plugin",
+    "type": "magento-module",
+    "license":"OSL-3.0",
+    "description":"Add Pay.nl's payment methods to your magento store",
+    "authors":[
+        {
+            "name":"Andy Pieters",
+            "email":"andy@pay.nl"
+        }
+    ]
+}
