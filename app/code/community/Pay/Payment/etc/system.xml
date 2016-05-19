@@ -188,6 +188,14 @@
                             <sort_order>17</sort_order>
                             <show_in_default>1</show_in_default>
                         </backup_api_url>
+                        <enable_refund>
+                            <label>Refunden inschakelen</label>
+                            <comment>Schakel dit uit indien u het rechstreeks refunden wilt uitschakelen</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>18</sort_order>
+                            <show_in_default>1</show_in_default>
+                        </enable_refund>
                     </fields>
                 </general>
                 <loaded_payment_methods translate="label" module="pay_payment">
@@ -323,6 +331,37 @@
                             <show_in_store>1</show_in_store>
                             <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
                         </specificcountry>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>
+                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>
+                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
+                            </comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disabled_shippingmethods>
                         <order_status translate="label">
                             <depends>
                                 <active>1</active>
@@ -331,7 +370,7 @@
                             <comment>De status die een order moet krijgen bij het toevoegen</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_pendingPayment</source_model>
-                            <sort_order>9</sort_order>
+                            <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -344,7 +383,7 @@
                             <comment>De status die een order moet krijgen na succesvolle betaling</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_processing</source_model>
-                            <sort_order>10</sort_order>
+                            <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -496,6 +535,37 @@
                             <show_in_store>1</show_in_store>
                             <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
                         </specificcountry>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>
+                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>
+                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
+                            </comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disabled_shippingmethods>
                         <order_status translate="label">
                             <depends>
                                 <active>1</active>
@@ -504,7 +574,7 @@
                             <comment>De status die een order moet krijgen bij het toevoegen</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_pendingPayment</source_model>
-                            <sort_order>9</sort_order>
+                            <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -517,7 +587,7 @@
                             <comment>De status die een order moet krijgen na succesvolle betaling</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_processing</source_model>
-                            <sort_order>10</sort_order>
+                            <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -669,6 +739,37 @@
                             <show_in_store>1</show_in_store>
                             <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
                         </specificcountry>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>
+                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>
+                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
+                            </comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disabled_shippingmethods>
                         <order_status translate="label">
                             <depends>
                                 <active>1</active>
@@ -677,7 +778,7 @@
                             <comment>De status die een order moet krijgen bij het toevoegen</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_pendingPayment</source_model>
-                            <sort_order>9</sort_order>
+                            <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -690,7 +791,7 @@
                             <comment>De status die een order moet krijgen na succesvolle betaling</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_processing</source_model>
-                            <sort_order>10</sort_order>
+                            <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -871,6 +972,37 @@
                             <show_in_store>1</show_in_store>
                             <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
                         </specificcountry>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>
+                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>
+                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
+                            </comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disabled_shippingmethods>
                         <order_status translate="label">
                             <depends>
                                 <active>1</active>
@@ -1044,6 +1176,37 @@
                             <show_in_store>1</show_in_store>
                             <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
                         </specificcountry>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>
+                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>
+                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
+                            </comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disabled_shippingmethods>
                         <order_status translate="label">
                             <depends>
                                 <active>1</active>
@@ -1052,7 +1215,7 @@
                             <comment>De status die een order moet krijgen bij het toevoegen</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_pendingPayment</source_model>
-                            <sort_order>9</sort_order>
+                            <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -1065,7 +1228,7 @@
                             <comment>De status die een order moet krijgen na succesvolle betaling</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_processing</source_model>
-                            <sort_order>10</sort_order>
+                            <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -1217,6 +1380,37 @@
                             <show_in_store>1</show_in_store>
                             <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
                         </specificcountry>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>
+                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>
+                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
+                            </comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disabled_shippingmethods>
                         <order_status translate="label">
                             <depends>
                                 <active>1</active>
@@ -1225,7 +1419,7 @@
                             <comment>De status die een order moet krijgen bij het toevoegen</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_pendingPayment</source_model>
-                            <sort_order>9</sort_order>
+                            <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -1238,7 +1432,7 @@
                             <comment>De status die een order moet krijgen na succesvolle betaling</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_processing</source_model>
-                            <sort_order>10</sort_order>
+                            <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -1390,6 +1584,37 @@
                             <show_in_store>1</show_in_store>
                             <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
                         </specificcountry>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>
+                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>
+                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
+                            </comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disabled_shippingmethods>
                         <order_status translate="label">
                             <depends>
                                 <active>1</active>
@@ -1398,7 +1623,7 @@
                             <comment>De status die een order moet krijgen bij het toevoegen</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_pendingPayment</source_model>
-                            <sort_order>9</sort_order>
+                            <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -1411,7 +1636,7 @@
                             <comment>De status die een order moet krijgen na succesvolle betaling</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_processing</source_model>
-                            <sort_order>10</sort_order>
+                            <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -1563,6 +1788,37 @@
                             <show_in_store>1</show_in_store>
                             <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
                         </specificcountry>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>
+                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>
+                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
+                            </comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disabled_shippingmethods>
                         <order_status translate="label">
                             <depends>
                                 <active>1</active>
@@ -1571,7 +1827,7 @@
                             <comment>De status die een order moet krijgen bij het toevoegen</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_pendingPayment</source_model>
-                            <sort_order>9</sort_order>
+                            <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -1584,7 +1840,7 @@
                             <comment>De status die een order moet krijgen na succesvolle betaling</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_processing</source_model>
-                            <sort_order>10</sort_order>
+                            <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -1736,6 +1992,37 @@
                             <show_in_store>1</show_in_store>
                             <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
                         </specificcountry>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>
+                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>
+                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
+                            </comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disabled_shippingmethods>
                         <order_status translate="label">
                             <depends>
                                 <active>1</active>
@@ -1744,7 +2031,7 @@
                             <comment>De status die een order moet krijgen bij het toevoegen</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_pendingPayment</source_model>
-                            <sort_order>9</sort_order>
+                            <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -1757,7 +2044,7 @@
                             <comment>De status die een order moet krijgen na succesvolle betaling</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_processing</source_model>
-                            <sort_order>10</sort_order>
+                            <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -1909,6 +2196,37 @@
                             <show_in_store>1</show_in_store>
                             <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
                         </specificcountry>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>
+                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>
+                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
+                            </comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disabled_shippingmethods>
                         <order_status translate="label">
                             <depends>
                                 <active>1</active>
@@ -1917,7 +2235,7 @@
                             <comment>De status die een order moet krijgen bij het toevoegen</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_pendingPayment</source_model>
-                            <sort_order>9</sort_order>
+                            <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -1930,7 +2248,7 @@
                             <comment>De status die een order moet krijgen na succesvolle betaling</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_processing</source_model>
-                            <sort_order>10</sort_order>
+                            <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -2082,6 +2400,37 @@
                             <show_in_store>1</show_in_store>
                             <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
                         </specificcountry>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>
+                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>
+                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
+                            </comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disabled_shippingmethods>
                         <order_status translate="label">
                             <depends>
                                 <active>1</active>
@@ -2090,7 +2439,7 @@
                             <comment>De status die een order moet krijgen bij het toevoegen</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_pendingPayment</source_model>
-                            <sort_order>9</sort_order>
+                            <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -2103,7 +2452,7 @@
                             <comment>De status die een order moet krijgen na succesvolle betaling</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_processing</source_model>
-                            <sort_order>10</sort_order>
+                            <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -2255,6 +2604,37 @@
                             <show_in_store>1</show_in_store>
                             <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
                         </specificcountry>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>
+                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>
+                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
+                            </comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disabled_shippingmethods>
                         <order_status translate="label">
                             <depends>
                                 <active>1</active>
@@ -2263,7 +2643,7 @@
                             <comment>De status die een order moet krijgen bij het toevoegen</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_pendingPayment</source_model>
-                            <sort_order>9</sort_order>
+                            <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -2276,7 +2656,7 @@
                             <comment>De status die een order moet krijgen na succesvolle betaling</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_processing</source_model>
-                            <sort_order>10</sort_order>
+                            <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -2428,6 +2808,37 @@
                             <show_in_store>1</show_in_store>
                             <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
                         </specificcountry>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>
+                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>
+                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
+                            </comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disabled_shippingmethods>
                         <order_status translate="label">
                             <depends>
                                 <active>1</active>
@@ -2436,7 +2847,7 @@
                             <comment>De status die een order moet krijgen bij het toevoegen</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_pendingPayment</source_model>
-                            <sort_order>9</sort_order>
+                            <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -2449,7 +2860,7 @@
                             <comment>De status die een order moet krijgen na succesvolle betaling</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_processing</source_model>
-                            <sort_order>10</sort_order>
+                            <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -2627,6 +3038,37 @@
                             <show_in_store>1</show_in_store>
                             <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
                         </specificcountry>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>
+                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>
+                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
+                            </comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disabled_shippingmethods>
                         <order_status translate="label">
                             <depends>
                                 <active>1</active>
@@ -2635,7 +3077,7 @@
                             <comment>De status die een order moet krijgen bij het toevoegen</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_pendingPayment</source_model>
-                            <sort_order>9</sort_order>
+                            <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -2648,7 +3090,7 @@
                             <comment>De status die een order moet krijgen na succesvolle betaling</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_processing</source_model>
-                            <sort_order>10</sort_order>
+                            <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -2800,6 +3242,37 @@
                             <show_in_store>1</show_in_store>
                             <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
                         </specificcountry>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>
+                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>
+                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
+                            </comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disabled_shippingmethods>
                         <order_status translate="label">
                             <depends>
                                 <active>1</active>
@@ -2808,7 +3281,7 @@
                             <comment>De status die een order moet krijgen bij het toevoegen</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_pendingPayment</source_model>
-                            <sort_order>9</sort_order>
+                            <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -2821,7 +3294,7 @@
                             <comment>De status die een order moet krijgen na succesvolle betaling</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_processing</source_model>
-                            <sort_order>10</sort_order>
+                            <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -2973,6 +3446,37 @@
                             <show_in_store>1</show_in_store>
                             <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
                         </specificcountry>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>
+                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>
+                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
+                            </comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disabled_shippingmethods>
                         <order_status translate="label">
                             <depends>
                                 <active>1</active>
@@ -2981,7 +3485,7 @@
                             <comment>De status die een order moet krijgen bij het toevoegen</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_pendingPayment</source_model>
-                            <sort_order>9</sort_order>
+                            <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -2994,7 +3498,7 @@
                             <comment>De status die een order moet krijgen na succesvolle betaling</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_processing</source_model>
-                            <sort_order>10</sort_order>
+                            <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -3146,6 +3650,37 @@
                             <show_in_store>1</show_in_store>
                             <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
                         </specificcountry>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>
+                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>
+                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
+                            </comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disabled_shippingmethods>
                         <order_status translate="label">
                             <depends>
                                 <active>1</active>
@@ -3154,7 +3689,7 @@
                             <comment>De status die een order moet krijgen bij het toevoegen</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_pendingPayment</source_model>
-                            <sort_order>9</sort_order>
+                            <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -3167,7 +3702,7 @@
                             <comment>De status die een order moet krijgen na succesvolle betaling</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_processing</source_model>
-                            <sort_order>10</sort_order>
+                            <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -3319,6 +3854,37 @@
                             <show_in_store>1</show_in_store>
                             <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
                         </specificcountry>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>
+                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>
+                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
+                            </comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disabled_shippingmethods>
                         <order_status translate="label">
                             <depends>
                                 <active>1</active>
@@ -3327,7 +3893,7 @@
                             <comment>De status die een order moet krijgen bij het toevoegen</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_pendingPayment</source_model>
-                            <sort_order>9</sort_order>
+                            <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -3340,7 +3906,7 @@
                             <comment>De status die een order moet krijgen na succesvolle betaling</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_processing</source_model>
-                            <sort_order>10</sort_order>
+                            <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -3492,6 +4058,37 @@
                             <show_in_store>1</show_in_store>
                             <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
                         </specificcountry>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>
+                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>
+                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
+                            </comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disabled_shippingmethods>
                         <order_status translate="label">
                             <depends>
                                 <active>1</active>
@@ -3500,7 +4097,7 @@
                             <comment>De status die een order moet krijgen bij het toevoegen</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_pendingPayment</source_model>
-                            <sort_order>9</sort_order>
+                            <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -3513,7 +4110,7 @@
                             <comment>De status die een order moet krijgen na succesvolle betaling</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_processing</source_model>
-                            <sort_order>10</sort_order>
+                            <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -3665,6 +4262,37 @@
                             <show_in_store>1</show_in_store>
                             <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
                         </specificcountry>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>
+                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>
+                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
+                            </comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disabled_shippingmethods>
                         <order_status translate="label">
                             <depends>
                                 <active>1</active>
@@ -3673,7 +4301,7 @@
                             <comment>De status die een order moet krijgen bij het toevoegen</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_pendingPayment</source_model>
-                            <sort_order>9</sort_order>
+                            <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -3686,7 +4314,7 @@
                             <comment>De status die een order moet krijgen na succesvolle betaling</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_processing</source_model>
-                            <sort_order>10</sort_order>
+                            <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -3838,6 +4466,37 @@
                             <show_in_store>1</show_in_store>
                             <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
                         </specificcountry>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>
+                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>
+                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
+                            </comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disabled_shippingmethods>
                         <order_status translate="label">
                             <depends>
                                 <active>1</active>
@@ -3846,7 +4505,7 @@
                             <comment>De status die een order moet krijgen bij het toevoegen</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_pendingPayment</source_model>
-                            <sort_order>9</sort_order>
+                            <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -3859,7 +4518,7 @@
                             <comment>De status die een order moet krijgen na succesvolle betaling</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_processing</source_model>
-                            <sort_order>10</sort_order>
+                            <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -4011,6 +4670,37 @@
                             <show_in_store>1</show_in_store>
                             <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
                         </specificcountry>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>
+                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>
+                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
+                            </comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disabled_shippingmethods>
                         <order_status translate="label">
                             <depends>
                                 <active>1</active>
@@ -4019,7 +4709,7 @@
                             <comment>De status die een order moet krijgen bij het toevoegen</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_pendingPayment</source_model>
-                            <sort_order>9</sort_order>
+                            <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -4032,7 +4722,7 @@
                             <comment>De status die een order moet krijgen na succesvolle betaling</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_processing</source_model>
-                            <sort_order>10</sort_order>
+                            <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -4184,6 +4874,37 @@
                             <show_in_store>1</show_in_store>
                             <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
                         </specificcountry>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>
+                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>
+                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
+                            </comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disabled_shippingmethods>
                         <order_status translate="label">
                             <depends>
                                 <active>1</active>
@@ -4192,7 +4913,7 @@
                             <comment>De status die een order moet krijgen bij het toevoegen</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_pendingPayment</source_model>
-                            <sort_order>9</sort_order>
+                            <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -4205,7 +4926,7 @@
                             <comment>De status die een order moet krijgen na succesvolle betaling</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_processing</source_model>
-                            <sort_order>10</sort_order>
+                            <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -4357,6 +5078,37 @@
                             <show_in_store>1</show_in_store>
                             <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
                         </specificcountry>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>
+                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>
+                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
+                            </comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disabled_shippingmethods>
                         <order_status translate="label">
                             <depends>
                                 <active>1</active>
@@ -4365,7 +5117,7 @@
                             <comment>De status die een order moet krijgen bij het toevoegen</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_pendingPayment</source_model>
-                            <sort_order>9</sort_order>
+                            <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -4378,7 +5130,7 @@
                             <comment>De status die een order moet krijgen na succesvolle betaling</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_processing</source_model>
-                            <sort_order>10</sort_order>
+                            <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -4530,6 +5282,37 @@
                             <show_in_store>1</show_in_store>
                             <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
                         </specificcountry>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>
+                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>
+                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
+                            </comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disabled_shippingmethods>
                         <order_status translate="label">
                             <depends>
                                 <active>1</active>
@@ -4538,7 +5321,7 @@
                             <comment>De status die een order moet krijgen bij het toevoegen</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_pendingPayment</source_model>
-                            <sort_order>9</sort_order>
+                            <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -4551,7 +5334,7 @@
                             <comment>De status die een order moet krijgen na succesvolle betaling</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_processing</source_model>
-                            <sort_order>10</sort_order>
+                            <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -4703,6 +5486,37 @@
                             <show_in_store>1</show_in_store>
                             <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
                         </specificcountry>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>
+                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>
+                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
+                            </comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disabled_shippingmethods>
                         <order_status translate="label">
                             <depends>
                                 <active>1</active>
@@ -4711,7 +5525,7 @@
                             <comment>De status die een order moet krijgen bij het toevoegen</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_pendingPayment</source_model>
-                            <sort_order>9</sort_order>
+                            <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -4724,7 +5538,7 @@
                             <comment>De status die een order moet krijgen na succesvolle betaling</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_processing</source_model>
-                            <sort_order>10</sort_order>
+                            <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -4876,6 +5690,37 @@
                             <show_in_store>1</show_in_store>
                             <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
                         </specificcountry>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>
+                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>
+                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
+                            </comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disabled_shippingmethods>
                         <order_status translate="label">
                             <depends>
                                 <active>1</active>
@@ -4884,7 +5729,7 @@
                             <comment>De status die een order moet krijgen bij het toevoegen</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_pendingPayment</source_model>
-                            <sort_order>9</sort_order>
+                            <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -4897,7 +5742,7 @@
                             <comment>De status die een order moet krijgen na succesvolle betaling</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_processing</source_model>
-                            <sort_order>10</sort_order>
+                            <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -5048,6 +5893,37 @@
                             <show_in_store>1</show_in_store>
                             <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
                         </specificcountry>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>
+                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>
+                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
+                            </comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disabled_shippingmethods>
                         <order_status translate="label">
                             <depends>
                                 <active>1</active>
@@ -5056,7 +5932,7 @@
                             <comment>De status die een order moet krijgen bij het toevoegen</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_pendingPayment</source_model>
-                            <sort_order>9</sort_order>
+                            <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -5069,7 +5945,7 @@
                             <comment>De status die een order moet krijgen na succesvolle betaling</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_processing</source_model>
-                            <sort_order>10</sort_order>
+                            <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -5221,6 +6097,37 @@
                             <show_in_store>1</show_in_store>
                             <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
                         </specificcountry>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>
+                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>
+                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
+                            </comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disabled_shippingmethods>
                         <order_status translate="label">
                             <depends>
                                 <active>1</active>
@@ -5229,7 +6136,7 @@
                             <comment>De status die een order moet krijgen bij het toevoegen</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_pendingPayment</source_model>
-                            <sort_order>9</sort_order>
+                            <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -5242,7 +6149,7 @@
                             <comment>De status die een order moet krijgen na succesvolle betaling</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_processing</source_model>
-                            <sort_order>10</sort_order>
+                            <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -5394,6 +6301,37 @@
                             <show_in_store>1</show_in_store>
                             <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
                         </specificcountry>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>
+                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>
+                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
+                            </comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disabled_shippingmethods>
                         <order_status translate="label">
                             <depends>
                                 <active>1</active>
@@ -5402,7 +6340,7 @@
                             <comment>De status die een order moet krijgen bij het toevoegen</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_pendingPayment</source_model>
-                            <sort_order>9</sort_order>
+                            <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -5415,7 +6353,7 @@
                             <comment>De status die een order moet krijgen na succesvolle betaling</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_processing</source_model>
-                            <sort_order>10</sort_order>
+                            <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -5567,6 +6505,37 @@
                             <show_in_store>1</show_in_store>
                             <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
                         </specificcountry>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>
+                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>
+                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
+                            </comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disabled_shippingmethods>
                         <order_status translate="label">
                             <depends>
                                 <active>1</active>
@@ -5575,7 +6544,7 @@
                             <comment>De status die een order moet krijgen bij het toevoegen</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_pendingPayment</source_model>
-                            <sort_order>9</sort_order>
+                            <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -5588,7 +6557,7 @@
                             <comment>De status die een order moet krijgen na succesvolle betaling</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_status_processing</source_model>
-                            <sort_order>10</sort_order>
+                            <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
