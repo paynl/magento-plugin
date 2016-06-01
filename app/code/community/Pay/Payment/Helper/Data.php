@@ -353,6 +353,9 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
 
     public static function calculateTaxClass($amountInclTax, $taxAmount)
     {
+        if(!$amountInclTax || !$taxAmount ){
+            return self::getTaxCodeFromRate(0);
+        }
         $amountExclTax = $amountInclTax - $taxAmount;
         $taxRate       = ($taxAmount / $amountExclTax) * 100;
 

@@ -42,10 +42,8 @@
                 <rewrite>
                     <sales_totals>Pay_Payment_Block_Adminhtml_Sales_Totals</sales_totals>
                     <sales_order_totals>Pay_Payment_Block_Adminhtml_Sales_Order_Totals</sales_order_totals>
-                    <sales_order_invoice_totals>Pay_Payment_Block_Adminhtml_Sales_Order_Invoice_Totals
-                    </sales_order_invoice_totals>
-                    <sales_order_creditmemo_totals>Pay_Payment_Block_Adminhtml_Sales_Order_Creditmemo_Totals
-                    </sales_order_creditmemo_totals>
+                    <sales_order_invoice_totals>Pay_Payment_Block_Adminhtml_Sales_Order_Invoice_Totals</sales_order_invoice_totals>
+                    <sales_order_creditmemo_totals>Pay_Payment_Block_Adminhtml_Sales_Order_Creditmemo_Totals</sales_order_creditmemo_totals>
                 </rewrite>
             </adminhtml>
         </blocks>
@@ -116,7 +114,7 @@
                 <payment_charge translate="title">
                     <title>Pay.nl betaalmethode kosten</title>
                     <source_field>payment_charge</source_field>
-                    <amount_prefix></amount_prefix>
+                    <amount_prefix> </amount_prefix>
                     <font_size>7</font_size>
                     <display_zero>0</display_zero>
                     <sort_order>200</sort_order>
