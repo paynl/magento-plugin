@@ -50,22 +50,22 @@ class Pay_Payment_CheckoutController extends Mage_Core_Controller_Front_Action
 
                 if ($sendOrderData == 1) {
                     $items = $order->getItemsCollection();
-                    foreach ($items as $item) {
-                        /* @var $item Mage_Sales_Model_Order_Item */
-                        $productId = $item->getId();
-                        $description = $item->getName();
-                        $price = $item->getPriceInclTax();
-                        $taxAmount = $item->getTaxAmount();
-                        $quantity = $item->getQtyOrdered();
+                    foreach ($items as $item)
+                    {
+                      /* @var $item Mage_Sales_Model_Order_Item */
+                      $productId = $item->getId();
+                      $description = $item->getName();
+                      $price = $item->getPriceInclTax();
+                      $taxAmount = $item->getTaxAmount();
+                      $quantity = $item->getQtyOrdered();
 
+                      if ($price != 0)
+                      {
                         $taxClass = $helper->calculateTaxClass($price, $taxAmount / $quantity);
-
                         $price = round($price * 100);
+                        $api->addProduct($productId, $description, $price, $quantity, $taxClass);
+                      }
 
-
-                        if ($price != 0) {
-                            $api->addProduct($productId, $description, $price, $quantity, $taxClass);
-                        }
                     }
 
                     $discountAmount = $order->getDiscountAmount();

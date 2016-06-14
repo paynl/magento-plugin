@@ -5,8 +5,10 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
 
     public function isPayIp($ipAddress)
     {
+        /**
+         * @var Pay_Payment_Helper_Api_Ispayserverip $helperApi
+         */
         $helperApi = Mage::helper('pay_payment/api_ispayserverip');
-        $helperApi instanceof Pay_Payment_Helper_Api_Ispayserverip;
         $helperApi->setIpaddress($ipAddress);
         $result    = $helperApi->doRequest();
         return $result['result'] == 1;
@@ -31,7 +33,7 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
             ->getCollection()
             ->addFieldToFilter('order_id', $orderId);
 
-        
+
     }
 
     public function getOptions($store = null)
@@ -80,7 +82,9 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
         foreach ($paymentOptions as $paymentOption) {
             $image = $imageBasePath.$paymentOption['path'].$paymentOption['img'];
 
-            //Laden
+            /**
+             * @var Pay_Payment_Model_Option $objOption
+             */
             $objOption = Mage::getModel('pay_payment/option')->getCollection()
                 ->addFieldToFilter('service_id', $serviceId)
                 ->addFieldToFilter('option_id', $paymentOption['id'])
@@ -126,6 +130,9 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
                 }
             }
             //Alle subs die niet zijn opnieuw zijn binnengekomen verwijderen
+            /**
+             * @var Pay_Payment_Model_Optionsub[] $arrSubsToDelete
+             */
             $arrSubsToDelete = Mage::getModel('pay_payment/optionsub')
                 ->getCollection()
                 ->addFieldToFilter('option_internal_id',
@@ -208,8 +215,8 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
         } else {
             $amount = floatval($chargeValue);
         }
-        //  }	
-        ////echo $amount;	
+        //  }
+        ////echo $amount;
         //return Mage::helper('core')->formatPrice($amount);
         return $amount;
     }
@@ -354,7 +361,11 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
     public static function calculateTaxClass($amountInclTax, $taxAmount)
     {
         $amountExclTax = $amountInclTax - $taxAmount;
-        $taxRate       = ($taxAmount / $amountExclTax) * 100;
+        if($amountExclTax == 0){ // prevent division by zero
+            $taxRate = 0;
+        } else {
+            $taxRate       = ($taxAmount / $amountExclTax) * 100;
+        }
 
         return self::getTaxCodeFromRate($taxRate);
     }
