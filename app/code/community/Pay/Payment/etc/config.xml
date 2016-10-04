@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Pay_Payment>
-            <version>3.5.7</version>
+            <version>3.5.8</version>
         </Pay_Payment>
     </modules>
 
@@ -206,6 +206,26 @@
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_bitcoin>
+            <pay_payment_capayable>
+                <active>0</active>
+                <model>pay_payment/Paymentmethod_Capayable</model>
+                <title>Capayable</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <order_status_success>processing</order_status_success>
+                <send_mail>success</send_mail>
+                <limit_shipping>0</limit_shipping>
+            </pay_payment_capayable>
+            <pay_payment_capayablegespreid>
+                <active>0</active>
+                <model>pay_payment/Paymentmethod_CapayableGespreid</model>
+                <title>Capayable Gespreid</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <order_status_success>processing</order_status_success>
+                <send_mail>success</send_mail>
+                <limit_shipping>0</limit_shipping>
+            </pay_payment_capayablegespreid>
             <pay_payment_mybank>
                 <active>0</active>
                 <model>pay_payment/Paymentmethod_Mybank</model>
