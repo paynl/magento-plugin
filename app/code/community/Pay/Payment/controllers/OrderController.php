@@ -27,7 +27,7 @@ class Pay_Payment_OrderController extends Mage_Core_Controller_Front_Action {
 
         
         if ($status == Pay_Payment_Model_Transaction::STATE_CANCELED) {
-            Mage::getSingleton('checkout/session')->addNotice('Betaling geannuleerd');
+            Mage::getSingleton('checkout/session')->addNotice($this->__('Betaling geannuleerd'));
         }
         if ($status == Pay_Payment_Model_Transaction::STATE_SUCCESS) {
             $this->_redirect($pageSuccess);
