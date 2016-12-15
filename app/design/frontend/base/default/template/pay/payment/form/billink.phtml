@@ -1,15 +1,14 @@
 <?php
 $_code    = $this->getMethodCode();
-$session  = Mage::getSingleton('checkout/session');
-$dobDay   = $session->getBirthdayDay();
-$dobMonth = $session->getBirthdayMonth();
-$dobYear  = $session->getBirthdayYear();
+
+$dob = $this->getDob();
+list($dobYear,$dobMonth,$dobDay) = explode('-',$dob);
 
 $enablePersonal = Mage::getStoreConfig('payment/pay_payment_billink/ask_data_personal',
         Mage::app()->getStore());
 $enableBusiness = Mage::getStoreConfig('payment/pay_payment_billink/ask_data_business',
         Mage::app()->getStore());
-$this instanceof Pay_Payment_Block_Form_Billink;
+
 ?>
 
 

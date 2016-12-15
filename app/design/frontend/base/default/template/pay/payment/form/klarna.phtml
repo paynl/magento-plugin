@@ -1,6 +1,6 @@
 <?php
-/** @var Pay_Payment_Model_Paymentmethod $this */
 $_code = $this->getMethodCode();
+
 $dob = $this->getDob();
 
 list($dobYear,$dobMonth,$dobDay) = explode('-',$dob);
@@ -9,7 +9,7 @@ list($dobYear,$dobMonth,$dobDay) = explode('-',$dob);
 
 
 <ul class="form-list" id="payment_form_<?php echo $_code ?>" style="display:none;">
-    <li>Geboortedatum</li>
+    <li><?php echo $this->__('Date of Birth'); ?></li>
     <li>
         <div class="input-box customer-dob">
             <div class="dob-day">
@@ -28,11 +28,6 @@ list($dobYear,$dobMonth,$dobDay) = explode('-',$dob);
                 <label for="year">YYYY</label>
             </div>
     </li>
-    <li>IBAN</li>
-    <li>
-        <input type="text" id="iban" name="payment[iban]" value="<?php echo $this->getIban(); ?>" title="iban" class="input-text" placeholder="iban">
-    </li>
-
 </ul>
 <div>
     <?php echo $this->getMethod()->getConfigData('message'); ?>

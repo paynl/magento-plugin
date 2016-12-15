@@ -16,28 +16,28 @@ class Pay_Payment_Model_Paymentmethod_Ideal extends Pay_Payment_Model_Paymentmet
     }
 
     
-    public function assignData($data) {
-        $store = Mage::app()->getStore();
-        $bankSelectType = $store->getConfig('payment/pay_payment_ideal/bank_select_type');
-//        $bankSelectType = Mage::getStoreConfig('payment/pay_payment_ideal/bank_select_type', Mage::app()->getStore());
-        if($bankSelectType == 'none'){
-            return $this;
-        }
-        
-        if (!($data instanceof Varien_Object)) {
-            $data = new Varien_Object($data);
-        }
-        $session = Mage::getSingleton('checkout/session');
-        /* @var $session Mage_Checkout_Model_Session */
-
-        $session->setOptionSubId();
-        
-        if ($data->getOptionSub()) {
-            $optionSub = $data->getOptionSub();
-            $session->setOptionSubId($optionSub);
-        }
-
-        return $this;
-    }
+//    public function assignData($data) {
+//        $store = Mage::app()->getStore();
+//        $bankSelectType = $store->getConfig('payment/pay_payment_ideal/bank_select_type');
+////        $bankSelectType = Mage::getStoreConfig('payment/pay_payment_ideal/bank_select_type', Mage::app()->getStore());
+//        if($bankSelectType == 'none'){
+//            return $this;
+//        }
+//
+//        if (!($data instanceof Varien_Object)) {
+//            $data = new Varien_Object($data);
+//        }
+//        $session = Mage::getSingleton('checkout/session');
+//        /* @var $session Mage_Checkout_Model_Session */
+//
+//        $session->setOptionSubId();
+//
+//        if ($data->getOptionSub()) {
+//            $optionSub = $data->getOptionSub();
+//            $session->setOptionSubId($optionSub);
+//        }
+//
+//        return parent::assignData($data);
+//    }
 
 }

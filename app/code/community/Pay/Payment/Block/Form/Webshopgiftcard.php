@@ -5,4 +5,6 @@ class Pay_Payment_Block_Form_Webshopgiftcard extends Pay_Payment_Block_Form_Abst
     protected $paymentMethodId = Pay_Payment_Model_Paymentmethod_Webshopgiftcard::OPTION_ID;
     protected $paymentMethodName = 'Webshopgiftcard';
 
+    protected $methodCode = 'pay_payment_webshopgiftcard';
+
 }
