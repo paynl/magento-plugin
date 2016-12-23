@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Pay_Payment>
-            <version>3.6.0</version>
+            <version>3.6.1</version>
         </Pay_Payment>
     </modules>
 
@@ -42,10 +42,8 @@
                 <rewrite>
                     <sales_totals>Pay_Payment_Block_Adminhtml_Sales_Totals</sales_totals>
                     <sales_order_totals>Pay_Payment_Block_Adminhtml_Sales_Order_Totals</sales_order_totals>
-                    <sales_order_invoice_totals>Pay_Payment_Block_Adminhtml_Sales_Order_Invoice_Totals
-                    </sales_order_invoice_totals>
-                    <sales_order_creditmemo_totals>Pay_Payment_Block_Adminhtml_Sales_Order_Creditmemo_Totals
-                    </sales_order_creditmemo_totals>
+                    <sales_order_invoice_totals>Pay_Payment_Block_Adminhtml_Sales_Order_Invoice_Totals</sales_order_invoice_totals>
+                    <sales_order_creditmemo_totals>Pay_Payment_Block_Adminhtml_Sales_Order_Creditmemo_Totals</sales_order_creditmemo_totals>
                 </rewrite>
             </adminhtml>
         </blocks>
