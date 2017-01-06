@@ -34,7 +34,7 @@ class Pay_Payment_Model_Paymentmethod_Klarna extends Pay_Payment_Model_Paymentme
      * @return boolean
      */
 
-    public function capture(Mage_Sales_Model_Order_Payment $payment, $amount)
+    public function capture(Varien_Object $payment, $amount)
     {
         $transaction = $payment->getAuthorizationTransaction();
 

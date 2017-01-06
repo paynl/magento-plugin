@@ -133,6 +133,11 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
 
         $api = Mage::helper('pay_payment/api_start');
         /* @var $api Pay_Payment_Helper_Api_Start */
+
+        if(isset($additionalData['valid_days'])){
+            $api->setExpireDate(date('d-m-Y H:i:s', strtotime('+'.$additionalData['valid_days'].' days')));
+        }
+
         $api->setExtra2($order->getCustomerEmail());
 
         if ($sendOrderData == 1) {

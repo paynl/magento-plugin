@@ -1,4 +1,5 @@
 app/code/community/Pay/Payment/* 								app/code/community/Pay/Payment/
 app/design/frontend/base/default/template/pay/payment/*      	app/design/frontend/base/default/template/pay/payment/
+app/design/adminhtml/base/default/template/pay/payment/*      	app/design/adminhtml/base/default/template/pay/payment/
 media/pay_payment/logo.png    									media/pay_payment/logo.png
 app/etc/modules/Pay_Payment.xml          						app/etc/modules/Pay_Payment.xml

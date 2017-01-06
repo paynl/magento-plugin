@@ -1,0 +1,24 @@
+<?php
+$_code = $this->getMethodCode();
+?>
+<ul id="payment_form_<?php echo $_code ?>" style="display:none;">
+    <li>
+        <div class="input-box">
+
+
+            <label for="valid_days">Geldigheid in dagen</label><br>
+            <select id="valid_days" name='payment[valid_days]'>
+                <?php for ($i = 1; $i < 31; $i++) {
+                    $selected = '';
+                    if ($i == 7) $selected = "selected=''";
+                    echo "<option value='$i' $selected >$i</option>";
+                } ?>
+            </select>
+        </div>
+    </li>
+
+
+</ul>
+<div>
+    <?php echo $this->getMethod()->getConfigData('message'); ?>
+</div>

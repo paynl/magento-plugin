@@ -502,6 +502,16 @@
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_vvvgiftcard>
+            <pay_payment_paylink>
+                <active>1</active>
+                <model>pay_payment/Paymentmethod_Paylink</model>
+                <title>Pay.nl Betaallink</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <order_status_success>processing</order_status_success>
+                <send_mail>success</send_mail>
+                <limit_shipping>0</limit_shipping>
+            </pay_payment_paylink>
         </payment>
     </default>
 </config>

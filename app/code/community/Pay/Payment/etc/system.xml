@@ -233,6 +233,128 @@
                         </test123>
                     </fields>
                 </loaded_payment_methods>
+                <pay_payment_paylink type="group" translate="label" module="pay_payment">
+                    <label>Betaallink (alleen admin orders)</label>
+                    <model>pay_payment/Model_Paymentmethod_Paylink</model>
+                    <sort_order>500</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Actief</label>
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <config_path>payment/pay_payment_paylink/active</config_path>
+                        </active>
+                        <title translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Titel van de betaalmethode</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_paylink/title</config_path>
+                        </title>
+                        <order_status translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Nieuwe order status</label>
+                            <comment>De status die een order moet krijgen bij het toevoegen</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_pendingPayment</source_model>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_paylink/order_status</config_path>
+                        </order_status>
+                        <order_status_success translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Gelukt order status</label>
+                            <comment>De status die een order moet krijgen na succesvolle betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_paylink/order_status_success</config_path>
+                        </order_status_success>
+                        <charge_type translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Extra kosten rekenen</label>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage
+                                van
+                                het
+                                totaalbedrag of een vast bedrag
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/system_config_source_chargetype</source_model>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_paylink/charge_type</config_path>
+                        </charge_type>
+                        <charge_value translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Extra kosten</label>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor
+                                decimalen,
+                                als u geen extra kosten wilt rekenen vult u niets in
+                            </comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>201</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_paylink/charge_value</config_path>
+                        </charge_value>
+                        <charge_tax_class translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Btw voor extra kosten</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_taxclass</source_model>
+                            <sort_order>202</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_paylink/charge_tax_class</config_path>
+                        </charge_tax_class>
+                        <send_mail translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Bevestigingsmail sturen</label>
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
+                            <sort_order>300</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_sendmail</source_model>
+                            <config_path>payment/pay_payment_paylink/send_mail</config_path>
+                        </send_mail>
+                    </fields>
+                </pay_payment_paylink>
                 <pay_payment_afterpay type="group" translate="label" module="pay_payment">
                     <label>Afterpay</label>
                     <model>pay_payment/Model_Paymentmethod_Afterpay</model>

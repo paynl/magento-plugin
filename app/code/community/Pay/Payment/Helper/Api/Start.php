@@ -1,6 +1,7 @@
 <?php
 
-class Pay_Payment_Helper_Api_Start extends Pay_Payment_Helper_Api {
+class Pay_Payment_Helper_Api_Start extends Pay_Payment_Helper_Api
+{
 
     protected $_version = 'v3';
     protected $_controller = 'transaction';
@@ -17,9 +18,19 @@ class Pay_Payment_Helper_Api_Start extends Pay_Payment_Helper_Api {
     private $_enduser;
     private $_extra2;
     private $_extra3;
+    private $_expireDate;
     private $_products = array();
 
-    public function addProduct($id, $description, $price, $quantity, $vatPercentage) {
+    /**
+     * @param string $expireDate
+     */
+    public function setExpireDate($expireDate)
+    {
+        $this->_expireDate = $expireDate;
+    }
+
+    public function addProduct($id, $description, $price, $quantity, $vatPercentage)
+    {
         if (!is_numeric($price)) {
             throw Mage::exception('Pay_Payment_Helper_Api', 'Price moet numeriek zijn', 1);
         }
@@ -41,11 +52,13 @@ class Pay_Payment_Helper_Api_Start extends Pay_Payment_Helper_Api {
         $this->_products[] = $arrProduct;
     }
 
-    public function setEnduser($enduser) {
+    public function setEnduser($enduser)
+    {
         $this->_enduser = $enduser;
     }
 
-    public function setAmount($amount) {
+    public function setAmount($amount)
+    {
         if (is_numeric($amount)) {
             $this->_amount = $amount;
         } else {
@@ -53,11 +66,13 @@ class Pay_Payment_Helper_Api_Start extends Pay_Payment_Helper_Api {
         }
     }
 
-    public function setCurrency($currency) {
+    public function setCurrency($currency)
+    {
         $this->_currency = strtoupper($currency);
     }
 
-    public function setPaymentOptionId($paymentOptionId) {
+    public function setPaymentOptionId($paymentOptionId)
+    {
         if (is_numeric($paymentOptionId)) {
             $this->_paymentOptionId = $paymentOptionId;
         } else {
@@ -65,7 +80,8 @@ class Pay_Payment_Helper_Api_Start extends Pay_Payment_Helper_Api {
         }
     }
 
-    public function setPaymentOptionSubId($paymentOptionSubId) {
+    public function setPaymentOptionSubId($paymentOptionSubId)
+    {
         if (is_numeric($paymentOptionSubId)) {
             $this->_paymentOptionSubId = $paymentOptionSubId;
         } else {
@@ -73,11 +89,13 @@ class Pay_Payment_Helper_Api_Start extends Pay_Payment_Helper_Api {
         }
     }
 
-    public function setFinishUrl($finishUrl) {
+    public function setFinishUrl($finishUrl)
+    {
         $this->_finishUrl = $finishUrl;
     }
 
-    public function setCostsForCustomer($costs_for_customer) {
+    public function setCostsForCustomer($costs_for_customer)
+    {
         if ($costs_for_customer == 1) {
             $this->_costs_for_customer = 1;
         } else {
@@ -85,27 +103,33 @@ class Pay_Payment_Helper_Api_Start extends Pay_Payment_Helper_Api {
         }
     }
 
-    public function setExchangeUrl($exchangeUrl) {
+    public function setExchangeUrl($exchangeUrl)
+    {
         $this->_exchangeUrl = $exchangeUrl;
     }
 
-    public function setExtra2($extra2) {
+    public function setExtra2($extra2)
+    {
         $this->_extra2 = $extra2;
     }
 
-    public function setExtra3($extra3) {
+    public function setExtra3($extra3)
+    {
         $this->_extra3 = $extra3;
     }
 
-    public function setOrderId($orderId) {
+    public function setOrderId($orderId)
+    {
         $this->_orderId = $orderId;
     }
 
-    public function setDescription($description) {
+    public function setDescription($description)
+    {
         $this->_description = $description;
     }
 
-    protected function _getPostData() {
+    protected function _getPostData()
+    {
         $data = parent::_getPostData();
 
         /*
@@ -140,6 +164,10 @@ class Pay_Payment_Helper_Api_Start extends Pay_Payment_Helper_Api {
         } else {
             $data['amount'] = $this->_amount;
         }
+        if (!empty($this->_expireDate)) {
+            $data['transaction']['expireDate'] = $this->_expireDate;
+        }
+
         if (!empty($this->_currency)) {
             $data['transaction']['currency'] = $this->_currency;
         }
@@ -179,7 +207,7 @@ class Pay_Payment_Helper_Api_Start extends Pay_Payment_Helper_Api {
         if ($this->_costs_for_customer == 1) {
             $data['transaction']['costs'] = 1;
         }
-// $data['transaction']['currency'] = 'EUR';
+
         if (!empty($this->_paymentOptionSubId)) {
             $data['paymentOptionSubId'] = $this->_paymentOptionSubId;
         }
