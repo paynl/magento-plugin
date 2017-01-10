@@ -141,7 +141,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         $api->setExtra2($order->getCustomerEmail());
 
         if ($sendOrderData == 1) {
-            $items = $order->getItemsCollection();
+            $items = $order->getItemsCollection(array(), true);
             foreach ($items as $item) {
                 /* @var $item Mage_Sales_Model_Order_Item */
                 $productId = $item->getId();
