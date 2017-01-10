@@ -1,0 +1,68 @@
+<?php
+$_code    = $this->getMethodCode();
+
+$dob = $this->getDob();
+list($dobYear,$dobMonth,$dobDay) = explode('-',$dob);
+
+$enablePersonal = Mage::getStoreConfig('payment/pay_payment_billink/ask_data_personal',
+        Mage::app()->getStore());
+$enableBusiness = Mage::getStoreConfig('payment/pay_payment_billink/ask_data_business',
+        Mage::app()->getStore());
+
+?>
+
+
+<ul class="form-list" id="payment_form_<?php echo $_code ?>" style="display:none;">
+
+    <?php
+    if ($enablePersonal == 1 && $enableBusiness == 1) {
+        ?>
+            Type bestelling
+        <li>
+        </li>
+        <li>
+            <input onchange="jQuery('#paynl-data-personal').show();jQuery('#paynl-data-business').hide();" type="radio" name="payment[type_order]" id="type_order_p" value="p" /> <label for="type_order_p">Persoonlijk</label><br />
+            <input onchange="jQuery('#paynl-data-personal').hide();jQuery('#paynl-data-business').show();" type="radio" name="payment[type_order]" id="type_order_b" value="b" /> <label for="type_order_b">Zakelijk</label>
+        </li>
+        <?php
+    }
+    if ($enablePersonal == 1) {
+        ?>
+        <div <?php echo $enableBusiness == 1?'style="display:none;"':''; ?> id="paynl-data-personal">
+            <li>Geboortedatum</li>
+            <li>
+                <div class="input-box customer-dob">
+                    <div class="dob-day">
+                        <input type="text" id="day" name="payment[birthday_day]" value="<?= $dobDay ?>" title="Day" class="input-text">
+                        <label for="day">DD</label>
+                    </div><div class="dob-month">
+                        <input type="text" id="month" name="payment[birthday_month]" value="<?= $dobMonth ?>" title="Month" class="input-text">
+                        <label for="month">MM</label>
+                    </div><div class="dob-year">
+                        <input type="text" id="year" name="payment[birthday_year]" value="<?= $dobYear ?>" title="Year" class="input-text" autocomplete="off">
+                        <label for="year">YYYY</label>
+                    </div>
+            </li>
+            <br />
+        </div>
+    <?php } ?>
+    <?php if ($enableBusiness == 1) { ?>
+        <div <?php echo $enablePersonal == 1?'style="display:none;"':''; ?> id="paynl-data-business">
+            <li>
+                KVK nummer
+            </li>
+            <li>
+                <div class="input-box">
+                    <input type="text" name="payment[kvknummer]" />
+                </div>
+            </li>                 
+        </div>
+    <?php } ?>
+    <li class="input-box">
+        <input id="billink_agree" type="checkbox" value="1" name="payment[billink_agree]" /> <label for="billink_agree">Ik ga akkoord met de</label> <a target="new" href="http://billink.nl/voorwaarden/gebruikersvoorwaarden.pdf">betalingsvoorvaarden</a>
+    </li>
+
+</ul>
+<div>
+    <?php echo $this->getMethod()->getConfigData('message'); ?>
+</div>
