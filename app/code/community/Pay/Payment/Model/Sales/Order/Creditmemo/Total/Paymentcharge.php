@@ -14,7 +14,7 @@ class Pay_Payment_Model_Sales_Order_Creditmemo_Total_Paymentcharge extends Mage_
     $paymentMethod = $creditmemo->getOrder()->getPayment()->getMethod();
     $taxClass = Mage::helper('pay_payment')->getPaymentChargeTaxClass($paymentMethod);
 
-    $storeId = Mage::app()->getStore()->getId();
+    $storeId = $creditmemo->getStoreId();
 
     $taxCalculationModel = Mage::getSingleton('tax/calculation');
     $request = $taxCalculationModel->getRateRequest($creditmemo->getOrder()->getShippingAddress(), $creditmemo->getOrder()->getBillingAddress(), null, $storeId);
@@ -24,8 +24,8 @@ class Pay_Payment_Model_Sales_Order_Creditmemo_Total_Paymentcharge extends Mage_
 
     if ($rate > 0)
     {
-      $baseChargeTax = round($creditmemo->getBasePaymentCharge() / (1 + ($rate / 100)) * ($rate / 100), 2);
-      $chargeTax = round($creditmemo->getPaymentCharge() / (1 + ($rate / 100)) * ($rate / 100), 2);
+      $baseChargeTax = round($basePaymentCharge / (1 + ($rate / 100)) * ($rate / 100), 2);
+      $chargeTax = round($paymentCharge / (1 + ($rate / 100)) * ($rate / 100), 2);
     } else
     {
       $baseChargeTax = 0;

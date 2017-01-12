@@ -14,7 +14,7 @@ class Pay_Payment_Model_Sales_Quote_Address_Total_Paymentcharge extends Mage_Sal
         $address->setPaymentCharge(0);
         $address->setBasePaymentCharge(0);
 
-        $storeId = Mage::app()->getStore()->getId();
+        $storeId = $address->getQuote()->getStoreId();
         
         $items = $address->getAllItems();
         if (!count($items)) {
@@ -40,8 +40,7 @@ class Pay_Payment_Model_Sales_Quote_Address_Total_Paymentcharge extends Mage_Sal
             
             //$rate = 21;
             if ($rate > 0) {
-//                $includesTax = Mage::getStoreConfig('tax/calculation/price_includes_tax');   
-                
+//                $includesTax = Mage::getStoreConfig('tax/calculation/price_includes_tax');
                 $baseChargeTax = round($address->getBasePaymentCharge() / (1+($rate / 100)) * ($rate/100), 2);
                 $chargeTax = round($address->getPaymentCharge() / (1+($rate / 100)) * ($rate/100), 2);
             } else {
