@@ -196,7 +196,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
             $arrEnduser['gender'] = substr($order->getCustomerGender(), 0, 1);
 
             if (isset($iban)) {
-                $arrEnduser['iban'] = $iban;
+                $arrEnduser['iban'] = strtoupper($iban);
             }
 
             $arrEnduser['dob'] = $birthDate;
