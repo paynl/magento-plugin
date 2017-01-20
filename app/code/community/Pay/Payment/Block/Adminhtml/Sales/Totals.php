@@ -14,7 +14,8 @@ class Pay_Payment_Block_Adminhtml_Sales_Totals extends Mage_Adminhtml_Block_Sale
     protected function _initTotals()
     {
     	parent::_initTotals();
-    	
+
+    	/** @var Mage_Sales_Model_Order $source */
         $source = $this->getSource();
 
         $this->_totals['paid'] = new Varien_Object(array(

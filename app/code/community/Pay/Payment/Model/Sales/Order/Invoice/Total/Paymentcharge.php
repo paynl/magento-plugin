@@ -38,8 +38,8 @@ class Pay_Payment_Model_Sales_Order_Invoice_Total_Paymentcharge extends Mage_Sal
     $invoice->setBaseTaxAmount($invoice->getBaseTaxAmount() + $baseChargeTax);
     $invoice->setTaxAmount($invoice->getTaxAmount() + $chargeTax);
 
-    $invoice->setGrandTotal($invoice->getGrandTotal() + $invoice->getPaymentCharge() - $chargeTax);
-    $invoice->setBaseGrandTotal($invoice->getBaseGrandTotal() + $invoice->getBasePaymentCharge() - $baseChargeTax);
+    $invoice->setGrandTotal($invoice->getGrandTotal() + $invoice->getPaymentCharge());
+    $invoice->setBaseGrandTotal($invoice->getBaseGrandTotal() + $invoice->getBasePaymentCharge());
 
     return $this;
   }
