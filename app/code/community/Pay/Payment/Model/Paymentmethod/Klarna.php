@@ -34,6 +34,24 @@ class Pay_Payment_Model_Paymentmethod_Klarna extends Pay_Payment_Model_Paymentme
      * @return boolean
      */
 
+    public function isApplicableToQuote($quote, $checksBitMask)
+    {
+        if(strtolower($quote->getShippingAddress()->getFirstname()) !== strtolower($quote->getBillingAddress()->getFirstname())){
+            return false;
+        }
+        if(strtolower($quote->getShippingAddress()->getLastname()) !== strtolower($quote->getBillingAddress()->getLastname())){
+            return false;
+        }
+        if(!empty($quote->getShippingAddress()->getCompany())){
+            return false;
+        }
+        if(!empty($quote->getBillingAddress()->getCompany())){
+            return false;
+        }
+        
+        return parent::isApplicableToQuote($quote, $checksBitMask);
+    }
+    
     public function capture(Varien_Object $payment, $amount)
     {
         $transaction = $payment->getAuthorizationTransaction();
