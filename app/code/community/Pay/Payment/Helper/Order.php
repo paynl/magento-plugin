@@ -76,6 +76,7 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
 
         //$transactionInfo = $this->getTransactionInfo($transactionId, $store);
         //transactie ophalen uit pay tabel
+        /** @var Pay_Payment_Helper_Data $helperData */
         $helperData = Mage::helper('pay_payment');
         $transaction = $helperData->getTransaction($transactionId);
 
@@ -201,7 +202,6 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
             return true;
         } elseif ($status == Pay_Payment_Model_Transaction::STATE_AUTHORIZED) {
             $payment = $order->getPayment();
-
             $payment->registerAuthorizationNotification($order->getTotalDue());
             $payment->setTransactionId($transactionId);
 
@@ -234,8 +234,13 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
 
         } elseif ($status == Pay_Payment_Model_Transaction::STATE_CANCELED) {
 
+
+
             /** @var $order Mage_Sales_Model_Order */
-            if ($order->getTotalDue() <= 0 || $transaction->getStatus() == Pay_Payment_Model_Transaction::STATE_SUCCESS) {
+            if ($order->getTotalDue() <= 0 ||
+                $transaction->getStatus() == Pay_Payment_Model_Transaction::STATE_SUCCESS ||
+                $helperData->isOrderPaid($order->getId())
+            ) {
                 throw Mage::exception('Pay_Payment', 'Cannot cancel already paid order');
             }
 

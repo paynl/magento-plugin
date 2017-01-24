@@ -29,11 +29,13 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
         return $transaction;
     }
     public function isOrderPaid($orderId){
-        $transactions = Mage::getModel('pay_payment/transaction')
+        /** @var Pay_Payment_Model_Mysql4_Transaction_Collection $transaction */
+        $transaction = Mage::getModel('pay_payment/transaction')
             ->getCollection()
-            ->addFieldToFilter('order_id', $orderId);
+            ->addFieldToFilter('order_id', $orderId)
+            ->addFieldToFilter('status', Pay_Payment_Model_Transaction::STATE_SUCCESS);
 
-
+        return $transaction->count() > 0;
     }
 
     public function getOptions($store = null)
