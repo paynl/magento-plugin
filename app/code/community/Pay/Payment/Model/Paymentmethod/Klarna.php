@@ -42,6 +42,9 @@ class Pay_Payment_Model_Paymentmethod_Klarna extends Pay_Payment_Model_Paymentme
         if(strtolower($quote->getShippingAddress()->getLastname()) !== strtolower($quote->getBillingAddress()->getLastname())){
             return false;
         }
+        if($quote->getShippingAddress()->getCountryId() != $quote->getBillingAddress()->getCountryId()){
+            return false;
+        }
         if(!empty($quote->getShippingAddress()->getCompany())){
             return false;
         }
