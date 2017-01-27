@@ -7,7 +7,10 @@ class Pay_Payment_Model_Paymentmethod_Klarna extends Pay_Payment_Model_Paymentme
 
     protected $_canAuthorize = true;
     protected $_canCapture = true;
+    protected $_canVoid = true;
+
     protected $_canCapturePartial = false;
+
 
 
 //    public function authorize(Mage_Sales_Model_Order_Payment $payment, $amount)
@@ -90,6 +93,38 @@ class Pay_Payment_Model_Paymentmethod_Klarna extends Pay_Payment_Model_Paymentme
         else throw new Exception($result['request']['errorMessage']);
     }
 
+    public function void(Varien_Object $payment)
+    {
+        $transaction = $payment->getAuthorizationTransaction();
+
+        if(!$transaction){
+            Mage::throwException('Cannot find authorize transaction');
+        }
+        $transactionId = $transaction->getTxnId();
+
+        $order = $payment->getOrder();
+        $store = $order->getStore();
+
+        $apiToken = Mage::getStoreConfig('pay_payment/general/apitoken', $store);
+
+        $useBackupApi = Mage::getStoreConfig('pay_payment/general/use_backup_api', $store);
+        $backupApiUrl = Mage::getStoreConfig('pay_payment/general/backup_api_url', $store);
+        if ($useBackupApi == 1) {
+            Pay_Payment_Helper_Api::_setBackupApiUrl($backupApiUrl);
+        }
+
+        /** @var Pay_Payment_Helper_Api_Void $apiVoid */
+        $apiVoid = Mage::helper('pay_payment/api_void');
+        $apiVoid->setApiToken($apiToken);
+        $apiVoid->setTransactionId($transactionId);
+
+        $result = $apiVoid->doRequest();
+
+        if($result['request']['result'] == true) {
+            return true;
+        }
+        else throw new Exception($result['request']['errorMessage']);
+    }
 //
 //    /**
 //     * Instantiate state and set it to state object

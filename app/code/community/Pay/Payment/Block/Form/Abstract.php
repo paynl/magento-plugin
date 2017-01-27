@@ -14,6 +14,8 @@ class Pay_Payment_Block_Form_Abstract extends Mage_Payment_Block_Form
      */
     protected $quote;
 
+
+
     protected function _construct()
     {
         parent::_construct();
@@ -67,7 +69,9 @@ class Pay_Payment_Block_Form_Abstract extends Mage_Payment_Block_Form
         return $amount;
     }
 
-
+    protected function getQuote(){
+        return $this->quote;
+    }
 
     protected function getIban()
     {

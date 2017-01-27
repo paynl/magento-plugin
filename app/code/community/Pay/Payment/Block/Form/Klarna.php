@@ -7,4 +7,6 @@ class Pay_Payment_Block_Form_Klarna extends Pay_Payment_Block_Form_Abstract {
     protected $methodCode = 'pay_payment_klarna';
 
     protected $template = 'pay/payment/form/klarna.phtml';
+
+
 }

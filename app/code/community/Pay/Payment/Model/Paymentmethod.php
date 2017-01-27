@@ -161,7 +161,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
             $discountAmount = $order->getDiscountAmount();
 
             if ($discountAmount < 0) {
-                $api->addProduct(0, 'Korting (' . $order->getDiscountDescription() . ')', round($discountAmount * 100), 1, 'N');
+                $api->addProduct('discount', 'Korting (' . $order->getDiscountDescription() . ')', round($discountAmount * 100), 1, 'N');
             }
 
             $shipping = $order->getShippingInclTax();
@@ -171,7 +171,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
                 $shippingTaxClass = $helper->calculateTaxClass($shipping, $shippingTax);
                 $shipping = round($shipping * 100);
                 if ($shipping != 0) {
-                    $api->addProduct('0', 'Verzendkosten', $shipping, 1, $shippingTaxClass);
+                    $api->addProduct('shipping', 'Verzendkosten', $shipping, 1, $shippingTaxClass);
                 }
             }
 
@@ -187,7 +187,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
 
                 $taxCode = $helper->getTaxCodeFromRate($rate);
 
-                $api->addProduct('0', Mage::getStoreConfig('pay_payment/general/text_payment_charge', Mage::app()->getStore()), round($extraFee * 100), 1, $taxCode);
+                $api->addProduct('paymentfee', Mage::getStoreConfig('pay_payment/general/text_payment_charge', Mage::app()->getStore()), round($extraFee * 100), 1, $taxCode);
             }
 
             $arrEnduser = array();

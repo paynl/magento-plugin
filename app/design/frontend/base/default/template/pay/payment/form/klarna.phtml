@@ -2,8 +2,10 @@
 $_code = $this->getMethodCode();
 
 $dob = $this->getDob();
+/** @var Mage_Sales_Model_Quote $quote */
+$quote = $this->getQuote();
 
-list($dobYear,$dobMonth,$dobDay) = explode('-',$dob);
+list($dobYear, $dobMonth, $dobDay) = explode('-', $dob);
 
 ?>
 
@@ -18,7 +20,8 @@ list($dobYear,$dobMonth,$dobDay) = explode('-',$dob);
                 <label for="day">DD</label>
             </div>
             <div class="dob-month">
-                <input type="text" id="month" name="payment[birthday_month]" value="<?php echo $dobMonth; ?>" title="Month"
+                <input type="text" id="month" name="payment[birthday_month]" value="<?php echo $dobMonth; ?>"
+                       title="Month"
                        class="input-text">
                 <label for="month">MM</label>
             </div>
