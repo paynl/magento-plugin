@@ -233,9 +233,6 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
             $payment->save();
 
         } elseif ($status == Pay_Payment_Model_Transaction::STATE_CANCELED) {
-
-
-
             /** @var $order Mage_Sales_Model_Order */
             if ($order->getTotalDue() <= 0 ||
                 $transaction->getStatus() == Pay_Payment_Model_Transaction::STATE_SUCCESS ||
