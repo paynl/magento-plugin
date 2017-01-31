@@ -93,6 +93,11 @@ class Pay_Payment_Model_Paymentmethod_Klarna extends Pay_Payment_Model_Paymentme
         else throw new Exception($result['request']['errorMessage']);
     }
 
+    public function cancel(Varien_Object $payment)
+    {
+        return $this->void($payment);
+    }
+
     public function void(Varien_Object $payment)
     {
         $transaction = $payment->getAuthorizationTransaction();
