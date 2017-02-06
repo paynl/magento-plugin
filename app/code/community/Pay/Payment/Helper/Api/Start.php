@@ -3,7 +3,7 @@
 class Pay_Payment_Helper_Api_Start extends Pay_Payment_Helper_Api
 {
 
-    protected $_version = 'v3';
+    protected $_version = 'v6';
     protected $_controller = 'transaction';
     protected $_action = 'start';
     private $_amount;
@@ -29,7 +29,7 @@ class Pay_Payment_Helper_Api_Start extends Pay_Payment_Helper_Api
         $this->_expireDate = $expireDate;
     }
 
-    public function addProduct($id, $description, $price, $quantity, $vatPercentage)
+    public function addProduct($id, $description, $price, $quantity, $vatPercentage, $type='ARTICLE')
     {
         if (!is_numeric($price)) {
             throw Mage::exception('Pay_Payment_Helper_Api', 'Price moet numeriek zijn', 1);
@@ -44,6 +44,7 @@ class Pay_Payment_Helper_Api_Start extends Pay_Payment_Helper_Api
 
         $arrProduct = array(
             'productId' => $id,
+            'productType' => $type,
             'description' => $description,
             'price' => $price,
             'quantity' => $quantity,

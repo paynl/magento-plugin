@@ -134,8 +134,8 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         $api = Mage::helper('pay_payment/api_start');
         /* @var $api Pay_Payment_Helper_Api_Start */
 
-        if(isset($additionalData['valid_days'])){
-            $api->setExpireDate(date('d-m-Y H:i:s', strtotime('+'.$additionalData['valid_days'].' days')));
+        if (isset($additionalData['valid_days'])) {
+            $api->setExpireDate(date('d-m-Y H:i:s', strtotime('+' . $additionalData['valid_days'] . ' days')));
         }
 
         $api->setExtra2($order->getCustomerEmail());
@@ -161,7 +161,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
             $discountAmount = $order->getDiscountAmount();
 
             if ($discountAmount < 0) {
-                $api->addProduct('discount', 'Korting (' . $order->getDiscountDescription() . ')', round($discountAmount * 100), 1, 'N');
+                $api->addProduct('discount', 'Korting (' . $order->getDiscountDescription() . ')', round($discountAmount * 100), 1, 'N', 'DISCOUNT');
             }
 
             $shipping = $order->getShippingInclTax();
@@ -171,7 +171,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
                 $shippingTaxClass = $helper->calculateTaxClass($shipping, $shippingTax);
                 $shipping = round($shipping * 100);
                 if ($shipping != 0) {
-                    $api->addProduct('shipping', 'Verzendkosten', $shipping, 1, $shippingTaxClass);
+                    $api->addProduct('shipping', 'Verzendkosten', $shipping, 1, $shippingTaxClass, 'SHIPPING');
                 }
             }
 
@@ -187,7 +187,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
 
                 $taxCode = $helper->getTaxCodeFromRate($rate);
 
-                $api->addProduct('paymentfee', Mage::getStoreConfig('pay_payment/general/text_payment_charge', Mage::app()->getStore()), round($extraFee * 100), 1, $taxCode);
+                $api->addProduct('paymentfee', Mage::getStoreConfig('pay_payment/general/text_payment_charge', Mage::app()->getStore()), round($extraFee * 100), 1, $taxCode, 'PAYMENT');
             }
 
             $arrEnduser = array();
@@ -210,7 +210,15 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
 
                 $arrEnduser['phoneNumber'] = substr($shippingAddress->getTelephone(), 0, 30);
 
-                $addressFull = $shippingAddress->getStreetFull();
+                $arrAddressFull = array();
+                $arrAddressFull[] = $shippingAddress->getStreet1();
+                $arrAddressFull[] = $shippingAddress->getStreet2();
+                $arrAddressFull[] = $shippingAddress->getStreet3();
+                $arrAddressFull[] = $shippingAddress->getStreet4();
+                $arrAddressFull = array_unique($arrAddressFull);
+                $addressFull = implode(' ', $arrAddressFull);
+
+
                 $addressFull = str_replace("\n", ' ', $addressFull);
                 $addressFull = str_replace("\r", ' ', $addressFull);
 
@@ -227,7 +235,14 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
             }
 
             if (!empty($billingAddress)) {
-                $addressFull = $billingAddress->getStreetFull();
+                $arrAddressFull = array();
+                $arrAddressFull[] = $billingAddress->getStreet1();
+                $arrAddressFull[] = $billingAddress->getStreet2();
+                $arrAddressFull[] = $billingAddress->getStreet3();
+                $arrAddressFull[] = $billingAddress->getStreet4();
+                $arrAddressFull = array_unique($arrAddressFull);
+                $addressFull = implode(' ', $arrAddressFull);
+
                 $addressFull = str_replace("\n", ' ', $addressFull);
                 $addressFull = str_replace("\r", ' ', $addressFull);
 
@@ -291,7 +306,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
             // Mage::getSingleton('checkout/session')->addError(print_r($api->getPostData(),1));
             // Redirect via header
 
-           return array('url' => Mage::getUrl('checkout/cart'));
+            return array('url' => Mage::getUrl('checkout/cart'));
         }
 
         $transaction = Mage::getModel('pay_payment/transaction');
