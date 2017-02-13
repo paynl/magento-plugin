@@ -54,7 +54,6 @@ class Pay_Payment_OrderController extends Mage_Core_Controller_Front_Action {
 
     public function exchangeAction() {
 
-
         $error = false;
         $params = $this->getRequest()->getParams();
 
@@ -78,18 +77,23 @@ class Pay_Payment_OrderController extends Mage_Core_Controller_Front_Action {
             Mage::log('_GET was: '.json_encode($get),null,'exchange.log');
             Mage::log('_POST was: '.json_encode($post),null,'exchange.log');
         }
-            
-        $helper = Mage::helper('pay_payment');
-        /** @var $helper Pay_Payment_Helper_Data */
+
         try {
+            /** @var Pay_Payment_Helper_Order $orderHelper  */
             $orderHelper = Mage::helper('pay_payment/order');
-            /** @var $orderHelper Pay_Payment_Helper_Order */
+
+            /** @var Pay_Payment_Helper_Data $payHelper */
+            $payHelper = Mage::helper('pay_payment');
             
             if ($params['action'] == 'pending') {
                 throw Mage::exception('Pay_Payment', 'Ignoring pending', 0);
             }
-           
-            $status = $orderHelper->processByTransactionId($transactionId);        
+
+            $payHelper->lockTransaction($transactionId);
+
+            $status = $orderHelper->processByTransactionId($transactionId);
+
+            $payHelper->removeLock($transactionId);
 
             $resultMsg = 'Status updated to ' . $status;
         } catch (Pay_Payment_Exception $e) {

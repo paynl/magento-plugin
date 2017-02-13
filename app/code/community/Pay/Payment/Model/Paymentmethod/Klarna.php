@@ -67,6 +67,11 @@ class Pay_Payment_Model_Paymentmethod_Klarna extends Pay_Payment_Model_Paymentme
         }
         $transactionId = $transaction->getTxnId();
 
+        /** @var Pay_Payment_Helper_Data $payHelper */
+        $payHelper = Mage::helper('pay_payment');
+
+        $payHelper->lockTransaction($transactionId);
+
         $order = $payment->getOrder();
         $store = $order->getStore();
 
@@ -86,6 +91,8 @@ class Pay_Payment_Model_Paymentmethod_Klarna extends Pay_Payment_Model_Paymentme
         $apiCapture->setAmount($amount);
         $apiCapture->setTransactionId($transactionId);
         $result = $apiCapture->doRequest();
+
+        $payHelper->removeLock($transactionId);
 
         if($result['request']['result'] == true) {
             return true;

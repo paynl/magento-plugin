@@ -20,6 +20,34 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
         return !is_null($option->getInternalId());
     }
 
+    public function lockTransaction($transactionId){
+        $transaction = $this->getTransaction($transactionId);
+        $max_lock = strtotime('+5 min');
+        $current_lock = $transaction->getLockDate();
+        if($current_lock !== null){
+            $current_lock = strtotime($current_lock);
+        }
+        if($current_lock !== null && $current_lock<$max_lock){
+            $obj_max_lock = new DateTime();
+            $obj_max_lock->setTimestamp($max_lock);
+
+            throw new Exception('Cannot lock transaction, transaction already locked until: '.$obj_max_lock->format('H:i:s d-m-Y'));
+        }
+        $transaction->setLockDate(strtotime('now'));
+        $transaction->save();
+        return true;
+    }
+
+    public function removeLock($transactionId){
+        $transaction = $this->getTransaction($transactionId);
+        $transaction->setLockDate(null);
+        $transaction->save();
+    }
+
+    /**
+     * @param $transactionId
+     * @return Pay_Payment_Model_Mysql4_Transaction
+     */
     public function getTransaction($transactionId)
     {
         $transaction = Mage::getModel('pay_payment/transaction')
