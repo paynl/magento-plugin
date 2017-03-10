@@ -4,6 +4,16 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
 {
 
     /**
+     * @var Pay_Payment_Helper_Data
+     */
+    private $helperData;
+
+    public function __construct()
+    {
+        $this->helperData = Mage::helper('pay_payment');
+    }
+
+    /**
      * Processes the order by transactionId, the data is collected by calling the pay api
      *
      * @param string $transactionId
@@ -16,24 +26,26 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
             $store = Mage::app()->getStore();
         }
 
-        $transactionInfo = $this->getTransactionInfo($transactionId, $store);
+        $this->helperData->loginSDK($store);
 
+        $transaction = \Paynl\Transaction::get($transactionId);
+        $transactionInfo = $transaction->getData();
         $status = Pay_Payment_Model_Transaction::STATE_PENDING;
 
         //status bepalen
-        if ($transactionInfo['paymentDetails']['state'] == 100) {
+        if ($transaction->isPaid()) {
             $status = Pay_Payment_Model_Transaction::STATE_SUCCESS;
         } elseif ($transactionInfo['paymentDetails']['state'] == 95) {
             $status = Pay_Payment_Model_Transaction::STATE_AUTHORIZED;
-        } elseif ($transactionInfo['paymentDetails']['state'] < 0) {
+        } elseif ($transaction->isCancelled()) {
             $status = Pay_Payment_Model_Transaction::STATE_CANCELED;
         } else {
             $status = Pay_Payment_Model_Transaction::STATE_PENDING;
             //we gaan geen update doen
             return;
         }
-        $paidAmount = $transactionInfo['paymentDetails']['paidAmount'];
-        $endUserId = $transactionInfo['paymentDetails']['identifierPublic'];
+        $paidAmount = $transaction->getPaidAmount();
+        $endUserId = $transaction->getAccountNumber();
 
         // alle data is opgehaald status updaten
         $this->updateState($transactionId, $status, $paidAmount, $endUserId, $store);
@@ -41,6 +53,12 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
         return $status;
     }
 
+    /**
+     * @param $transactionId
+     * @param null $store
+     * @return mixed
+     * @deprecated
+     */
     public function getTransactionInfo($transactionId, $store = null)
     {
         if ($store == null) {
@@ -164,7 +182,6 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
 
             // ingestelde status ophalen
             $processedStatus = $store->getConfig('payment/' . $payment->getMethod() . '/order_status_success');
-//            $processedStatus = Mage::getStoreConfig('payment/' . $payment->getMethod() . '/order_status_success', $store);
 
             $order->setIsInProcess(true);
 
@@ -214,22 +231,7 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
             $order->setState(Mage_Sales_Model_Order::STATE_PROCESSING, 'processing', '', false);
 
             $order->save();
-            // auto capture
-            if ($autoCapture) {
-                $payment->capture();
 
-                $invoice = $this->_getInvoiceForTransactionId($order, $transactionId);
-                $invoice->setRequestedCaptureCase(Mage_Sales_Model_Order_Invoice::CAPTURE_ONLINE);
-                $invoice->register();
-                $invoice->save();
-
-                if ($invoiceEmail) {
-                    $invoice->sendEmail();
-                    $invoice->setEmailSent(true);
-                    $invoice->save();
-                }
-            }
-            $order->save();
             $payment->save();
 
         } elseif ($status == Pay_Payment_Model_Transaction::STATE_CANCELED) {
@@ -269,8 +271,7 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
     public function getOrderByTransactionId($transactionId)
     {
         //transactie ophalen uit pay tabel
-        $helperData = Mage::helper('pay_payment');
-        $transaction = $helperData->getTransaction($transactionId);
+        $transaction = $this->helperData->getTransaction($transactionId);
 
         //order ophalen
         $order = Mage::getModel('sales/order');
@@ -350,14 +351,16 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
 
     public function getTransactionStatus($transactionId, $store = null)
     {
-        $transactionInfo = $this->getTransactionInfo($transactionId, $store);
+        $this->helperData->loginSDK($store);
+
+        $transaction = \Paynl\Transaction::get($transactionId);
 
         $status = Pay_Payment_Model_Transaction::STATE_PENDING;
 
         //status bepalen
-        if ($transactionInfo['paymentDetails']['state'] == 100) {
+        if ($transaction->isPaid()) {
             return Pay_Payment_Model_Transaction::STATE_SUCCESS;
-        } elseif ($transactionInfo['paymentDetails']['state'] < 0) {
+        } elseif ($transaction->isCanceled()) {
             return Pay_Payment_Model_Transaction::STATE_CANCELED;
         } else {
             return Pay_Payment_Model_Transaction::STATE_PENDING;

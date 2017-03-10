@@ -6,6 +6,32 @@
         </Pay_Payment>
     </modules>
     <global>
+        <events>
+            <core_collection_abstract_load_before>
+                <observers>
+                    <pay_payment>
+                        <class>Pay_Payment_Model_Observer</class>
+                        <method>addAutoloader</method>
+                    </pay_payment>
+                </observers>
+            </core_collection_abstract_load_before>
+            <resource_get_tablename>
+                <observers>
+                    <pay_payment>
+                        <class>Pay_Payment_Model_Observer</class>
+                        <method>addAutoloader</method>
+                    </pay_payment>
+                </observers>
+            </resource_get_tablename>
+            <add_spl_autoloader>
+                <observers>
+                    <pay_payment>
+                        <class>Pay_Payment_Model_Observer</class>
+                        <method>addAutoloader</method>
+                    </pay_payment>
+                </observers>
+            </add_spl_autoloader>
+        </events>
         <models>
             <pay_payment>
                 <class>Pay_Payment_Model</class>
@@ -41,8 +67,10 @@
                 <rewrite>
                     <sales_totals>Pay_Payment_Block_Adminhtml_Sales_Totals</sales_totals>
                     <sales_order_totals>Pay_Payment_Block_Adminhtml_Sales_Order_Totals</sales_order_totals>
-                    <sales_order_invoice_totals>Pay_Payment_Block_Adminhtml_Sales_Order_Invoice_Totals</sales_order_invoice_totals>
-                    <sales_order_creditmemo_totals>Pay_Payment_Block_Adminhtml_Sales_Order_Creditmemo_Totals</sales_order_creditmemo_totals>
+                    <sales_order_invoice_totals>Pay_Payment_Block_Adminhtml_Sales_Order_Invoice_Totals
+                    </sales_order_invoice_totals>
+                    <sales_order_creditmemo_totals>Pay_Payment_Block_Adminhtml_Sales_Order_Creditmemo_Totals
+                    </sales_order_creditmemo_totals>
                 </rewrite>
             </adminhtml>
         </blocks>
@@ -199,7 +227,6 @@
             <pay_payment_klarna>
                 <active>0</active>
                 <model>pay_payment/Paymentmethod_Klarna</model>
-                <auto_capture>1</auto_capture>
                 <title>Klarna</title>
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>

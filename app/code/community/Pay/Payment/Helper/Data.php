@@ -1,17 +1,190 @@
 <?php
 
+
 class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
 {
 
+    public function loginSDK($store = null)
+    {
+        if ($store == null) {
+            $store = Mage::app()->getStore();
+        }
+
+        $serviceId = $store->getConfig('pay_payment/general/serviceid');
+        $apiToken = $store->getConfig('pay_payment/general/apitoken');
+
+        // Replace apitoken and serviceId with your own.
+        \Paynl\Config::setApiToken($apiToken);
+        \Paynl\Config::setServiceId($serviceId);
+
+        $useBackupApi = Mage::getStoreConfig('pay_payment/general/use_backup_api', $store);
+        $backupApiUrl = Mage::getStoreConfig('pay_payment/general/backup_api_url', $store);
+        if ($useBackupApi == 1) {
+            \Paynl\Config::setApiBase($backupApiUrl);
+        }
+    }
+
+    public static function getLanguage()
+    {
+        $store = Mage::app()->getStore();
+
+        $language = $store->getConfig('pay_payment/general/user_language');
+
+        if ($language == 'browser' || empty($language)) {
+            return self::getDefaultLanguage();
+        } else {
+            return $language;
+        }
+    }
+
+    protected static function getDefaultLanguage()
+    {
+
+        if (isset($_SERVER["HTTP_ACCEPT_LANGUAGE"]))
+            return self::parseDefaultLanguage($_SERVER["HTTP_ACCEPT_LANGUAGE"]);
+        else return self::parseDefaultLanguage(NULL);
+    }
+
+    private static function parseDefaultLanguage($http_accept, $deflang = "en")
+    {
+        if (isset($http_accept) && strlen($http_accept) > 1) {
+            # Split possible languages into array
+            $x = explode(",", $http_accept);
+            foreach ($x as $val) {
+                #check for q-value and create associative array. No q-value means 1 by rule
+                if (preg_match("/(.*);q=([0-1]{0,1}.[0-9]{0,4})/i", $val,
+                    $matches)) {
+                    $lang[$matches[1]] = (float)$matches[2] . '';
+                } else {
+                    $lang[$val] = 1.0;
+                }
+            }
+
+            $languages = new Pay_Payment_Model_Source_Language();
+
+            $arrLanguages = $languages->toOptionArray();
+            $arrAvailableLanguages = array();
+            foreach ($arrLanguages as $language) {
+                $arrAvailableLanguages[] = $language['value'];
+            }
+
+            //laatste er af halen
+            array_pop($arrAvailableLanguages);
+
+            #return default language (highest q-value)
+            $qval = 0.0;
+            foreach ($lang as $key => $value) {
+                $languagecode = strtolower(substr($key, 0, 2));
+
+                if (in_array($languagecode, $arrAvailableLanguages)) {
+                    if ($value > $qval) {
+                        $qval = (float)$value;
+                        $deflang = $key;
+                    }
+                }
+            }
+        }
+        return strtolower(substr($deflang, 0, 2));
+    }
+
+    public static function splitAddress($strAddress)
+    {
+        return \Paynl\Helper::splitAddress(trim($strAddress));
+    }
+
+    public static function getIp()
+    {
+
+        //Just get the headers if we can or else use the SERVER global
+        if (function_exists('apache_request_headers')) {
+            $headers = apache_request_headers();
+        } else {
+            $headers = $_SERVER;
+        }
+        //Get the forwarded IP if it exists
+        if (array_key_exists('X-Forwarded-For', $headers)) {
+            $the_ip = $headers['X-Forwarded-For'];
+        } elseif (array_key_exists('HTTP_X_FORWARDED_FOR', $headers)) {
+            $the_ip = $headers['HTTP_X_FORWARDED_FOR'];
+        } else {
+            $the_ip = $_SERVER['REMOTE_ADDR'];
+        }
+        $arrIp = explode(',', $the_ip);
+        $the_ip = $arrIp[0];
+
+        $the_ip = filter_var(trim($the_ip), FILTER_VALIDATE_IP);
+
+        return $the_ip;
+    }
+
+    /**
+     * @param $amountInclTax
+     * @param $taxAmount
+     * @return mixed
+     * @deprecated
+     */
+    public static function calculateTaxClass($amountInclTax, $taxAmount)
+    {
+        if (!$amountInclTax || !$taxAmount) {
+            return self::getTaxCodeFromRate(0);
+        }
+        $amountExclTax = $amountInclTax - $taxAmount;
+        if ($amountExclTax == 0) { // prevent division by zero
+            $taxRate = 0;
+        } else {
+            $taxRate = ($taxAmount / $amountExclTax) * 100;
+        }
+
+        return self::getTaxCodeFromRate($taxRate);
+    }
+
+    /**
+     * @param $taxRate
+     * @return mixed
+     * @deprecated
+     */
+    public static function getTaxCodeFromRate($taxRate)
+    {
+        $taxClasses = array(
+            0 => 'N',
+            6 => 'L',
+            21 => 'H'
+        );
+        $nearestTaxRate = self::nearest($taxRate, array_keys($taxClasses));
+
+        return ($taxClasses[$nearestTaxRate]);
+    }
+
+    /**
+     * @param $number
+     * @param $numbers
+     * @return bool
+     * @deprecated
+     */
+    public static function nearest($number, $numbers)
+    {
+        $output = FALSE;
+        $number = intval($number);
+        if (is_array($numbers) && count($numbers) >= 1) {
+            $NDat = array();
+            foreach ($numbers as $n) {
+                $NDat[abs($number - $n)] = $n;
+            }
+            ksort($NDat);
+            $NDat = array_values($NDat);
+            $output = $NDat[0];
+        }
+        return $output;
+    }
+
+    /**
+     * @param $ipAddress
+     * @return array
+     * @deprecated
+     */
     public function isPayIp($ipAddress)
     {
-        /**
-         * @var Pay_Payment_Helper_Api_Ispayserverip $helperApi
-         */
-        $helperApi = Mage::helper('pay_payment/api_ispayserverip');
-        $helperApi->setIpaddress($ipAddress);
-        $result    = $helperApi->doRequest();
-        return $result['result'] == 1;
+        return \Paynl\Validate::isPayServerIp($ipAddress);
     }
 
     public function isOptionAvailable($option_id, $store = null)
@@ -20,28 +193,38 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
         return !is_null($option->getInternalId());
     }
 
-    public function lockTransaction($transactionId){
+    public function getOption($option_id, $store = null)
+    {
+        if ($store == null) {
+            $store = Mage::app()->getStore();
+        }
+        $serviceId = $store->getConfig('pay_payment/general/serviceid');
+        //$serviceId = Mage::getStoreConfig('pay_payment/general/serviceid', $store);
+
+        $option = Mage::getModel('pay_payment/option')->getCollection()
+            ->addFieldToFilter('service_id', $serviceId)
+            ->addFieldToFilter('option_id', $option_id)
+            ->getFirstItem();
+        return $option;
+    }
+
+    public function lockTransaction($transactionId)
+    {
         $transaction = $this->getTransaction($transactionId);
         $max_lock = strtotime('+5 min');
         $current_lock = $transaction->getLockDate();
-        if($current_lock !== null){
+        if ($current_lock !== null) {
             $current_lock = strtotime($current_lock);
         }
-        if($current_lock !== null && $current_lock<$max_lock){
+        if ($current_lock !== null && $current_lock < $max_lock) {
             $obj_max_lock = new DateTime();
             $obj_max_lock->setTimestamp($max_lock);
 
-            throw new Exception('Cannot lock transaction, transaction already locked until: '.$obj_max_lock->format('H:i:s d-m-Y'));
+            throw new Exception('Cannot lock transaction, transaction already locked until: ' . $obj_max_lock->format('H:i:s d-m-Y'));
         }
         $transaction->setLockDate(strtotime('now'));
         $transaction->save();
         return true;
-    }
-
-    public function removeLock($transactionId){
-        $transaction = $this->getTransaction($transactionId);
-        $transaction->setLockDate(null);
-        $transaction->save();
     }
 
     /**
@@ -56,7 +239,16 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
             ->getFirstItem();
         return $transaction;
     }
-    public function isOrderPaid($orderId){
+
+    public function removeLock($transactionId)
+    {
+        $transaction = $this->getTransaction($transactionId);
+        $transaction->setLockDate(null);
+        $transaction->save();
+    }
+
+    public function isOrderPaid($orderId)
+    {
         /** @var Pay_Payment_Model_Mysql4_Transaction_Collection $transaction */
         $transaction = Mage::getModel('pay_payment/transaction')
             ->getCollection()
@@ -79,51 +271,42 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
         return $options;
     }
 
-    public function getOption($option_id, $store = null)
+    public function loadOptions($store = null)
     {
         if ($store == null) {
             $store = Mage::app()->getStore();
         }
-        $serviceId = $store->getConfig('pay_payment/general/serviceid');
-        //$serviceId = Mage::getStoreConfig('pay_payment/general/serviceid', $store);
 
-        $option = Mage::getModel('pay_payment/option')->getCollection()
-            ->addFieldToFilter('service_id', $serviceId)
-            ->addFieldToFilter('option_id', $option_id)
-            ->getFirstItem();
-        return $option;
+        $this->loginSDK($store);
+
+        $paymentMethods = \Paynl\Paymentmethods::getList();
+
+        $this->_saveOptions($paymentMethods, $store);
     }
 
-    private function _saveOptions($data, $store = null)
+    private function _saveOptions($paymentMethods, $store = null)
     {
         if ($store == null) {
             $store = Mage::app()->getStore();
         }
         $serviceId = $store->getConfig('pay_payment/general/serviceid');
-        //$serviceId = Mage::getStoreConfig('pay_payment/general/serviceid', $store);
-
-        $service        = $data['service'];
-        $paymentOptions = $data['paymentOptions'];
-
-        $imageBasePath = (string) $service['basePath'];
 
         $arrUsedOptionIds = array();
-
-        foreach ($paymentOptions as $paymentOption) {
-            $image = $imageBasePath.$paymentOption['path'].$paymentOption['img'];
+        foreach ($paymentMethods as $paymentMethod) {
+            $image = 'https://www.pay.nl/images/payment_profiles/20x20/' . $paymentMethod['id'] . '.png';
 
             /**
              * @var Pay_Payment_Model_Option $objOption
              */
             $objOption = Mage::getModel('pay_payment/option')->getCollection()
                 ->addFieldToFilter('service_id', $serviceId)
-                ->addFieldToFilter('option_id', $paymentOption['id'])
+                ->addFieldToFilter('option_id', $paymentMethod['id'])
                 ->getFirstItem();
 
             $optionData = array(
-                'option_id' => (string) $paymentOption['id'],
+                'option_id' => (string)$paymentMethod['id'],
                 'service_id' => $serviceId,
-                'name' => (string) $paymentOption['visibleName'],
+                'name' => (string)$paymentMethod['visibleName'],
                 'image' => $image,
                 'update_date' => time(),
             );
@@ -135,15 +318,14 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
 
             $arrUsedOptionSubIds = array();
 
-            if (!empty($paymentOption['paymentOptionSubList']) && $paymentOption['id']
-                == 10) {
-                foreach ($paymentOption['paymentOptionSubList'] as $optionSub) {
+            if (!empty($paymentMethod['banks']) && $paymentMethod['id'] == 10) {
+                foreach ($paymentMethod['banks'] as $optionSub) {
                     $optionSubData = array(
                         'option_sub_id' => $optionSub['id'],
                         'option_internal_id' => $objOption->getInternalId(),
-                        'name' => $optionSub['name'],
-                        'image' => $imageBasePath.$optionSub['path'].$optionSub['img'],
-                        'active' => $optionSub['state']
+                        'name' => $optionSub['visibleName'],
+                        'image' => '',
+                        'active' => 1
                     );
 
                     $objOptionSub = Mage::getModel('pay_payment/optionsub')->getCollection()
@@ -168,7 +350,7 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
                 ->addFieldToFilter('option_internal_id',
                     $objOption->getInternalId())
                 ->addFieldToFilter('internal_id',
-                array('nin' => $arrUsedOptionSubIds));
+                    array('nin' => $arrUsedOptionSubIds));
 
             foreach ($arrSubsToDelete as $subToDelete) {
                 $subToDelete->delete();
@@ -183,36 +365,9 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
         }
     }
 
-    public function loadOptions($store = null)
-    {
-        if ($store == null) {
-            $store = Mage::app()->getStore();
-        }
-        $serviceId = $store->getConfig('pay_payment/general/serviceid');
-        //$serviceId = Mage::getStoreConfig('pay_payment/general/serviceid', $store);
-        $apiToken  = $store->getConfig('pay_payment/general/apitoken');
-        //$apiToken = Mage::getStoreConfig('pay_payment/general/apitoken', $store);
-
-        $useBackupApi = Mage::getStoreConfig('pay_payment/general/use_backup_api', $store);
-        $backupApiUrl = Mage::getStoreConfig('pay_payment/general/backup_api_url', $store);
-        if($useBackupApi == 1){
-            Pay_Payment_Helper_Api::_setBackupApiUrl($backupApiUrl);
-        }
-
-        $api = Mage::helper('pay_payment/api_getservice');
-
-        /* @var $api Pay_Payment_Helper_Api_GetService */
-        $api->setApiToken($apiToken);
-        $api->setServiceId($serviceId);
-
-        $data = $api->doRequest();
-
-        $this->_saveOptions($data, $store);
-    }
-
     public function getPaymentChargeTaxClass($code)
     {
-        $taxClass = Mage::getStoreConfig('payment/'.strval($code).'/charge_tax_class');
+        $taxClass = Mage::getStoreConfig('payment/' . strval($code) . '/charge_tax_class');
         return $taxClass;
     }
 
@@ -227,12 +382,12 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
         if (is_null($quote)) {
             $quote = Mage::getSingleton('checkout/session')->getQuote();
         }
-        $amount  = 0;
+        $amount = 0;
         $address = $quote->isVirtual() ? $quote->getBillingAddress() : $quote->getShippingAddress();
 
 
-        $chargeType  = Mage::getStoreConfig('payment/'.strval($code).'/charge_type');
-        $chargeValue = Mage::getStoreConfig('payment/'.strval($code).'/charge_value');
+        $chargeType = Mage::getStoreConfig('payment/' . strval($code) . '/charge_type');
+        $chargeValue = Mage::getStoreConfig('payment/' . strval($code) . '/charge_value');
 
         if ($chargeType == "percentage") {
             //totaal moet berekend worden
@@ -241,165 +396,11 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
             $discount = $address->getDiscountAmount();
 
             $grandTotal = $subTotal + $shipping + $discount;
-            $amount     = $grandTotal * floatval($chargeValue) / 100;
+            $amount = $grandTotal * floatval($chargeValue) / 100;
         } else {
             $amount = floatval($chargeValue);
         }
-        //  }
-        ////echo $amount;
-        //return Mage::helper('core')->formatPrice($amount);
+
         return $amount;
-    }
-
-    public static function getLanguage()
-    {
-        $store = Mage::app()->getStore();
-
-        $language = $store->getConfig('pay_payment/general/user_language');
-//        $language = Mage::getStoreConfig('pay_payment/general/user_language', $store);
-
-        if ($language == 'browser' || empty($language)) {
-            return self::getDefaultLanguage();
-        } else {
-            return $language;
-        }
-    }
-
-    protected static function getDefaultLanguage()
-    {
-
-        if (isset($_SERVER["HTTP_ACCEPT_LANGUAGE"]))
-                return self::parseDefaultLanguage($_SERVER["HTTP_ACCEPT_LANGUAGE"]);
-        else return self::parseDefaultLanguage(NULL);
-    }
-
-    private static function parseDefaultLanguage($http_accept, $deflang = "en")
-    {
-        if (isset($http_accept) && strlen($http_accept) > 1) {
-            # Split possible languages into array
-            $x = explode(",", $http_accept);
-            foreach ($x as $val) {
-                #check for q-value and create associative array. No q-value means 1 by rule
-                if (preg_match("/(.*);q=([0-1]{0,1}.[0-9]{0,4})/i", $val,
-                        $matches)) {
-                    $lang[$matches[1]] = (float) $matches[2].'';
-                } else {
-                    $lang[$val] = 1.0;
-                }
-            }
-
-            $languages = new Pay_Payment_Model_Source_Language();
-
-            $arrLanguages          = $languages->toOptionArray();
-            $arrAvailableLanguages = array();
-            foreach ($arrLanguages as $language) {
-                $arrAvailableLanguages[] = $language['value'];
-            }
-
-            //laatste er af halen
-            array_pop($arrAvailableLanguages);
-
-            #return default language (highest q-value)
-            $qval = 0.0;
-            foreach ($lang as $key => $value) {
-                $languagecode = strtolower(substr($key, 0, 2));
-
-                if (in_array($languagecode, $arrAvailableLanguages)) {
-                    if ($value > $qval) {
-                        $qval    = (float) $value;
-                        $deflang = $key;
-                    }
-                }
-            }
-        }
-        return strtolower(substr($deflang, 0, 2));
-    }
-
-    public static function splitAddress($strAddress)
-    {
-        $strAddress = trim($strAddress);
-
-        $a               = preg_split('/([0-9]+)/', $strAddress, 2,
-            PREG_SPLIT_DELIM_CAPTURE);
-        $strStreetName   = trim(array_shift($a));
-        $strStreetNumber = trim(implode('', $a));
-
-        if (empty($strStreetName)) { // American address notation
-            $a = preg_split('/([a-zA-Z]{2,})/', $strAddress, 2,
-                PREG_SPLIT_DELIM_CAPTURE);
-
-            $strStreetNumber = trim(array_shift($a));
-            $strStreetName   = implode(' ', $a);
-        }
-
-        return array($strStreetName, $strStreetNumber);
-    }
-
-    public static function getIp()
-    {
-
-        //Just get the headers if we can or else use the SERVER global
-        if (function_exists('apache_request_headers')) {
-            $headers = apache_request_headers();
-        } else {
-            $headers = $_SERVER;
-        }
-        //Get the forwarded IP if it exists
-        if (array_key_exists('X-Forwarded-For', $headers)) {
-            $the_ip = $headers['X-Forwarded-For'];
-        } elseif (array_key_exists('HTTP_X_FORWARDED_FOR', $headers)) {
-            $the_ip = $headers['HTTP_X_FORWARDED_FOR'];
-        } else {
-            $the_ip = $_SERVER['REMOTE_ADDR'];
-        }
-        $arrIp  = explode(',', $the_ip);
-        $the_ip = $arrIp[0];
-
-        $the_ip = filter_var(trim($the_ip), FILTER_VALIDATE_IP);
-
-        return $the_ip;
-    }
-
-    public static function nearest($number, $numbers)
-    {
-        $output = FALSE;
-        $number = intval($number);
-        if (is_array($numbers) && count($numbers) >= 1) {
-            $NDat = array();
-            foreach ($numbers as $n) {
-                $NDat[abs($number - $n)] = $n;
-            }
-            ksort($NDat);
-            $NDat   = array_values($NDat);
-            $output = $NDat[0];
-        }
-        return $output;
-    }
-
-    public static function getTaxCodeFromRate($taxRate)
-    {
-        $taxClasses     = array(
-            0 => 'N',
-            6 => 'L',
-            21 => 'H'
-        );
-        $nearestTaxRate = self::nearest($taxRate, array_keys($taxClasses));
-
-        return($taxClasses[$nearestTaxRate]);
-    }
-
-    public static function calculateTaxClass($amountInclTax, $taxAmount)
-    {
-        if(!$amountInclTax || !$taxAmount ){
-            return self::getTaxCodeFromRate(0);
-        }
-        $amountExclTax = $amountInclTax - $taxAmount;
-        if($amountExclTax == 0){ // prevent division by zero
-            $taxRate = 0;
-        } else {
-            $taxRate       = ($taxAmount / $amountExclTax) * 100;
-        }
-
-        return self::getTaxCodeFromRate($taxRate);
     }
 }
