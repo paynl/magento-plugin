@@ -13,7 +13,6 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
         $serviceId = $store->getConfig('pay_payment/general/serviceid');
         $apiToken = $store->getConfig('pay_payment/general/apitoken');
 
-        // Replace apitoken and serviceId with your own.
         \Paynl\Config::setApiToken($apiToken);
         \Paynl\Config::setServiceId($serviceId);
 
@@ -24,9 +23,11 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
         }
     }
 
-    public static function getLanguage()
+    public static function getLanguage($store = null)
     {
-        $store = Mage::app()->getStore();
+        if(is_null($store)){
+            $store = Mage::app()->getStore();
+        }
 
         $language = $store->getConfig('pay_payment/general/user_language');
 
@@ -220,7 +221,9 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
             $obj_max_lock = new DateTime();
             $obj_max_lock->setTimestamp($max_lock);
 
-            throw new Exception('Cannot lock transaction, transaction already locked until: ' . $obj_max_lock->format('H:i:s d-m-Y'));
+            throw new Pay_Payment_Model_Transaction_LockException('Cannot lock transaction, transaction already locked until: ' . $obj_max_lock->format('H:i:s d-m-Y'));
+
+//            throw new Pay_Payment_Lock_Exception();
         }
         $transaction->setLockDate(strtotime('now'));
         $transaction->save();

@@ -59,17 +59,17 @@
     },
     {
         "name": "paynl/sdk",
-        "version": "v1.2.8",
-        "version_normalized": "1.2.8.0",
+        "version": "v1.2.9",
+        "version_normalized": "1.2.9.0",
         "source": {
             "type": "git",
             "url": "https://github.com/paynl/sdk.git",
-            "reference": "e1f9e1496f6bcd256560d4f76474a027808ddc07"
+            "reference": "3521f99df7f9d34709b8fb1acfab10423084407f"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/paynl/sdk/zipball/e1f9e1496f6bcd256560d4f76474a027808ddc07",
-            "reference": "e1f9e1496f6bcd256560d4f76474a027808ddc07",
+            "url": "https://api.github.com/repos/paynl/sdk/zipball/3521f99df7f9d34709b8fb1acfab10423084407f",
+            "reference": "3521f99df7f9d34709b8fb1acfab10423084407f",
             "shasum": ""
         },
         "require": {
@@ -79,7 +79,7 @@
             "phpunit/phpunit": "^4.8",
             "satooshi/php-coveralls": "~1.0"
         },
-        "time": "2017-02-22 10:45:39",
+        "time": "2017-03-14 16:42:11",
         "type": "library",
         "installation-source": "dist",
         "autoload": {

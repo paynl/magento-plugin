@@ -2,13 +2,30 @@
 
 class Pay_Payment_CheckoutController extends Mage_Core_Controller_Front_Action
 {
+    /**
+     * @var Pay_Payment_Helper_Order
+     */
+    private $helperOrder;
+    /**
+     * @var Pay_Payment_Helper_Data
+     */
+    private $helperData;
+
+    public function __construct(Zend_Controller_Request_Abstract $request, Zend_Controller_Response_Abstract $response, array $invokeArgs = array())
+    {
+        $this->helperData = Mage::helper('pay_payment');
+        $this->helperOrder = Mage::helper('pay_payment/order');
+
+
+        parent::__construct($request, $response, $invokeArgs);
+    }
 
     public function redirectAction()
     {
         Mage::log('Starting transaction', null, 'paynl.log');
-        $helper = Mage::helper('pay_payment');
-        $session = Mage::getSingleton('checkout/session');
-        /* @var $session Mage_Checkout_Model_Session */
+
+        $session= Mage::getSingleton('checkout/session');
+
         if ($session->getLastRealOrderId()) {
             Mage::log('Order found in session, orderId: ' . $session->getLastRealOrderId(), null, 'paynl.log');
 

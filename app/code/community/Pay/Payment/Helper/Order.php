@@ -53,46 +53,8 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
         return $status;
     }
 
-    /**
-     * @param $transactionId
-     * @param null $store
-     * @return mixed
-     * @deprecated
-     */
-    public function getTransactionInfo($transactionId, $store = null)
-    {
-        if ($store == null) {
-            $store = Mage::app()->getStore();
-        }
-
-        $helperApi = Mage::helper('pay_payment/api_info');
-        /* @var $helperApi Pay_Payment_Helper_Api_Info */
-
-
-        $apiToken = $store->getConfig('pay_payment/general/apitoken');
-
-
-        $useBackupApi = Mage::getStoreConfig('pay_payment/general/use_backup_api', $store);
-        $backupApiUrl = Mage::getStoreConfig('pay_payment/general/backup_api_url', $store);
-        if ($useBackupApi == 1) {
-            Pay_Payment_Helper_Api::_setBackupApiUrl($backupApiUrl);
-        }
-
-        $helperApi->setApiToken($apiToken);
-        $helperApi->setTransactionId($transactionId);
-
-        $transactionInfo = $helperApi->doRequest();
-
-        return $transactionInfo;
-    }
-
     public function updateState($transactionId, $status, $paidAmount = null, $endUserId = null, $store = null)
     {
-        if ($store == null) {
-            $store = Mage::app()->getStore();
-        }
-
-        //$transactionInfo = $this->getTransactionInfo($transactionId, $store);
         //transactie ophalen uit pay tabel
         /** @var Pay_Payment_Helper_Data $helperData */
         $helperData = Mage::helper('pay_payment');
@@ -101,6 +63,9 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
         $order = $this->getOrderByTransactionId($transactionId);
         $payment = $order->getPayment();
 
+        if ($store == null) {
+            $store = $order->getStore();
+        }
 
         if ($transaction->getStatus() == $status || $order->getTotalDue() == 0) {
             //status is al verwerkt - geen actie vereist
@@ -109,20 +74,17 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
         $autoInvoice = $store->getConfig('pay_payment/general/auto_invoice');
         $invoiceEmail = $store->getConfig('pay_payment/general/invoice_email');
 
-        $autoCapture = $store->getConfig('payment/'.$payment->getMethod().'/auto_capture');
-
         if ($status == Pay_Payment_Model_Transaction::STATE_SUCCESS) {
             // als het order al canceled was, gaan we hem nu uncancelen
             if ($order->isCanceled()) {
                 $this->uncancel($order);
             }
 
-            $orderAmount = intval(round($order->getGrandTotal() * 100));
-            $paidAmount = intval(round($paidAmount));
+            $orderAmount = $order->getGrandTotal();
 
             //controleren of het gehele bedrag betaald is
-            if ($orderAmount != $paidAmount) {
-                $order->addStatusHistoryComment('Bedrag komt niet overeen. Order bedrag: ' . ($orderAmount / 100) . ' Betaald: ' . ($paidAmount / 100));
+            if (abs($orderAmount-$paidAmount) < 0.0001) {
+                $order->addStatusHistoryComment('Bedrag komt niet overeen. Order bedrag: ' . $orderAmount . ' Betaald: ' . $paidAmount);
             }
 
 
@@ -244,7 +206,10 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
             }
 
             // order annuleren
-            //$order->setState(Mage_Sales_Model_Order::STATE_CANCELED, Mage_Sales_Model_Order::STATE_CANCELED);
+            // if the order has an authorization, close it so the api doesn't get called
+            if($order->getPayment()->getAuthorizationTransaction()){
+                $order->getPayment()->getAuthorizationTransaction()->close(true);
+            }
             $order->cancel();
             $order->save();
             $sendStatusupdates = $store->getConfig('pay_payment/general/send_statusupdates');

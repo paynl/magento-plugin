@@ -16,6 +16,23 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
 
     protected $_additionalData = array();
 
+    /**
+     * @var Pay_Payment_Helper_Data
+     */
+    protected $helperData;
+    /**
+     * @var Pay_Payment_Helper_Order
+     */
+    protected $helperOrder;
+
+    public function __construct()
+    {
+        $this->helperData = Mage::helper('pay_payment');
+        $this->helperOrder = Mage::helper('pay_payment/order');
+
+        parent::__construct();
+    }
+
     public function isApplicableToQuote($quote, $checksBitMask)
     {
         $store = $quote->getStore();
@@ -60,48 +77,151 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         $order = $payment->getOrder();
         $store = $order->getStore();
 
-        $serviceId = Mage::getStoreConfig('pay_payment/general/serviceid', $store);
-        $apiToken = Mage::getStoreConfig('pay_payment/general/apitoken', $store);
-
-        $useBackupApi = Mage::getStoreConfig('pay_payment/general/use_backup_api', $store);
-        $backupApiUrl = Mage::getStoreConfig('pay_payment/general/backup_api_url', $store);
-        if ($useBackupApi == 1) {
-            Pay_Payment_Helper_Api::_setBackupApiUrl($backupApiUrl);
-        }
+        $this->helperData->loginSDK($store);
 
         $parentTransactionId = $payment->getParentTransactionId();
 
-        $apiRefund = Mage::helper('pay_payment/api_refund');
-        $apiRefund instanceof Pay_Payment_Helper_Api_Refund;
-        $apiRefund->setApiToken($apiToken);
-        $apiRefund->setServiceId($serviceId);
-
-        $apiRefund->setTransactionId($parentTransactionId);
-        $amount = (int)round($amount * 100);
-        $apiRefund->setAmount($amount);
-
-        $apiRefund->doRequest();
+        \Paynl\Transaction::refund($parentTransactionId, $amount);
 
         return $this;
     }
 
-    public function startPayment(Mage_Sales_Model_Order $order)
-    {
+    private function getProducts(Mage_Sales_Model_Order $order){
+        $arrProducts = array();
+
+        $items = $order->getItemsCollection(array(), true);
+        foreach ($items as $item) {
+            /* @var $item Mage_Sales_Model_Order_Item */
+
+            $price = $item->getPriceInclTax();
+            if($price == 0){
+                continue;
+            }
+            $product = array(
+                'id' => $item->getId(),
+                'name' => $item->getName(),
+                'price' => $item->getPriceInclTax(),
+                'vatPercentage' => $item->getTaxPercent(),
+                'qty' => $item->getQtyOrdered(),
+                'type' => \Paynl\Transaction::PRODUCT_TYPE_ARTICLE
+            );
+            $arrProducts[] = $product;
+        }
+
+        $discountAmount = $order->getDiscountAmount();
+        if ($discountAmount < 0) {
+            $discount = array(
+                'id' => 'discount',
+                'name' => 'Korting (' . $order->getDiscountDescription() . ')',
+                'price' => $discountAmount,
+                'vatPercentage' => 0,
+                'qty' => 1,
+                'type' => \Paynl\Transaction::PRODUCT_TYPE_DISCOUNT
+            );
+
+            $arrProducts[] = $discount;
+        }
+
+        $shipping = $order->getShippingInclTax();
+        if ($shipping > 0) {
+            $shipping = array(
+                'id' => 'shipping',
+                'name' => $order->getShippingDescription(),
+                'price' => $order->getShippingInclTax(),
+                'tax' => $order->getShippingTaxAmount(),
+                'qty' => 1,
+                'type' => \Paynl\Transaction::PRODUCT_TYPE_SHIPPING
+            );
+
+            $arrProducts[] = $shipping;
+        }
+
+        $extraFee = $order->getPaymentCharge();
+
+        if ($extraFee != 0) {
+            $payment = $order->getPayment();
+
+            $code = $payment->getMethod();
+            $taxClass = $this->helperData->getPaymentChargeTaxClass($code);
+
+            $taxCalculationModel = Mage::getSingleton('tax/calculation');
+            $request = $taxCalculationModel->getRateRequest($order->getShippingAddress(), $order->getBillingAddress());
+            $request->setStore(Mage::app()->getStore());
+            $vatPercentage = $taxCalculationModel->getRate($request->setProductClassId($taxClass));
+
+            $fee = array(
+                'id' => 'paymentfee',
+                'name' => Mage::getStoreConfig('pay_payment/general/text_payment_charge', $order->getStore()),
+                'price' => $extraFee,
+                'vatPercentage' => $vatPercentage,
+                'qty' => 1,
+                'type' => \Paynl\Transaction::PRODUCT_TYPE_HANDLING
+            );
+
+            $arrProducts[] = $fee;
+        }
+        return $arrProducts;
+
+    }
+    private function getBillingAddress(Mage_Sales_Model_Order $order){
+        $objBillingAddress = $order->getBillingAddress();
+
+        $arrAddressFull = array();
+        $arrAddressFull[] = $objBillingAddress->getStreet1();
+        $arrAddressFull[] = $objBillingAddress->getStreet2();
+        $arrAddressFull[] = $objBillingAddress->getStreet3();
+        $arrAddressFull[] = $objBillingAddress->getStreet4();
+        $arrAddressFull = array_unique($arrAddressFull);
+        $addressFull = implode(' ', $arrAddressFull);
+        $addressFull = str_replace("\n", ' ', $addressFull);
+        $addressFull = str_replace("\r", ' ', $addressFull);
+
+        list($address, $housenumber) = \Paynl\Helper::splitAddress($addressFull);
+
+
+        $arrBillingAddress = array(
+            'initials' => $objBillingAddress->getFirstname(),
+            'lastName' => $objBillingAddress->getLastname(),
+            'streetName' => $address,
+            'houseNumber' => $housenumber,
+            'zipCode' => $objBillingAddress->getPostcode(),
+            'city' => $objBillingAddress->getCity(),
+            'country' => $objBillingAddress->getCountry()
+        );
+
+        return $arrBillingAddress;
+    }
+
+    private function getShippingAddress(Mage_Sales_Model_Order $order){
+        $objShippingAddress= $order->getShippingAddress();
+
+        $arrAddressFull = array();
+        $arrAddressFull[] = $objShippingAddress->getStreet1();
+        $arrAddressFull[] = $objShippingAddress->getStreet2();
+        $arrAddressFull[] = $objShippingAddress->getStreet3();
+        $arrAddressFull[] = $objShippingAddress->getStreet4();
+        $arrAddressFull = array_unique($arrAddressFull);
+        $addressFull = implode(' ', $arrAddressFull);
+        $addressFull = str_replace("\n", ' ', $addressFull);
+        $addressFull = str_replace("\r", ' ', $addressFull);
+
+        list($address, $housenumber) = \Paynl\Helper::splitAddress($addressFull);
+
+
+        $arrShippingAddress = array(
+            'streetName' => $address,
+            'houseNumber' => $housenumber,
+            'zipCode' => $objShippingAddress->getPostcode(),
+            'city' => $objShippingAddress->getCity(),
+            'country' => $objShippingAddress->getCountry()
+        );
+
+        return $arrShippingAddress;
+    }
+
+    private function getEnduserData(Mage_Sales_Model_Order $order){
         $session = Mage::getSingleton('checkout/session');
-
-        Mage::log('Starting payment for order: ' . $order->getId(), null, 'paynl.log');
-
-        $payment = $order->getPayment();
-
         $additionalData = $session->getPaynlPaymentData();
-
-        /** @var Pay_Payment_Helper_Data $helper */
-        $helper = Mage::helper('pay_payment');
-
-        $optionId = $this->_paymentOptionId;
-        $optionSubId = $additionalData['option_sub'] ? $additionalData['option_sub'] : null;
-        $iban = $additionalData['iban'] ? $additionalData['iban'] : null;
-
         if (
             isset($additionalData['birthday_day']) &&
             isset($additionalData['birthday_month']) &&
@@ -117,169 +237,79 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         list($dobYear, $dobMonth, $dobDay) = explode('-', $birthDate);
 
         $birthDate = $dobDay . '-' . $dobMonth . '-' . $dobYear;
+        $iban = $additionalData['iban'] ? $additionalData['iban'] : null;
 
-        $serviceId = Mage::getStoreConfig('pay_payment/general/serviceid', Mage::app()->getStore());
+        $enduser = array(
+            'initials' => $order->getShippingAddress()->getFirstname(),
+            'lastName' => $order->getShippingAddress()->getLastname(),
+            'birthDate' => $birthDate,
+            'iban' => $iban,
+            'phoneNumber' => $order->getShippingAddress()->getTelephone(),
+            'emailAddress' => $order->getShippingAddress()->getEmail()
+        );
 
-        $apiToken = Mage::getStoreConfig('pay_payment/general/apitoken', Mage::app()->getStore());
-        $useBackupApi = Mage::getStoreConfig('pay_payment/general/use_backup_api', Mage::app()->getStore());
-        $backupApiUrl = Mage::getStoreConfig('pay_payment/general/backup_api_url', Mage::app()->getStore());
-        if ($useBackupApi == 1) {
-            Pay_Payment_Helper_Api::_setBackupApiUrl($backupApiUrl);
+        return $enduser;
+    }
+
+    private function getTransactionStartData(Mage_Sales_Model_Order $order){
+        $session = Mage::getSingleton('checkout/session');
+
+        $sendOrderData = Mage::getStoreConfig('pay_payment/general/send_order_data', $order->getStore());
+
+        $additionalData = $session->getPaynlPaymentData();
+
+        $optionId = $this->_paymentOptionId;
+        $optionSubId = $additionalData['option_sub'] ? $additionalData['option_sub'] : null;
+
+        $ipAddress= $order->getRemoteIp();
+        if(empty($ipAddress)) $ipAddress = \Paynl\Helper::getIp();
+        if(strpos($ipAddress, ',') !== false){
+            $ipAddress = substr($ipAddress,0,strpos($ipAddress, ','));
         }
 
-        $amount = $order->getGrandTotal();
+        $arrStartData = array(
+            'amount' => $order->getGrandTotal(),
+            'returnUrl' => Mage::getUrl('pay_payment/order/return'),
+            'exchangeUrl' => Mage::getUrl('pay_payment/order/exchange'),
+            'paymentMethod' => $optionId,
+            'description' => $order->getIncrementId(),
+            'currency' => $order->getOrderCurrencyCode(),
+            'extra1' => $order->getIncrementId(),
+            'extra2' => $order->getCustomerEmail(),
+            'ipAddress' => $ipAddress,
+            'language' => $this->helperData->getLanguage($order->getStore())
+        );
 
-        $sendOrderData = Mage::getStoreConfig('pay_payment/general/send_order_data', Mage::app()->getStore());
-
-        $api = Mage::helper('pay_payment/api_start');
-        /* @var $api Pay_Payment_Helper_Api_Start */
-
+        if(!is_null($optionSubId)){
+            $arrStartData['bank'] = $optionSubId;
+        }
         if (isset($additionalData['valid_days'])) {
-            $api->setExpireDate(date('d-m-Y H:i:s', strtotime('+' . $additionalData['valid_days'] . ' days')));
+            $arrStartData['expireDate']  = date('d-m-Y H:i:s', strtotime('+' . $additionalData['valid_days'] . ' days'));
         }
 
-        $api->setExtra2($order->getCustomerEmail());
-
-        if ($sendOrderData == 1) {
-            $items = $order->getItemsCollection(array(), true);
-            foreach ($items as $item) {
-                /* @var $item Mage_Sales_Model_Order_Item */
-                $productId = $item->getId();
-                $description = $item->getName();
-                $price = $item->getPriceInclTax();
-                $taxAmount = $item->getTaxAmount();
-                $quantity = $item->getQtyOrdered();
-
-                if ($price != 0) {
-                    $taxClass = $helper->calculateTaxClass($price, $taxAmount / $quantity);
-                    $price = round($price * 100);
-                    $api->addProduct($productId, $description, $price, $quantity, $taxClass);
-                }
-
-            }
-
-            $discountAmount = $order->getDiscountAmount();
-
-            if ($discountAmount < 0) {
-                $api->addProduct('discount', 'Korting (' . $order->getDiscountDescription() . ')', round($discountAmount * 100), 1, 'N', 'DISCOUNT');
-            }
-
-            $shipping = $order->getShippingInclTax();
-
-            if ($shipping > 0) {
-                $shippingTax = $order->getShippingTaxAmount();
-                $shippingTaxClass = $helper->calculateTaxClass($shipping, $shippingTax);
-                $shipping = round($shipping * 100);
-                if ($shipping != 0) {
-                    $api->addProduct('shipping', 'Verzendkosten', $shipping, 1, $shippingTaxClass, 'SHIPPING');
-                }
-            }
-
-            $extraFee = $order->getPaymentCharge();
-            if ($extraFee != 0) {
-                $code = $payment->getMethod();
-                $taxClass = $helper->getPaymentChargeTaxClass($code);
-
-                $taxCalculationModel = Mage::getSingleton('tax/calculation');
-                $request = $taxCalculationModel->getRateRequest($order->getShippingAddress(), $order->getBillingAddress());
-                $request->setStore(Mage::app()->getStore());
-                $rate = $taxCalculationModel->getRate($request->setProductClassId($taxClass));
-
-                $taxCode = $helper->getTaxCodeFromRate($rate);
-
-                $api->addProduct('paymentfee', Mage::getStoreConfig('pay_payment/general/text_payment_charge', Mage::app()->getStore()), round($extraFee * 100), 1, $taxCode, 'PAYMENT');
-            }
-
-            $arrEnduser = array();
-            $shippingAddress = $order->getShippingAddress();
-
-            $arrEnduser['gender'] = substr($order->getCustomerGender(), 0, 1);
-
-            if (isset($iban)) {
-                $arrEnduser['iban'] = strtoupper($iban);
-            }
-
-            $arrEnduser['dob'] = $birthDate;
-            $arrEnduser['emailAddress'] = $order->getCustomerEmail();
-            $billingAddress = $order->getBillingAddress();
-
-            if (!empty($shippingAddress)) {
-//                $arrEnduser['initials'] = substr($shippingAddress->getFirstname(), 0, 1);
-                $arrEnduser['initials'] = $shippingAddress->getFirstname();
-                $arrEnduser['lastName'] = substr($shippingAddress->getLastname(), 0, 30);
-
-                $arrEnduser['phoneNumber'] = substr($shippingAddress->getTelephone(), 0, 30);
-
-                $arrAddressFull = array();
-                $arrAddressFull[] = $shippingAddress->getStreet1();
-                $arrAddressFull[] = $shippingAddress->getStreet2();
-                $arrAddressFull[] = $shippingAddress->getStreet3();
-                $arrAddressFull[] = $shippingAddress->getStreet4();
-                $arrAddressFull = array_unique($arrAddressFull);
-                $addressFull = implode(' ', $arrAddressFull);
-
-
-                $addressFull = str_replace("\n", ' ', $addressFull);
-                $addressFull = str_replace("\r", ' ', $addressFull);
-
-                list($address, $housenumber) = $helper->splitAddress($addressFull);
-
-                $arrEnduser['address']['streetName'] = $address;
-                $arrEnduser['address']['streetNumber'] = $housenumber;
-                $arrEnduser['address']['zipCode'] = $shippingAddress->getPostcode();
-                $arrEnduser['address']['city'] = $shippingAddress->getCity();
-                $arrEnduser['address']['countryCode'] = $shippingAddress->getCountry();
-            } elseif (!empty($billingAddress)) {
-                $arrEnduser['initials'] = substr($billingAddress->getFirstname(), 0, 1);
-                $arrEnduser['lastName'] = substr($billingAddress->getLastname(), 0, 30);
-            }
-
-            if (!empty($billingAddress)) {
-                $arrAddressFull = array();
-                $arrAddressFull[] = $billingAddress->getStreet1();
-                $arrAddressFull[] = $billingAddress->getStreet2();
-                $arrAddressFull[] = $billingAddress->getStreet3();
-                $arrAddressFull[] = $billingAddress->getStreet4();
-                $arrAddressFull = array_unique($arrAddressFull);
-                $addressFull = implode(' ', $arrAddressFull);
-
-                $addressFull = str_replace("\n", ' ', $addressFull);
-                $addressFull = str_replace("\r", ' ', $addressFull);
-
-                list($address, $housenumber) = $helper->splitAddress($addressFull);
-
-                $arrEnduser['invoiceAddress']['streetName'] = $address;
-                $arrEnduser['invoiceAddress']['streetNumber'] = $housenumber;
-                $arrEnduser['invoiceAddress']['zipCode'] = $billingAddress->getPostcode();
-                $arrEnduser['invoiceAddress']['city'] = $billingAddress->getCity();
-                $arrEnduser['invoiceAddress']['countryCode'] = $billingAddress->getCountry();
-
-//                $arrEnduser['invoiceAddress']['initials'] = substr($billingAddress->getFirstname(), 0, 1);
-                $arrEnduser['invoiceAddress']['initials'] = $billingAddress->getFirstname();
-                $arrEnduser['invoiceAddress']['lastName'] = substr($billingAddress->getLastname(), 0, 30);
-            }
-            $api->setEnduser($arrEnduser);
+        if($sendOrderData){
+            $arrStartData['enduser'] = $this->getEnduserData($order);
+            $arrStartData['address'] = $this->getShippingAddress($order);
+            $arrStartData['invoiceAddress'] = $this->getBillingAddress($order);
+            $arrStartData['products'] = $this->getProducts($order);
         }
 
-        $api->setServiceId($serviceId);
-        $api->setApiToken($apiToken);
+        return $arrStartData;
+    }
 
-        $api->setAmount(round($amount * 100));
-        $api->setCurrency($order->getOrderCurrencyCode());
+    public function startPayment(Mage_Sales_Model_Order $order)
+    {
+        $store = $order->getStore();
+        $this->helperData->loginSDK($store);
 
-        $api->setPaymentOptionId($optionId);
-        $api->setFinishUrl(Mage::getUrl('pay_payment/order/return'));
+        Mage::log('Starting payment for order: ' . $order->getId(), null, 'paynl.log');
 
-        $api->setExchangeUrl(Mage::getUrl('pay_payment/order/exchange'));
-        $api->setOrderId($order->getIncrementId());
+        $arrStartData = $this->getTransactionStartData($order);
 
-        if (!empty($optionSubId)) {
-            $api->setPaymentOptionSubId($optionSubId);
-        }
         try {
             Mage::log('Calling Pay api to start transaction', null, 'paynl.log');
 
-            $resultData = $api->doRequest();
+            $objStartResult = \Paynl\Transaction::start($arrStartData);
 
         } catch (Exception $e) {
             Mage::log("Creating transaction failed, Exception: " . $e->getMessage(), null, 'paynl.log');
@@ -303,7 +333,6 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
             // Add error to cart
             Mage::getSingleton('checkout/session')->addError(Mage::helper('pay_payment')->__('Er is een storing bij de door u gekozen betaalmethode of bank. Kiest u alstublieft een andere betaalmethode of probeer het later nogmaals'));
             Mage::getSingleton('checkout/session')->addError($e->getMessage());
-            // Mage::getSingleton('checkout/session')->addError(print_r($api->getPostData(),1));
             // Redirect via header
 
             return array('url' => Mage::getUrl('checkout/cart'));
@@ -311,17 +340,17 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
 
         $transaction = Mage::getModel('pay_payment/transaction');
 
-        $transactionId = $resultData['transaction']['transactionId'];
+        $transactionId = $objStartResult->getTransactionId();
 
         Mage::log('Transaction started, transactionId: ' . $transactionId, null, 'paynl.log');
 
         $transaction->setData(
             array(
                 'transaction_id' => $transactionId,
-                'service_id' => $serviceId,
-                'option_id' => $optionId,
-                'option_sub_id' => $optionSubId,
-                'amount' => round($amount * 100),
+                'service_id' => \Paynl\Config::getServiceId(),
+                'option_id' => $this->getPaymentOptionId(),
+                'option_sub_id' => null,
+                'amount' => round($arrStartData['amount'] * 100),
                 'order_id' => $order->getId(),
                 'status' => Pay_Payment_Model_Transaction::STATE_PENDING,
                 'created' => time(),
@@ -331,18 +360,18 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         $transaction->save();
 
         //redirecten
-        $url = $resultData['transaction']['paymentURL'];
+        $url = $objStartResult->getRedirectUrl();
 
-        $statusPending = Mage::getStoreConfig('payment/' . $payment->getMethod() . '/order_status', Mage::app()->getStore());
+        $payment = $order->getPayment();
 
         $order->addStatusHistoryComment(
             'Transactie gestart, transactieId: ' . $transactionId . " \nBetaalUrl: " . $url
         );
 
-
         $order->save();
 
-        $sendMail = Mage::getStoreConfig('payment/' . $payment->getMethod() . '/send_mail', Mage::app()->getStore());
+        $sendMail = Mage::getStoreConfig('payment/' . $payment->getMethod() . '/send_mail', $order->getStore());
+
         if ($sendMail == 'start') {
             $order->sendNewOrderEmail();
         }
