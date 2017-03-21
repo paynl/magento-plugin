@@ -108,6 +108,10 @@ class Pay_Payment_OrderController extends Mage_Core_Controller_Front_Action
             $this->helperData->removeLock($transactionId);
 
             $resultMsg = 'Status updated to ' . $status;
+        } catch (Pay_Payment_Model_Transaction_LockException $e) {
+            $error = true;
+            $resultMsg = 'ERROR: ';
+            $resultMsg .= $e->getMessage();
         } catch (Pay_Payment_Exception $e) {
             if ($e->getCode() == 0) {
                 $resultMsg = 'NOTICE: ';
@@ -116,9 +120,11 @@ class Pay_Payment_OrderController extends Mage_Core_Controller_Front_Action
                 $resultMsg = 'ERROR: ';
             }
             $resultMsg .= $e->getMessage();
+            $this->helperData->removeLock($transactionId);
         } catch (Exception $e) {
             $error = true;
             $resultMsg = 'ERROR: ' . $e->getMessage();
+            $this->helperData->removeLock($transactionId);
         }
 
         if ($error) {
