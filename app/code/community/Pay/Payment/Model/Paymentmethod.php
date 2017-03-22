@@ -81,6 +81,10 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
 
         $parentTransactionId = $payment->getParentTransactionId();
 
+        if($pos = strpos($parentTransactionId, '-')){
+            $parentTransactionId = substr($parentTransactionId, 0, $pos);
+        }
+
         \Paynl\Transaction::refund($parentTransactionId, $amount);
 
         return $this;
