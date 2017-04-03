@@ -40,7 +40,6 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
 
     protected static function getDefaultLanguage()
     {
-
         if (isset($_SERVER["HTTP_ACCEPT_LANGUAGE"]))
             return self::parseDefaultLanguage($_SERVER["HTTP_ACCEPT_LANGUAGE"]);
         else return self::parseDefaultLanguage(NULL);
@@ -49,6 +48,7 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
     private static function parseDefaultLanguage($http_accept, $deflang = "en")
     {
         if (isset($http_accept) && strlen($http_accept) > 1) {
+            $lang = array();
             # Split possible languages into array
             $x = explode(",", $http_accept);
             foreach ($x as $val) {
@@ -222,8 +222,6 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
             $obj_max_lock->setTimestamp($max_lock);
 
             throw new Pay_Payment_Model_Transaction_LockException('Cannot lock transaction, transaction already locked until: ' . $obj_max_lock->format('H:i:s d-m-Y'));
-
-//            throw new Pay_Payment_Lock_Exception();
         }
         $transaction->setLockDate(strtotime('now'));
         $transaction->save();
@@ -267,7 +265,6 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
             $store = Mage::app()->getStore();
         }
         $serviceId = $store->getConfig('pay_payment/general/serviceid');
-        //$serviceId = Mage::getStoreConfig('pay_payment/general/serviceid', $store);
 
         $options = Mage::getModel('pay_payment/option')->getCollection()
             ->addFieldToFilter('service_id', $serviceId);
@@ -285,6 +282,18 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
         $paymentMethods = \Paynl\Paymentmethods::getList();
 
         $this->_saveOptions($paymentMethods, $store);
+    }
+
+    private function getTerminals($store = null){
+        if ($store == null) {
+            $store = Mage::app()->getStore();
+        }
+
+        $this->loginSDK($store);
+
+        $terminals = \Paynl\Instore::getAllTerminals();
+
+        return $terminals->getList();
     }
 
     private function _saveOptions($paymentMethods, $store = null)
@@ -321,7 +330,23 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
 
             $arrUsedOptionSubIds = array();
 
-            if (!empty($paymentMethod['banks']) && $paymentMethod['id'] == 10) {
+            if($paymentMethod['id'] == Pay_Payment_Model_Paymentmethod_Instore::OPTION_ID){
+                $paymentMethod['banks'] = array();
+
+                $arrTerminals = $this->getTerminals($store);
+                foreach ($arrTerminals as $terminal){
+                    $paymentMethod['banks'][] = array(
+                        'id' => $terminal['id'],
+                        'name' => $terminal['name'],
+                        'visibleName' => $terminal['name']
+                    );
+                }
+            }
+            if (!empty($paymentMethod['banks']) &&
+                (
+                    $paymentMethod['id'] == Pay_Payment_Model_Paymentmethod_Ideal::OPTION_ID ||
+                    $paymentMethod['id'] == Pay_Payment_Model_Paymentmethod_Instore::OPTION_ID
+                )) {
                 foreach ($paymentMethod['banks'] as $optionSub) {
                     $optionSubData = array(
                         'option_sub_id' => $optionSub['id'],

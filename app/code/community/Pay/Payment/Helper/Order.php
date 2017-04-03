@@ -80,7 +80,8 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
                 $this->uncancel($order);
             }
 
-            $orderAmount = $order->getGrandTotal();
+            $orderAmount = $order->getGrandTotal()*1;
+            $paidAmount = $paidAmount*1;
 
             //controleren of het gehele bedrag betaald is
             if (abs($orderAmount-$paidAmount) < 0.0001) {

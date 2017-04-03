@@ -1,0 +1,20 @@
+<?php 
+    $_code=$this->getMethodCode();
+    
+    $terminals = $this->getTerminals();
+?>
+<ul class="form-list" id="payment_form_<?php echo $_code ?>" style="display:none;">
+    <li>
+        <label for="pay_terminal">Kies de pinterminal</label>
+        <select id="pay_terminal" name='payment[terminalId]' >
+        <?php
+        foreach($terminals as $terminal){
+            echo "<option value='".$terminal->getOptionSubId()."'>".$terminal->getName()."</option>";
+        }?>
+
+        </select>
+    </li>
+</ul>
+<div>
+    <?php echo $this->getMethod()->getConfigData('message');?>
+</div>

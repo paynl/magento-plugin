@@ -30,6 +30,7 @@ class Pay_Payment_OrderController extends Mage_Core_Controller_Front_Action
 
             $status = $this->helperOrder->getTransactionStatus($transactionId);
             $order = $this->helperOrder->getOrderByTransactionId($transactionId);
+            $store = $order->getStore();
             //$orderHelper->processByTransactionId($transactionId);
         } catch (Pay_Payment_Exception $e) {
             if ($e->getCode() != 0) {
@@ -37,10 +38,9 @@ class Pay_Payment_OrderController extends Mage_Core_Controller_Front_Action
             }
         }
 
-        $pageSuccess = Mage::getStoreConfig('pay_payment/general/page_success', Mage::app()->getStore());
-        $pagePending = Mage::getStoreConfig('pay_payment/general/page_pending', Mage::app()->getStore());
-        $pageCanceled = Mage::getStoreConfig('pay_payment/general/page_canceled', Mage::app()->getStore());
-
+        $pageSuccess = $store->getConfig('pay_payment/general/page_success');
+        $pagePending = $store->getConfig('pay_payment/general/page_pending');
+        $pageCanceled = $store->getConfig('pay_payment/general/page_canceled');
 
         if ($status == Pay_Payment_Model_Transaction::STATE_CANCELED) {
             Mage::getSingleton('checkout/session')->addNotice($this->__('Betaling geannuleerd'));

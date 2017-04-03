@@ -84,8 +84,12 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         if($pos = strpos($parentTransactionId, '-')){
             $parentTransactionId = substr($parentTransactionId, 0, $pos);
         }
-
-        \Paynl\Transaction::refund($parentTransactionId, $amount);
+        try{
+            \Paynl\Transaction::refund($parentTransactionId, $amount);
+        } catch (Exception $e){
+            // exception needs to be thrown this way, otherwise we don't get the message in the admin
+            Mage::throwException($e->getMessage());
+        }
 
         return $this;
     }
@@ -240,7 +244,10 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         list($birthDate) = explode(' ', $order->getCustomerDob());
         list($dobYear, $dobMonth, $dobDay) = explode('-', $birthDate);
 
-        $birthDate = $dobDay . '-' . $dobMonth . '-' . $dobYear;
+        $birthDate = null;
+        if($dobDay && $dobMonth && $dobYear){
+            $birthDate = $dobDay . '-' . $dobMonth . '-' . $dobYear;
+        }
         $iban = $additionalData['iban'] ? $additionalData['iban'] : null;
 
         $enduser = array(
@@ -256,9 +263,11 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
     }
 
     private function getTransactionStartData(Mage_Sales_Model_Order $order){
+        $store = $order->getStore();
+
         $session = Mage::getSingleton('checkout/session');
 
-        $sendOrderData = Mage::getStoreConfig('pay_payment/general/send_order_data', $order->getStore());
+        $sendOrderData = $store->getConfig('pay_payment/general/send_order_data');
 
         $additionalData = $session->getPaynlPaymentData();
 
@@ -273,8 +282,8 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
 
         $arrStartData = array(
             'amount' => $order->getGrandTotal(),
-            'returnUrl' => Mage::getUrl('pay_payment/order/return'),
-            'exchangeUrl' => Mage::getUrl('pay_payment/order/exchange'),
+            'returnUrl' => Mage::getUrl('pay_payment/order/return', array('_store' => $store->getCode())),
+            'exchangeUrl' => Mage::getUrl('pay_payment/order/exchange', array('_store' => $store->getCode())),
             'paymentMethod' => $optionId,
             'description' => $order->getIncrementId(),
             'currency' => $order->getOrderCurrencyCode(),
