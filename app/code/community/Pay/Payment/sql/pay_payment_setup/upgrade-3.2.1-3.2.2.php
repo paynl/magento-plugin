@@ -8,7 +8,17 @@ $tableNameSalesOrder = $installer->getTable('sales/order');
 
 if ($installer->getConnection()->isTableExists($tableName)) {
     $installer->getConnection()            
-            ->dropForeignKey($tableName, $installer->getFkName($tableName, 'order_id', $tableNameSalesOrder, 'entity_id'))
-            ->addForeignKey($installer->getFkName($tableName, 'order_id', $tableNameSalesOrder, 'entity_id'), $tableName, 'order_id', $tableNameSalesOrder, 'entity_id', Varien_Db_Ddl_Table::ACTION_CASCADE, Varien_Db_Ddl_Table::ACTION_CASCADE);
+            ->dropForeignKey(
+                $tableName,
+                $installer->getFkName($tableName, 'order_id', $tableNameSalesOrder, 'entity_id')
+            )
+            ->addForeignKey(
+                $installer->getFkName($tableName, 'order_id', $tableNameSalesOrder, 'entity_id'),
+                $tableName,
+                'order_id',
+                $tableNameSalesOrder,
+                'entity_id',
+                Varien_Db_Ddl_Table::ACTION_CASCADE,
+                Varien_Db_Ddl_Table::ACTION_CASCADE);
 }
 $installer->endSetup();
