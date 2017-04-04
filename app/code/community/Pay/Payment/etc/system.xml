@@ -3825,6 +3825,9 @@
                             <config_path>payment/pay_payment_instore/active</config_path>
                         </active>
                         <active_checkout translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
                             <label>Actief in Checkout</label>
                             <comment>Wilt u deze betaalmethode tonen in de checkout, standaard wordt deze alleen weergegeven bij admin orders</comment>
                             <sort_order>1</sort_order>
