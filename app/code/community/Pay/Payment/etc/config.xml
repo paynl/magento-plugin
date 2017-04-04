@@ -334,6 +334,7 @@
             </pay_payment_incasso>
             <pay_payment_instore>
                 <active>0</active>
+                <active_checkout>0</active_checkout>
                 <model>pay_payment/Paymentmethod_Instore</model>
                 <title>Pinnen</title>
                 <payment_action>authorize</payment_action>

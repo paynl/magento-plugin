@@ -3824,6 +3824,17 @@
                             <source_model>pay_payment/source_paymentmethod_instore_active</source_model>
                             <config_path>payment/pay_payment_instore/active</config_path>
                         </active>
+                        <active_checkout translate="label">
+                            <label>Actief in Checkout</label>
+                            <comment>Wilt u deze betaalmethode tonen in de checkout, standaard wordt deze alleen weergegeven bij admin orders</comment>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <config_path>payment/pay_payment_instore/active_checkout</config_path>
+                        </active_checkout>
                         <title translate="label">
                             <depends>
                                 <active>1</active>

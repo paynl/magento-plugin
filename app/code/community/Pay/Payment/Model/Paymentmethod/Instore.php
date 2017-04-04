@@ -13,6 +13,13 @@ class Pay_Payment_Model_Paymentmethod_Instore extends Pay_Payment_Model_Paymentm
 
     private $_redirectUrl = null;
 
+    public function __construct()
+    {
+        $this->_canUseCheckout = Mage::getStoreConfig('payment/pay_payment_instore/active_checkout')==1;
+
+        parent::__construct();
+    }
+
     public function initialize($paymentAction, $stateObject)
     {
         switch ($paymentAction) {
@@ -22,17 +29,17 @@ class Pay_Payment_Model_Paymentmethod_Instore extends Pay_Payment_Model_Paymentm
                 /** @var Mage_Sales_Model_Order $order */
                 $order = $payment->getOrder();
 
-                $store = $order->getStore();
                 /** @var Pay_Payment_Model_Paymentmethod $method */
                 $method = $payment->getMethodInstance();
 
                 $this->_startResult = $method->startPayment($order);
 
-                return parent::initialize();
+                return true;
                 break;
             default:
                 break;
         }
+        return parent::initialize($paymentAction, $stateObject);
     }
 
     private function sendToTerminal($transactionId, $terminalId)
