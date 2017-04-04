@@ -6,7 +6,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
     const OPTION_ID = 0;
 
     protected $_isInitializeNeeded = true;
-    protected $_canUseInternal = true;
+    protected $_canUseInternal = false;
     protected $_canUseForMultishipping = false;
     protected $_canCapture = true;
     protected $_canRefund = true;
