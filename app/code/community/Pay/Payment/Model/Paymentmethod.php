@@ -173,6 +173,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
     }
     private function getBillingAddress(Mage_Sales_Model_Order $order){
         $objBillingAddress = $order->getBillingAddress();
+        if($objBillingAddress) return array();
 
         $arrAddressFull = array();
         $arrAddressFull[] = $objBillingAddress->getStreet1();
@@ -202,6 +203,8 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
 
     private function getShippingAddress(Mage_Sales_Model_Order $order){
         $objShippingAddress= $order->getShippingAddress();
+
+        if(!$objShippingAddress) return array();
 
         $arrAddressFull = array();
         $arrAddressFull[] = $objShippingAddress->getStreet1();
@@ -251,13 +254,23 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         $iban = $additionalData['iban'] ? $additionalData['iban'] : null;
 
         $enduser = array(
-            'initials' => $order->getShippingAddress()->getFirstname(),
-            'lastName' => $order->getShippingAddress()->getLastname(),
             'birthDate' => $birthDate,
-            'iban' => $iban,
-            'phoneNumber' => $order->getShippingAddress()->getTelephone(),
-            'emailAddress' => $order->getShippingAddress()->getEmail()
+            'iban' => $iban
         );
+
+        if($order->getShippingAddress()){
+            $enduserAddress = $order->getShippingAddress();
+        } else{
+            $enduserAddress = $order->getBillingAddress();
+        }
+        if($enduserAddress){
+            $enduser = array_merge($enduser, array(
+                'initials' => $enduserAddress->getFirstname(),
+                'lastName' => $enduserAddress->getLastname(),
+                'phoneNumber' => $enduserAddress->getTelephone(),
+                'emailAddress' => $enduserAddress->getEmail()
+            ));
+        }
 
         return $enduser;
     }
