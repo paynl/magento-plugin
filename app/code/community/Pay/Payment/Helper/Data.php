@@ -290,10 +290,14 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
         }
 
         $this->loginSDK($store);
+        try{
+            $terminals = \Paynl\Instore::getAllTerminals();
+            return $terminals->getList();
+        } catch(Exception $e){
+            return array();
+        }
 
-        $terminals = \Paynl\Instore::getAllTerminals();
 
-        return $terminals->getList();
     }
 
     private function _saveOptions($paymentMethods, $store = null)
