@@ -352,11 +352,15 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
                     $paymentMethod['id'] == Pay_Payment_Model_Paymentmethod_Instore::OPTION_ID
                 )) {
                 foreach ($paymentMethod['banks'] as $optionSub) {
+                    $image = '';
+                    if(isset($optionSub['image'])){
+                        $image = $optionSub['image'];
+                    }
                     $optionSubData = array(
                         'option_sub_id' => $optionSub['id'],
                         'option_internal_id' => $objOption->getInternalId(),
                         'name' => $optionSub['visibleName'],
-                        'image' => '',
+                        'image' => $image,
                         'active' => 1
                     );
 
