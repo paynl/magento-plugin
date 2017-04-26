@@ -48,13 +48,25 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </serviceid>
+                        <testmode translate="label comment">
+                            <label>Testmode</label>
+                            <comment>
+                                <![CDATA[Schakel in om alle betalingen in testmode te starten. Je kunt de betaling vervolgens bevestigen met je apitoken]]>
+                            </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </testmode>
                         <auto_invoice translate="label comment">
                             <label>Automatisch factureren</label>
                             <comment>
                                 <![CDATA[Betaalde orders automatisch factureren, LET OP! Als dit op NEE staat kun je orders ook niet refunden]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>4</sort_order>
+                            <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -64,7 +76,7 @@
                             <comment><![CDATA[Een email sturen met de factuur]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>5</sort_order>
+                            <sort_order>6</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -74,7 +86,7 @@
                             <comment><![CDATA[Updates sturen wanner de status van de order wijzigt]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>6</sort_order>
+                            <sort_order>7</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -85,7 +97,7 @@
                                 <![CDATA[Klantgegeven en orderdata naar pay versturen, verplicht indien u gebruik maakt van een achteraf betaalmethode, of wanneer u gebruik wilt maken van Second Chance]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>7</sort_order>
+                            <sort_order>8</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -96,7 +108,7 @@
                                 <![CDATA[Geef aan of u wilt dat de winkelwagen weer wordt gevuld met de producten die waren besteld als de gebruiker op het betaalscherm op annuleren heeft geklikt]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>8</sort_order>
+                            <sort_order>9</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -106,7 +118,7 @@
                             <comment>
                                 <![CDATA[De pagina waar de gebruiker naartoe gestuurd moet worden bij een geslaagde betaling]]></comment>
                             <frontend_type>text</frontend_type>
-                            <sort_order>9</sort_order>
+                            <sort_order>10</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -116,7 +128,7 @@
                             <comment>
                                 <![CDATA[De pagina waar de gebruiker naartoe gestuurd moet worden wanneer de betaalstatus nog pending is (bijv. bij paypal komt de statusupdate later)]]></comment>
                             <frontend_type>text</frontend_type>
-                            <sort_order>10</sort_order>
+                            <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -126,7 +138,7 @@
                             <comment>
                                 <![CDATA[De pagina waar de gebruiker naartoe gestuurd moet worden bij een mislukte/geannuleerde betaling]]></comment>
                             <frontend_type>text</frontend_type>
-                            <sort_order>11</sort_order>
+                            <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -137,7 +149,7 @@
                                 <![CDATA[De taalcode die naar pay.nl moet worden gestuurd, dit is van invloed op de taal van het betaalscherm en de eventuele email die naar de gebruiker wordt gestuurd door pay (bijvoorbeeld bij bankoverschrijving).]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_language</source_model>
-                            <sort_order>12</sort_order>
+                            <sort_order>13</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -147,7 +159,7 @@
                             <comment><![CDATA[Icoontjes bij de betaalmethoden weergeven]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>13</sort_order>
+                            <sort_order>14</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -157,7 +169,7 @@
                             <comment><![CDATA[Kosten voor de betaalmethode weergeven in de checkout]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_showfee</source_model>
-                            <sort_order>14</sort_order>
+                            <sort_order>15</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -168,7 +180,7 @@
                                 <![CDATA[Selecteer hoe groot de icoontjes van de betaalmethoden moeten zijn]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_iconsize</source_model>
-                            <sort_order>15</sort_order>
+                            <sort_order>16</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -177,7 +189,7 @@
                             <label>Text betalingskosten</label>
                             <comment><![CDATA[De text die wordt weergegeven bij de betalingskosten]]></comment>
                             <frontend_type>text</frontend_type>
-                            <sort_order>16</sort_order>
+                            <sort_order>17</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -188,7 +200,7 @@
                                 <![CDATA[Gebruik de standard gateway, op <a href='http://status-pay.nl'>status-pay.nl</a> kunt u de status van onze techniek volgen]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_gateway</source_model>
-                            <sort_order>17</sort_order>
+                            <sort_order>18</sort_order>
                             <show_in_default>1</show_in_default>
                         </use_backup_api>
                         <backup_api_url>
@@ -199,7 +211,7 @@
                             </comment>
                             <label>Failover gateway</label>
                             <frontend_type>text</frontend_type>
-                            <sort_order>18</sort_order>
+                            <sort_order>19</sort_order>
                             <show_in_default>1</show_in_default>
                         </backup_api_url>
                         <enable_refund>
@@ -207,7 +219,7 @@
                             <comment>Schakel dit uit indien u het rechstreeks refunden wilt uitschakelen</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>19</sort_order>
+                            <sort_order>20</sort_order>
                             <show_in_default>1</show_in_default>
                         </enable_refund>
                     </fields>

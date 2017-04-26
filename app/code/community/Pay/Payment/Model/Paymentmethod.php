@@ -285,6 +285,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         $session = Mage::getSingleton('checkout/session');
 
         $sendOrderData = $store->getConfig('pay_payment/general/send_order_data');
+        $testMode = $store->getConfig('pay_payment/general/testmode');
 
         $additionalData = $session->getPaynlPaymentData();
 
@@ -299,6 +300,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
 
         $arrStartData = array(
             'amount' => $order->getGrandTotal(),
+            'testmode' => $testMode,
             'returnUrl' => Mage::getUrl('pay_payment/order/return', array('_store' => $store->getCode())),
             'exchangeUrl' => Mage::getUrl('pay_payment/order/exchange', array('_store' => $store->getCode())),
             'paymentMethod' => $optionId,

@@ -139,7 +139,6 @@
                 <payment_charge translate="title">
                     <title>Pay.nl betaalmethode kosten</title>
                     <source_field>payment_charge</source_field>
-                    <amount_prefix></amount_prefix>
                     <font_size>7</font_size>
                     <display_zero>0</display_zero>
                     <sort_order>200</sort_order>
@@ -196,6 +195,7 @@
         <pay_payment>
             <general>
                 <send_order_data>1</send_order_data>
+                <testmode>0</testmode>
                 <restore_cart>1</restore_cart>
                 <auto_invoice>1</auto_invoice>
                 <invoice_email>0</invoice_email>
