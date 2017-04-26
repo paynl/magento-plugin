@@ -245,11 +245,15 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         }
 
         list($birthDate) = explode(' ', $order->getCustomerDob());
-        list($dobYear, $dobMonth, $dobDay) = explode('-', $birthDate);
+        if(!empty(($birthDate))) {
+            list($dobYear, $dobMonth, $dobDay) = explode('-', $birthDate);
 
-        $birthDate = null;
-        if($dobDay && $dobMonth && $dobYear){
-            $birthDate = $dobDay . '-' . $dobMonth . '-' . $dobYear;
+            $birthDate = null;
+            if ($dobDay && $dobMonth && $dobYear) {
+                $birthDate = $dobDay . '-' . $dobMonth . '-' . $dobYear;
+            }
+        } else {
+            $birthDate = null;
         }
         $iban = $additionalData['iban'] ? $additionalData['iban'] : null;
 
