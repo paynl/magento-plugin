@@ -3,45 +3,35 @@
 class Pay_Payment_Model_Sales_Order_Invoice_Total_Paymentcharge extends Mage_Sales_Model_Order_Invoice_Total_Abstract
 {
 
-  public function collect(Mage_Sales_Model_Order_Invoice $invoice)
-  {
-    $invoice->setPaymentCharge(0);
-    $invoice->setBasePaymentCharge(0);
-
-    $paymentCharge = $invoice->getOrder()->getPaymentCharge();
-    $basePaymentCharge = $invoice->getOrder()->getBasePaymentCharge();
-
-    // we moeten de btw meenemen in de berekening
-    $paymentMethod = $invoice->getOrder()->getPayment()->getMethod();
-    $taxClass = Mage::helper('pay_payment')->getPaymentChargeTaxClass($paymentMethod);
-
-    $storeId = $invoice->getOrder()->getStoreId();
-
-    $taxCalculationModel = Mage::getSingleton('tax/calculation');
-    $request = $taxCalculationModel->getRateRequest($invoice->getOrder()->getShippingAddress(), $invoice->getOrder()->getBillingAddress(), null, $storeId);
-    $request->setStore(Mage::app()->getStore());
-    $rate = $taxCalculationModel->getRate($request->setProductClassId($taxClass));
-
-    if ($rate > 0)
+    public function collect(Mage_Sales_Model_Order_Invoice $invoice)
     {
-      $baseChargeTax = round($basePaymentCharge / (1 + ($rate / 100)) * ($rate / 100), 2);
-      $chargeTax = round($paymentCharge/ (1 + ($rate / 100)) * ($rate / 100), 2);
-    } else
-    {
-      $baseChargeTax = 0;
-      $chargeTax = 0;
+        $order = $invoice->getOrder();
+
+        $paymentCharge = $order->getPaymentCharge();
+        $basePaymentCharge = $order->getBasePaymentCharge();
+
+
+        $invoice->setPaymentCharge($paymentCharge);
+        $invoice->setBasePaymentCharge($basePaymentCharge);
+
+        $paymentChargeTaxAmount = $order->getPaymentChargeTaxAmount();
+        $basePaymentChargeTaxAmount = $order->getBasePaymentChargeTaxAmount();
+
+        $invoice->setPaymentChargeTaxAmount($paymentChargeTaxAmount);
+        $invoice->setBasePaymentChargeTaxAmount($basePaymentChargeTaxAmount);
+
+        $invoiceTaxAmount = $invoice->getTaxAmount()*1;
+        $invoiceBaseTaxAmount = $invoice->getBaseTaxAmount()*1;
+        $taxAmount = $paymentChargeTaxAmount+$invoiceBaseTaxAmount;
+        $baseTaxAmount = $basePaymentChargeTaxAmount+$invoiceTaxAmount;
+
+        $invoice->setTaxAmount($taxAmount);
+        $invoice->setBaseTaxAmount($baseTaxAmount);
+
+        $invoice->setGrandTotal($invoice->getGrandTotal()+$paymentCharge);
+        $invoice->setBaseGrandTotal($invoice->getBaseGrandTotal()+$basePaymentCharge);
+
+        return $this;
     }
-
-    $invoice->setPaymentCharge($paymentCharge);
-    $invoice->setBasePaymentCharge($basePaymentCharge);
-
-    $invoice->setBaseTaxAmount($invoice->getBaseTaxAmount() + $baseChargeTax);
-    $invoice->setTaxAmount($invoice->getTaxAmount() + $chargeTax);
-
-    $invoice->setGrandTotal($invoice->getGrandTotal() + $invoice->getPaymentCharge());
-    $invoice->setBaseGrandTotal($invoice->getBaseGrandTotal() + $invoice->getBasePaymentCharge());
-
-    return $this;
-  }
 
 }

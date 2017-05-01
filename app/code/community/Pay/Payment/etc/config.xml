@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Pay_Payment>
-            <version>3.7.0</version>
+            <version>3.7.1</version>
         </Pay_Payment>
     </modules>
     <global>
@@ -80,6 +80,12 @@
                 <base_payment_charge>
                     <to_order>*</to_order>
                 </base_payment_charge>
+                <payment_charge_tax_amount>
+                    <to_order>*</to_order>
+                </payment_charge_tax_amount>
+                <base_payment_charge_tax_amount>
+                    <to_order>*</to_order>
+                </base_payment_charge_tax_amount>
             </sales_convert_quote_address>
         </fieldsets>
         <helpers>
@@ -139,6 +145,7 @@
                 <payment_charge translate="title">
                     <title>Pay.nl betaalmethode kosten</title>
                     <source_field>payment_charge</source_field>
+                    <amount_prefix></amount_prefix>
                     <font_size>7</font_size>
                     <display_zero>0</display_zero>
                     <sort_order>200</sort_order>

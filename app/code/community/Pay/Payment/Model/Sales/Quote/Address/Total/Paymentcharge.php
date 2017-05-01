@@ -47,6 +47,9 @@ class Pay_Payment_Model_Sales_Quote_Address_Total_Paymentcharge extends Mage_Sal
                 $baseChargeTax = 0;
                 $chargeTax = 0;
             }
+
+            $address->setPaymentChargeTaxAmount($chargeTax);
+            $address->setBasePaymentChargeTaxAmount($baseChargeTax);
             
             $rates = array();
             $applied = false;
@@ -68,7 +71,7 @@ class Pay_Payment_Model_Sales_Quote_Address_Total_Paymentcharge extends Mage_Sal
 
             $address->setGrandTotal($address->getGrandTotal() + $address->getPaymentCharge());
             $address->setBaseGrandTotal($address->getBaseGrandTotal() + $address->getBasePaymentCharge());
-       
+
         }
         return $this;
     }
