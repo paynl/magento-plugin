@@ -74,6 +74,10 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
         $autoInvoice = $store->getConfig('pay_payment/general/auto_invoice');
         $invoiceEmail = $store->getConfig('pay_payment/general/invoice_email');
 
+        if($invoiceEmail){
+            $invoiceEmail = $store->getConfig('payment/' . $payment->getMethod() . '/invoice_email');
+        }
+
         if ($status == Pay_Payment_Model_Transaction::STATE_SUCCESS) {
             // als het order al canceled was, gaan we hem nu uncancelen
             if ($order->isCanceled()) {
