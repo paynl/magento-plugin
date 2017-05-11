@@ -173,7 +173,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
     }
     private function getBillingAddress(Mage_Sales_Model_Order $order){
         $objBillingAddress = $order->getBillingAddress();
-        if($objBillingAddress) return array();
+        if(!$objBillingAddress) return array();
 
         $arrAddressFull = array();
         $arrAddressFull[] = $objBillingAddress->getStreet1();
