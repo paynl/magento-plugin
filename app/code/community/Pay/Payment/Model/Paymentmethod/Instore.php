@@ -42,7 +42,7 @@ class Pay_Payment_Model_Paymentmethod_Instore extends Pay_Payment_Model_Paymentm
         return parent::initialize($paymentAction, $stateObject);
     }
 
-    private function sendToTerminal($transactionId, $terminalId)
+    private function sendToTerminal($transactionId, $terminalId, $order)
     {
         $payment = \Paynl\Instore::payment(array(
             'transactionId' => $transactionId,
@@ -57,6 +57,11 @@ class Pay_Payment_Model_Paymentmethod_Instore extends Pay_Payment_Model_Paymentm
 
             if ($state != 'init') {
                 if ($state == 'approved') {
+
+                    $receiptData = \Paynl\Instore::getReceipt(array('hash' => $hash));
+                    $approvalId = $receiptData->getApprovalId();
+                    $order->getPayment()->setAdditionalInformation('paynl_transaction_id', $approvalId);
+
                     return true;
                 }
                 return false;
@@ -83,7 +88,9 @@ class Pay_Payment_Model_Paymentmethod_Instore extends Pay_Payment_Model_Paymentm
         $store = $order->getStore();
         $pageSuccess = $store->getConfig('pay_payment/general/page_success');
 
-        if($this->sendToTerminal($result['transactionId'], $_POST['payment']['terminalId'])){
+        $terminalId =  $order->getPayment()->getAdditionalInformation('terminalId');
+        $terminalId = ($terminalId)?$terminalId:$_POST['payment']['terminalId'];
+        if($this->sendToTerminal($result['transactionId'], $terminalId, $order)){
             $result['url'] = $pageSuccess;
             $this->_redirectUrl = $pageSuccess;
             return $result;
