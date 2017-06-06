@@ -60,6 +60,9 @@ class Pay_Payment_Model_Paymentmethod_Instore extends Pay_Payment_Model_Paymentm
 
                     $receiptData = \Paynl\Instore::getReceipt(array('hash' => $hash));
                     $approvalId = $receiptData->getApprovalId();
+                    $receipt = $receiptData->getReceipt();
+
+                    $order->getPayment()->setAdditionalInformation('paynl_receipt', $receipt);
                     $order->getPayment()->setAdditionalInformation('paynl_transaction_id', $approvalId);
 
                     return true;
