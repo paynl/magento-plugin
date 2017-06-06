@@ -9,16 +9,16 @@
     "packages": [
         {
             "name": "paynl/sdk",
-            "version": "v1.2.10",
+            "version": "v1.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paynl/sdk.git",
-                "reference": "ff403586f74287d1b6abbb4c46a463f5eb29e25c"
+                "reference": "f558a14cd61e270eba3be8a8c14502558cdd3c12"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paynl/sdk/zipball/ff403586f74287d1b6abbb4c46a463f5eb29e25c",
-                "reference": "ff403586f74287d1b6abbb4c46a463f5eb29e25c",
+                "url": "https://api.github.com/repos/paynl/sdk/zipball/f558a14cd61e270eba3be8a8c14502558cdd3c12",
+                "reference": "f558a14cd61e270eba3be8a8c14502558cdd3c12",
                 "shasum": ""
             },
             "require": {
@@ -41,7 +41,7 @@
                     "email": "andy@pay.nl"
                 }
             ],
-            "time": "2017-04-24 15:33:14"
+            "time": "2017-06-06 15:12:07"
         },
         {
             "name": "php-curl-class/php-curl-class",

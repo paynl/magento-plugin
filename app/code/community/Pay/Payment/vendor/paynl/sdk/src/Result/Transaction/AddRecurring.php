@@ -16,33 +16,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Paynl\Api\Instore;
+namespace Paynl\Result\Transaction;
 
-use Paynl\Api\Api;
-use Paynl\Error;
+use Paynl\Result\Result;
 
 /**
- * Description of Instore
+ * Result class for a refund
  *
  * @author Andy Pieters <andy@pay.nl>
  */
-class Instore extends Api
+class AddRecurring extends Result
 {
     /**
-     * @var int the version of the api
+     * @return string The id of the newly created transaction
      */
-    protected $version = 2;
-
-    /**
-     * @param string $endpoint
-     * @param int|null $version
-     * @return array The result
-     */
-    public function doRequest($endpoint, $version = null)
+    public function getTransactionId()
     {
-        if (is_null($version)) {
-            $version = $this->version;
-        }
-        return parent::doRequest($endpoint, $version);
+        return $this->data['transactionId'];
     }
 }

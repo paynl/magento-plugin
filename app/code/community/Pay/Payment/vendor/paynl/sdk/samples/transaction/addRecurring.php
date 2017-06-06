@@ -1,5 +1,5 @@
 <?php
-/*
+/* 
  * Copyright (C) 2015 Andy Pieters <andy@pay.nl>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,33 +16,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Paynl\Api\Instore;
+require_once '../../vendor/autoload.php';
+require_once '../config.php';
 
-use Paynl\Api\Api;
-use Paynl\Error;
+try {
+    $result = \Paynl\Transaction::addRecurring(array(
+        'transactionId' => '12345678Xbf1234',
+        'amount' => 0.01,
+        'description' => 'Your recurring payment',
+        'extra1' => 'SDK',
+        'extra2' => 'extra2',
+        'extra3' => 'extra3'
+    ));
 
-/**
- * Description of Instore
- *
- * @author Andy Pieters <andy@pay.nl>
- */
-class Instore extends Api
-{
-    /**
-     * @var int the version of the api
-     */
-    protected $version = 2;
-
-    /**
-     * @param string $endpoint
-     * @param int|null $version
-     * @return array The result
-     */
-    public function doRequest($endpoint, $version = null)
-    {
-        if (is_null($version)) {
-            $version = $this->version;
-        }
-        return parent::doRequest($endpoint, $version);
-    }
+    echo $result->getTransactionId();
+} catch (\Paynl\Error\Error $e) {
+    echo $e->getMessage();
 }
