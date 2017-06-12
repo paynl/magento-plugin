@@ -1185,19 +1185,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_billink/ask_data_personal</config_path>
                         </ask_data_personal>
-                        <!--                        <ask_data_business translate="label"> Uitgeschakeld, omdat de api deze nog niet accepteert
-                                                    <depends>
-                                                        <active>1</active>
-                                                    </depends>
-                                                    <label>Zakelijk inschakelen</label>
-                                                    <comment>Bedrijfsgegven vragen, zodat zakelijke bestellingen rechtstreeks worden doorgestuurd zonder tussenscherm</comment>
-                                                    <frontend_type>select</frontend_type>
-                                                    <source_model>adminhtml/system_config_source_yesno</source_model>
-                                                    <sort_order>8</sort_order>
-                                                    <show_in_default>1</show_in_default>
-                                                    <show_in_website>1</show_in_website>
-                                                    <show_in_store>1</show_in_store>
-                                                </ask_data_business>-->
+                        <ask_data_business translate="label"> Uitgeschakeld, omdat de api deze nog niet accepteert
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Zakelijk inschakelen</label>
+                            <comment>Bedrijfsgegven vragen, zodat zakelijke bestellingen rechtstreeks worden doorgestuurd zonder tussenscherm</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_billink/ask_data_business</config_path>
+                        </ask_data_business>
                         <allowspecific translate="label">
                             <depends>
                                 <active>1</active>

@@ -311,7 +311,37 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
             'ipAddress' => $ipAddress,
             'language' => $this->helperData->getLanguage($order->getStore())
         );
+        $arrCompany = array();
+        if($order->getShippingAddress()->getCompany()){
+            $arrCompany['name'] = $order->getShippingAddress()->getCompany();
+        } elseif($order->getBillingAddress()->getCompany()) {
+            $arrCompany['name'] = $order->getBillingAddress()->getCompany();
+        }
+        if($order->getCustomerTaxvat()){
+            $arrCompany['vatNumber'] = $order->getCustomerTaxvat();
+        }
 
+        $countryId = null;
+        if($order->getShippingAddress()->getCountryId()){
+            $countryId = $order->getShippingAddress()->getCountryId();
+        }
+        if($order->getBillingAddress()->getCountryId()){
+            $countryId = $order->getBillingAddress()->getCountryId();
+        }
+        if(!is_null($countryId)){
+            $countryCode = Mage::getModel('directory/country')->load($countryId)->getIso2Code();
+            $arrCompany['countryCode'] = $countryCode;
+        }
+
+
+
+        if(isset($additionalData['kvknummer']) && !empty($additionalData['kvknummer'])){
+            $arrCompany['cocNumber'] = $additionalData['kvknummer'];
+        }
+
+        if(!empty($arrCompany)){
+            $arrStartData['company'] = $arrCompany;
+        }
         if(!is_null($optionSubId)){
             $arrStartData['bank'] = $optionSubId;
         }
