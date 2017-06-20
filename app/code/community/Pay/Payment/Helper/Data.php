@@ -3,7 +3,9 @@
 
 class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
 {
-
+    public function getVersion(){
+        return (string) Mage::getConfig()->getNode()->modules->Pay_Payment->version;
+    }
     public function loginSDK($store = null)
     {
         if ($store == null) {
