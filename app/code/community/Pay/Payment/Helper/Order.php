@@ -29,6 +29,7 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
         $this->helperData->loginSDK($store);
 
         $transaction = \Paynl\Transaction::get($transactionId);
+        $methodName = $transaction->getPaymentMethodName();
         $transactionInfo = $transaction->getData();
         $status = Pay_Payment_Model_Transaction::STATE_PENDING;
 
@@ -48,12 +49,12 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
         $endUserId = $transaction->getAccountNumber();
 
         // alle data is opgehaald status updaten
-        $this->updateState($transactionId, $status, $paidAmount, $endUserId, $store);
+        $this->updateState($transactionId, $status, $methodName, $paidAmount, $endUserId, $store);
 
         return $status;
     }
 
-    public function updateState($transactionId, $status, $paidAmount = null, $endUserId = null, $store = null)
+    public function updateState($transactionId, $status, $methodName, $paidAmount = null, $endUserId = null, $store = null)
     {
         //transactie ophalen uit pay tabel
         /** @var Pay_Payment_Helper_Data $helperData */
@@ -152,7 +153,7 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
 
             $order->setIsInProcess(true);
 
-            $stateMessage = 'Betaling ontvangen, klantkenmerk: ' . $endUserId;
+            $stateMessage = 'Betaling ontvangen via '.$methodName.', klantkenmerk: ' . $endUserId;
 
             $order->setState(
                 Mage_Sales_Model_Order::STATE_PROCESSING, $processedStatus, $stateMessage, true
