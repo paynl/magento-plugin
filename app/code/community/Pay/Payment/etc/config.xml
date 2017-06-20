@@ -297,6 +297,17 @@
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_fashioncheque>
+            <pay_payment_fashiongiftcard>
+                <active>0</active>
+                <invoice_email>1</invoice_email>
+                <model>pay_payment/Paymentmethod_Fashiongiftcard</model>
+                <title>Fashiongiftcard</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <order_status_success>processing</order_status_success>
+                <send_mail>success</send_mail>
+                <limit_shipping>0</limit_shipping>
+            </pay_payment_fashiongiftcard>
             <pay_payment_gezondheidsbon>
                 <active>0</active>
                 <invoice_email>1</invoice_email>
