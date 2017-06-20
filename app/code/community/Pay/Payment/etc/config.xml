@@ -202,6 +202,7 @@
         <pay_payment>
             <general>
                 <send_order_data>1</send_order_data>
+                <show_in_admin>0</show_in_admin>
                 <testmode>0</testmode>
                 <restore_cart>1</restore_cart>
                 <auto_invoice>1</auto_invoice>

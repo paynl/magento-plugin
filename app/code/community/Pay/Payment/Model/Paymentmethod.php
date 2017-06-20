@@ -29,6 +29,8 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
     {
         $this->helperData = Mage::helper('pay_payment');
         $this->helperOrder = Mage::helper('pay_payment/order');
+        $show_in_admin = Mage::getStoreConfig('pay_payment/general/show_in_admin');
+        if($show_in_admin) $this->_canUseInternal = true;
 
         parent::__construct();
     }

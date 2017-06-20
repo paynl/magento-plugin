@@ -21,15 +21,15 @@ $enableBusiness = Mage::getStoreConfig('payment/pay_payment_billink/ask_data_bus
         <li>
         </li>
         <li>
-            <input onchange="jQuery('#paynl-data-personal').show();jQuery('#paynl-data-business').hide();" type="radio" name="payment[type_order]" id="type_order_p" value="p" /> <label for="type_order_p">Persoonlijk</label><br />
-            <input onchange="jQuery('#paynl-data-personal').hide();jQuery('#paynl-data-business').show();" type="radio" name="payment[type_order]" id="type_order_b" value="b" /> <label for="type_order_b">Zakelijk</label>
+            <input onchange="document.getElementById('paynl-data-personal').style.display='';document.getElementById('paynl-data-business').style.display='none';" type="radio" name="payment[type_order]" id="type_order_p" value="p" /> <label for="type_order_p">Persoonlijk</label><br />
+            <input onchange="document.getElementById('paynl-data-personal').style.display='none';document.getElementById('paynl-data-business').style.display='';" type="radio" name="payment[type_order]" id="type_order_b" value="b" /> <label for="type_order_b">Zakelijk</label>
         </li>
         <?php
     }
     if ($enablePersonal == 1) {
         ?>
         <div <?php echo $enableBusiness == 1?'style="display:none;"':''; ?> id="paynl-data-personal">
-            <li>Geboortedatum</li>
+            <li><?php echo $this->__('Date of Birth'); ?></li>
             <li>
                 <div class="input-box customer-dob">
                     <div class="dob-day">

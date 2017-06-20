@@ -222,6 +222,14 @@
                             <sort_order>20</sort_order>
                             <show_in_default>1</show_in_default>
                         </enable_refund>
+                        <show_in_admin>
+                            <label>Alle betaalmethoden weergegeven in admin</label>
+                            <comment>Schakel dit in om alle betaalmethoden selecteerbaar te maken in de admin, er wordt geen betaling gestart</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                        </show_in_admin>
                     </fields>
                 </general>
                 <loaded_payment_methods translate="label" module="pay_payment">
