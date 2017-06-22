@@ -439,6 +439,11 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         if ($sendMail == 'start') {
             $order->sendNewOrderEmail();
         }
+        $payment->setAdditionalInformation('paynl_url', $url);
+        $payment->setAdditionalInformation('paynl_order_id', $transactionId);
+        $payment->setAdditionalInformation('paynl_accept_code', $objStartResult->getPaymentReference());
+        $payment->save();
+
         return array(
             'url' => $url,
             'transactionId' => $transactionId
