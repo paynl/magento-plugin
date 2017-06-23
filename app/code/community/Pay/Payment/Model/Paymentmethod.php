@@ -280,6 +280,34 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
 
         return $enduser;
     }
+    protected function addressEqual(Mage_Sales_Model_Quote $quote){
+        $billingAddress = $quote->getBillingAddress();
+        $shippingAddress = $quote->getShippingAddress();
+
+        if(strtolower($billingAddress->getStreet1()) !== strtolower($shippingAddress->getStreet1())){
+            return false;
+        }
+        if(strtolower($billingAddress->getStreet2()) !== strtolower($shippingAddress->getStreet2())){
+            return false;
+        }
+        if(strtolower($billingAddress->getStreet3()) !== strtolower($shippingAddress->getStreet3())){
+            return false;
+        }
+        if(strtolower($billingAddress->getStreet4()) !== strtolower($shippingAddress->getStreet4())){
+            return false;
+        }
+        if(strtolower($billingAddress->getPostcode()) !== strtolower($shippingAddress->getPostcode())){
+            return false;
+        }
+        if(strtolower($billingAddress->getRegion()) !== strtolower($shippingAddress->getRegion())){
+            return false;
+        }
+        if(strtolower($billingAddress->getCountryId()) !== strtolower($shippingAddress->getCountryId())){
+            return false;
+        }
+
+        return true;
+    }
 
     private function getTransactionStartData(Mage_Sales_Model_Order $order){
         $store = $order->getStore();

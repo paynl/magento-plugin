@@ -19,13 +19,7 @@ class Pay_Payment_Model_Paymentmethod_Klarna extends Pay_Payment_Model_Paymentme
 
     public function isApplicableToQuote($quote, $checksBitMask)
     {
-        if (strtolower($quote->getShippingAddress()->getFirstname()) !== strtolower($quote->getBillingAddress()->getFirstname())) {
-            return false;
-        }
-        if (strtolower($quote->getShippingAddress()->getLastname()) !== strtolower($quote->getBillingAddress()->getLastname())) {
-            return false;
-        }
-        if ($quote->getShippingAddress()->getCountryId() != $quote->getBillingAddress()->getCountryId()) {
+        if(!$this->addressEqual($quote)){
             return false;
         }
         if ($quote->getShippingAddress()->getCompany()) {

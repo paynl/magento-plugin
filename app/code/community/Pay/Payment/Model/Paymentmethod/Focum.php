@@ -4,5 +4,14 @@ class Pay_Payment_Model_Paymentmethod_Focum extends Pay_Payment_Model_Paymentmet
     protected $_paymentOptionId = 1702;
     protected $_code = 'pay_payment_focum';
     protected $_formBlockType = 'pay_payment/form_focum';
+
+    public function isApplicableToQuote($quote, $checksBitMask)
+    {
+        if(!$this->addressEqual($quote)){
+            return false;
+        }
+
+        return parent::isApplicableToQuote($quote, $checksBitMask);
+    }
 }
     
