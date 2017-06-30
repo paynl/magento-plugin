@@ -247,7 +247,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         }
 
         list($birthDate) = explode(' ', $order->getCustomerDob());
-        if(!empty(($birthDate))) {
+        if(!empty($birthDate)) {
             list($dobYear, $dobMonth, $dobDay) = explode('-', $birthDate);
 
             $birthDate = null;
