@@ -106,11 +106,10 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         $arrStartData = $this->getTransactionStartData($order);
 
         if ($transaction_amount == null) {
-            $transaction_amount = $arrStartData['amount'] * 100;
+            $transaction_amount = $arrStartData['amount'];
         } else {
-            $transaction_amount = $transaction_amount * 100;
+            $transaction_amount = $transaction_amount;
         }
-        $transaction_amount = round($transaction_amount);
 
         $arrStartData['amount'] = $transaction_amount;
 
@@ -158,7 +157,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
                 'service_id' => \Paynl\Config::getServiceId(),
                 'option_id' => $this->getPaymentOptionId(),
                 'option_sub_id' => null,
-                'amount' => $transaction_amount,
+                'amount' => round($transaction_amount*100),
                 'order_id' => $order->getId(),
                 'status' => Pay_Payment_Model_Transaction::STATE_PENDING,
                 'created' => time(),
