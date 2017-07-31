@@ -86,7 +86,10 @@ class Pay_Payment_Model_Paymentmethod_Instore extends Pay_Payment_Model_Paymentm
             return $this->_startResult;
         }
 
-        $result = parent::startPayment($order);
+        $transaction_amount = $order->getPayment()->getAdditionalInformation('amount');
+        $transaction_amount = ($transaction_amount)?$transaction_amount:null;
+
+        $result = parent::startPayment($order, $transaction_amount);
 
         $store = $order->getStore();
         $pageSuccess = $store->getConfig('pay_payment/general/page_success');
