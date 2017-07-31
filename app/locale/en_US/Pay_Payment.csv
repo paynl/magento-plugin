@@ -1,0 +1,17 @@
+"Order uncanceled","Order uncanceled"
+"Disscount (%s)count (%s)","Di"
+Discount,Discount
+Shipping,Shipping
+"Er is een storing bij de door u gekozen betaalmethode of bank. Kiest u alstublieft een andere betaalmethode of probeer het later nogmaals","Something went wrong trying to start the payment. Please choose another payment method or try again later"
+"Vast bedrag","Fixed amount"
+"Percentage van totaalbedrag","Percentage of the total"
+"Om met billink te betalen, moet je akkoord gaan met de voorwaarden","To pay with billink you have to accept the terms and conditions"
+"Betaling geannuleerd","Payment canceled"
+"Algemene instellingen","General settings"
+"Pay.nl plugin versie","Pay.nl plugin version"
+"Uw API token, deze kunt u vinden op <a href='https://admin.pay.nl/company/tokens'>admin.pay.nl/company/tokens</a>","Your API token, you can find this on: <a href='https://admin.pay.nl/company/tokens'>admin.pay.nl/company/tokens</a>"
+"Uw service id, deze kunt u vinden op <a href='https://admin.pay.nl/programs/programs'>admin.pay.nl/programs/programs</a>", "Your serviceId, you can find this on: <a href='https://admin.pay.nl/programs/programs'>admin.pay.nl/programs/programs</a>"
+"Schakel in om alle betalingen in testmode te starten. Je kunt de betaling vervolgens bevestigen met je apitoken", "Enable this to start all transactions in testmode, You can confirm a transaction by filling in your api token on the payment screen"
+"Automatisch factureren", "Automatic invoicing"
+"Betaalde orders automatisch factureren, LET OP! Als dit op NEE staat kun je oers ook niet refunden", "Automaticly invoice paid orders, CAUTION! If you disable this you are not able to refund orders"rd
+"Een email sturen met de factuur","Send an email with the invoice"

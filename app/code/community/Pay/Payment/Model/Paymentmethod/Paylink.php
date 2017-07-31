@@ -22,9 +22,9 @@ class Pay_Payment_Model_Paymentmethod_Paylink extends Pay_Payment_Model_Paymentm
                 $order = $payment->getOrder();
                 $method = $payment->getMethodInstance();
 
-                $data = $method->startPayment($order);
-
                 $order->setState(Mage_Sales_Model_Order::STATE_PENDING_PAYMENT, 'pending_payment', '', false);
+
+                $data = $method->startPayment($order);
 
                 $stateObject->setState(Mage_Sales_Model_Order::STATE_PENDING_PAYMENT);
                 $stateObject->setStatus('pending_payment');

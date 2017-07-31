@@ -1,5 +1,7 @@
-app/code/community/Pay/Payment/* 								app/code/community/Pay/Payment/
-app/design/frontend/base/default/template/pay/payment/*      	app/design/frontend/base/default/template/pay/payment/
-app/design/adminhtml/base/default/template/pay/payment/*      	app/design/adminhtml/base/default/template/pay/payment/
-media/pay_payment/logo.png    									media/pay_payment/logo.png
-app/etc/modules/Pay_Payment.xml          						app/etc/modules/Pay_Payment.xml
+app/code/community/Pay/Payment app/code/community/Pay/Payment
+app/design/frontend/base/default/template/pay/payment app/design/frontend/base/default/template/pay/payment
+app/design/adminhtml/base/default/template/pay/payment app/design/adminhtml/base/default/template/pay/payment
+media/pay_payment/logo.png media/pay_payment/logo.png
+app/etc/modules/Pay_Payment.xml app/etc/modules/Pay_Payment.xml
+app/locale/nl_NL/Pay_Payment.csv app/locale/nl_NL/Pay_Payment.csv
+app/locale/en_US/Pay_Payment.csv app/locale/en_US/Pay_Payment.csv

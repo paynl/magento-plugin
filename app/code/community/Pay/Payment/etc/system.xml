@@ -38,8 +38,7 @@
                         </version>
                         <apitoken translate="label comment">
                             <label>API token</label>
-                            <comment>
-                                <![CDATA[Uw API token, deze kunt u vinden op <a href='https://admin.pay.nl/my_merchant'>admin.pay.nl/my_merchant</a>]]></comment>
+                            <comment><![CDATA[Uw API token, deze kunt u vinden op <a href='https://admin.pay.nl/company/tokens'>admin.pay.nl/company/tokens</a>]]></comment>
                             <frontend_type>text</frontend_type>
                             <backend_model>pay_payment/Backend_Trim</backend_model>
                             <sort_order>2</sort_order>
@@ -60,9 +59,7 @@
                         </serviceid>
                         <testmode translate="label comment">
                             <label>Testmode</label>
-                            <comment>
-                                <![CDATA[Schakel in om alle betalingen in testmode te starten. Je kunt de betaling vervolgens bevestigen met je apitoken]]>
-                            </comment>
+                            <comment><![CDATA[Schakel in om alle betalingen in testmode te starten. Je kunt de betaling vervolgens bevestigen met je apitoken]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>4</sort_order>
@@ -72,8 +69,7 @@
                         </testmode>
                         <auto_invoice translate="label comment">
                             <label>Automatisch factureren</label>
-                            <comment>
-                                <![CDATA[Betaalde orders automatisch factureren, LET OP! Als dit op NEE staat kun je orders ook niet refunden]]></comment>
+                            <comment><![CDATA[Betaalde orders automatisch factureren, LET OP! Als dit op NEE staat kun je orders ook niet refunden]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>5</sort_order>
@@ -103,8 +99,7 @@
                         </send_statusupdates>
                         <send_order_data translate="label comment">
                             <label>Order data sturen</label>
-                            <comment>
-                                <![CDATA[Klantgegeven en orderdata naar pay versturen, verplicht indien u gebruik maakt van een achteraf betaalmethode, of wanneer u gebruik wilt maken van Second Chance]]></comment>
+                            <comment><![CDATA[Klantgegeven en orderdata naar pay versturen, verplicht indien u gebruik maakt van een achteraf betaalmethode, of wanneer u gebruik wilt maken van Second Chance]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>8</sort_order>
