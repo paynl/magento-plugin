@@ -33,7 +33,7 @@ class Pay_Payment_Model_Paymentmethod_Paylink extends Pay_Payment_Model_Paymentm
             default:
                 break;
         }
-        return parent::initialize();
+        return parent::initialize($paymentAction, $stateObject);
     }
 }
     
