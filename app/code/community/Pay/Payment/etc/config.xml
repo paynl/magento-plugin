@@ -163,6 +163,15 @@
                 </args>
             </pay_payment>
         </routers>
+        <translate>
+            <modules>
+                <Pay_Payment>
+                    <files>
+                        <default>Pay_Payment.csv</default>
+                    </files>
+                </Pay_Payment>
+            </modules>
+        </translate>
     </frontend>
 
     <adminhtml>
@@ -188,6 +197,15 @@
                 </admin>
             </resources>
         </acl>
+        <translate>
+            <modules>
+                <Pay_Payment>
+                    <files>
+                        <default>Pay_Payment.csv</default>
+                    </files>
+                </Pay_Payment>
+            </modules>
+        </translate>
     </adminhtml>
     <default>
         <sales>
@@ -613,3 +631,4 @@
         </payment>
     </default>
 </config>
+

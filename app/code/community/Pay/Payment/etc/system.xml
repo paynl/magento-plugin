@@ -18,7 +18,6 @@
             <show_in_website>1</show_in_website>
             <show_in_store>1</show_in_store>
             <groups>
-
                 <general translate="label" module="pay_payment">
                     <label>Algemene instellingen</label>
                     <sort_order>1</sort_order>
@@ -38,8 +37,7 @@
                         </version>
                         <apitoken translate="label comment">
                             <label>API token</label>
-                            <comment>
-                                <![CDATA[Uw API token, deze kunt u vinden op <a href='https://admin.pay.nl/my_merchant'>admin.pay.nl/my_merchant</a>]]></comment>
+                            <comment><![CDATA[Uw API token, deze kunt u vinden op <a href='https://admin.pay.nl/company/tokens'>admin.pay.nl/company/tokens</a>]]></comment>
                             <frontend_type>text</frontend_type>
                             <backend_model>pay_payment/Backend_Trim</backend_model>
                             <sort_order>2</sort_order>
@@ -49,8 +47,7 @@
                         </apitoken>
                         <serviceid translate="label comment">
                             <label>Service id</label>
-                            <comment>
-                                <![CDATA[Uw service id, deze kunt u vinden op <a href='https://admin.pay.nl/programs/programs'>admin.pay.nl/programs/programs</a>]]></comment>
+                            <comment><![CDATA[Uw service id, deze kunt u vinden op <a href='https://admin.pay.nl/programs/programs'>admin.pay.nl/programs/programs</a>]]></comment>
                             <frontend_type>text</frontend_type>
                             <backend_model>pay_payment/Backend_Trim</backend_model>
                             <sort_order>3</sort_order>
@@ -60,9 +57,7 @@
                         </serviceid>
                         <testmode translate="label comment">
                             <label>Testmode</label>
-                            <comment>
-                                <![CDATA[Schakel in om alle betalingen in testmode te starten. Je kunt de betaling vervolgens bevestigen met je apitoken]]>
-                            </comment>
+                            <comment><![CDATA[Schakel in om alle betalingen in testmode te starten. Je kunt de betaling vervolgens bevestigen met je apitoken]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>4</sort_order>
@@ -72,8 +67,7 @@
                         </testmode>
                         <auto_invoice translate="label comment">
                             <label>Automatisch factureren</label>
-                            <comment>
-                                <![CDATA[Betaalde orders automatisch factureren, LET OP! Als dit op NEE staat kun je orders ook niet refunden]]></comment>
+                            <comment><![CDATA[Betaalde orders automatisch factureren, LET OP! Als dit op NEE staat kun je orders ook niet refunden]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>5</sort_order>
@@ -103,8 +97,7 @@
                         </send_statusupdates>
                         <send_order_data translate="label comment">
                             <label>Order data sturen</label>
-                            <comment>
-                                <![CDATA[Klantgegeven en orderdata naar pay versturen, verplicht indien u gebruik maakt van een achteraf betaalmethode, of wanneer u gebruik wilt maken van Second Chance]]></comment>
+                            <comment><![CDATA[Klantgegeven en orderdata naar pay versturen, verplicht indien u gebruik maakt van een achteraf betaalmethode, of wanneer u gebruik wilt maken van Second Chance]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>8</sort_order>
@@ -114,8 +107,7 @@
                         </send_order_data>
                         <restore_cart translate="label comment">
                             <label>Winkelwagen vullen bij cancel</label>
-                            <comment>
-                                <![CDATA[Geef aan of u wilt dat de winkelwagen weer wordt gevuld met de producten die waren besteld als de gebruiker op het betaalscherm op annuleren heeft geklikt]]></comment>
+                            <comment><![CDATA[Geef aan of u wilt dat de winkelwagen weer wordt gevuld met de producten die waren besteld als de gebruiker op het betaalscherm op annuleren heeft geklikt]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>9</sort_order>
@@ -123,40 +115,36 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </restore_cart>
-                        <page_success>
+                        <page_success translate="label comment">
                             <label>Success pagina</label>
-                            <comment>
-                                <![CDATA[De pagina waar de gebruiker naartoe gestuurd moet worden bij een geslaagde betaling]]></comment>
+                            <comment><![CDATA[De pagina waar de gebruiker naartoe gestuurd moet worden bij een geslaagde betaling]]></comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>10</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </page_success>
-                        <page_pending>
+                        <page_pending translate="label comment">
                             <label>Pending pagina</label>
-                            <comment>
-                                <![CDATA[De pagina waar de gebruiker naartoe gestuurd moet worden wanneer de betaalstatus nog pending is (bijv. bij paypal komt de statusupdate later)]]></comment>
+                            <comment><![CDATA[De pagina waar de gebruiker naartoe gestuurd moet worden wanneer de betaalstatus nog pending is (bijv. bij paypal komt de statusupdate later)]]></comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </page_pending>
-                        <page_canceled>
+                        <page_canceled translate="label comment">
                             <label>Mislukt pagina</label>
-                            <comment>
-                                <![CDATA[De pagina waar de gebruiker naartoe gestuurd moet worden bij een mislukte/geannuleerde betaling]]></comment>
+                            <comment><![CDATA[De pagina waar de gebruiker naartoe gestuurd moet worden bij een mislukte/geannuleerde betaling]]></comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </page_canceled>
-                        <user_language>
+                        <user_language translate="label comment">
                             <label>Gebruikers taal</label>
-                            <comment>
-                                <![CDATA[De taalcode die naar pay.nl moet worden gestuurd, dit is van invloed op de taal van het betaalscherm en de eventuele email die naar de gebruiker wordt gestuurd door pay (bijvoorbeeld bij bankoverschrijving).]]></comment>
+                            <comment><![CDATA[De taalcode die naar pay.nl moet worden gestuurd, dit is van invloed op de taal van het betaalscherm en de eventuele email die naar de gebruiker wordt gestuurd door pay (bijvoorbeeld bij bankoverschrijving)]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_language</source_model>
                             <sort_order>13</sort_order>
@@ -164,7 +152,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </user_language>
-                        <show_icons>
+                        <show_icons translate="label comment">
                             <label>Icoontjes weergeven</label>
                             <comment><![CDATA[Icoontjes bij de betaalmethoden weergeven]]></comment>
                             <frontend_type>select</frontend_type>
@@ -174,7 +162,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </show_icons>
-                        <show_fee>
+                        <show_fee translate="label comment">
                             <label>Betaalkosten weergeven</label>
                             <comment><![CDATA[Kosten voor de betaalmethode weergeven in de checkout]]></comment>
                             <frontend_type>select</frontend_type>
@@ -184,10 +172,9 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </show_fee>
-                        <icon_size>
-                            <label>Grootte van icoontjes</label>
-                            <comment>
-                                <![CDATA[Selecteer hoe groot de icoontjes van de betaalmethoden moeten zijn]]></comment>
+                        <icon_size translate="label comment">
+                            <label>Icon size</label>
+                            <comment><![CDATA[Selecteer hoe groot de icoontjes van de betaalmethoden moeten zijn]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_iconsize</source_model>
                             <sort_order>16</sort_order>
@@ -204,27 +191,25 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </text_payment_charge>
-                        <use_backup_api>
+                        <use_backup_api translate="label comment">
                             <label>Gateway</label>
-                            <comment>
-                                <![CDATA[Gebruik de standard gateway, op <a href='http://status-pay.nl'>status-pay.nl</a> kunt u de status van onze techniek volgen]]></comment>
+                            <comment><![CDATA[Gebruik de standard gateway, op <a href='http://status-pay.nl'>status-pay.nl</a> kunt u de status van onze techniek volgen]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_gateway</source_model>
                             <sort_order>18</sort_order>
                             <show_in_default>1</show_in_default>
                         </use_backup_api>
-                        <backup_api_url>
+                        <backup_api_url translate="label comment">
                             <depends>
                                 <use_backup_api>1</use_backup_api>
                             </depends>
-                            <comment>Vul hier de locatie van de failover gateway in die door pay.nl is verstrekt
-                            </comment>
+                            <comment>Vul hier de locatie van de failover gateway in die door pay.nl is verstrekt</comment>
                             <label>Failover gateway</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>19</sort_order>
                             <show_in_default>1</show_in_default>
                         </backup_api_url>
-                        <enable_refund>
+                        <enable_refund translate="label comment">
                             <label>Refunden inschakelen</label>
                             <comment>Schakel dit uit indien u het rechstreeks refunden wilt uitschakelen</comment>
                             <frontend_type>select</frontend_type>
@@ -232,7 +217,7 @@
                             <sort_order>20</sort_order>
                             <show_in_default>1</show_in_default>
                         </enable_refund>
-                        <show_in_admin>
+                        <show_in_admin translate="label comment">
                             <label>Alle betaalmethoden weergegeven in admin</label>
                             <comment>Schakel dit in om alle betaalmethoden selecteerbaar te maken in de admin, er wordt geen betaling gestart</comment>
                             <frontend_type>select</frontend_type>
@@ -250,11 +235,9 @@
                     <show_in_store>1</show_in_store>
                     <expanded>1</expanded>
                     <fields>
-                        <test123>
+                        <test123 translate="label comment">
                             <label>Beschikbaar</label>
-                            <comment>Hierboven ziet u de betaalmethoden die voor uw account bij pay.nl beschikbaar
-                                zijn
-                            </comment>
+                            <comment>Hierboven ziet u de betaalmethoden die voor uw account bij pay.nl beschikbaar zijn</comment>
                             <sort_order>3</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
@@ -271,7 +254,7 @@
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
                     <fields>
-                        <active translate="label">
+                        <active translate="label comment">
                             <label>Actief</label>
                             <comment>Wilt u deze betaalmethode gebruiken</comment>
                             <sort_order>1</sort_order>
@@ -294,7 +277,7 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_paylink/title</config_path>
                         </title>
-                        <order_status translate="label">
+                        <order_status translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
@@ -308,7 +291,7 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_paylink/order_status</config_path>
                         </order_status>
-                        <order_status_success translate="label">
+                        <order_status_success translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
@@ -322,16 +305,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_paylink/order_status_success</config_path>
                         </order_status_success>
-                        <charge_type translate="label">
+                        <charge_type translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage
-                                van
-                                het
-                                totaalbedrag of een vast bedrag
-                            </comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -340,15 +319,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_paylink/charge_type</config_path>
                         </charge_type>
-                        <charge_value translate="label">
+                        <charge_value translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor
-                                decimalen,
-                                als u geen extra kosten wilt rekenen vult u niets in
-                            </comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -369,7 +345,7 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_paylink/charge_tax_class</config_path>
                         </charge_tax_class>
-                        <send_mail translate="label">
+                        <send_mail translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
@@ -407,7 +383,7 @@
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
                     <fields>
-                        <active translate="label">
+                        <active translate="label comment">
                             <label>Actief</label>
                             <comment>Wilt u deze betaalmethode gebruiken</comment>
                             <sort_order>1</sort_order>
@@ -442,13 +418,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_afterpay/sort_order</config_path>
                         </sort_order>
-                        <min_order_total translate="label">
+                        <min_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Minimum bedrag</label>
-                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
@@ -456,13 +431,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_afterpay/min_order_total</config_path>
                         </min_order_total>
-                        <max_order_total translate="label">
+                        <max_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Maximum bedrag</label>
-                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>6</sort_order>
                             <show_in_default>1</show_in_default>
@@ -476,15 +450,14 @@
                             </depends>
                             <label>Beschikbaarheid per land</label>
                             <frontend_type>allowspecific</frontend_type>
-                            <source_model>adminhtml/system_config_source_payment_allspecificcountries
-                            </source_model>
+                            <source_model>adminhtml/system_config_source_payment_allspecificcountries</source_model>
                             <sort_order>7</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_afterpay/allowspecific</config_path>
                         </allowspecific>
-                        <specificcountry translate="label">
+                        <specificcountry translate="label comment">
                             <depends>
                                 <active>1</active>
                                 <allowspecific>1</allowspecific>
@@ -499,15 +472,12 @@
                             <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
                             <config_path>payment/pay_payment_afterpay/specificcountry</config_path>
                         </specificcountry>
-                        <limit_shipping translate="label">
+                        <limit_shipping translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Verzendmethoden blokkeren</label>
-                            <comment>
-                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde
-                                verzendmethoden
-                            </comment>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>9</sort_order>
@@ -516,14 +486,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_afterpay/limit_shipping</config_path>
                         </limit_shipping>
-                        <disabled_shippingmethods>
+                        <disabled_shippingmethods translate="label comment">
                             <depends>
                                 <active>1</active>
                                 <limit_shipping>1</limit_shipping>
                             </depends>
-                            <comment>
-                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
-                            </comment>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
                             <label>Geblokkeerde verzendmethoden</label>
                             <frontend_type>multiselect</frontend_type>
                             <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
@@ -533,7 +501,7 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_afterpay/disabled_shippingmethods</config_path>
                         </disabled_shippingmethods>
-                        <order_status translate="label">
+                        <order_status translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
@@ -547,7 +515,7 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_afterpay/order_status</config_path>
                         </order_status>
-                        <order_status_success translate="label">
+                        <order_status_success translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
@@ -561,16 +529,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_afterpay/order_status_success</config_path>
                         </order_status_success>
-                        <charge_type translate="label">
+                        <charge_type translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage
-                                van
-                                het
-                                totaalbedrag of een vast bedrag
-                            </comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -584,10 +548,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor
-                                decimalen,
-                                als u geen extra kosten wilt rekenen vult u niets in
-                            </comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -646,7 +607,7 @@
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
                     <fields>
-                        <active translate="label">
+                        <active translate="label comment">
                             <label>Actief</label>
                             <comment>Wilt u deze betaalmethode gebruiken</comment>
                             <sort_order>1</sort_order>
@@ -681,13 +642,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_afterpayem/sort_order</config_path>
                         </sort_order>
-                        <min_order_total translate="label">
+                        <min_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Minimum bedrag</label>
-                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
@@ -695,13 +655,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_afterpayem/min_order_total</config_path>
                         </min_order_total>
-                        <max_order_total translate="label">
+                        <max_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Maximum bedrag</label>
-                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>6</sort_order>
                             <show_in_default>1</show_in_default>
@@ -723,7 +682,7 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_afterpayem/allowspecific</config_path>
                         </allowspecific>
-                        <specificcountry translate="label">
+                        <specificcountry translate="label comment">
                             <depends>
                                 <active>1</active>
                                 <allowspecific>1</allowspecific>
@@ -738,15 +697,12 @@
                             <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
                             <config_path>payment/pay_payment_afterpayem/specificcountry</config_path>
                         </specificcountry>
-                        <limit_shipping translate="label">
+                        <limit_shipping translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Verzendmethoden blokkeren</label>
-                            <comment>
-                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde
-                                verzendmethoden
-                            </comment>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>9</sort_order>
@@ -755,14 +711,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_afterpayem/limit_shipping</config_path>
                         </limit_shipping>
-                        <disabled_shippingmethods>
+                        <disabled_shippingmethods translate="label comment">
                             <depends>
                                 <active>1</active>
                                 <limit_shipping>1</limit_shipping>
                             </depends>
-                            <comment>
-                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
-                            </comment>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
                             <label>Geblokkeerde verzendmethoden</label>
                             <frontend_type>multiselect</frontend_type>
                             <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
@@ -772,7 +726,7 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_afterpayem/disabled_shippingmethods</config_path>
                         </disabled_shippingmethods>
-                        <order_status translate="label">
+                        <order_status translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
@@ -786,7 +740,7 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_afterpayem/order_status</config_path>
                         </order_status>
-                        <order_status_success translate="label">
+                        <order_status_success translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
@@ -800,16 +754,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_afterpayem/order_status_success</config_path>
                         </order_status_success>
-                        <charge_type translate="label">
+                        <charge_type translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage
-                                van
-                                het
-                                totaalbedrag of een vast bedrag
-                            </comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -818,15 +768,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_afterpayem/charge_type</config_path>
                         </charge_type>
-                        <charge_value translate="label">
+                        <charge_value translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor
-                                decimalen,
-                                als u geen extra kosten wilt rekenen vult u niets in
-                            </comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -847,7 +794,7 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_afterpayem/charge_tax_class</config_path>
                         </charge_tax_class>
-                        <send_mail translate="label">
+                        <send_mail translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
@@ -920,13 +867,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_amex/sort_order</config_path>
                         </sort_order>
-                        <min_order_total translate="label">
+                        <min_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Minimum bedrag</label>
-                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
@@ -934,13 +880,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_amex/min_order_total</config_path>
                         </min_order_total>
-                        <max_order_total translate="label">
+                        <max_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Maximum bedrag</label>
-                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>6</sort_order>
                             <show_in_default>1</show_in_default>
@@ -977,15 +922,12 @@
                             <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
                             <config_path>payment/pay_payment_amex/specificcountry</config_path>
                         </specificcountry>
-                        <limit_shipping translate="label">
+                        <limit_shipping translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Verzendmethoden blokkeren</label>
-                            <comment>
-                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde
-                                verzendmethoden
-                            </comment>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>9</sort_order>
@@ -994,14 +936,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_amex/limit_shipping</config_path>
                         </limit_shipping>
-                        <disabled_shippingmethods>
+                        <disabled_shippingmethods translate="label comment">
                             <depends>
                                 <active>1</active>
                                 <limit_shipping>1</limit_shipping>
                             </depends>
-                            <comment>
-                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
-                            </comment>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
                             <label>Geblokkeerde verzendmethoden</label>
                             <frontend_type>multiselect</frontend_type>
                             <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
@@ -1044,10 +984,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage
-                                van
-                                het
-                                totaalbedrag of een vast bedrag
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag
                             </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
@@ -1062,10 +999,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor
-                                decimalen,
-                                als u geen extra kosten wilt rekenen vult u niets in
-                            </comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -1164,8 +1098,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Minimum bedrag</label>
-                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
@@ -1173,13 +1106,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_billink/min_order_total</config_path>
                         </min_order_total>
-                        <max_order_total translate="label">
+                        <max_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Maximum bedrag</label>
-                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>6</sort_order>
                             <show_in_default>1</show_in_default>
@@ -1187,14 +1119,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_billink/max_order_total</config_path>
                         </max_order_total>
-                        <ask_data_personal translate="label">
+                        <ask_data_personal translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Persoonlijk inschakelen</label>
-                            <comment>Geboortedatum vragen, zodat persoonlijke bestellingen rechtstreeks worden
-                                doorgestuurd zonder tussenscherm
-                            </comment>
+                            <comment>Geboortedatum vragen, zodat persoonlijke bestellingen rechtstreeks worden doorgestuurd zonder tussenscherm</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>7</sort_order>
@@ -1203,7 +1133,7 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_billink/ask_data_personal</config_path>
                         </ask_data_personal>
-                        <ask_data_business translate="label"> Uitgeschakeld, omdat de api deze nog niet accepteert
+                        <ask_data_business translate="label">
                             <depends>
                                 <active>1</active>
                             </depends>
@@ -1246,15 +1176,12 @@
                             <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
                             <config_path>payment/pay_payment_billink/specificcountry</config_path>
                         </specificcountry>
-                        <limit_shipping translate="label">
+                        <limit_shipping translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Verzendmethoden blokkeren</label>
-                            <comment>
-                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde
-                                verzendmethoden
-                            </comment>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>9</sort_order>
@@ -1268,9 +1195,7 @@
                                 <active>1</active>
                                 <limit_shipping>1</limit_shipping>
                             </depends>
-                            <comment>
-                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
-                            </comment>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
                             <label>Geblokkeerde verzendmethoden</label>
                             <frontend_type>multiselect</frontend_type>
                             <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
@@ -1313,11 +1238,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage
-                                van
-                                het
-                                totaalbedrag of een vast bedrag
-                            </comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -1331,10 +1252,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor
-                                decimalen,
-                                als u geen extra kosten wilt rekenen vult u niets in
-                            </comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -1428,13 +1346,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_bitcoin/sort_order</config_path>
                         </sort_order>
-                        <min_order_total translate="label">
+                        <min_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Minimum bedrag</label>
-                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
@@ -1442,13 +1359,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_bitcoin/min_order_total</config_path>
                         </min_order_total>
-                        <max_order_total translate="label">
+                        <max_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Maximum bedrag</label>
-                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>6</sort_order>
                             <show_in_default>1</show_in_default>
@@ -1490,10 +1406,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Verzendmethoden blokkeren</label>
-                            <comment>
-                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde
-                                verzendmethoden
-                            </comment>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>9</sort_order>
@@ -1507,9 +1420,7 @@
                                 <active>1</active>
                                 <limit_shipping>1</limit_shipping>
                             </depends>
-                            <comment>
-                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
-                            </comment>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
                             <label>Geblokkeerde verzendmethoden</label>
                             <frontend_type>multiselect</frontend_type>
                             <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
@@ -1552,11 +1463,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage
-                                van
-                                het
-                                totaalbedrag of een vast bedrag
-                            </comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -1570,10 +1477,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor
-                                decimalen,
-                                als u geen extra kosten wilt rekenen vult u niets in
-                            </comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -1667,13 +1571,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_capayable/sort_order</config_path>
                         </sort_order>
-                        <min_order_total translate="label">
+                        <min_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Minimum bedrag</label>
-                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
@@ -1729,10 +1632,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Verzendmethoden blokkeren</label>
-                            <comment>
-                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde
-                                verzendmethoden
-                            </comment>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>9</sort_order>
@@ -1746,9 +1646,7 @@
                                 <active>1</active>
                                 <limit_shipping>1</limit_shipping>
                             </depends>
-                            <comment>
-                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
-                            </comment>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
                             <label>Geblokkeerde verzendmethoden</label>
                             <frontend_type>multiselect</frontend_type>
                             <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
@@ -1791,11 +1689,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage
-                                van
-                                het
-                                totaalbedrag of een vast bedrag
-                            </comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -1809,10 +1703,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor
-                                decimalen,
-                                als u geen extra kosten wilt rekenen vult u niets in
-                            </comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -1907,13 +1798,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_capayablegespreid/sort_order</config_path>
                         </sort_order>
-                        <min_order_total translate="label">
+                        <min_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Minimum bedrag</label>
-                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
@@ -1969,10 +1859,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Verzendmethoden blokkeren</label>
-                            <comment>
-                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde
-                                verzendmethoden
-                            </comment>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>9</sort_order>
@@ -1986,9 +1873,7 @@
                                 <active>1</active>
                                 <limit_shipping>1</limit_shipping>
                             </depends>
-                            <comment>
-                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
-                            </comment>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
                             <label>Geblokkeerde verzendmethoden</label>
                             <frontend_type>multiselect</frontend_type>
                             <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
@@ -2031,11 +1916,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage
-                                van
-                                het
-                                totaalbedrag of een vast bedrag
-                            </comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -2049,10 +1930,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor
-                                decimalen,
-                                als u geen extra kosten wilt rekenen vult u niets in
-                            </comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -2146,13 +2024,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_cartebleue/sort_order</config_path>
                         </sort_order>
-                        <min_order_total translate="label">
+                        <min_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Minimum bedrag</label>
-                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
@@ -2208,10 +2085,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Verzendmethoden blokkeren</label>
-                            <comment>
-                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde
-                                verzendmethoden
-                            </comment>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>9</sort_order>
@@ -2225,9 +2099,7 @@
                                 <active>1</active>
                                 <limit_shipping>1</limit_shipping>
                             </depends>
-                            <comment>
-                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
-                            </comment>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
                             <label>Geblokkeerde verzendmethoden</label>
                             <frontend_type>multiselect</frontend_type>
                             <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
@@ -2270,11 +2142,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage
-                                van
-                                het
-                                totaalbedrag of een vast bedrag
-                            </comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -2288,10 +2156,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor
-                                decimalen,
-                                als u geen extra kosten wilt rekenen vult u niets in
-                            </comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -2385,13 +2250,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_fashioncheque/sort_order</config_path>
                         </sort_order>
-                        <min_order_total translate="label">
+                        <min_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Minimum bedrag</label>
-                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
@@ -2447,10 +2311,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Verzendmethoden blokkeren</label>
-                            <comment>
-                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde
-                                verzendmethoden
-                            </comment>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>9</sort_order>
@@ -2464,9 +2325,7 @@
                                 <active>1</active>
                                 <limit_shipping>1</limit_shipping>
                             </depends>
-                            <comment>
-                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
-                            </comment>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
                             <label>Geblokkeerde verzendmethoden</label>
                             <frontend_type>multiselect</frontend_type>
                             <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
@@ -2509,11 +2368,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage
-                                van
-                                het
-                                totaalbedrag of een vast bedrag
-                            </comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -2527,10 +2382,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor
-                                decimalen,
-                                als u geen extra kosten wilt rekenen vult u niets in
-                            </comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -2624,13 +2476,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_fashiongiftcard/sort_order</config_path>
                         </sort_order>
-                        <min_order_total translate="label">
+                        <min_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Minimum bedrag</label>
-                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
@@ -2686,10 +2537,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Verzendmethoden blokkeren</label>
-                            <comment>
-                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde
-                                verzendmethoden
-                            </comment>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>9</sort_order>
@@ -2703,9 +2551,7 @@
                                 <active>1</active>
                                 <limit_shipping>1</limit_shipping>
                             </depends>
-                            <comment>
-                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
-                            </comment>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
                             <label>Geblokkeerde verzendmethoden</label>
                             <frontend_type>multiselect</frontend_type>
                             <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
@@ -2748,11 +2594,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage
-                                van
-                                het
-                                totaalbedrag of een vast bedrag
-                            </comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -2766,10 +2608,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor
-                                decimalen,
-                                als u geen extra kosten wilt rekenen vult u niets in
-                            </comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -2863,13 +2702,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_focum/sort_order</config_path>
                         </sort_order>
-                        <min_order_total translate="label">
+                        <min_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Minimum bedrag</label>
-                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
@@ -2925,10 +2763,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Verzendmethoden blokkeren</label>
-                            <comment>
-                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde
-                                verzendmethoden
-                            </comment>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>9</sort_order>
@@ -2942,9 +2777,7 @@
                                 <active>1</active>
                                 <limit_shipping>1</limit_shipping>
                             </depends>
-                            <comment>
-                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
-                            </comment>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
                             <label>Geblokkeerde verzendmethoden</label>
                             <frontend_type>multiselect</frontend_type>
                             <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
@@ -2987,11 +2820,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage
-                                van
-                                het
-                                totaalbedrag of een vast bedrag
-                            </comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -3005,10 +2834,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor
-                                decimalen,
-                                als u geen extra kosten wilt rekenen vult u niets in
-                            </comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -3102,13 +2928,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_gezondheidsbon/sort_order</config_path>
                         </sort_order>
-                        <min_order_total translate="label">
+                        <min_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Minimum bedrag</label>
-                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
@@ -3164,10 +2989,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Verzendmethoden blokkeren</label>
-                            <comment>
-                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde
-                                verzendmethoden
-                            </comment>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>9</sort_order>
@@ -3181,9 +3003,7 @@
                                 <active>1</active>
                                 <limit_shipping>1</limit_shipping>
                             </depends>
-                            <comment>
-                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
-                            </comment>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
                             <label>Geblokkeerde verzendmethoden</label>
                             <frontend_type>multiselect</frontend_type>
                             <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
@@ -3226,11 +3046,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage
-                                van
-                                het
-                                totaalbedrag of een vast bedrag
-                            </comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -3244,10 +3060,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor
-                                decimalen,
-                                als u geen extra kosten wilt rekenen vult u niets in
-                            </comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -3341,13 +3154,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_giropay/sort_order</config_path>
                         </sort_order>
-                        <min_order_total translate="label">
+                        <min_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Minimum bedrag</label>
-                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
@@ -3403,10 +3215,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Verzendmethoden blokkeren</label>
-                            <comment>
-                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde
-                                verzendmethoden
-                            </comment>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>9</sort_order>
@@ -3420,9 +3229,7 @@
                                 <active>1</active>
                                 <limit_shipping>1</limit_shipping>
                             </depends>
-                            <comment>
-                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
-                            </comment>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
                             <label>Geblokkeerde verzendmethoden</label>
                             <frontend_type>multiselect</frontend_type>
                             <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
@@ -3465,11 +3272,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage
-                                van
-                                het
-                                totaalbedrag of een vast bedrag
-                            </comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -3483,10 +3286,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor
-                                decimalen,
-                                als u geen extra kosten wilt rekenen vult u niets in
-                            </comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -3580,13 +3380,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_givacard/sort_order</config_path>
                         </sort_order>
-                        <min_order_total translate="label">
+                        <min_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Minimum bedrag</label>
-                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
@@ -3642,10 +3441,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Verzendmethoden blokkeren</label>
-                            <comment>
-                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde
-                                verzendmethoden
-                            </comment>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>9</sort_order>
@@ -3659,9 +3455,7 @@
                                 <active>1</active>
                                 <limit_shipping>1</limit_shipping>
                             </depends>
-                            <comment>
-                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
-                            </comment>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
                             <label>Geblokkeerde verzendmethoden</label>
                             <frontend_type>multiselect</frontend_type>
                             <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
@@ -3704,11 +3498,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage
-                                van
-                                het
-                                totaalbedrag of een vast bedrag
-                            </comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -3722,10 +3512,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor
-                                decimalen,
-                                als u geen extra kosten wilt rekenen vult u niets in
-                            </comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -3812,10 +3599,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Bank selectie type</label>
-                            <comment>Kies of je de bankselectie met een selectbox of met radiobuttons wilt
-                                weergeven
-                                in
-                                checkout
+                            <comment>Kies of je de bankselectie met een selectbox of met radiobuttons wilt weergeven in checkout
                             </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_paymentmethod_ideal_selecttype</source_model>
@@ -3849,13 +3633,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_ideal/sort_order</config_path>
                         </sort_order>
-                        <min_order_total translate="label">
+                        <min_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Minimum bedrag</label>
-                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>6</sort_order>
                             <show_in_default>1</show_in_default>
@@ -3863,13 +3646,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_ideal/min_order_total</config_path>
                         </min_order_total>
-                        <max_order_total translate="label">
+                        <max_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Maximum bedrag</label>
-                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>7</sort_order>
                             <show_in_default>1</show_in_default>
@@ -3911,10 +3693,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Verzendmethoden blokkeren</label>
-                            <comment>
-                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde
-                                verzendmethoden
-                            </comment>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>9</sort_order>
@@ -3928,9 +3707,7 @@
                                 <active>1</active>
                                 <limit_shipping>1</limit_shipping>
                             </depends>
-                            <comment>
-                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
-                            </comment>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
                             <label>Geblokkeerde verzendmethoden</label>
                             <frontend_type>multiselect</frontend_type>
                             <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
@@ -3973,11 +3750,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage
-                                van
-                                het
-                                totaalbedrag of een vast bedrag
-                            </comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -3991,10 +3764,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor
-                                decimalen,
-                                als u geen extra kosten wilt rekenen vult u niets in
-                            </comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -4088,13 +3858,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_incasso/sort_order</config_path>
                         </sort_order>
-                        <min_order_total translate="label">
+                        <min_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Minimum bedrag</label>
-                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
@@ -4102,13 +3871,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_incasso/min_order_total</config_path>
                         </min_order_total>
-                        <max_order_total translate="label">
+                        <max_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Maximum bedrag</label>
-                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>6</sort_order>
                             <show_in_default>1</show_in_default>
@@ -4150,10 +3918,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Verzendmethoden blokkeren</label>
-                            <comment>
-                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde
-                                verzendmethoden
-                            </comment>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>9</sort_order>
@@ -4167,9 +3932,7 @@
                                 <active>1</active>
                                 <limit_shipping>1</limit_shipping>
                             </depends>
-                            <comment>
-                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
-                            </comment>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
                             <label>Geblokkeerde verzendmethoden</label>
                             <frontend_type>multiselect</frontend_type>
                             <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
@@ -4212,11 +3975,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage
-                                van
-                                het
-                                totaalbedrag of een vast bedrag
-                            </comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -4230,10 +3989,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor
-                                decimalen,
-                                als u geen extra kosten wilt rekenen vult u niets in
-                            </comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -4341,13 +4097,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_instore/sort_order</config_path>
                         </sort_order>
-                        <min_order_total translate="label">
+                        <min_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Minimum bedrag</label>
-                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
@@ -4355,13 +4110,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_instore/min_order_total</config_path>
                         </min_order_total>
-                        <max_order_total translate="label">
+                        <max_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Maximum bedrag</label>
-                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>6</sort_order>
                             <show_in_default>1</show_in_default>
@@ -4403,10 +4157,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Verzendmethoden blokkeren</label>
-                            <comment>
-                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde
-                                verzendmethoden
-                            </comment>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>9</sort_order>
@@ -4420,9 +4171,7 @@
                                 <active>1</active>
                                 <limit_shipping>1</limit_shipping>
                             </depends>
-                            <comment>
-                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
-                            </comment>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
                             <label>Geblokkeerde verzendmethoden</label>
                             <frontend_type>multiselect</frontend_type>
                             <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
@@ -4465,11 +4214,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage
-                                van
-                                het
-                                totaalbedrag of een vast bedrag
-                            </comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -4483,10 +4228,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor
-                                decimalen,
-                                als u geen extra kosten wilt rekenen vult u niets in
-                            </comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -4580,13 +4322,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_klarna/sort_order</config_path>
                         </sort_order>
-                        <min_order_total translate="label">
+                        <min_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Minimum bedrag</label>
-                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
@@ -4599,8 +4340,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Maximum bedrag</label>
-                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>6</sort_order>
                             <show_in_default>1</show_in_default>
@@ -4643,8 +4383,7 @@
                             </depends>
                             <label>Verzendmethoden blokkeren</label>
                             <comment>
-                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde
-                                verzendmethoden
+                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden
                             </comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
@@ -4659,9 +4398,7 @@
                                 <active>1</active>
                                 <limit_shipping>1</limit_shipping>
                             </depends>
-                            <comment>
-                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
-                            </comment>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
                             <label>Geblokkeerde verzendmethoden</label>
                             <frontend_type>multiselect</frontend_type>
                             <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
@@ -4704,11 +4441,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage
-                                van
-                                het
-                                totaalbedrag of een vast bedrag
-                            </comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -4722,10 +4455,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor
-                                decimalen,
-                                als u geen extra kosten wilt rekenen vult u niets in
-                            </comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -4819,13 +4549,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_maestro/sort_order</config_path>
                         </sort_order>
-                        <min_order_total translate="label">
+                        <min_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Minimum bedrag</label>
-                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
@@ -4833,13 +4562,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_maestro/min_order_total</config_path>
                         </min_order_total>
-                        <max_order_total translate="label">
+                        <max_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Maximum bedrag</label>
-                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>6</sort_order>
                             <show_in_default>1</show_in_default>
@@ -4881,10 +4609,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Verzendmethoden blokkeren</label>
-                            <comment>
-                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde
-                                verzendmethoden
-                            </comment>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>9</sort_order>
@@ -4898,9 +4623,7 @@
                                 <active>1</active>
                                 <limit_shipping>1</limit_shipping>
                             </depends>
-                            <comment>
-                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
-                            </comment>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
                             <label>Geblokkeerde verzendmethoden</label>
                             <frontend_type>multiselect</frontend_type>
                             <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
@@ -4943,11 +4666,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage
-                                van
-                                het
-                                totaalbedrag of een vast bedrag
-                            </comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -4961,10 +4680,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor
-                                decimalen,
-                                als u geen extra kosten wilt rekenen vult u niets in
-                            </comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -5058,13 +4774,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_mistercash/sort_order</config_path>
                         </sort_order>
-                        <min_order_total translate="label">
+                        <min_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Minimum bedrag</label>
-                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
@@ -5072,13 +4787,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_mistercash/min_order_total</config_path>
                         </min_order_total>
-                        <max_order_total translate="label">
+                        <max_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Maximum bedrag</label>
-                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>6</sort_order>
                             <show_in_default>1</show_in_default>
@@ -5120,10 +4834,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Verzendmethoden blokkeren</label>
-                            <comment>
-                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde
-                                verzendmethoden
-                            </comment>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>9</sort_order>
@@ -5137,9 +4848,7 @@
                                 <active>1</active>
                                 <limit_shipping>1</limit_shipping>
                             </depends>
-                            <comment>
-                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
-                            </comment>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
                             <label>Geblokkeerde verzendmethoden</label>
                             <frontend_type>multiselect</frontend_type>
                             <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
@@ -5182,11 +4891,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage
-                                van
-                                het
-                                totaalbedrag of een vast bedrag
-                            </comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -5200,10 +4905,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor
-                                decimalen,
-                                als u geen extra kosten wilt rekenen vult u niets in
-                            </comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -5297,13 +4999,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_mybank/sort_order</config_path>
                         </sort_order>
-                        <min_order_total translate="label">
+                        <min_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Minimum bedrag</label>
-                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
@@ -5311,13 +5012,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_mybank/min_order_total</config_path>
                         </min_order_total>
-                        <max_order_total translate="label">
+                        <max_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Maximum bedrag</label>
-                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>6</sort_order>
                             <show_in_default>1</show_in_default>
@@ -5359,10 +5059,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Verzendmethoden blokkeren</label>
-                            <comment>
-                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde
-                                verzendmethoden
-                            </comment>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>9</sort_order>
@@ -5376,9 +5073,7 @@
                                 <active>1</active>
                                 <limit_shipping>1</limit_shipping>
                             </depends>
-                            <comment>
-                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
-                            </comment>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
                             <label>Geblokkeerde verzendmethoden</label>
                             <frontend_type>multiselect</frontend_type>
                             <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
@@ -5421,11 +5116,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage
-                                van
-                                het
-                                totaalbedrag of een vast bedrag
-                            </comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -5439,10 +5130,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor
-                                decimalen,
-                                als u geen extra kosten wilt rekenen vult u niets in
-                            </comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -5536,13 +5224,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_overboeking/sort_order</config_path>
                         </sort_order>
-                        <min_order_total translate="label">
+                        <min_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Minimum bedrag</label>
-                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
@@ -5550,13 +5237,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_overboeking/min_order_total</config_path>
                         </min_order_total>
-                        <max_order_total translate="label">
+                        <max_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Maximum bedrag</label>
-                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>6</sort_order>
                             <show_in_default>1</show_in_default>
@@ -5598,10 +5284,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Verzendmethoden blokkeren</label>
-                            <comment>
-                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde
-                                verzendmethoden
-                            </comment>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>9</sort_order>
@@ -5615,9 +5298,7 @@
                                 <active>1</active>
                                 <limit_shipping>1</limit_shipping>
                             </depends>
-                            <comment>
-                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
-                            </comment>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
                             <label>Geblokkeerde verzendmethoden</label>
                             <frontend_type>multiselect</frontend_type>
                             <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
@@ -5660,11 +5341,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage
-                                van
-                                het
-                                totaalbedrag of een vast bedrag
-                            </comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -5678,10 +5355,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor
-                                decimalen,
-                                als u geen extra kosten wilt rekenen vult u niets in
-                            </comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -5775,13 +5449,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_paypal/sort_order</config_path>
                         </sort_order>
-                        <min_order_total translate="label">
+                        <min_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Minimum bedrag</label>
-                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
@@ -5837,10 +5510,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Verzendmethoden blokkeren</label>
-                            <comment>
-                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde
-                                verzendmethoden
-                            </comment>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>9</sort_order>
@@ -5854,9 +5524,7 @@
                                 <active>1</active>
                                 <limit_shipping>1</limit_shipping>
                             </depends>
-                            <comment>
-                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
-                            </comment>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
                             <label>Geblokkeerde verzendmethoden</label>
                             <frontend_type>multiselect</frontend_type>
                             <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
@@ -5899,11 +5567,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage
-                                van
-                                het
-                                totaalbedrag of een vast bedrag
-                            </comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -5917,10 +5581,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor
-                                decimalen,
-                                als u geen extra kosten wilt rekenen vult u niets in
-                            </comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -6014,13 +5675,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_paysafecard/sort_order</config_path>
                         </sort_order>
-                        <min_order_total translate="label">
+                        <min_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Minimum bedrag</label>
-                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
@@ -6028,13 +5688,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_paysafecard/min_order_total</config_path>
                         </min_order_total>
-                        <max_order_total translate="label">
+                        <max_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Maximum bedrag</label>
-                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>6</sort_order>
                             <show_in_default>1</show_in_default>
@@ -6076,10 +5735,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Verzendmethoden blokkeren</label>
-                            <comment>
-                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde
-                                verzendmethoden
-                            </comment>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>9</sort_order>
@@ -6093,9 +5749,7 @@
                                 <active>1</active>
                                 <limit_shipping>1</limit_shipping>
                             </depends>
-                            <comment>
-                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
-                            </comment>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
                             <label>Geblokkeerde verzendmethoden</label>
                             <frontend_type>multiselect</frontend_type>
                             <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
@@ -6138,11 +5792,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage
-                                van
-                                het
-                                totaalbedrag of een vast bedrag
-                            </comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -6156,10 +5806,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor
-                                decimalen,
-                                als u geen extra kosten wilt rekenen vult u niets in
-                            </comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -6253,13 +5900,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_podiumkadokaart/sort_order</config_path>
                         </sort_order>
-                        <min_order_total translate="label">
+                        <min_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Minimum bedrag</label>
-                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
@@ -6267,13 +5913,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_podiumkadokaart/min_order_total</config_path>
                         </min_order_total>
-                        <max_order_total translate="label">
+                        <max_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Maximum bedrag</label>
-                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>6</sort_order>
                             <show_in_default>1</show_in_default>
@@ -6315,10 +5960,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Verzendmethoden blokkeren</label>
-                            <comment>
-                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde
-                                verzendmethoden
-                            </comment>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>9</sort_order>
@@ -6332,9 +5974,7 @@
                                 <active>1</active>
                                 <limit_shipping>1</limit_shipping>
                             </depends>
-                            <comment>
-                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
-                            </comment>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
                             <label>Geblokkeerde verzendmethoden</label>
                             <frontend_type>multiselect</frontend_type>
                             <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
@@ -6377,11 +6017,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage
-                                van
-                                het
-                                totaalbedrag of een vast bedrag
-                            </comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -6395,10 +6031,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor
-                                decimalen,
-                                als u geen extra kosten wilt rekenen vult u niets in
-                            </comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -6492,13 +6125,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_postepay/sort_order</config_path>
                         </sort_order>
-                        <min_order_total translate="label">
+                        <min_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Minimum bedrag</label>
-                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
@@ -6506,13 +6138,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_postepay/min_order_total</config_path>
                         </min_order_total>
-                        <max_order_total translate="label">
+                        <max_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Maximum bedrag</label>
-                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>6</sort_order>
                             <show_in_default>1</show_in_default>
@@ -6554,10 +6185,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Verzendmethoden blokkeren</label>
-                            <comment>
-                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde
-                                verzendmethoden
-                            </comment>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>9</sort_order>
@@ -6571,9 +6199,7 @@
                                 <active>1</active>
                                 <limit_shipping>1</limit_shipping>
                             </depends>
-                            <comment>
-                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
-                            </comment>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
                             <label>Geblokkeerde verzendmethoden</label>
                             <frontend_type>multiselect</frontend_type>
                             <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
@@ -6616,11 +6242,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage
-                                van
-                                het
-                                totaalbedrag of een vast bedrag
-                            </comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -6634,10 +6256,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor
-                                decimalen,
-                                als u geen extra kosten wilt rekenen vult u niets in
-                            </comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -6731,13 +6350,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_sofortbanking/sort_order</config_path>
                         </sort_order>
-                        <min_order_total translate="label">
+                        <min_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Minimum bedrag</label>
-                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
@@ -6745,13 +6363,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_sofortbanking/min_order_total</config_path>
                         </min_order_total>
-                        <max_order_total translate="label">
+                        <max_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Maximum bedrag</label>
-                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>6</sort_order>
                             <show_in_default>1</show_in_default>
@@ -6793,10 +6410,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Verzendmethoden blokkeren</label>
-                            <comment>
-                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde
-                                verzendmethoden
-                            </comment>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>9</sort_order>
@@ -6810,9 +6424,7 @@
                                 <active>1</active>
                                 <limit_shipping>1</limit_shipping>
                             </depends>
-                            <comment>
-                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
-                            </comment>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
                             <label>Geblokkeerde verzendmethoden</label>
                             <frontend_type>multiselect</frontend_type>
                             <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
@@ -6855,11 +6467,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage
-                                van
-                                het
-                                totaalbedrag of een vast bedrag
-                            </comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -6873,10 +6481,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor
-                                decimalen,
-                                als u geen extra kosten wilt rekenen vult u niets in
-                            </comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -6970,13 +6575,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_telefoon/sort_order</config_path>
                         </sort_order>
-                        <min_order_total translate="label">
+                        <min_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Minimum bedrag</label>
-                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
@@ -6984,13 +6588,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_telefoon/min_order_total</config_path>
                         </min_order_total>
-                        <max_order_total translate="label">
+                        <max_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Maximum bedrag</label>
-                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>6</sort_order>
                             <show_in_default>1</show_in_default>
@@ -7032,10 +6635,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Verzendmethoden blokkeren</label>
-                            <comment>
-                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde
-                                verzendmethoden
-                            </comment>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>9</sort_order>
@@ -7049,9 +6649,7 @@
                                 <active>1</active>
                                 <limit_shipping>1</limit_shipping>
                             </depends>
-                            <comment>
-                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
-                            </comment>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
                             <label>Geblokkeerde verzendmethoden</label>
                             <frontend_type>multiselect</frontend_type>
                             <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
@@ -7094,11 +6692,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage
-                                van
-                                het
-                                totaalbedrag of een vast bedrag
-                            </comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -7112,10 +6706,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor
-                                decimalen,
-                                als u geen extra kosten wilt rekenen vult u niets in
-                            </comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -7209,13 +6800,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_visamastercard/sort_order</config_path>
                         </sort_order>
-                        <min_order_total translate="label">
+                        <min_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Minimum bedrag</label>
-                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
@@ -7223,13 +6813,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_visamastercard/min_order_total</config_path>
                         </min_order_total>
-                        <max_order_total translate="label">
+                        <max_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Maximum bedrag</label>
-                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>6</sort_order>
                             <show_in_default>1</show_in_default>
@@ -7271,10 +6860,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Verzendmethoden blokkeren</label>
-                            <comment>
-                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde
-                                verzendmethoden
-                            </comment>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>9</sort_order>
@@ -7288,9 +6874,7 @@
                                 <active>1</active>
                                 <limit_shipping>1</limit_shipping>
                             </depends>
-                            <comment>
-                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
-                            </comment>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
                             <label>Geblokkeerde verzendmethoden</label>
                             <frontend_type>multiselect</frontend_type>
                             <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
@@ -7333,11 +6917,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage
-                                van
-                                het
-                                totaalbedrag of een vast bedrag
-                            </comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -7351,10 +6931,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor
-                                decimalen,
-                                als u geen extra kosten wilt rekenen vult u niets in
-                            </comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -7448,13 +7025,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_vvvgiftcard/sort_order</config_path>
                         </sort_order>
-                        <min_order_total translate="label">
+                        <min_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Minimum bedrag</label>
-                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
@@ -7462,13 +7038,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_vvvgiftcard/min_order_total</config_path>
                         </min_order_total>
-                        <max_order_total translate="label">
+                        <max_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Maximum bedrag</label>
-                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>6</sort_order>
                             <show_in_default>1</show_in_default>
@@ -7510,10 +7085,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Verzendmethoden blokkeren</label>
-                            <comment>
-                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde
-                                verzendmethoden
-                            </comment>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>9</sort_order>
@@ -7527,9 +7099,7 @@
                                 <active>1</active>
                                 <limit_shipping>1</limit_shipping>
                             </depends>
-                            <comment>
-                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
-                            </comment>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
                             <label>Geblokkeerde verzendmethoden</label>
                             <frontend_type>multiselect</frontend_type>
                             <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
@@ -7572,11 +7142,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage
-                                van
-                                het
-                                totaalbedrag of een vast bedrag
-                            </comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -7590,10 +7156,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor
-                                decimalen,
-                                als u geen extra kosten wilt rekenen vult u niets in
-                            </comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -7687,13 +7250,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_webshopgiftcard/sort_order</config_path>
                         </sort_order>
-                        <min_order_total translate="label">
+                        <min_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Minimum bedrag</label>
-                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
@@ -7701,13 +7263,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_webshopgiftcard/min_order_total</config_path>
                         </min_order_total>
-                        <max_order_total translate="label">
+                        <max_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Maximum bedrag</label>
-                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>6</sort_order>
                             <show_in_default>1</show_in_default>
@@ -7749,10 +7310,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Verzendmethoden blokkeren</label>
-                            <comment>
-                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde
-                                verzendmethoden
-                            </comment>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>9</sort_order>
@@ -7766,9 +7324,7 @@
                                 <active>1</active>
                                 <limit_shipping>1</limit_shipping>
                             </depends>
-                            <comment>
-                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
-                            </comment>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
                             <label>Geblokkeerde verzendmethoden</label>
                             <frontend_type>multiselect</frontend_type>
                             <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
@@ -7811,11 +7367,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage
-                                van
-                                het
-                                totaalbedrag of een vast bedrag
-                            </comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -7829,10 +7381,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor
-                                decimalen,
-                                als u geen extra kosten wilt rekenen vult u niets in
-                            </comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -7926,13 +7475,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_wijncadeau/sort_order</config_path>
                         </sort_order>
-                        <min_order_total translate="label">
+                        <min_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Minimum bedrag</label>
-                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
@@ -7940,13 +7488,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_wijncadeau/min_order_total</config_path>
                         </min_order_total>
-                        <max_order_total translate="label">
+                        <max_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Maximum bedrag</label>
-                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>6</sort_order>
                             <show_in_default>1</show_in_default>
@@ -7988,10 +7535,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Verzendmethoden blokkeren</label>
-                            <comment>
-                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde
-                                verzendmethoden
-                            </comment>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>9</sort_order>
@@ -8005,9 +7549,7 @@
                                 <active>1</active>
                                 <limit_shipping>1</limit_shipping>
                             </depends>
-                            <comment>
-                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
-                            </comment>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
                             <label>Geblokkeerde verzendmethoden</label>
                             <frontend_type>multiselect</frontend_type>
                             <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
@@ -8050,11 +7592,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage
-                                van
-                                het
-                                totaalbedrag of een vast bedrag
-                            </comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -8068,10 +7606,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor
-                                decimalen,
-                                als u geen extra kosten wilt rekenen vult u niets in
-                            </comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -8165,13 +7700,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_yehhpay/sort_order</config_path>
                         </sort_order>
-                        <min_order_total translate="label">
+                        <min_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Minimum bedrag</label>
-                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
@@ -8179,13 +7713,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_yehhpay/min_order_total</config_path>
                         </min_order_total>
-                        <max_order_total translate="label">
+                        <max_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Maximum bedrag</label>
-                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>6</sort_order>
                             <show_in_default>1</show_in_default>
@@ -8227,10 +7760,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Verzendmethoden blokkeren</label>
-                            <comment>
-                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde
-                                verzendmethoden
-                            </comment>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>9</sort_order>
@@ -8244,9 +7774,7 @@
                                 <active>1</active>
                                 <limit_shipping>1</limit_shipping>
                             </depends>
-                            <comment>
-                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
-                            </comment>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
                             <label>Geblokkeerde verzendmethoden</label>
                             <frontend_type>multiselect</frontend_type>
                             <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
@@ -8289,11 +7817,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage
-                                van
-                                het
-                                totaalbedrag of een vast bedrag
-                            </comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -8307,10 +7831,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor
-                                decimalen,
-                                als u geen extra kosten wilt rekenen vult u niets in
-                            </comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
@@ -8404,13 +7925,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_yourgift/sort_order</config_path>
                         </sort_order>
-                        <min_order_total translate="label">
+                        <min_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Minimum bedrag</label>
-                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
@@ -8418,13 +7938,12 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_yourgift/min_order_total</config_path>
                         </min_order_total>
-                        <max_order_total translate="label">
+                        <max_order_total translate="label comment">
                             <depends>
                                 <active>1</active>
                             </depends>
                             <label>Maximum bedrag</label>
-                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden
-                            </comment>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>6</sort_order>
                             <show_in_default>1</show_in_default>
@@ -8466,10 +7985,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Verzendmethoden blokkeren</label>
-                            <comment>
-                                Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde
-                                verzendmethoden
-                            </comment>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>9</sort_order>
@@ -8483,9 +7999,7 @@
                                 <active>1</active>
                                 <limit_shipping>1</limit_shipping>
                             </depends>
-                            <comment>
-                                Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is
-                            </comment>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
                             <label>Geblokkeerde verzendmethoden</label>
                             <frontend_type>multiselect</frontend_type>
                             <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
@@ -8528,11 +8042,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten rekenen</label>
-                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage
-                                van
-                                het
-                                totaalbedrag of een vast bedrag
-                            </comment>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/system_config_source_chargetype</source_model>
                             <sort_order>200</sort_order>
@@ -8546,10 +8056,7 @@
                                 <active>1</active>
                             </depends>
                             <label>Extra kosten</label>
-                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor
-                                decimalen,
-                                als u geen extra kosten wilt rekenen vult u niets in
-                            </comment>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>201</sort_order>
                             <show_in_default>1</show_in_default>
