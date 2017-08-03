@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Pay_Payment>
-            <version>3.8.1</version>
+            <version>3.8.2</version>
         </Pay_Payment>
     </modules>
     <global>
@@ -31,6 +31,14 @@
                     </pay_payment>
                 </observers>
             </add_spl_autoloader>
+            <webpos_start_process_payment>
+                <observers>
+                    <pay_payment>
+                        <class>Pay_Payment_Model_Paymentmethod_Instore</class>
+                        <method>startMultiPayment</method>
+                    </pay_payment>
+                </observers>
+            </webpos_start_process_payment>
         </events>
         <models>
             <pay_payment>

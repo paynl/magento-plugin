@@ -42,7 +42,7 @@ class Pay_Payment_Model_Paymentmethod_Instore extends Pay_Payment_Model_Paymentm
         return parent::initialize($paymentAction, $stateObject);
     }
 
-    private function sendToTerminal($transactionId, $terminalId, $order)
+    private static function sendToTerminal($transactionId, $terminalId, $order)
     {
         $payment = \Paynl\Instore::payment(array(
             'transactionId' => $transactionId,
@@ -104,6 +104,49 @@ class Pay_Payment_Model_Paymentmethod_Instore extends Pay_Payment_Model_Paymentm
             Mage::throwException('Payment canceled');
         }
 
+    }
+    public static function startMultiPayment(Varien_Event_Observer $data){
+        $method = $data->getMethod();
+        if($method == 'pay_payment_instore') {
+            $amount = $data->getAmount();
+
+            $methodData = $data->getMethodData();
+            $terminalId = $methodData['additional_data']['terminalId'];
+
+            /**
+             * @var Mage_Sales_Model_Order $order
+             */
+            $order = $data->getOrder();
+            $store = $order->getStore();
+            $payHelper  = Mage::helper('pay_payment');
+            $payHelper->loginSDK($store);
+
+            $ipAddress = $order->getRemoteIp();
+            if (empty($ipAddress)) $ipAddress = \Paynl\Helper::getIp();
+            if (strpos($ipAddress, ',') !== false) {
+                $ipAddress = substr($ipAddress, 0, strpos($ipAddress, ','));
+            }
+
+            $startData = array(
+                'amount' => $amount,
+                'returnUrl' => 'http://dummy_url.com',
+                'ipaddress' => $ipAddress,
+
+                'paymentMethod' => self::OPTION_ID,
+                'description' => $order->getIncrementId(),
+                'currency' => $order->getOrderCurrencyCode(),
+                'extra1' => $order->getIncrementId(),
+                'extra2' => $order->getCustomerEmail(),
+                'ipAddress' => $ipAddress
+            );
+
+            $transaction = \Paynl\Transaction::start($startData);
+
+            $terminalResult = self::sendToTerminal($transaction->getTransactionId(), $terminalId, $order);
+            if(!$terminalResult){
+                Mage::throwException('Payment canceled');
+            }
+        }
     }
 }
     
