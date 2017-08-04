@@ -579,6 +579,19 @@
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_wijncadeau>
+            <pay_payment_amazonpay>
+                <active>0</active>
+                <invoice_email>1</invoice_email>
+                <model>pay_payment/Paymentmethod_Amazonpay</model>
+                <title>Amazon Pay</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <order_status_success>processing</order_status_success>
+                <send_mail>success</send_mail>
+                <ask_data_personal>0</ask_data_personal>
+                <ask_data_business>0</ask_data_business>
+                <limit_shipping>0</limit_shipping>
+            </pay_payment_amazonpay>
             <pay_payment_amex>
                 <active>0</active>
                 <invoice_email>1</invoice_email>
