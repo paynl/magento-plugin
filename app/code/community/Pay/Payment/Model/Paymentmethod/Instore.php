@@ -80,7 +80,7 @@ class Pay_Payment_Model_Paymentmethod_Instore extends Pay_Payment_Model_Paymentm
         return $this->_redirectUrl;
     }
 
-    public function startPayment(Mage_Sales_Model_Order $order)
+    public function startPayment(Mage_Sales_Model_Order $order, $transaction_amount = null)
     {
         if(!is_null($this->_startResult)){
             return $this->_startResult;
@@ -103,7 +103,6 @@ class Pay_Payment_Model_Paymentmethod_Instore extends Pay_Payment_Model_Paymentm
         } else{
             Mage::throwException('Payment canceled');
         }
-
     }
     public static function startMultiPayment(Varien_Event_Observer $data){
         $method = $data->getMethod();
@@ -118,6 +117,9 @@ class Pay_Payment_Model_Paymentmethod_Instore extends Pay_Payment_Model_Paymentm
              */
             $order = $data->getOrder();
             $store = $order->getStore();
+	        /**
+	         * @var $payHelper Pay_Payment_Helper_Data
+	         */
             $payHelper  = Mage::helper('pay_payment');
             $payHelper->loginSDK($store);
 
