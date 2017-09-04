@@ -205,7 +205,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         $additionalData = $session->getPaynlPaymentData();
 
         $optionId = $this->_paymentOptionId;
-        $optionSubId = $additionalData['option_sub'] ? $additionalData['option_sub'] : null;
+        $optionSubId = isset($additionalData['option_sub']) ? $additionalData['option_sub'] : null;
 
         $ipAddress = $order->getRemoteIp();
         if (empty($ipAddress)) $ipAddress = \Paynl\Helper::getIp();
@@ -299,7 +299,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         } else {
             $birthDate = null;
         }
-        $iban = $additionalData['iban'] ? $additionalData['iban'] : null;
+        $iban = isset($additionalData['iban']) ? $additionalData['iban'] : null;
 
         $enduser = array(
             'birthDate' => $birthDate,
