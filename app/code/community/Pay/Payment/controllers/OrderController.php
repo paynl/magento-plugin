@@ -22,25 +22,34 @@ class Pay_Payment_OrderController extends Mage_Core_Controller_Front_Action
 
     public function returnAction()
     {
-        try {
-            $params = $this->getRequest()->getParams();
+        $params = $this->getRequest()->getParams();
 
-            $transactionId = $params['orderId'];
+        $transactionId = $params['orderId'];
 
-
-            $status = $this->helperOrder->getTransactionStatus($transactionId);
-            $order = $this->helperOrder->getOrderByTransactionId($transactionId);
-            $store = $order->getStore();
-            //$orderHelper->processByTransactionId($transactionId);
-        } catch (Pay_Payment_Exception $e) {
-            if ($e->getCode() != 0) {
-                throw new Exception($e);
-            }
-        }
+        $status = $this->helperOrder->getTransactionStatus($transactionId);
+        $order = $this->helperOrder->getOrderByTransactionId($transactionId);
+        $store = $order->getStore();
 
         $pageSuccess = $store->getConfig('pay_payment/general/page_success');
         $pagePending = $store->getConfig('pay_payment/general/page_pending');
         $pageCanceled = $store->getConfig('pay_payment/general/page_canceled');
+
+	    /**
+	     * @var $orderPayment Mage_Sales_Model_Order_Payment
+	     */
+	    $orderPayment = $order->getPayment();
+	    $hash = $orderPayment->getAdditionalInformation( 'paynl_hash');
+	    if(!empty($hash)){
+	    	$instoreStatus = \Paynl\Instore::status(array(
+	    		'hash' => $hash
+		    ));
+	    	$state = $instoreStatus->getTransactionState();
+	    	if($state == 'approved'){
+	    		$status = Pay_Payment_Model_Transaction::STATE_SUCCESS;
+		    } else {
+			    $status = Pay_Payment_Model_Transaction::STATE_CANCELED;
+		    }
+	    }
 
         if ($status == Pay_Payment_Model_Transaction::STATE_CANCELED) {
             Mage::getSingleton('checkout/session')->addNotice($this->__('Betaling geannuleerd'));
