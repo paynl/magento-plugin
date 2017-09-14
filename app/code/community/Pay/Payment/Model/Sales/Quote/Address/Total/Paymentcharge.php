@@ -11,10 +11,11 @@ class Pay_Payment_Model_Sales_Quote_Address_Total_Paymentcharge extends Mage_Sal
     }
 
     public function collect(Mage_Sales_Model_Quote_Address $address) {
-        $address->setPaymentCharge(0);
-        $address->setBasePaymentCharge(0);
+        $address->setPaynlPaymentCharge(0);
+        $address->setPaynlBasePaymentCharge(0);
 
         $storeId = $address->getQuote()->getStoreId();
+        $store = $address->getQuote()->getStore();
         
         $items = $address->getAllItems();
         if (!count($items)) {
@@ -26,10 +27,10 @@ class Pay_Payment_Model_Sales_Quote_Address_Total_Paymentcharge extends Mage_Sal
    
         if ($paymentMethod && substr($paymentMethod, 0, 11) == 'pay_payment') {
             $baseAmount = Mage::helper('pay_payment')->getPaymentCharge($paymentMethod, $address->getQuote());
-            $amount = Mage::helper('directory')->currencyConvert($baseAmount, Mage::app()->getWebsite()->getConfig('currency/options/default'), Mage::app()->getStore()->getCurrentCurrencyCode());
+            $amount = Mage::helper('directory')->currencyConvert($baseAmount, Mage::app()->getWebsite()->getConfig('currency/options/default'), $store->getCurrentCurrencyCode());
 
-            $address->setPaymentCharge($amount);
-            $address->setBasePaymentCharge($baseAmount);
+            $address->setPaynlPaymentCharge($amount);
+            $address->setPaynlBasePaymentCharge($baseAmount);
           
             $taxClass = Mage::helper('pay_payment')->getPaymentChargeTaxClass($paymentMethod);
 
@@ -41,15 +42,15 @@ class Pay_Payment_Model_Sales_Quote_Address_Total_Paymentcharge extends Mage_Sal
             //$rate = 21;
             if ($rate > 0) {
 //                $includesTax = Mage::getStoreConfig('tax/calculation/price_includes_tax');
-                $baseChargeTax = round($address->getBasePaymentCharge() / (1+($rate / 100)) * ($rate/100), 2);
-                $chargeTax = round($address->getPaymentCharge() / (1+($rate / 100)) * ($rate/100), 2);
+                $baseChargeTax = round($address->getPaynlBasePaymentCharge() / (1+($rate / 100)) * ($rate/100), 2);
+                $chargeTax = round($address->getPaynlPaymentCharge() / (1+($rate / 100)) * ($rate/100), 2);
             } else {
                 $baseChargeTax = 0;
                 $chargeTax = 0;
             }
 
-            $address->setPaymentChargeTaxAmount($chargeTax);
-            $address->setBasePaymentChargeTaxAmount($baseChargeTax);
+            $address->setPaynlPaymentChargeTaxAmount($chargeTax);
+            $address->setPaynlBasePaymentChargeTaxAmount($baseChargeTax);
             
             $rates = array();
             $applied = false;
@@ -69,8 +70,8 @@ class Pay_Payment_Model_Sales_Quote_Address_Total_Paymentcharge extends Mage_Sal
             $address->setBaseTaxAmount($address->getBaseTaxAmount() + $baseChargeTax);
             $address->setTaxAmount($address->getTaxAmount() + $chargeTax);
 
-            $address->setGrandTotal($address->getGrandTotal() + $address->getPaymentCharge());
-            $address->setBaseGrandTotal($address->getBaseGrandTotal() + $address->getBasePaymentCharge());
+            $address->setGrandTotal($address->getGrandTotal() + $address->getPaynlPaymentCharge());
+            $address->setBaseGrandTotal($address->getBaseGrandTotal() + $address->getPaynlBasePaymentCharge());
 
         }
         return $this;
@@ -78,7 +79,7 @@ class Pay_Payment_Model_Sales_Quote_Address_Total_Paymentcharge extends Mage_Sal
 
     public function fetch(Mage_Sales_Model_Quote_Address $address) {
 
-        $amount = $address->getPaymentCharge();
+        $amount = $address->getPaynlPaymentCharge();
 
         if (($amount != 0)) {
             $address->addTotal(array(

@@ -7,18 +7,17 @@ class Pay_Payment_Model_Sales_Order_Invoice_Total_Paymentcharge extends Mage_Sal
     {
         $order = $invoice->getOrder();
 
-        $paymentCharge = $order->getPaymentCharge();
-        $basePaymentCharge = $order->getBasePaymentCharge();
+        $paymentCharge = $order->getPaynlPaymentCharge();
+        $basePaymentCharge = $order->getPaynlBasePaymentCharge();
 
+        $invoice->setPaynlPaymentCharge($paymentCharge);
+        $invoice->setPaynlBasePaymentCharge($basePaymentCharge);
 
-        $invoice->setPaymentCharge($paymentCharge);
-        $invoice->setBasePaymentCharge($basePaymentCharge);
+        $paymentChargeTaxAmount = $order->getPaynlPaymentChargeTaxAmount();
+        $basePaymentChargeTaxAmount = $order->getPaynlBasePaymentChargeTaxAmount();
 
-        $paymentChargeTaxAmount = $order->getPaymentChargeTaxAmount();
-        $basePaymentChargeTaxAmount = $order->getBasePaymentChargeTaxAmount();
-
-        $invoice->setPaymentChargeTaxAmount($paymentChargeTaxAmount);
-        $invoice->setBasePaymentChargeTaxAmount($basePaymentChargeTaxAmount);
+        $invoice->setPaynlPaymentChargeTaxAmount($paymentChargeTaxAmount);
+        $invoice->setPaynlBasePaymentChargeTaxAmount($basePaymentChargeTaxAmount);
 
         $invoiceTaxAmount = $invoice->getTaxAmount()*1;
         $invoiceBaseTaxAmount = $invoice->getBaseTaxAmount()*1;
