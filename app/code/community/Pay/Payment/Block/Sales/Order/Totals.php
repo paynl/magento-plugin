@@ -32,9 +32,9 @@ class Pay_Payment_Block_Sales_Order_Totals extends Mage_Sales_Block_Order_Totals
           {
             $label = Mage::getStoreConfig('pay_payment/general/text_payment_charge', Mage::app()->getStore());
             $newTotals['payment_charge'] = new Varien_Object(array(
-              'code' => 'payment_charge',
-              'field' => 'payment_charge',
-              'value' => $source->getPaymentCharge(),
+              'code' => 'paynl_payment_charge',
+              'field' => 'paynl_payment_charge',
+              'value' => $source->getPaynlPaymentCharge(),
               'label' => $label
             ));
           }

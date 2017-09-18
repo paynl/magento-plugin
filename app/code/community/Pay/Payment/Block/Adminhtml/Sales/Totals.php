@@ -53,13 +53,13 @@ class Pay_Payment_Block_Adminhtml_Sales_Totals extends Mage_Adminhtml_Block_Sale
         if (count($totals)>0) {
         	foreach ($totals as $index=>$arr) {
         		if ($index == "grand_total") {
-        			if (((float)$this->getSource()->getPaymentCharge()) != 0) {
+        			if (((float)$this->getSource()->getPaynlPaymentCharge()) != 0) {
 	        			$label = Mage::getStoreConfig('pay_payment/general/text_payment_charge', Mage::app()->getStore());
-			            $newTotals['payment_charge'] = new Varien_Object(array(
-			                'code'  => 'payment_charge',
-			                'field' => 'payment_charge',
-			                'base_value' => $source->getBasePaymentCharge(),
-			                'value' => $source->getPaymentCharge(),
+			            $newTotals['paynl_payment_charge'] = new Varien_Object(array(
+			                'code'  => 'paynl_payment_charge',
+			                'field' => 'paynl_payment_charge',
+			                'base_value' => $source->getPaynlPaymentCharge(),
+			                'value' => $source->getPaynlPaymentCharge(),
 			                'label' => $label
 			            ));
         			}
