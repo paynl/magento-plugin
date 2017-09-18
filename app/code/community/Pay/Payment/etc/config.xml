@@ -389,6 +389,7 @@
                 <limit_shipping>0</limit_shipping>
             </pay_payment_incasso>
             <pay_payment_instore>
+                <pay_later>1</pay_later>
                 <active>0</active>
                 <invoice_email>1</invoice_email>
                 <active_checkout>0</active_checkout>

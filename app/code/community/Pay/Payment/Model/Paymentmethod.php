@@ -96,14 +96,16 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         return $this;
     }
 
-    public function startPayment(Mage_Sales_Model_Order $order, $transaction_amount = null)
+    public static function startPayment(Mage_Sales_Model_Order $order, $transaction_amount = null)
     {
         $store = $order->getStore();
-        $this->helperData->loginSDK($store);
+	    $helperData = Mage::helper('pay_payment');
+
+	    $helperData->loginSDK($store);
 
         Mage::log('Starting payment for order: ' . $order->getId(), null, 'paynl.log');
 
-        $arrStartData = $this->getTransactionStartData($order);
+        $arrStartData = static::getTransactionStartData($order);
 
         if ($transaction_amount == null) {
             $transaction_amount = $arrStartData['amount'];
@@ -155,7 +157,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
             array(
                 'transaction_id' => $transactionId,
                 'service_id' => \Paynl\Config::getServiceId(),
-                'option_id' => $this->getPaymentOptionId(),
+                'option_id' => static::OPTION_ID,
                 'option_sub_id' => null,
                 'amount' => round($transaction_amount*100),
                 'order_id' => $order->getId(),
@@ -193,9 +195,10 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         );
     }
 
-    private function getTransactionStartData(Mage_Sales_Model_Order $order)
+    private static function getTransactionStartData(Mage_Sales_Model_Order $order)
     {
         $store = $order->getStore();
+	    $helperData = Mage::helper('pay_payment');
 
         $session = Mage::getSingleton('checkout/session');
 
@@ -204,7 +207,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
 
         $additionalData = $session->getPaynlPaymentData();
 
-        $optionId = $this->_paymentOptionId;
+        $optionId = static::OPTION_ID;
         $optionSubId = isset($additionalData['option_sub']) ? $additionalData['option_sub'] : null;
 
         $ipAddress = $order->getRemoteIp();
@@ -224,7 +227,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
             'extra1' => $order->getIncrementId(),
             'extra2' => $order->getCustomerEmail(),
             'ipAddress' => $ipAddress,
-            'language' => $this->helperData->getLanguage($order->getStore())
+            'language' => $helperData->getLanguage($order->getStore())
         );
         $arrCompany = array();
         if ($order->getShippingAddress()->getCompany()) {
@@ -264,16 +267,16 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         }
 
         if ($sendOrderData) {
-            $arrStartData['enduser'] = $this->getEnduserData($order);
-            $arrStartData['address'] = $this->getShippingAddress($order);
-            $arrStartData['invoiceAddress'] = $this->getBillingAddress($order);
-            $arrStartData['products'] = $this->getProducts($order);
+            $arrStartData['enduser'] = static::getEnduserData($order);
+            $arrStartData['address'] = static::getShippingAddress($order);
+            $arrStartData['invoiceAddress'] = static::getBillingAddress($order);
+            $arrStartData['products'] = static::getProducts($order);
         }
 
         return $arrStartData;
     }
 
-    private function getEnduserData(Mage_Sales_Model_Order $order)
+    private static function getEnduserData(Mage_Sales_Model_Order $order)
     {
         $session = Mage::getSingleton('checkout/session');
         $additionalData = $session->getPaynlPaymentData();
@@ -323,7 +326,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         return $enduser;
     }
 
-    private function getShippingAddress(Mage_Sales_Model_Order $order)
+    private static function getShippingAddress(Mage_Sales_Model_Order $order)
     {
         $objShippingAddress = $order->getShippingAddress();
 
@@ -384,8 +387,9 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         return $arrBillingAddress;
     }
 
-    private function getProducts(Mage_Sales_Model_Order $order)
+    private static function getProducts(Mage_Sales_Model_Order $order)
     {
+    	$helperData = Mage::helper('pay_payment');
         $arrProducts = array();
 
         $items = $order->getItemsCollection(array(), true);
@@ -441,11 +445,11 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
             $payment = $order->getPayment();
 
             $code = $payment->getMethod();
-            $taxClass = $this->helperData->getPaymentChargeTaxClass($code);
+            $taxClass = $helperData->getPaymentChargeTaxClass($code);
 
             $taxCalculationModel = Mage::getSingleton('tax/calculation');
             $request = $taxCalculationModel->getRateRequest($order->getShippingAddress(), $order->getBillingAddress());
-            $request->setStore(Mage::app()->getStore());
+            $request->setStore($order->getStore());
             $vatPercentage = $taxCalculationModel->getRate($request->setProductClassId($taxClass));
 
             $fee = array(
@@ -501,13 +505,8 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         return parent::assignData($data);
     }
 
-//    /**
-//     * Instantiate state and set it to state object
-//     * @param string $paymentAction
-//     * @param Varien_Object
-//     */
 
-    protected function addressEqual(Mage_Sales_Model_Quote $quote)
+    protected static function addressEqual(Mage_Sales_Model_Quote $quote)
     {
         $billingAddress = $quote->getBillingAddress();
         $shippingAddress = $quote->getShippingAddress();

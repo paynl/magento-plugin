@@ -64,11 +64,16 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
         $order = $this->getOrderByTransactionId($transactionId);
         $payment = $order->getPayment();
 
+	    $hash = $payment->getAdditionalInformation( 'paynl_hash');
+
         if ($store == null) {
             $store = $order->getStore();
         }
 
-        if ($transaction->getStatus() == $status || $order->getTotalDue() == 0) {
+
+        if (($transaction->getStatus() == $status || $order->getTotalDue() == 0) &&
+            $payment->getMethod() != 'pay_payment_instore') // instore altijd processen
+        {
             //status is al verwerkt - geen actie vereist
             throw Mage::exception('Pay_Payment', 'Already processed', 0);
         }
@@ -80,6 +85,16 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
         }
 
         if ($status == Pay_Payment_Model_Transaction::STATE_SUCCESS) {
+	        if(!empty($hash)){
+		        $receiptData = \Paynl\Instore::getReceipt( array( 'hash' => $hash ) );
+		        $approvalId  = $receiptData->getApprovalId();
+		        $receipt     = $receiptData->getReceipt();
+
+		        $payment->setAdditionalInformation( 'paynl_receipt', $receipt );
+		        $payment->setAdditionalInformation( 'paynl_transaction_id', $approvalId );
+
+		        $order->save();
+	        }
             // als het order al canceled was, gaan we hem nu uncancelen
             if ($order->isCanceled()) {
                 $this->uncancel($order);
@@ -89,7 +104,7 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
             $paidAmount = $paidAmount*1;
 
             //controleren of het gehele bedrag betaald is
-            if (abs($orderAmount-$paidAmount) > 0.0001) {
+            if (abs($orderAmount-$paidAmount) > 0.01) {
                 $order->addStatusHistoryComment('Bedrag komt niet overeen. Order bedrag: ' . $orderAmount . ' Betaald: ' . $paidAmount);
             }
 
