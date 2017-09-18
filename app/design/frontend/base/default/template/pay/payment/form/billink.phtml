@@ -1,17 +1,24 @@
 <?php
-$_code    = $this->getMethodCode();
+/**
+ * @var Pay_Payment_Block_Form_Billink $this
+ */
+
+$_code = $this->getMethodCode();
 
 $dob = $this->getDob();
-list($dobYear,$dobMonth,$dobDay) = explode('-',$dob);
+if (! empty($dob)) {
+    list($dobYear,$dobMonth,$dobDay) = explode('-', $dob);
+} else {
+    $dobYear = '';
+    $dobMonth = '';
+    $dobDay = '';
+}
 
 $enablePersonal = Mage::getStoreConfig('payment/pay_payment_billink/ask_data_personal',
         Mage::app()->getStore());
 $enableBusiness = Mage::getStoreConfig('payment/pay_payment_billink/ask_data_business',
         Mage::app()->getStore());
-
 ?>
-
-
 <ul class="form-list" id="payment_form_<?php echo $_code ?>" style="display:none;">
 
     <?php
