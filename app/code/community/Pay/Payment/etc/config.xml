@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Pay_Payment>
-            <version>3.9.0</version>
+            <version>3.9.1</version>
         </Pay_Payment>
     </modules>
     <global>
