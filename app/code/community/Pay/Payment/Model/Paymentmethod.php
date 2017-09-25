@@ -2,7 +2,6 @@
 
 class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
 {
-
     const OPTION_ID = 0;
 
     protected $_isInitializeNeeded = true;
@@ -230,9 +229,9 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
             'language' => $helperData->getLanguage($order->getStore())
         );
         $arrCompany = array();
-        if ($order->getShippingAddress()->getCompany()) {
+        if ($order->getShippingAddress() && $order->getShippingAddress()->getCompany()) {
             $arrCompany['name'] = $order->getShippingAddress()->getCompany();
-        } elseif ($order->getBillingAddress()->getCompany()) {
+        } elseif ($order->getBillingAddress() && $order->getBillingAddress()->getCompany()) {
             $arrCompany['name'] = $order->getBillingAddress()->getCompany();
         }
         if ($order->getCustomerTaxvat()) {
@@ -240,17 +239,15 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         }
 
         $countryId = null;
-        if ($order->getShippingAddress()->getCountryId()) {
+        if ($order->getShippingAddress() && $order->getShippingAddress()->getCountryId()) {
             $countryId = $order->getShippingAddress()->getCountryId();
-        }
-        if ($order->getBillingAddress()->getCountryId()) {
+        } elseif ($order->getBillingAddress() && $order->getBillingAddress()->getCountryId()) {
             $countryId = $order->getBillingAddress()->getCountryId();
         }
         if (!is_null($countryId)) {
             $countryCode = Mage::getModel('directory/country')->load($countryId)->getIso2Code();
             $arrCompany['countryCode'] = $countryCode;
         }
-
 
         if (isset($additionalData['kvknummer']) && !empty($additionalData['kvknummer'])) {
             $arrCompany['cocNumber'] = $additionalData['kvknummer'];
