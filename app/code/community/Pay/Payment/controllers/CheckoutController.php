@@ -31,7 +31,18 @@ class Pay_Payment_CheckoutController extends Mage_Core_Controller_Front_Action {
 
 			/** @var Mage_Sales_Model_Order $order */
 			$order = Mage::getModel( 'sales/order' )->loadByIncrementId( $session->getLastRealOrderId() );
+			$restoreCart = Mage::getStoreConfig('pay_payment/general/restore_cart', $order->getStore());
+			if ($restoreCart) {
+				$quoteModel = Mage::getModel( 'sales/quote' );
+				$quoteId    = $order->getQuoteId();
 
+				/**
+				 * @var $quote Mage_Sales_Model_Quote
+				 */
+				$quote = $quoteModel->load( $quoteId );
+
+				$quote->setIsActive( true )->save();
+			}
 
 			/** @var Pay_Payment_Model_Paymentmethod $method */
 			$method = $order->getPayment()->getMethodInstance();

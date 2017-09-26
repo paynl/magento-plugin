@@ -54,22 +54,25 @@ class Pay_Payment_OrderController extends Mage_Core_Controller_Front_Action
         if ($status == Pay_Payment_Model_Transaction::STATE_CANCELED) {
             Mage::getSingleton('checkout/session')->addNotice($this->__('Betaling geannuleerd'));
         }
+
+	    $quoteModel = Mage::getModel('sales/quote');
+	    $quoteId = $order->getQuoteId();
+
+	    /**
+	     * @var $quote Mage_Sales_Model_Quote
+	     */
+	    $quote = $quoteModel->load($quoteId);
+
         if ($status == Pay_Payment_Model_Transaction::STATE_SUCCESS) {
+	        $quote->setIsActive(false)->save();
             $this->_redirect($pageSuccess);
         } elseif ($status == Pay_Payment_Model_Transaction::STATE_PENDING) {
+	        $quote->setIsActive(false)->save();
             $this->_redirect($pagePending);
         } else {
 
-            $restoreCart = Mage::getStoreConfig('pay_payment/general/restore_cart', Mage::app()->getStore());
+            $restoreCart = Mage::getStoreConfig('pay_payment/general/restore_cart', $order->getStore());
             if ($restoreCart) {
-                $quoteModel = Mage::getModel('sales/quote');
-                $quoteId = $order->getQuoteId();
-
-                /**
-                 * @var $quote Mage_Sales_Model_Quote
-                 */
-                $quote = $quoteModel->load($quoteId);
-
                 $quote->setIsActive(true)->save();
             }
 
