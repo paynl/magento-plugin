@@ -99,8 +99,10 @@ class Pay_Payment_Model_Paymentmethod_Instore extends Pay_Payment_Model_Paymentm
 		 */
 		$payment            = $order->getPayment();
 
-		$transaction_amount = $payment->getAdditionalInformation( 'amount' );
-		if ( empty( $transaction_amount ) ) {
+		if(empty($transaction_amount)){
+			$transaction_amount = $payment->getAdditionalInformation( 'amount' );
+		}
+		if (empty( $transaction_amount ) ) {
 			$transaction_amount = null;
 
 			$method_data = $payment->getAdditionalInformation( 'method_data' );

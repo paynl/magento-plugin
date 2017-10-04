@@ -70,13 +70,12 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
             $store = $order->getStore();
         }
 
-
-        if (($transaction->getStatus() == $status || $order->getTotalDue() == 0) &&
-            $payment->getMethod() != 'pay_payment_instore') // instore altijd processen
+        if (($transaction->getStatus() == $status || $order->getTotalDue() == 0) )
         {
             //status is al verwerkt - geen actie vereist
             throw Mage::exception('Pay_Payment', 'Already processed', 0);
         }
+
         $autoInvoice = $store->getConfig('pay_payment/general/auto_invoice');
         $invoiceEmail = $store->getConfig('pay_payment/general/invoice_email');
 
@@ -89,11 +88,8 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
 		        $receiptData = \Paynl\Instore::getReceipt( array( 'hash' => $hash ) );
 		        $approvalId  = $receiptData->getApprovalId();
 		        $receipt     = $receiptData->getReceipt();
-
 		        $payment->setAdditionalInformation( 'paynl_receipt', $receipt );
 		        $payment->setAdditionalInformation( 'paynl_transaction_id', $approvalId );
-
-		        $order->save();
 	        }
             // als het order al canceled was, gaan we hem nu uncancelen
             if ($order->isCanceled()) {
@@ -102,6 +98,10 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
 
             $orderAmount = $order->getGrandTotal()*1;
             $paidAmount = $paidAmount*1;
+
+	        if( $payment->getMethod() == 'multipaymentforpos') {
+		        $order->setTotalPaid( $order->getTotalPaid() + $paidAmount );
+	        }
 
             //controleren of het gehele bedrag betaald is
             if (abs($orderAmount-$paidAmount) > 0.01) {
@@ -114,8 +114,9 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
                 $payment->setCurrencyCode($order->getOrderCurrencyCode());
                 $payment->setShouldCloseParentTransaction(true);
                 $payment->setIsTransactionClosed(0);
+
                 $payment->registerCaptureNotification(
-                    $order->getGrandTotal(), true
+                    $paidAmount, true
                 );
 
                 $invoice = $this->_getInvoiceForTransactionId($order, $transactionId);
@@ -125,13 +126,15 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
                     if ($order->getState() == Mage_Sales_Model_Order::STATE_PAYMENT_REVIEW) // Om een of andere reden kan een state in payment_review komen, dit is slecht, want dit veroorzaakt een lock
                     {
                         $order->setState(Mage_Sales_Model_Order::STATE_PENDING_PAYMENT, true);
-                        $order->save();
                     }
 
                     if (!$order->canInvoice()) {
                         die('Cannot create an invoice.');
                     }
 
+	                /**
+	                 * @var $invoice Mage_Sales_Model_Order_Invoice
+	                 */
                     $invoice = Mage::getModel('sales/service_order', $order)->prepareInvoice();
 
                     if (!$invoice->getTotalQty()) {
@@ -151,17 +154,22 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
                 // fix voor tax in invoice
                 $invoice->setTaxAmount($order->getTaxAmount());
                 $invoice->setBaseTaxAmount($order->getBaseTaxAmount());
-                $invoice->save();
                 $order->setTaxInvoiced($invoice->getTaxAmount());
-                $order->save();
+
+
+
+	            if( $payment->getMethod() == 'multipaymentforpos'){
+		            /* reset total_paid & base_total_paid in order */
+		            $order->setTotalPaid($order->getTotalPaid() - $invoice->getGrandTotal());
+		            $order->setBaseTotalPaid($order->getBaseTotalPaid() - $invoice->getBaseGrandTotal());
+	            }
 
                 if ($invoiceEmail) {
                     $invoice->sendEmail();
                     $invoice->setEmailSent(true);
-                    $invoice->save();
                 }
+	            $invoice->save();
             }
-
 
             // ingestelde status ophalen
             $processedStatus = $store->getConfig('payment/' . $payment->getMethod() . '/order_status_success');
@@ -173,7 +181,6 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
             $order->setState(
                 Mage_Sales_Model_Order::STATE_PROCESSING, $processedStatus, $stateMessage, true
             );
-            $order->save();
 
             $sendMail = $store->getConfig('payment/' . $payment->getMethod() . '/send_mail');
             $sendStatusupdates = $store->getConfig('pay_payment/general/send_statusupdates');
