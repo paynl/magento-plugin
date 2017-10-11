@@ -40,7 +40,9 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
             $status = Pay_Payment_Model_Transaction::STATE_AUTHORIZED;
         } elseif ($transaction->isCancelled()) {
             $status = Pay_Payment_Model_Transaction::STATE_CANCELED;
-        } else {
+        } elseif($transaction->isBeingVerified()){
+	        $status = Pay_Payment_Model_Transaction::STATE_VERIFY;
+        }else {
             $status = Pay_Payment_Model_Transaction::STATE_PENDING;
             //we gaan geen update doen
             return;
@@ -61,6 +63,7 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
         $helperData = Mage::helper('pay_payment');
         $transaction = $helperData->getTransaction($transactionId);
 
+        /** @var Mage_Sales_Model_Order $order */
         $order = $this->getOrderByTransactionId($transactionId);
         $payment = $order->getPayment();
 
@@ -250,7 +253,20 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
             $transaction->save();
 
             return true;
-        } else {
+        } elseif ($status == Pay_Payment_Model_Transaction::STATE_VERIFY){
+        	$method = $payment->getMethod();
+        	$configPath = "payment/{$method}/order_status_verify";
+        	$verify_status = Mage::getStoreConfig($configPath, $order->getStore());
+
+			$order->addStatusHistoryComment('Transaction needs to be verified', $verify_status);
+			$order->save();
+
+	        $transaction->setStatus($status);
+	        $transaction->setLastUpdate(time());
+	        $transaction->save();
+			return true;
+
+        }else {
             throw Mage::exception('Pay_Payment', 'Unknown status ' . $status, 1);
         }
     }

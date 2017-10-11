@@ -253,6 +253,7 @@
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_ideal>
@@ -264,6 +265,7 @@
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_klarna>
@@ -275,6 +277,7 @@
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_bitcoin>
@@ -286,6 +289,7 @@
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_capayable>
@@ -297,6 +301,7 @@
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_capayablegespreid>
@@ -308,6 +313,7 @@
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_mybank>
@@ -319,6 +325,7 @@
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_fashioncheque>
@@ -330,6 +337,7 @@
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_fashiongiftcard>
@@ -341,6 +349,7 @@
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_gezondheidsbon>
@@ -352,6 +361,7 @@
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_podiumkadokaart>
@@ -363,6 +373,7 @@
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_yourgift>
@@ -374,6 +385,7 @@
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_overboeking>
@@ -385,6 +397,7 @@
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_incasso>
@@ -398,6 +411,7 @@
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_instore>
@@ -409,6 +423,7 @@
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_paypal>
@@ -420,6 +435,7 @@
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_mistercash>
@@ -431,6 +447,7 @@
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_sofortbanking>
@@ -442,6 +459,7 @@
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_giropay>
@@ -453,6 +471,7 @@
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_visamastercard>
@@ -464,6 +483,7 @@
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_maestro>
@@ -475,6 +495,7 @@
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_afterpay>
@@ -486,6 +507,7 @@
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_afterpayem>
@@ -497,6 +519,7 @@
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_telefoon>
@@ -508,6 +531,7 @@
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_paysafecard>
@@ -519,6 +543,7 @@
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_webshopgiftcard>
@@ -530,6 +555,7 @@
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_cartebleue>
@@ -541,6 +567,7 @@
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_postepay>
@@ -552,6 +579,7 @@
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <ask_data_personal>1</ask_data_personal>
                 <ask_data_business>0</ask_data_business>
@@ -565,6 +593,7 @@
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_givacard>
@@ -576,6 +605,7 @@
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_wijncadeau>
@@ -587,6 +617,7 @@
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <ask_data_personal>0</ask_data_personal>
                 <ask_data_business>0</ask_data_business>
@@ -600,6 +631,7 @@
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <ask_data_personal>0</ask_data_personal>
                 <ask_data_business>0</ask_data_business>
@@ -613,6 +645,7 @@
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_focum>
@@ -624,6 +657,7 @@
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_vvvgiftcard>
@@ -635,6 +669,7 @@
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_paylink>
@@ -646,6 +681,7 @@
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_yehhpay>

@@ -82,7 +82,6 @@ class Pay_Payment_OrderController extends Mage_Core_Controller_Front_Action
 
     public function exchangeAction()
     {
-
         $error = false;
         $params = $this->getRequest()->getParams();
 
