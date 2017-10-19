@@ -313,7 +313,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         }
         if ($enduserAddress) {
             $enduser = array_merge($enduser, array(
-                'initials' => $enduserAddress->getFirstname(),
+                'initials' => static::getFirstname($enduserAddress),
                 'lastName' => $enduserAddress->getLastname(),
                 'phoneNumber' => $enduserAddress->getTelephone(),
                 'emailAddress' => $enduserAddress->getEmail()
@@ -321,6 +321,9 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         }
 
         return $enduser;
+    }
+    protected static function getFirstname($address){
+    	return substr($address->getFirstname(),0,1);
     }
 
     private static function getShippingAddress(Mage_Sales_Model_Order $order)
@@ -372,7 +375,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
 
 
         $arrBillingAddress = array(
-            'initials' => $objBillingAddress->getFirstname(),
+            'initials' => static::getFirstname($objBillingAddress),
             'lastName' => $objBillingAddress->getLastname(),
             'streetName' => $address,
             'houseNumber' => $housenumber,

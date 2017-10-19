@@ -16,7 +16,6 @@ class Pay_Payment_Model_Paymentmethod_Klarna extends Pay_Payment_Model_Paymentme
     /**
      * @return boolean
      */
-
     public function isApplicableToQuote($quote, $checksBitMask)
     {
         if(!$this->addressEqual($quote)){
@@ -32,7 +31,12 @@ class Pay_Payment_Model_Paymentmethod_Klarna extends Pay_Payment_Model_Paymentme
         return parent::isApplicableToQuote($quote, $checksBitMask);
     }
 
-    public function capture(Varien_Object $payment, $amount)
+	protected static function getFirstname($address){
+		return $address->getFirstname();
+	}
+
+
+	public function capture(Varien_Object $payment, $amount)
     {
         $transaction = $payment->getAuthorizationTransaction();
 
