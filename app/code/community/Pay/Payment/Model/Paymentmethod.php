@@ -108,8 +108,6 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
 
         if ($transaction_amount == null) {
             $transaction_amount = $arrStartData['amount'];
-        } else {
-            $transaction_amount = $transaction_amount;
         }
 
         $arrStartData['amount'] = $transaction_amount;
@@ -356,7 +354,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         return $arrShippingAddress;
     }
 
-    private function getBillingAddress(Mage_Sales_Model_Order $order)
+    private static function getBillingAddress(Mage_Sales_Model_Order $order)
     {
         $objBillingAddress = $order->getBillingAddress();
         if (!$objBillingAddress) return array();
