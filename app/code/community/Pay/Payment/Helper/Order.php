@@ -22,9 +22,13 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
      */
     public function processByTransactionId($transactionId, $store = null)
     {
+        $order = $this->getOrderByTransactionId($transactionId);
         if ($store == null) {
-            $store = Mage::app()->getStore();
+            $store = $order->getStore();
         }
+        $extended_logging = Mage::getStoreConfig('pay_payment/general/extended_logging', $store);
+
+        if($extended_logging) $order->addStatusHistoryComment('Exchange call received from pay.nl');
 
         $this->helperData->loginSDK($store);
 
@@ -44,11 +48,17 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
 	        $status = Pay_Payment_Model_Transaction::STATE_VERIFY;
         }else {
             $status = Pay_Payment_Model_Transaction::STATE_PENDING;
+            if($extended_logging) $order->addStatusHistoryComment('Status is pending, exiting');
+            $order->save();
             //we gaan geen update doen
             return;
         }
+
         $paidAmount = $transaction->getPaidAmount();
         $endUserId = $transaction->getAccountNumber();
+
+        if($extended_logging) $order->addStatusHistoryComment('Processing exchange with status '. $status);
+        $order->save();
 
         // alle data is opgehaald status updaten
         $this->updateState($transactionId, $status, $methodName, $paidAmount, $endUserId, $store);
@@ -65,17 +75,21 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
 
         /** @var Mage_Sales_Model_Order $order */
         $order = $this->getOrderByTransactionId($transactionId);
-        $payment = $order->getPayment();
-
-	    $hash = $payment->getAdditionalInformation( 'paynl_hash');
 
         if ($store == null) {
             $store = $order->getStore();
         }
 
+        $extended_logging = Mage::getStoreConfig('pay_payment/general/extended_logging', $store);
+        $payment = $order->getPayment();
+
+	    $hash = $payment->getAdditionalInformation( 'paynl_hash');
+
         if (($transaction->getStatus() == $status || $order->getTotalDue() == 0) )
         {
             //status is al verwerkt - geen actie vereist
+            if($extended_logging) $order->addStatusHistoryComment('Stopped processing the order, already processed');
+            $order->save();
             throw Mage::exception('Pay_Payment', 'Already processed', 0);
         }
 
@@ -96,6 +110,7 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
 	        }
             // als het order al canceled was, gaan we hem nu uncancelen
             if ($order->isCanceled()) {
+                if($extended_logging) $order->addStatusHistoryComment('Un-cancelling order');
                 $this->uncancel($order);
             }
 
@@ -113,6 +128,7 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
 
 
             if ($autoInvoice) {
+                if($extended_logging) $order->addStatusHistoryComment('Starting invoicing');
                 $payment->setTransactionId($transactionId);
                 $payment->setCurrencyCode($order->getOrderCurrencyCode());
                 $payment->setShouldCloseParentTransaction(true);
@@ -132,6 +148,8 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
                     }
 
                     if (!$order->canInvoice()) {
+                        if($extended_logging) $order->addStatusHistoryComment('Pay.nl cannot create invoice');
+                        $order->save();
                         die('Cannot create an invoice.');
                     }
 
@@ -141,6 +159,8 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
                     $invoice = Mage::getModel('sales/service_order', $order)->prepareInvoice();
 
                     if (!$invoice->getTotalQty()) {
+                        if($extended_logging) $order->addStatusHistoryComment('Pay.nl Cannot create an invoice without products.');
+                        $order->save();
                         die('Cannot create an invoice without products.');
                     }
 
@@ -211,6 +231,8 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
 
             return true;
         } elseif ($status == Pay_Payment_Model_Transaction::STATE_AUTHORIZED) {
+            if($extended_logging) $order->addStatusHistoryComment('Registering authorization');
+
             $payment = $order->getPayment();
             $payment->registerAuthorizationNotification($order->getTotalDue());
             $payment->setTransactionId($transactionId);
@@ -233,15 +255,19 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
                 $transaction->getStatus() == Pay_Payment_Model_Transaction::STATE_SUCCESS ||
                 $helperData->isOrderPaid($order->getId())
             ) {
+                if($extended_logging) $order->addStatusHistoryComment('Cannot cancel already paid order');
+
                 throw Mage::exception('Pay_Payment', 'Cannot cancel already paid order');
             }
 
             // order annuleren
             // if the order has an authorization, close it so the api doesn't get called
             if($order->getPayment()->getAuthorizationTransaction()){
+                if($extended_logging) $order->addStatusHistoryComment('Closing authorization');
                 $order->getPayment()->getAuthorizationTransaction()->close(true);
             }
             $order->cancel();
+            if($extended_logging) $order->addStatusHistoryComment('Order canceled');
             $order->save();
             $sendStatusupdates = $store->getConfig('pay_payment/general/send_statusupdates');
             if ($sendStatusupdates) {

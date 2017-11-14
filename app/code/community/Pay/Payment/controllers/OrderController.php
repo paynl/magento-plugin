@@ -30,6 +30,8 @@ class Pay_Payment_OrderController extends Mage_Core_Controller_Front_Action
         $order = $this->helperOrder->getOrderByTransactionId($transactionId);
         $store = $order->getStore();
 
+        $extended_logging = Mage::getStoreConfig('pay_payment/general/extended_logging', $store);
+
         $pageSuccess = $store->getConfig('pay_payment/general/page_success');
         $pagePending = $store->getConfig('pay_payment/general/page_pending');
         $pageCanceled = $store->getConfig('pay_payment/general/page_canceled');
@@ -62,6 +64,9 @@ class Pay_Payment_OrderController extends Mage_Core_Controller_Front_Action
 	     * @var $quote Mage_Sales_Model_Quote
 	     */
 	    $quote = $quoteModel->load($quoteId);
+
+        if($extended_logging) $order->addStatusHistoryComment('Customer returned from payment page, status is: '.$status);
+        $order->save();
 
         if ($status == Pay_Payment_Model_Transaction::STATE_SUCCESS) {
 	        $quote->setIsActive(false)->save();

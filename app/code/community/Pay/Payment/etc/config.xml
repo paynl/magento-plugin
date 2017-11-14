@@ -241,6 +241,7 @@
                 <use_backup_api>0</use_backup_api>
                 <enable_refund>1</enable_refund>
                 <show_fee>1</show_fee>
+                <extended_logging>0</extended_logging>
             </general>
         </pay_payment>
         <payment>

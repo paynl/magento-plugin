@@ -100,6 +100,10 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         $store = $order->getStore();
 	    $helperData = Mage::helper('pay_payment');
 
+        $extended_logging = Mage::getStoreConfig('pay_payment/general/extended_logging', $store);
+
+        if($extended_logging) $order->addStatusHistoryComment('Pay.nl starting payment for order: '.$order->getIncrementId());
+
 	    $helperData->loginSDK($store);
 
         Mage::log('Starting payment for order: ' . $order->getId(), null, 'paynl.log');
@@ -113,11 +117,20 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         $arrStartData['amount'] = $transaction_amount;
 
         try {
+            if($extended_logging) $order->addStatusHistoryComment('Calling Pay api to start transaction');
             Mage::log('Calling Pay api to start transaction', null, 'paynl.log');
 
+            $time_before = microtime(true);
             $objStartResult = \Paynl\Transaction::start($arrStartData);
+            $time_after = microtime(true);
+
+            $duration = $time_after-$time_before;
+            $duration = number_format($duration, 4);
+            if($extended_logging) $order->addStatusHistoryComment('Transaction started in '.$duration.' seconds');
 
         } catch (Exception $e) {
+            if($extended_logging) $order->addStatusHistoryComment("Creating transaction failed, Exception: " . $e->getMessage());
+
             Mage::log("Creating transaction failed, Exception: " . $e->getMessage(), null, 'paynl.log');
             // Reset previous errors
             Mage::getSingleton('checkout/session')->getMessages(true);
@@ -150,6 +163,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
 
         Mage::log('Transaction started, transactionId: ' . $transactionId, null, 'paynl.log');
 
+
         $transaction->setData(
             array(
                 'transaction_id' => $transactionId,
@@ -170,11 +184,8 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
 
         $payment = $order->getPayment();
 
-        $order->addStatusHistoryComment(
-            'Transactie gestart, transactieId: ' . $transactionId . " \nBetaalUrl: " . $url
-        );
-
-        $order->save();
+        $order->addStatusHistoryComment('Transactie gestart, transactieId: ' . $transactionId);
+        $order->addStatusHistoryComment( $url);
 
         $sendMail = Mage::getStoreConfig('payment/' . $payment->getMethod() . '/send_mail', $order->getStore());
 
@@ -185,7 +196,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         $payment->setAdditionalInformation('paynl_order_id', $transactionId);
         $payment->setAdditionalInformation('paynl_accept_code', $objStartResult->getPaymentReference());
         $payment->save();
-
+        $order->save();
         return array(
             'url' => $url,
             'transactionId' => $transactionId

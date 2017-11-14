@@ -31,7 +31,12 @@ class Pay_Payment_CheckoutController extends Mage_Core_Controller_Front_Action {
 
 			/** @var Mage_Sales_Model_Order $order */
 			$order = Mage::getModel( 'sales/order' )->loadByIncrementId( $session->getLastRealOrderId() );
+
 			$restoreCart = Mage::getStoreConfig('pay_payment/general/restore_cart', $order->getStore());
+            $extended_logging = Mage::getStoreConfig('pay_payment/general/extended_logging', $order->getStore());
+
+            if($extended_logging) $order->addStatusHistoryComment('Starting transaction from checkout controller');
+
 			if ($restoreCart) {
 				$quoteModel = Mage::getModel( 'sales/quote' );
 				$quoteId    = $order->getQuoteId();
@@ -50,6 +55,8 @@ class Pay_Payment_CheckoutController extends Mage_Core_Controller_Front_Action {
 			if ( $order->getId() ) {
 				$data = $method->startPayment( $order );
 
+                if($extended_logging) $order->addStatusHistoryComment('Payment started. Redirecting user');
+                $order->save();
 				Mage::app()->getResponse()->setRedirect( $data['url'] );
 			} else {
 				// loading order failed

@@ -225,6 +225,16 @@
                             <sort_order>30</sort_order>
                             <show_in_default>1</show_in_default>
                         </show_in_admin>
+                        <extended_logging translate="label comment">
+                            <label>Extended logging in ordernotities</label>
+                            <comment>Schakel dit in om alle acties te loggen in de ordernotities</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </extended_logging>
                     </fields>
                 </general>
                 <loaded_payment_methods translate="label" module="pay_payment">
