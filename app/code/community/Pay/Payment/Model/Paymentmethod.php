@@ -129,8 +129,8 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
             if($extended_logging) $order->addStatusHistoryComment('Transaction started in '.$duration.' seconds');
 
         } catch (Exception $e) {
-            if($extended_logging) $order->addStatusHistoryComment("Creating transaction failed, Exception: " . $e->getMessage());
-
+            $order->addStatusHistoryComment("Creating transaction failed, Exception: " . $e->getMessage());
+            $order->save();
             Mage::log("Creating transaction failed, Exception: " . $e->getMessage(), null, 'paynl.log');
             // Reset previous errors
             Mage::getSingleton('checkout/session')->getMessages(true);
