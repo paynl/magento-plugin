@@ -228,6 +228,18 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
             $transaction->setLastUpdate(time());
             $transaction->save();
 
+            $eventData = array(
+                'order' => $order,
+                'payment' => $payment,
+                'transaction' => array(
+                    'id' => $transactionId,
+                    'status' => 'paid'
+                )
+            );
+            if($receiptData){
+                $eventData['transaction']['receipt'] = $receiptData->getReceipt();
+            }
+            Mage::dispatchEvent('paynl_transaction_complete', $eventData);
 
             return true;
         } elseif ($status == Pay_Payment_Model_Transaction::STATE_AUTHORIZED) {
@@ -277,6 +289,18 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
             $transaction->setStatus($status);
             $transaction->setLastUpdate(time());
             $transaction->save();
+
+            $eventData = array(
+                'order' => $order,
+                'payment' => $payment,
+                'transaction' => array(
+                    'id' => $transactionId,
+                    'status' => 'canceled'
+                )
+            );
+
+            Mage::dispatchEvent('paynl_transaction_complete', $eventData);
+
 
             return true;
         } elseif ($status == Pay_Payment_Model_Transaction::STATE_VERIFY){
