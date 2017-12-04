@@ -83,7 +83,7 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
         $extended_logging = Mage::getStoreConfig('pay_payment/general/extended_logging', $store);
         $payment = $order->getPayment();
 
-	    $hash = $payment->getAdditionalInformation( 'paynl_hash');
+	    $hash = $payment->getAdditionalInformation( 'paynl_instore_hash');
 
         if (($transaction->getStatus() == $status || $order->getTotalDue() == 0) )
         {
@@ -117,13 +117,17 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
             $orderAmount = $order->getGrandTotal()*1;
             $paidAmount = $paidAmount*1;
 
-	        if( $payment->getMethod() == 'multipaymentforpos') {
+	        if( $payment->getMethod() == 'multipaymentforpos' ) {
 		        $order->setTotalPaid( $order->getTotalPaid() + $paidAmount );
 	        }
 
             //controleren of het gehele bedrag betaald is
-            if (abs($orderAmount-$paidAmount) > 0.01) {
+            if (abs($orderAmount-$paidAmount) >= 0.01) {
                 $order->addStatusHistoryComment('Bedrag komt niet overeen. Order bedrag: ' . $orderAmount . ' Betaald: ' . $paidAmount);
+
+                if($payment->getMethod() == 'pay_payment_instore'){
+                    $order->setTotalPaid( $order->getTotalPaid() + $paidAmount );
+                }
             }
 
 
@@ -134,13 +138,14 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
                 $payment->setShouldCloseParentTransaction(true);
                 $payment->setIsTransactionClosed(0);
 
+
                 $payment->registerCaptureNotification(
                     $paidAmount, true
                 );
 
                 $invoice = $this->_getInvoiceForTransactionId($order, $transactionId);
 
-                if (is_bool($invoice) && $invoice == false) // er is nog geen invoice gemaakt
+                if (is_bool($invoice) && $invoice == false && $order->getTotalDue() == 0) // er is nog geen invoice gemaakt en er staat niets open
                 {
                     if ($order->getState() == Mage_Sales_Model_Order::STATE_PAYMENT_REVIEW) // Om een of andere reden kan een state in payment_review komen, dit is slecht, want dit veroorzaakt een lock
                     {
@@ -154,7 +159,7 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
                     }
 
 	                /**
-	                 * @var $invoice Mage_Sales_Model_Order_Invoice
+	                 * @var Mage_Sales_Model_Order_Invoice $invoice
 	                 */
                     $invoice = Mage::getModel('sales/service_order', $order)->prepareInvoice();
 
@@ -173,25 +178,25 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
                     $transactionSave->save();
                 }
 
-
-                // fix voor tax in invoice
-                $invoice->setTaxAmount($order->getTaxAmount());
-                $invoice->setBaseTaxAmount($order->getBaseTaxAmount());
-                $order->setTaxInvoiced($invoice->getTaxAmount());
-
-
-
-	            if( $payment->getMethod() == 'multipaymentforpos'){
-		            /* reset total_paid & base_total_paid in order */
-		            $order->setTotalPaid($order->getTotalPaid() - $invoice->getGrandTotal());
-		            $order->setBaseTotalPaid($order->getBaseTotalPaid() - $invoice->getBaseGrandTotal());
-	            }
-
-                if ($invoiceEmail) {
-                    $invoice->sendEmail();
-                    $invoice->setEmailSent(true);
+                if( $payment->getMethod() == 'multipaymentforpos'){
+                    /* reset total_paid & base_total_paid in order */
+                    $order->setTotalPaid($order->getTotalPaid() - $invoice->getGrandTotal());
+                    $order->setBaseTotalPaid($order->getBaseTotalPaid() - $invoice->getBaseGrandTotal());
                 }
-	            $invoice->save();
+                if($invoice) {
+                    // fix voor tax in invoice
+                    $invoice->setTaxAmount($order->getTaxAmount());
+                    $invoice->setBaseTaxAmount($order->getBaseTaxAmount());
+                    $order->setTaxInvoiced($invoice->getTaxAmount());
+                    if ($invoiceEmail) {
+                        $invoice->sendEmail();
+                        $invoice->setEmailSent(true);
+                    }
+                    $invoice->save();
+                }
+
+                $payment->save();
+                $order->save();
             }
 
             // ingestelde status ophalen

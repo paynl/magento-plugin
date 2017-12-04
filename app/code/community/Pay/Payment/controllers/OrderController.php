@@ -75,7 +75,6 @@ class Pay_Payment_OrderController extends Mage_Core_Controller_Front_Action
 	        $quote->setIsActive(false)->save();
             $this->_redirect($pagePending);
         } else {
-
             $restoreCart = Mage::getStoreConfig('pay_payment/general/restore_cart', $order->getStore());
             if ($restoreCart) {
                 $quote->setIsActive(true)->save();

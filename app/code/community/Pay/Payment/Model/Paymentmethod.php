@@ -95,7 +95,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         return $this;
     }
 
-    public static function startPayment(Mage_Sales_Model_Order $order, $transaction_amount = null)
+    public static function startPayment(Mage_Sales_Model_Order $order, $transaction_amount = null, $subId = null)
     {
         $store = $order->getStore();
 	    $helperData = Mage::helper('pay_payment');
@@ -109,6 +109,9 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         Mage::log('Starting payment for order: ' . $order->getId(), null, 'paynl.log');
 
         $arrStartData = static::getTransactionStartData($order);
+        if($subId !== null){
+            $arrStartData['bank'] = $subId;
+        }
 
         if ($transaction_amount == null) {
             $transaction_amount = $arrStartData['amount'];
@@ -154,7 +157,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
             Mage::getSingleton('checkout/session')->addError($e->getMessage());
             // Redirect via header
 
-            return array('url' => Mage::getUrl('checkout/cart'));
+            return array('url' => Mage::getUrl('checkout/cart'), 'exception' => $e);
         }
 
         $transaction = Mage::getModel('pay_payment/transaction');
@@ -192,18 +195,27 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         if ($sendMail == 'start') {
             $order->sendNewOrderEmail();
         }
+        if(isset($objStartResult->getData()['terminal']['hash'])){
+            $hash = $objStartResult->getData()['terminal']['hash'];
+            $payment->setAdditionalInformation('paynl_instore_hash', $hash);
+        }
         $payment->setAdditionalInformation('paynl_url', $url);
         $payment->setAdditionalInformation('paynl_order_id', $transactionId);
         $payment->setAdditionalInformation('paynl_accept_code', $objStartResult->getPaymentReference());
+
         $payment->save();
         $order->save();
-        return array(
+        $result = array(
             'url' => $url,
             'transactionId' => $transactionId
         );
+
+
+
+        return $result;
     }
 
-    private static function getTransactionStartData(Mage_Sales_Model_Order $order)
+    protected static function getTransactionStartData(Mage_Sales_Model_Order $order)
     {
         $store = $order->getStore();
 	    $helperData = Mage::helper('pay_payment');

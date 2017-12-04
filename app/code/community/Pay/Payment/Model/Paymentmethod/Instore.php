@@ -1,10 +1,10 @@
 <?php
 
 class Pay_Payment_Model_Paymentmethod_Instore extends Pay_Payment_Model_Paymentmethod {
-	const OPTION_ID = 1729;
+	const OPTION_ID = 1927;
 	const CODE = 'pay_payment_instore';
 	private static $_redirectUrl = null;
-	protected $_paymentOptionId = 1729;
+	protected $_paymentOptionId = 1927;
 	protected $_code = 'pay_payment_instore';
 
 	// Can only be used in backend orders
@@ -45,27 +45,10 @@ class Pay_Payment_Model_Paymentmethod_Instore extends Pay_Payment_Model_Paymentm
 			$terminalId = $methodData['additional_data']['terminalId'];
 			$order->getPayment()->setAdditionalInformation( 'terminalId' , $terminalId);
 
-			static::startPayment($order, $amount);
+			static::startPayment($order, $amount, $terminalId);
 		}
 	}
 
-	private static function sendToTerminal( $transactionId, $terminalId, $order ) {
-		$payment = \Paynl\Instore::payment( array(
-			'transactionId' => $transactionId,
-			'terminalId'    => $terminalId
-		) );
-
-		$hash = $payment->getHash();
-		/**
-		 * @var $orderPayment Mage_Sales_Model_Order_Payment
-		 */
-		$orderPayment = $order->getPayment();
-
-		$orderPayment->setAdditionalInformation( 'paynl_hash', $hash );
-		$orderPayment->save();
-
-		return $payment->getRedirectUrl();
-	}
 
 	public function initialize( $paymentAction, $stateObject ) {
 		switch ( $paymentAction ) {
@@ -93,7 +76,8 @@ class Pay_Payment_Model_Paymentmethod_Instore extends Pay_Payment_Model_Paymentm
 		return self::$_redirectUrl;
 	}
 
-	public static function startPayment( Mage_Sales_Model_Order $order, $transaction_amount = null ) {
+
+	public static function startPayment( Mage_Sales_Model_Order $order, $transaction_amount = null , $subId = null) {
 		/**
 		 * @var $payment Mage_Sales_Model_Order_Payment
 		 */
@@ -118,34 +102,27 @@ class Pay_Payment_Model_Paymentmethod_Instore extends Pay_Payment_Model_Paymentm
 			$payment->setAdditionalInformation('method_data', $method_data);
 		}
 
+        $session     = Mage::getSingleton( 'checkout/session' );
+        $sessionData = $session->getPaynlPaymentData();
 
-		$result = parent::startPayment( $order, $transaction_amount );
+        $terminalId = $order->getPayment()->getAdditionalInformation( 'terminalId' );
+        if ( empty( $terminalId ) ) {
+            if ( isset( $_POST['payment']['terminalId'] ) ) {
+                $terminalId = $_POST['payment']['terminalId'];
+            } elseif ( isset( $sessionData['terminalId'] ) ) {
+                $terminalId = $sessionData['terminalId'];
+            }
+        }
 
-		$store       = $order->getStore();
-		$pageSuccess = $store->getConfig( 'pay_payment/general/page_success' );
-		$session     = Mage::getSingleton( 'checkout/session' );
-		$sessionData = $session->getPaynlPaymentData();
+		$result = parent::startPayment( $order, $transaction_amount, $terminalId );
 
-		$terminalId = $order->getPayment()->getAdditionalInformation( 'terminalId' );
-		if ( empty( $terminalId ) ) {
-			if ( isset( $_POST['payment']['terminalId'] ) ) {
-				$terminalId = $_POST['payment']['terminalId'];
-			} elseif ( isset( $sessionData['terminalId'] ) ) {
-				$terminalId = $sessionData['terminalId'];
-			}
-		}
+		if($result['exception']){
+            throw $result['exception'];
+        }
+        self::$_redirectUrl = $result['url'];
+		$order->getPayment()->setAdditionalInformation('paynl_status_url', $result['url']);
+		return $result;
 
-		if ( $sendToTerminalResult = self::sendToTerminal( $result['transactionId'], $terminalId, $order ) ) {
-			if ( is_string( $sendToTerminalResult ) ) {
-				$pageSuccess = $sendToTerminalResult;
-			}
-			$result['url']      = $pageSuccess;
-			self::$_redirectUrl = $pageSuccess;
-
-			return $result;
-		} else {
-			Mage::throwException( 'Payment canceled' );
-		}
 	}
 }
     
