@@ -8,3 +8,7 @@ Shipping,Verzending
 "Om met billink te betalen, moet je akkoord gaan met de voorwaarden","Om met billink te betalen, moet je akkoord gaan met de voorwaarden"
 "Betaling geannuleerd","Betaling geannuleerd"
 "Algemene instellingen","Algemene instellingen"
+"Deduct paymentfee tax from invoice","Betaalkosten btw van factuur aftrekken"
+"In some magento installations the payment fee tax is added to the invoice twice. If you have this problem, enable this setting","In sommige magento installaties wordt de btw over de betaalkosten dubbel gefactureerd. Als je hier last van hebt, schakel dan deze optie in"
+"Never cancel orders","Orders nooit annuleren"
+"Enable this if you want orders to stay pending, even when the payment is canceled","Schakel dit in als je wilt dat orders altijd 'pending' blijven, zelfs als de betaling wordt geannuleerd"
