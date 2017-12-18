@@ -242,6 +242,8 @@
                 <enable_refund>1</enable_refund>
                 <show_fee>1</show_fee>
                 <extended_logging>0</extended_logging>
+                <never_cancel>0</never_cancel>
+                <deduct_tax_fee_invoicing>0</deduct_tax_fee_invoicing>
             </general>
         </pay_payment>
         <payment>

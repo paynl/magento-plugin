@@ -94,6 +94,7 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
         }
 
         $autoInvoice = $store->getConfig('pay_payment/general/auto_invoice');
+        $neverCancel = $store->getConfig('pay_payment/general/never_cancel');
         $invoiceEmail = $store->getConfig('pay_payment/general/invoice_email');
 
         if($invoiceEmail){
@@ -283,13 +284,21 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
                 if($extended_logging) $order->addStatusHistoryComment('Closing authorization');
                 $order->getPayment()->getAuthorizationTransaction()->close(true);
             }
-            $order->cancel();
-            if($extended_logging) $order->addStatusHistoryComment('Order canceled');
-            $order->save();
-            $sendStatusupdates = $store->getConfig('pay_payment/general/send_statusupdates');
-            if ($sendStatusupdates) {
-                $order->sendOrderUpdateEmail();
+            if($neverCancel){
+                if($extended_logging){
+                    $order->addStatusHistoryComment('Order not canceled, never cancel order is turned on');
+                    $order->save();
+                }
+            } else {
+                $order->cancel();
+                if($extended_logging) $order->addStatusHistoryComment('Order canceled');
+                $order->save();
+                $sendStatusupdates = $store->getConfig('pay_payment/general/send_statusupdates');
+                if ($sendStatusupdates) {
+                    $order->sendOrderUpdateEmail();
+                }
             }
+
             // transactie in pay tabel updaten
             $transaction->setStatus($status);
             $transaction->setLastUpdate(time());
