@@ -1,6 +1,6 @@
 <?php 
     $_code=$this->getMethodCode();
-    
+$instructions = $this->getInstructions();
     $terminals = $this->getTerminals();
 ?>
 <ul class="form-list" id="payment_form_<?php echo $_code ?>" style="display:none;">
@@ -13,7 +13,11 @@
 
         </select>
     </li>
-    
+    <?php
+    if(!empty($instructions)){
+        echo "<li>".nl2br($instructions)."</li>";
+    }
+    ?>
 </ul>
 <div>
     <?php echo $this->getMethod()->getConfigData('message');?>

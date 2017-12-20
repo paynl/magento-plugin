@@ -1,6 +1,6 @@
 <?php 
     $_code=$this->getMethodCode();
-    
+    $instructions = $this->getInstructions();
     $banks = $this->getBanks();
 ?>
 <ul class="form-list" id="payment_form_<?php echo $_code ?>" style="display:none;">
@@ -9,6 +9,9 @@
     foreach($banks as $bank){
         echo "<li><input id='".$_code."_".$bank->getOptionSubId()."' type='radio' name='payment[option_sub]' value='".$bank->getOptionSubId()."' class='radio' />"
                 . "<label style='float:none;' for='".$_code."_".$bank->getOptionSubId()."'> <img title='".$bank->getName()."' src='".$bank->getImage()."' /></label></li>";
+    }
+    if(!empty($instructions)){
+        echo "<li>".nl2br($instructions)."</li>";
     }
     ?>
 </ul>

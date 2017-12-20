@@ -1,7 +1,8 @@
 <?php
-/** @var Pay_Payment_Model_Paymentmethod $this */
+/** @var Pay_Payment_Block_Form_Abstract $this */
 $_code = $this->getMethodCode();
 $dob = $this->getDob();
+$instructions = $this->getInstructions();
 
 list($dobYear,$dobMonth,$dobDay) = explode('-',$dob);
 
@@ -32,7 +33,11 @@ list($dobYear,$dobMonth,$dobDay) = explode('-',$dob);
     <li>
         <input type="text" id="iban" name="payment[iban]" value="<?php echo $this->getIban(); ?>" title="iban" class="input-text" placeholder="iban">
     </li>
-
+    <?php
+    if(!empty($instructions)){
+        echo "<li>".nl2br($instructions)."</li>";
+    }
+    ?>
 </ul>
 <div>
     <?php echo $this->getMethod()->getConfigData('message'); ?>

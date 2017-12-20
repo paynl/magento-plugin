@@ -1,6 +1,6 @@
 <?php
 $_code = $this->getMethodCode();
-
+$instructions = $this->getInstructions();
 $dob = $this->getDob();
 /** @var Mage_Sales_Model_Quote $quote */
 $quote = $this->getQuote();
@@ -31,6 +31,11 @@ list($dobYear, $dobMonth, $dobDay) = explode('-', $dob);
                 <label for="year">YYYY</label>
             </div>
     </li>
+    <?php
+    if(!empty($instructions)){
+        echo "<li>".nl2br($instructions)."</li>";
+    }
+    ?>
 </ul>
 <div>
     <?php echo $this->getMethod()->getConfigData('message'); ?>

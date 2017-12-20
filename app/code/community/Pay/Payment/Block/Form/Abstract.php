@@ -102,6 +102,9 @@ class Pay_Payment_Block_Form_Abstract extends Mage_Payment_Block_Form
 
         return $dob;
     }
+    protected function getInstructions(){
+        return $this->getMethod()->getConfigData('instructions');
+    }
 
 
 }

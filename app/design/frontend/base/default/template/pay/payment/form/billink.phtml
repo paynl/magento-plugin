@@ -2,8 +2,8 @@
 /**
  * @var Pay_Payment_Block_Form_Billink $this
  */
-
 $_code = $this->getMethodCode();
+$instructions = $this->getInstructions();
 
 $dob = $this->getDob();
 if (! empty($dob)) {
@@ -68,7 +68,11 @@ $enableBusiness = Mage::getStoreConfig('payment/pay_payment_billink/ask_data_bus
     <li class="input-box">
         <input id="billink_agree" type="checkbox" value="1" name="payment[billink_agree]" /> <label for="billink_agree">Ik ga akkoord met de</label> <a target="new" href="http://billink.nl/voorwaarden/gebruikersvoorwaarden.pdf">betalingsvoorwaarden</a>
     </li>
-
+    <?php
+    if(!empty($instructions)){
+        echo "<li>".nl2br($instructions)."</li>";
+    }
+    ?>
 </ul>
 <div>
     <?php echo $this->getMethod()->getConfigData('message'); ?>

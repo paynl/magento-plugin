@@ -1,0 +1,13 @@
+<?php
+$_code = $this->getMethodCode();
+$instructions = $this->getInstructions();
+
+?>
+
+<ul class="form-list" id="payment_form_<?php echo $_code ?>" style="display:none;">
+    <?php
+        if(!empty($instructions)){
+            echo "<li>".nl2br($instructions)."</li>";
+        }
+    ?>
+</ul>

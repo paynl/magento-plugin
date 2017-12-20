@@ -655,6 +655,19 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_afterpay/invoice_email</config_path>
                         </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_afterpay/instructions</config_path>
+                        </instructions>
                     </fields>
                 </pay_payment_afterpay>
                 <pay_payment_afterpayem type="group" translate="label" module="pay_payment">
@@ -894,6 +907,19 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_afterpayem/invoice_email</config_path>
                         </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_afterpayem/instructions</config_path>
+                        </instructions>
                     </fields>
                 </pay_payment_afterpayem>
                 <pay_payment_amazonpay type="group" translate="label" module="pay_payment">
@@ -1134,6 +1160,19 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_amazonpay/invoice_email</config_path>
                         </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_amazonpay/instructions</config_path>
+                        </instructions>
                     </fields>
                 </pay_payment_amazonpay>
                 <pay_payment_amex type="group" translate="label" module="pay_payment">
@@ -1374,6 +1413,19 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_amex/invoice_email</config_path>
                         </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_amex/instructions</config_path>
+                        </instructions>
                     </fields>
                 </pay_payment_amex>
                 <pay_payment_billink type="group" translate="label" module="pay_payment">
@@ -1641,6 +1693,19 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_billink/invoice_email</config_path>
                         </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_billink/instructions</config_path>
+                        </instructions>
                     </fields>
                 </pay_payment_billink>
                 <pay_payment_bitcoin type="group" translate="label" module="pay_payment">
@@ -1880,6 +1945,19 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_bitcoin/invoice_email</config_path>
                         </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_bitcoin/instructions</config_path>
+                        </instructions>
                     </fields>
                 </pay_payment_bitcoin>
                 <pay_payment_capayable type="group" translate="label" module="pay_payment">
@@ -2120,6 +2198,19 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_capayable/invoice_email</config_path>
                         </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_capayable/instructions</config_path>
+                        </instructions>
                     </fields>
                 </pay_payment_capayable>
                 <pay_payment_capayablegespreid type="group" translate="label" module="pay_payment">
@@ -2361,6 +2452,19 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_capayablegespreid/invoice_email</config_path>
                         </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_capayablegespreid/instructions</config_path>
+                        </instructions>
                     </fields>
                 </pay_payment_capayablegespreid>
                 <pay_payment_cartebleue type="group" translate="label" module="pay_payment">
@@ -2601,6 +2705,19 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_cartebleue/invoice_email</config_path>
                         </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_cartebleue/instructions</config_path>
+                        </instructions>
                     </fields>
                 </pay_payment_cartebleue>
                 <pay_payment_fashioncheque type="group" translate="label" module="pay_payment">
@@ -2841,6 +2958,19 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_fashioncheque/invoice_email</config_path>
                         </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_fashioncheque/instructions</config_path>
+                        </instructions>
                     </fields>
                 </pay_payment_fashioncheque>
                 <pay_payment_fashiongiftcard type="group" translate="label" module="pay_payment">
@@ -3081,6 +3211,19 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_fashiongiftcard/invoice_email</config_path>
                         </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_fashiongiftcard/instructions</config_path>
+                        </instructions>
                     </fields>
                 </pay_payment_fashiongiftcard>
                 <pay_payment_focum type="group" translate="label" module="pay_payment">
@@ -3321,6 +3464,19 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_focum/invoice_email</config_path>
                         </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_focum/instructions</config_path>
+                        </instructions>
                     </fields>
                 </pay_payment_focum>
                 <pay_payment_gezondheidsbon type="group" translate="label" module="pay_payment">
@@ -3561,6 +3717,19 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_gezondheidsbon/invoice_email</config_path>
                         </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_gezondheidsbon/instructions</config_path>
+                        </instructions>
                     </fields>
                 </pay_payment_gezondheidsbon>
                 <pay_payment_giropay type="group" translate="label" module="pay_payment">
@@ -3801,6 +3970,19 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_giropay/invoice_email</config_path>
                         </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_giropay/instructions</config_path>
+                        </instructions>
                     </fields>
                 </pay_payment_giropay>
                 <pay_payment_givacard type="group" translate="label" module="pay_payment">
@@ -4041,6 +4223,19 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_givacard/invoice_email</config_path>
                         </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_givacard/instructions</config_path>
+                        </instructions>
                     </fields>
                 </pay_payment_givacard>
                 <pay_payment_ideal type="group" translate="label" module="pay_payment">
@@ -4307,6 +4502,19 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_ideal/invoice_email</config_path>
                         </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_ideal/instructions</config_path>
+                        </instructions>
                     </fields>
                 </pay_payment_ideal>
                 <pay_payment_incasso type="group" translate="label" module="pay_payment">
@@ -4546,6 +4754,19 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_incasso/invoice_email</config_path>
                         </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_incasso/instructions</config_path>
+                        </instructions>
                     </fields>
                 </pay_payment_incasso>
                 <pay_payment_instore type="group" translate="label" module="pay_payment">
@@ -4812,6 +5033,19 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_instore/invoice_email</config_path>
                         </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_instore/instructions</config_path>
+                        </instructions>
                     </fields>
                 </pay_payment_instore>
                 <pay_payment_klarna type="group" translate="label" module="pay_payment">
@@ -5053,6 +5287,19 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_klarna/invoice_email</config_path>
                         </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_klarna/instructions</config_path>
+                        </instructions>
                     </fields>
                 </pay_payment_klarna>
                 <pay_payment_maestro type="group" translate="label" module="pay_payment">
@@ -5292,6 +5539,19 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_maestro/invoice_email</config_path>
                         </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_maestro/instructions</config_path>
+                        </instructions>
                     </fields>
                 </pay_payment_maestro>
                 <pay_payment_mistercash type="group" translate="label" module="pay_payment">
@@ -5531,6 +5791,19 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_mistercash/invoice_email</config_path>
                         </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_mistercash/instructions</config_path>
+                        </instructions>
                     </fields>
                 </pay_payment_mistercash>
                 <pay_payment_mybank type="group" translate="label" module="pay_payment">
@@ -5770,6 +6043,19 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_mybank/invoice_email</config_path>
                         </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_mybank/instructions</config_path>
+                        </instructions>
                     </fields>
                 </pay_payment_mybank>
                 <pay_payment_overboeking type="group" translate="label" module="pay_payment">
@@ -6009,6 +6295,19 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_mybank/invoice_email</config_path>
                         </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_overboeking/instructions</config_path>
+                        </instructions>
                     </fields>
                 </pay_payment_overboeking>
                 <pay_payment_paypal type="group" translate="label" module="pay_payment">
@@ -6249,6 +6548,19 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_paypal/invoice_email</config_path>
                         </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_paypal/instructions</config_path>
+                        </instructions>
                     </fields>
                 </pay_payment_paypal>
                 <pay_payment_paysafecard type="group" translate="label" module="pay_payment">
@@ -6488,6 +6800,19 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_paysafecard/invoice_email</config_path>
                         </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_paysafecard/instructions</config_path>
+                        </instructions>
                     </fields>
                 </pay_payment_paysafecard>
                 <pay_payment_podiumkadokaart type="group" translate="label" module="pay_payment">
@@ -6727,6 +7052,19 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_podiumkadokaart/invoice_email</config_path>
                         </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_podiumkadokaart/instructions</config_path>
+                        </instructions>
                     </fields>
                 </pay_payment_podiumkadokaart>
                 <pay_payment_postepay type="group" translate="label" module="pay_payment">
@@ -6966,6 +7304,19 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_postepay/invoice_email</config_path>
                         </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_postepay/instructions</config_path>
+                        </instructions>
                     </fields>
                 </pay_payment_postepay>
                 <pay_payment_sofortbanking type="group" translate="label" module="pay_payment">
@@ -7205,6 +7556,19 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_sofortbanking/invoice_email</config_path>
                         </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_sofortbanking/instructions</config_path>
+                        </instructions>
                     </fields>
                 </pay_payment_sofortbanking>
                 <pay_payment_telefoon type="group" translate="label" module="pay_payment">
@@ -7444,6 +7808,19 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_telefoon/invoice_email</config_path>
                         </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_telefoon/instructions</config_path>
+                        </instructions>
                     </fields>
                 </pay_payment_telefoon>
                 <pay_payment_visamastercard type="group" translate="label" module="pay_payment">
@@ -7683,6 +8060,19 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_visamastercard/invoice_email</config_path>
                         </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_visamastercard/instructions</config_path>
+                        </instructions>
                     </fields>
                 </pay_payment_visamastercard>
                 <pay_payment_vvvgiftcard type="group" translate="label" module="pay_payment">
@@ -7922,6 +8312,19 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_vvvgiftcard/invoice_email</config_path>
                         </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_vvvgiftcard/instructions</config_path>
+                        </instructions>
                     </fields>
                 </pay_payment_vvvgiftcard>
                 <pay_payment_webshopgiftcard type="group" translate="label" module="pay_payment">
@@ -8161,6 +8564,19 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_webshopgiftcard/invoice_email</config_path>
                         </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_webshopgiftcard/instructions</config_path>
+                        </instructions>
                     </fields>
                 </pay_payment_webshopgiftcard>
                 <pay_payment_wijncadeau type="group" translate="label" module="pay_payment">
@@ -8400,6 +8816,19 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_wijncadeau/invoice_email</config_path>
                         </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_wijncadeau/instructions</config_path>
+                        </instructions>
                     </fields>
                 </pay_payment_wijncadeau>
                 <pay_payment_yehhpay type="group" translate="label" module="pay_payment">
@@ -8639,6 +9068,19 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_yehhpay/invoice_email</config_path>
                         </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_yehhpay/instructions</config_path>
+                        </instructions>
                     </fields>
                 </pay_payment_yehhpay>
                 <pay_payment_yourgift type="group" translate="label" module="pay_payment">
@@ -8878,6 +9320,19 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_yourgift/invoice_email</config_path>
                         </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_yourgift/instructions</config_path>
+                        </instructions>
                     </fields>
                 </pay_payment_yourgift>
             </groups>

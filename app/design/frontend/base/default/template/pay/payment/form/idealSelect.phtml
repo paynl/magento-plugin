@@ -1,19 +1,24 @@
 <?php 
     $_code=$this->getMethodCode();
-    
+$instructions = $this->getInstructions();
     $banks = $this->getBanks();
 ?>
 <ul class="form-list" id="payment_form_<?php echo $_code ?>" style="display:none;">
     <li><?php echo Mage::getStoreConfig('payment/'.$_code.'/text_bankselect', Mage::app()->getStore()); ?></li>
+    <li>
     <select name='payment[option_sub]' >
         <option value=''><?php echo Mage::getStoreConfig('payment/'.$_code.'/text_bankselect', Mage::app()->getStore()); ?></option>
     <?php
     foreach($banks as $bank){
         echo "<option value='".$bank->getOptionSubId()."'>".$bank->getName()."</option>";
     }?>
-        
     </select>
-    
+    </li>
+    <?php
+    if(!empty($instructions)){
+        echo "<li>".nl2br($instructions)."</li>";
+    }
+    ?>
 </ul>
 <div>
     <?php echo $this->getMethod()->getConfigData('message');?>
