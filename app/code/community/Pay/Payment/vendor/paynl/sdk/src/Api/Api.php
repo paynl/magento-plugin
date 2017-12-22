@@ -27,94 +27,122 @@ use Paynl\Helper;
  *
  * @author Andy Pieters <andy@andypieters.nl>
  */
-class Api
-{
-    protected $version = 1;
+class Api {
+	/**
+	 * @var int the version of the api
+	 */
+	protected $version = 1;
 
-    protected $data = array();
+	/**
+	 * @var array
+	 */
+	protected $data = array();
 
-    /**
-     * @var bool Is the ApiToken required for this API
-     */
-    protected $apiTokenRequired = false;
-    /**
-     * @var bool Is the serviceId required for this API
-     */
-    protected $serviceIdRequired = false;
+	/**
+	 * @var bool Is the ApiToken required for this API
+	 */
+	protected $apiTokenRequired = false;
+	/**
+	 * @var bool Is the serviceId required for this API
+	 */
+	protected $serviceIdRequired = false;
 
-    public function isApiTokenRequired()
-    {
-        return $this->apiTokenRequired;
-    }
+	/**
+	 * @param $endpoint
+	 * @param null|int $version
+	 *
+	 * @return array
+	 *
+	 * @throws Error\Api
+	 * @throws Error\Error
+	 */
+	public function doRequest( $endpoint, $version = null ) {
+		if ( $version === null ) {
+			$version = $this->version;
+		}
 
-    public function isServiceIdRequired()
-    {
-        return $this->serviceIdRequired;
-    }
+		$data = $this->getData();
 
-    protected function getData()
-    {
-        if($this->isApiTokenRequired()) {
-            Helper::requireApiToken();
+		$uri = Config::getApiUrl( $endpoint, (int) $version );
 
-            $this->data['token'] = Config::getApiToken();
-        }
-        if($this->isServiceIdRequired()){
-            Helper::requireServiceId();
+		$curl = Config::getCurl();
 
-            $this->data['serviceId'] = Config::getServiceId();
-        }
-        return $this->data;
-    }
+		if ( Config::getCAInfoLocation() ) {
+			// set a custom CAInfo file
+			$curl->setOpt( CURLOPT_CAINFO, Config::getCAInfoLocation() );
+		}
 
-    protected function processResult($result)
-    {
-        $output = Helper::objectToArray($result);
+		$curl->setOpt( CURLOPT_SSL_VERIFYPEER, Config::getVerifyPeer() );
 
-        if(!is_array($output)){
-            throw new Error\Api($output);
-        }
+		$result = $curl->post( $uri, $data );
 
-        if ($output['request']['result'] != 1 && $output['request']['result'] != 'TRUE') {
-            throw new Error\Api($output['request']['errorId'] . ' - ' . $output['request']['errorMessage']);
-        }
-        return $output;
-    }
+		if ( isset( $result->status ) && $result->status === 'FALSE' ) {
+			throw new Error\Api( $result->error );
+		}
 
-    public function doRequest($endpoint, $version = null)
-    {
-        if(is_null($version)){
-            $version = $this->version;
-        }
+		if ( $curl->error ) {
+			throw new Error\Error( $curl->errorMessage );
+		}
 
-        $data = $this->getData();
+		return $this->processResult( $result );
+	}
 
+	/**
+	 * @return array
+	 * @throws Error\Required\ApiToken
+	 * @throws Error\Required\ServiceId
+	 */
+	protected function getData() {
+		if ( $this->isApiTokenRequired() ) {
+			Helper::requireApiToken();
+			$this->data['token'] = Config::getApiToken();
+		}
+		if ( $this->isServiceIdRequired() ) {
+			Helper::requireServiceId();
+			$this->data['serviceId'] = Config::getServiceId();
+		}
 
-        $uri = Config::getApiUrl($endpoint, $version);
+		return $this->data;
+	}
 
-        $curl = Config::getCurl();
+	/**
+	 * @return bool
+	 */
+	public function isApiTokenRequired() {
+		return $this->apiTokenRequired;
+	}
 
-        if(Config::getCAInfoLocation()){
-            // set a custom CAInfo file
-            $curl->setOpt(CURLOPT_CAINFO, Config::getCAInfoLocation());
-        }
+	/**
+	 * @return bool
+	 */
+	public function isServiceIdRequired() {
+		return $this->serviceIdRequired;
+	}
 
-        $verifyPeer = Config::getVerifyPeer();
-        $curl->setOpt(CURLOPT_SSL_VERIFYPEER, $verifyPeer);
+	/**
+	 * @param object|array $result
+	 *
+	 * @return array
+	 * @throws Error\Api
+	 */
+	protected function processResult( $result ) {
+		$output = Helper::objectToArray( $result );
 
-        $result = $curl->post($uri, $data);
+		if ( ! is_array( $output ) ) {
+			throw new Error\Api( $output );
+		}
 
-        if($curl->error){
-            if(!empty($result)) {
-                if ($result->status == "FALSE") {
-                    throw new Error\Api($result->error);
-                }
-            }
-            throw new Error\Error($curl->errorMessage);
-        }
+		if ( isset( $output['result'] ) ) {
+			return $output;
+		}
 
-        $output = static::processResult($result);
+		if (
+			isset( $output['request'] ) &&
+			$output['request']['result'] != 1 &&
+			$output['request']['result'] !== 'TRUE' ) {
+			throw new Error\Api( $output['request']['errorId'] . ' - ' . $output['request']['errorMessage'] );
+		}
 
-        return $output;
-    }
+		return $output;
+	}
 }

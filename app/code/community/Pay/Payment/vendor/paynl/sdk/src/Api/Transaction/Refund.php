@@ -28,7 +28,6 @@ use Paynl\Error;
 class Refund extends Transaction
 {
     protected $apiTokenRequired = true;
-    protected $serviceIdRequired = false;
 
     /**
      * @var string the transactionId
@@ -43,26 +42,10 @@ class Refund extends Transaction
      * @var string the description for this refund
      */
     private $description;
-
     /**
-     * Get data to send to the api
-     *
-     * @return array
-     * @throws Error\Required
+     * @var \DateTime the date the refund should take place
      */
-    protected function getData()
-    {
-        if (empty($this->transactionId)) {
-            throw new Error\Required('TransactionId is niet geset');
-        }
-        $this->data['transactionId'] = $this->transactionId;
-
-        if (!empty($this->amount)) {
-            $this->data['amount'] = $this->amount;
-        }
-
-        return parent::getData();
-    }
+    private $processDate;
 
     /**
      * @param string $transactionId
@@ -89,9 +72,40 @@ class Refund extends Transaction
     }
 
     /**
-     * @param null $endpoint
-     * @param null $version
-     * @return array
+     * @param \DateTime $processDate
+     */
+    public function setProcessDate(\DateTime $processDate)
+    {
+        $this->processDate = $processDate;
+    }
+
+    /**
+     * @inheritdoc
+     * @throws Error\Required TransactionId is required
+     */
+    protected function getData()
+    {
+        if (empty($this->transactionId)) {
+            throw new Error\Required('TransactionId is required');
+        }
+
+        $this->data['transactionId'] = $this->transactionId;
+
+        if (!empty($this->amount)) {
+            $this->data['amount'] = $this->amount;
+        }
+	    if (!empty($this->description)) {
+		    $this->data['description'] = $this->description;
+	    }
+        if ($this->processDate instanceof \DateTime) {
+            $this->data['processDate'] = $this->processDate->format('d-m-Y');
+        }
+
+        return parent::getData();
+    }
+
+    /**
+     * @inheritdoc
      */
     public function doRequest($endpoint = null, $version = null)
     {
