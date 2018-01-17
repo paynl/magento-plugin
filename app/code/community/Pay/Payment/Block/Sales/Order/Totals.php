@@ -28,7 +28,7 @@ class Pay_Payment_Block_Sales_Order_Totals extends Mage_Sales_Block_Order_Totals
       {
         if ($index == "grand_total")
         {
-          if (((float)$this->getSource()->getPaymentCharge()) != 0)
+          if (((float)$this->getSource()->getPaynlPaymentCharge()) != 0)
           {
             $label = Mage::getStoreConfig('pay_payment/general/text_payment_charge', Mage::app()->getStore());
             $newTotals['payment_charge'] = new Varien_Object(array(

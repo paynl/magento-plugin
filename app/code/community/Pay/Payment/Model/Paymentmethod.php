@@ -460,7 +460,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
             $arrProducts[] = $shipping;
         }
 
-        $extraFee = $order->getPaymentCharge();
+        $extraFee = $order->getPaynlPaymentCharge();
 
         if ($extraFee != 0) {
             $payment = $order->getPayment();
