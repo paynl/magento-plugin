@@ -54,7 +54,12 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
             return;
         }
 
-        $paidAmount = $transaction->getPaidAmount();
+        $paidAmount = $transaction->getPaidCurrencyAmount();
+
+        if($store->getConfig('pay_payment/general/only_base_currency') == 1){
+            $paidAmount = $transaction->getPaidAmount();
+        }
+
         $endUserId = $transaction->getAccountNumber();
 
         if($extended_logging) $order->addStatusHistoryComment('Processing exchange with status '. $status);
@@ -96,6 +101,7 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
         $autoInvoice = $store->getConfig('pay_payment/general/auto_invoice');
         $neverCancel = $store->getConfig('pay_payment/general/never_cancel');
         $invoiceEmail = $store->getConfig('pay_payment/general/invoice_email');
+        $onlyBaseCurrency = $store->getConfig('pay_payment/general/only_base_currency') == 1;
 
         if($invoiceEmail){
             $invoiceEmail = $store->getConfig('payment/' . $payment->getMethod() . '/invoice_email');
@@ -115,11 +121,17 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
                 $this->uncancel($order);
             }
 
+
             $orderAmount = $order->getGrandTotal()*1;
+            if($onlyBaseCurrency){
+                $orderAmount = $order->getBaseGrandTotal()*1;
+            }
+
             $paidAmount = $paidAmount*1;
 
 	        if( $payment->getMethod() == 'multipaymentforpos' ) {
 		        $order->setTotalPaid( $order->getTotalPaid() + $paidAmount );
+		        $order->setBaseTotalPaid($order->getBaseTotalPaid() + $paidAmount);
 	        }
 
             //controleren of het gehele bedrag betaald is
@@ -128,6 +140,7 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
 
                 if($payment->getMethod() == 'pay_payment_instore'){
                     $order->setTotalPaid( $order->getTotalPaid() + $paidAmount );
+                    $order->setBaseTotalPaid($order->getBaseTotalPaid() + $paidAmount);
                 }
             }
 
@@ -135,13 +148,21 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
             if ($autoInvoice) {
                 if($extended_logging) $order->addStatusHistoryComment('Starting invoicing');
                 $payment->setTransactionId($transactionId);
-                $payment->setCurrencyCode($order->getOrderCurrencyCode());
+                $payment->setCurrencyCode($order->getBaseCurrencyCode());
+
+
+                $captureAmount = $paidAmount;
+                // Always register the payment in base currency because other currencies are always suspected fraud
+                if($order->getOrderCurrency() != $order->getBaseCurrency()){
+                    $captureAmount = $order->getBaseGrandTotal();
+                }
+
                 $payment->setShouldCloseParentTransaction(true);
                 $payment->setIsTransactionClosed(0);
 
 
                 $payment->registerCaptureNotification(
-                    $paidAmount, true
+                    $captureAmount, true
                 );
 
                 $invoice = $this->_getInvoiceForTransactionId($order, $transactionId);
@@ -261,7 +282,9 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
             $auth_transaction->save();
             $payment->save();
 
-            $order->setState(Mage_Sales_Model_Order::STATE_PROCESSING, 'processing', '', false);
+            $authorizedStatus = $store->getConfig('payment/' . $payment->getMethod() . '/order_status_authorized');
+
+            $order->setState(Mage_Sales_Model_Order::STATE_PROCESSING, $authorizedStatus, '', false);
 
             $order->save();
 

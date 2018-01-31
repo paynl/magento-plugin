@@ -255,6 +255,16 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </never_cancel>
+                        <only_base_currency translate="label comment">
+                            <label>Always use base currency</label>
+                            <comment>Enable this if you only want to process orders in the base currency. Base currency must be EUR</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </only_base_currency>
                     </fields>
                 </general>
                 <loaded_payment_methods translate="label" module="pay_payment">
@@ -349,6 +359,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_paylink/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_paylink/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label comment">
                             <depends>
                                 <active>1</active>
@@ -587,6 +611,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_afterpay/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_afterpay/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label comment">
                             <depends>
                                 <active>1</active>
@@ -839,6 +877,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_afterpayem/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_afterpayem/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label comment">
                             <depends>
                                 <active>1</active>
@@ -1091,6 +1143,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_amazonpay/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_amazonpay/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label">
                             <depends>
                                 <active>1</active>
@@ -1344,6 +1410,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_amex/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_amex/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label">
                             <depends>
                                 <active>1</active>
@@ -1625,6 +1705,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_billink/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_billink/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label">
                             <depends>
                                 <active>1</active>
@@ -1877,6 +1971,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_bitcoin/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_bitcoin/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label">
                             <depends>
                                 <active>1</active>
@@ -2130,6 +2238,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_capayable/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_capayable/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label">
                             <depends>
                                 <active>1</active>
@@ -2384,6 +2506,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_capayablegespreid/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_capayablegespreid/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label">
                             <depends>
                                 <active>1</active>
@@ -2638,6 +2774,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_cartasi/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_cartasi/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label">
                             <depends>
                                 <active>1</active>
@@ -2892,6 +3042,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_cartebleue/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_cartebleue/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label">
                             <depends>
                                 <active>1</active>
@@ -3146,6 +3310,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_dankort/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_dankort/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label">
                             <depends>
                                 <active>1</active>
@@ -3400,6 +3578,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_fashioncheque/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_fashioncheque/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label">
                             <depends>
                                 <active>1</active>
@@ -3653,6 +3845,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_fashiongiftcard/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_fashiongiftcard/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label">
                             <depends>
                                 <active>1</active>
@@ -3906,6 +4112,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_focum/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_focum/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label">
                             <depends>
                                 <active>1</active>
@@ -4157,8 +4377,22 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                            <config_path>payment/pay_payment_verify/order_status_verify</config_path>
+                            <config_path>payment/pay_payment_gezondheidsbon/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_gezondheidsbon/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label">
                             <depends>
                                 <active>1</active>
@@ -4412,6 +4646,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_giropay/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_giropay/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label">
                             <depends>
                                 <active>1</active>
@@ -4665,6 +4913,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_givacard/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_givacard/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label">
                             <depends>
                                 <active>1</active>
@@ -4944,6 +5206,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_ideal/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_ideal/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label">
                             <depends>
                                 <active>1</active>
@@ -5196,6 +5472,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_incasso/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_incasso/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label">
                             <depends>
                                 <active>1</active>
@@ -5475,6 +5765,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_instore/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_instore/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label">
                             <depends>
                                 <active>1</active>
@@ -5729,6 +6033,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_klarna/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_klarna/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label">
                             <depends>
                                 <active>1</active>
@@ -5981,6 +6299,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_maestro/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_maestro/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label">
                             <depends>
                                 <active>1</active>
@@ -6233,6 +6565,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_mistercash/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_mistercash/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label">
                             <depends>
                                 <active>1</active>
@@ -6485,6 +6831,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_mybank/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_mybank/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label">
                             <depends>
                                 <active>1</active>
@@ -6737,6 +7097,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_overboeking/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_overboeking/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label">
                             <depends>
                                 <active>1</active>
@@ -6990,6 +7364,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_paypal/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_paypal/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label">
                             <depends>
                                 <active>1</active>
@@ -7242,6 +7630,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_paysafecard/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_paysafecard/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label">
                             <depends>
                                 <active>1</active>
@@ -7494,6 +7896,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_podiumkadokaart/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_podiumkadokaart/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label">
                             <depends>
                                 <active>1</active>
@@ -7746,6 +8162,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_postepay/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_postepay/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label">
                             <depends>
                                 <active>1</active>
@@ -7998,6 +8428,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_sofortbanking/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_sofortbanking/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label">
                             <depends>
                                 <active>1</active>
@@ -8250,6 +8694,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_telefoon/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_telefoon/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label">
                             <depends>
                                 <active>1</active>
@@ -8502,6 +8960,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_visamastercard/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_visamastercard/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label">
                             <depends>
                                 <active>1</active>
@@ -8754,6 +9226,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_vvvgiftcard/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_vvvgiftcard/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label">
                             <depends>
                                 <active>1</active>
@@ -9006,6 +9492,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_webshopgiftcard/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_webshopgiftcard/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label">
                             <depends>
                                 <active>1</active>
@@ -9258,6 +9758,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_wijncadeau/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_wijncadeau/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label">
                             <depends>
                                 <active>1</active>
@@ -9510,6 +10024,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_yehhpay/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_yehhpay/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label">
                             <depends>
                                 <active>1</active>
@@ -9762,6 +10290,20 @@
                             <show_in_store>1</show_in_store>
                             <config_path>payment/pay_payment_yourgift/order_status_verify</config_path>
                         </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_yourgift/order_status_authorized</config_path>
+                        </order_status_authorized>
                         <charge_type translate="label">
                             <depends>
                                 <active>1</active>

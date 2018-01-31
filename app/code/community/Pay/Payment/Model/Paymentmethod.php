@@ -7,9 +7,15 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
     protected $_isInitializeNeeded = true;
     protected $_canUseInternal = false;
     protected $_canUseForMultishipping = false;
-    protected $_canCapture = true;
+
     protected $_canRefund = true;
     protected $_canRefundInvoicePartial = true;
+
+    protected $_canAuthorize = true;
+    protected $_canCapture = true;
+    protected $_canVoid = true;
+
+    protected $_canCapturePartial = false;
 
     protected $_paymentOptionName;
 
@@ -47,6 +53,58 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         }
 
         return parent::isApplicableToQuote($quote, $checksBitMask);
+    }
+
+    public function capture(Varien_Object $payment, $amount)
+    {
+        $transaction = $payment->getAuthorizationTransaction();
+
+        if (!$transaction) {
+            Mage::throwException('Cannot find authorize transaction');
+        }
+        $transactionId = $transaction->getTxnId();
+
+        $order = $payment->getOrder();
+        $store = $order->getStore();
+
+        $this->helperData->loginSDK($store);
+
+        $this->helperData->lockTransaction($transactionId);
+
+        $result = \Paynl\Transaction::capture($transactionId);
+
+        $this->helperData->removeLock($transactionId);
+
+        return $result;
+    }
+
+
+    public function cancel(Varien_Object $payment)
+    {
+        return $this->void($payment);
+    }
+
+    public function void(Varien_Object $payment)
+    {
+        $transaction = $payment->getAuthorizationTransaction();
+
+        if (!$transaction) {
+            Mage::throwException('Cannot find authorize transaction');
+        }
+        $transactionId = $transaction->getTxnId();
+
+        $order = $payment->getOrder();
+        $store = $order->getStore();
+
+
+        $this->helperData->lockTransaction($transactionId);
+
+        $this->helperData->loginSDK($store);
+        $result = \Paynl\Transaction::void($transactionId);
+
+        $this->helperData->removeLock($transactionId);
+
+        return $result;
     }
 
     /**
@@ -223,6 +281,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         $session = Mage::getSingleton('checkout/session');
 
         $sendOrderData = $store->getConfig('pay_payment/general/send_order_data');
+        $onlyBaseCurrency = $store->getConfig('pay_payment/general/only_base_currency') == 1;
         $testMode = $store->getConfig('pay_payment/general/testmode');
 
         $additionalData = $session->getPaynlPaymentData();
@@ -236,14 +295,21 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
             $ipAddress = substr($ipAddress, 0, strpos($ipAddress, ','));
         }
 
+        $amount = $order->getGrandTotal();
+        $currency = $order->getOrderCurrencyCode();
+        if($onlyBaseCurrency){
+            $amount = $order->getBaseGrandTotal();
+            $currency = $order->getBaseCurrencyCode();
+        }
+
         $arrStartData = array(
-            'amount' => $order->getGrandTotal(),
+            'amount' => $amount,
             'testmode' => $testMode,
             'returnUrl' => Mage::getUrl('pay_payment/order/return', array('_store' => $store->getCode())),
             'exchangeUrl' => Mage::getUrl('pay_payment/order/exchange', array('_store' => $store->getCode())),
             'paymentMethod' => $optionId,
             'description' => $order->getIncrementId(),
-            'currency' => $order->getOrderCurrencyCode(),
+            'currency' => $currency,
             'extra1' => $order->getIncrementId(),
             'extra2' => $order->getCustomerEmail(),
             'ipAddress' => $ipAddress,
@@ -410,6 +476,9 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
 
     private static function getProducts(Mage_Sales_Model_Order $order)
     {
+        $store  = $order->getStore();
+        $onlyBaseCurrency = $store->getConfig('pay_payment/general/only_base_currency') == 1;
+
     	$helperData = Mage::helper('pay_payment');
         $arrProducts = array();
 
@@ -421,10 +490,15 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
             if ($price == 0) {
                 continue;
             }
+            $price = $item->getPriceInclTax();
+            if($onlyBaseCurrency){
+                $price = $item->getBasePriceInclTax();
+            }
+
             $product = array(
                 'id' => $item->getId(),
                 'name' => $item->getName(),
-                'price' => $item->getPriceInclTax(),
+                'price' => $price,
                 'vatPercentage' => $item->getTaxPercent(),
                 'qty' => $item->getQtyOrdered(),
                 'type' => \Paynl\Transaction::PRODUCT_TYPE_ARTICLE
@@ -433,6 +507,9 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         }
 
         $discountAmount = $order->getDiscountAmount();
+        if($onlyBaseCurrency){
+            $discountAmount = $order->getBaseDiscountAmount();
+        }
         if ($discountAmount < 0) {
             $discount = array(
                 'id' => 'discount',
@@ -447,12 +524,17 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         }
 
         $shipping = $order->getShippingInclTax();
+        $shipping_tax = $order->getShippingTaxAmount();
+        if($onlyBaseCurrency){
+            $shipping = $order->getBaseShippingInclTax();
+            $shipping_tax = $order->getBaseShippingTaxAmount();
+        }
         if ($shipping > 0) {
             $shipping = array(
                 'id' => 'shipping',
                 'name' => $order->getShippingDescription(),
-                'price' => $order->getShippingInclTax(),
-                'tax' => $order->getShippingTaxAmount(),
+                'price' => $shipping,
+                'tax' => $shipping_tax,
                 'qty' => 1,
                 'type' => \Paynl\Transaction::PRODUCT_TYPE_SHIPPING
             );
@@ -461,6 +543,9 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         }
 
         $extraFee = $order->getPaynlPaymentCharge();
+        if($onlyBaseCurrency){
+            $extraFee = $order->getPaynlBasePaymentCharge();
+        }
 
         if ($extraFee != 0) {
             $payment = $order->getPayment();
