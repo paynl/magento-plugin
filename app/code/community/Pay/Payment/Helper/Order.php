@@ -130,7 +130,6 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
             $paidAmount = $paidAmount*1;
 
 	        if( $payment->getMethod() == 'multipaymentforpos' ) { // multi payment
-		        $order->setBaseTotalPaid( $order->getBaseTotalPaid() + $paidAmount );
 		        $order->setTotalPaid( $order->getTotalPaid() + $paidAmount );
 		        $order->setBaseTotalPaid($order->getBaseTotalPaid() + $paidAmount);
 	        }
@@ -140,7 +139,6 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
                 $order->addStatusHistoryComment('Bedrag komt niet overeen. Order bedrag: ' . $orderAmount . ' Betaald: ' . $paidAmount);
 
                 if($payment->getMethod() == 'pay_payment_instore'){ // webpos partial payment (not multi)
-                    $order->setBaseTotalPaid( $order->getBaseTotalPaid() + $paidAmount );
                     $order->setTotalPaid( $order->getTotalPaid() + $paidAmount );
                     $order->setBaseTotalPaid($order->getBaseTotalPaid() + $paidAmount);
                 }
