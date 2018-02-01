@@ -27,6 +27,7 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
             $store = $order->getStore();
         }
         $extended_logging = Mage::getStoreConfig('pay_payment/general/extended_logging', $store);
+        $blockCapture = $store->getConfig('pay_payment/general/block_capture') == 1;
 
         if($extended_logging) $order->addStatusHistoryComment('Exchange call received from pay.nl');
 
@@ -52,6 +53,18 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
             $order->save();
             //we gaan geen update doen
             return;
+        }
+
+        $authTransaction = $order->getPayment()->getAuthorizationTransaction();
+
+        if( $status == Pay_Payment_Model_Transaction::STATE_SUCCESS &&
+            $authTransaction &&
+            $blockCapture
+        ){
+            if($extended_logging) $order->addStatusHistoryComment('Blocking capture because block capture is enabled and an authorize transaction is present.');
+            $order->save();
+
+            return $status;
         }
 
         $paidAmount = $transaction->getPaidCurrencyAmount();
