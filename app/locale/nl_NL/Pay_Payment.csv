@@ -12,3 +12,7 @@ Shipping,Verzending
 "In some magento installations the payment fee tax is added to the invoice twice. If you have this problem, enable this setting","In sommige magento installaties wordt de btw over de betaalkosten dubbel gefactureerd. Als je hier last van hebt, schakel dan deze optie in"
 "Never cancel orders","Orders nooit annuleren"
 "Enable this if you want orders to stay pending, even when the payment is canceled","Schakel dit in als je wilt dat orders altijd 'pending' blijven, zelfs als de betaling wordt geannuleerd"
+"Always use base currency","Altijd base currency gebruiken"
+"Enable this if you only want to process orders in the base currency. Base currency must be EUR", "Schakel dit in om altijd af te rekenen in de base currency, base currency moet EUR zijn"
+"Block capture", "Capture blokkeren"
+"Block the capture status if an authorize transaction is present to prevent unwanted order status changes", "Blokkeer capture status als er al een authorize transactie is. Dit voorkomt dat een order weer terug gezet wordt naar betaald nadat deze al is verzonden."
