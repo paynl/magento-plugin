@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Pay_Payment>
-            <version>3.11.3</version>
+            <version>3.11.4</version>
         </Pay_Payment>
     </modules>
     <global>
@@ -244,6 +244,7 @@
                 <extended_logging>0</extended_logging>
                 <never_cancel>0</never_cancel>
                 <deduct_tax_fee_invoicing>0</deduct_tax_fee_invoicing>
+                <include_tax_payment_charge>1</include_tax_payment_charge>
             </general>
         </pay_payment>
         <payment>

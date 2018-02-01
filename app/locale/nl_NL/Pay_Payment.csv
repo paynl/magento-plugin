@@ -12,3 +12,5 @@ Shipping,Verzending
 "In some magento installations the payment fee tax is added to the invoice twice. If you have this problem, enable this setting","In sommige magento installaties wordt de btw over de betaalkosten dubbel gefactureerd. Als je hier last van hebt, schakel dan deze optie in"
 "Never cancel orders","Orders nooit annuleren"
 "Enable this if you want orders to stay pending, even when the payment is canceled","Schakel dit in als je wilt dat orders altijd 'pending' blijven, zelfs als de betaling wordt geannuleerd"
+"Show payment charge including tax", "Toon betaalkosten inclusief belasting"
+"Enable this if you want to show the payment charge including tax", "Schakel dit in als je wil dat de betaalkosten inclusief belasting worden getoond"
