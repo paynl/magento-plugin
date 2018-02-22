@@ -33,10 +33,11 @@ class Pay_Payment_Helper_Voucher extends Mage_Core_Helper_Abstract {
         return Mage::app()->getStore();
     }
 
-    public function getBalance($cardNumber){
+    public function getBalance($cardNumber, $pincode = null){
         $this->pay_helper->loginSDK($this->getStore());
-        $voucher = \Paynl\Voucher::get($cardNumber);
-        return $voucher->getBalance();
+        $data = array('cardNumber' => $cardNumber);
+        if($pincode != null) $data['pincode']= $pincode;
+        return \Paynl\Voucher::balance($data);
     }
 
     public function capture($cardNumber, $amount, $pincode = null){
