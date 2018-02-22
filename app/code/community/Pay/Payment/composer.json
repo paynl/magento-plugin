@@ -1,5 +1,5 @@
 {
     "require": {
-        "paynl/sdk": "^1.2"
+        "paynl/sdk": "^1.4"
     }
 }

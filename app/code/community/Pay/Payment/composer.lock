@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "50755699e58e5bc8078862714d9ec24d",
+    "content-hash": "dd6811714d41555273ed44d9e5b3792f",
     "packages": [
         {
             "name": "paynl/sdk",
-            "version": "v1.4.0",
+            "version": "v1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paynl/sdk.git",
-                "reference": "b498d55a30c638cc4562b1fa384ed9594ff08382"
+                "reference": "888519b886f84e60a243e6d9bdf5077f66742bae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paynl/sdk/zipball/b498d55a30c638cc4562b1fa384ed9594ff08382",
-                "reference": "b498d55a30c638cc4562b1fa384ed9594ff08382",
+                "url": "https://api.github.com/repos/paynl/sdk/zipball/888519b886f84e60a243e6d9bdf5077f66742bae",
+                "reference": "888519b886f84e60a243e6d9bdf5077f66742bae",
                 "shasum": ""
             },
             "require": {
@@ -40,7 +40,7 @@
                     "email": "andy@pay.nl"
                 }
             ],
-            "time": "2017-11-29T14:13:54+00:00"
+            "time": "2018-02-22T09:20:14+00:00"
         },
         {
             "name": "php-curl-class/php-curl-class",
