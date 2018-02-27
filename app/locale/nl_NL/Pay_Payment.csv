@@ -16,3 +16,5 @@ Shipping,Verzending
 "Enable this if you only want to process orders in the base currency. Base currency must be EUR", "Schakel dit in om altijd af te rekenen in de base currency, base currency moet EUR zijn"
 "Block capture", "Capture blokkeren"
 "Block the capture status if an authorize transaction is present to prevent unwanted order status changes", "Blokkeer capture status als er al een authorize transactie is. Dit voorkomt dat een order weer terug gezet wordt naar betaald nadat deze al is verzonden."
+"Show payment charge including tax", "Toon betaalkosten inclusief belasting"
+"Enable this if you want to show the payment charge including tax", "Schakel dit in als je wil dat de betaalkosten inclusief belasting worden getoond"
