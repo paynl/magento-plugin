@@ -262,6 +262,19 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
                 }
             }
 
+            /**
+             * Sometimes totalpaid is not updated, but the payment and invoice are added.
+             * If this is the case, update totalpaid to the order amount
+             */
+            if($order->getTotalDue() != 0 &&
+               $order->getTotalDue() == $paidAmount && // only register the payment if totaldue equals the whole amount
+               $order->getTotalPaid() == 0 // skip this if this is a partial payment
+            ){
+                $order->setTotalPaid($order->getGrandTotal());
+                $order->setBaseTotalPaid($order->getBaseGrandTotal());
+                $order->addStatusHistoryComment('Pay.nl - Updated totalPaid, because it seems like the payment was not correctly registered');
+            }
+
             $order->save();
 
             //transactie in pay tabel updaten
