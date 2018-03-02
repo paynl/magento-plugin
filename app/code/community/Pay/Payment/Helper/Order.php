@@ -223,11 +223,12 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
                     $invoice->setTaxAmount($order->getTaxAmount());
                     $invoice->setBaseTaxAmount($order->getBaseTaxAmount());
                     $order->setTaxInvoiced($invoice->getTaxAmount());
+                    $invoice->save();
                     if ($invoiceEmail) {
                         $invoice->sendEmail();
                         $invoice->setEmailSent(true);
+                        $invoice->save();
                     }
-                    $invoice->save();
                 }
 
                 $payment->save();
