@@ -70,10 +70,10 @@ class Pay_Payment_OrderController extends Mage_Core_Controller_Front_Action
 
         if ($status == Pay_Payment_Model_Transaction::STATE_SUCCESS) {
 	        $quote->setIsActive(false)->save();
-            $this->_redirect($pageSuccess);
+            $this->_redirect($pageSuccess, array('_query' => array('utm_nooverride' => 1)));
         } elseif ($status == Pay_Payment_Model_Transaction::STATE_PENDING) {
 	        $quote->setIsActive(false)->save();
-            $this->_redirect($pagePending);
+            $this->_redirect($pagePending,  array('_query' => array('utm_nooverride' => 1)));
         } else {
             $restoreCart = Mage::getStoreConfig('pay_payment/general/restore_cart', $order->getStore());
             if ($restoreCart) {
