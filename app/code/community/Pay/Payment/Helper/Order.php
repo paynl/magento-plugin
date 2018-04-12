@@ -135,28 +135,24 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
             }
 
 
-            $orderAmount = $order->getGrandTotal()*1;
+            $orderAmount = $order->getTotalDue()*1;
             if($onlyBaseCurrency){
-                $orderAmount = $order->getBaseGrandTotal()*1;
+                $orderAmount = $order->getBaseTotalDue()*1;
             }
 
             $paidAmount = $paidAmount*1;
 
-	        if( $payment->getMethod() == 'multipaymentforpos' ) { // multi payment
-		        $order->setTotalPaid( $order->getTotalPaid() + $paidAmount );
-		        $order->setBaseTotalPaid($order->getBaseTotalPaid() + $paidAmount);
-	        }
+//	        if( $payment->getMethod() == 'multipaymentforpos' ) { // multi payment
+//		        $order->setTotalPaid( $order->getTotalPaid() + $paidAmount );
+//		        $order->setBaseTotalPaid($order->getBaseTotalPaid() + $paidAmount);
+//	        }
 
             //controleren of het gehele bedrag betaald is
             if (abs($orderAmount-$paidAmount) >= 0.01) {
                 $order->addStatusHistoryComment('Bedrag komt niet overeen. Order bedrag: ' . $orderAmount . ' Betaald: ' . $paidAmount);
-
-                if($payment->getMethod() == 'pay_payment_instore'){ // webpos partial payment (not multi)
-                    $order->setTotalPaid( $order->getTotalPaid() + $paidAmount );
-                    $order->setBaseTotalPaid($order->getBaseTotalPaid() + $paidAmount);
-                }
             }
 
+            $order->save();
 
             if ($autoInvoice) {
                 if($extended_logging) $order->addStatusHistoryComment('Starting invoicing');
@@ -177,6 +173,15 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
                 $payment->registerCaptureNotification(
                     $captureAmount, true
                 );
+                if( $payment->getMethod() == 'multipaymentforpos'){
+                    if ($order->getTotalDue() != 0){
+                        if($paidAmount == $orderAmount){
+                            $order->setTotalPaid($order->getGrandTotal());
+                            $order->setBaseTotalPaid($order->getBaseGrandTotal());
+                            $order->save();
+                        }
+                    }
+                }
 
                 $invoice = $this->_getInvoiceForTransactionId($order, $transactionId);
 
@@ -213,11 +218,7 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
                     $transactionSave->save();
                 }
 
-                if( $payment->getMethod() == 'multipaymentforpos'){
-                    /* reset total_paid & base_total_paid in order */
-                    $order->setTotalPaid($order->getTotalPaid() - $invoice->getGrandTotal());
-                    $order->setBaseTotalPaid($order->getBaseTotalPaid() - $invoice->getBaseGrandTotal());
-                }
+
                 if($invoice) {
                     // fix voor tax in invoice
                     $invoice->setTaxAmount($order->getTaxAmount());
