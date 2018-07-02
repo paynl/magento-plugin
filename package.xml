@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
     <name>Pay_NL</name>
-    <version>3.5.1</version>
+    <version>3.5.2</version>
     <stability>stable</stability>
     <license>Pay</license>
     <channel>community</channel>
