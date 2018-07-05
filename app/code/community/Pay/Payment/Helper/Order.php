@@ -36,7 +36,7 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
         //status bepalen
         if ($transaction->isPaid()) {
             $status = Pay_Payment_Model_Transaction::STATE_SUCCESS;
-        } elseif ($transactionInfo['paymentDetails']['state'] == 95) {
+        } elseif ($transaction->isAuthorized()) {
             $status = Pay_Payment_Model_Transaction::STATE_AUTHORIZED;
         } elseif ($transaction->isCancelled()) {
             $status = Pay_Payment_Model_Transaction::STATE_CANCELED;
@@ -297,6 +297,24 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
             $payment->setTransactionId($transactionId);
             $auth_transaction = $payment->addTransaction(Mage_Sales_Model_Order_Payment_Transaction::TYPE_AUTH);
 //            $mage_transaction->setTxnId($transactionId);
+
+            # Get config setting invoice_authorized
+            $invoice_authotized = Mage::getStoreConfig("pay_payment/general/invoice_authorized", $order->getStore());
+            if($invoice_authotized) {
+                $invoice = Mage::getModel('sales/service_order', $order)->prepareInvoice();
+                if ( ! $invoice->getTotalQty()) {
+                    if ($extended_logging) {
+                        $order->addStatusHistoryComment('Pay.nl Cannot create an invoice without products.');
+                    }
+                    $order->save();
+                    die('Cannot create an invoice without products.');
+                }
+                $invoice->setRequestedCaptureCase(Mage_Sales_Model_Order_Invoice::CAPTURE_OFFLINE);
+                $invoice->register();
+                $transactionSave = Mage::getModel('core/resource_transaction')->addObject($invoice)->addObject($invoice->getOrder());
+                $transactionSave->save();
+            }
+
             $auth_transaction->setIsClosed(0);
             $auth_transaction->save();
             $payment->save();

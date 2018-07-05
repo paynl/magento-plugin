@@ -18,3 +18,5 @@ Shipping,Verzending
 "Block the capture status if an authorize transaction is present to prevent unwanted order status changes", "Blokkeer capture status als er al een authorize transactie is. Dit voorkomt dat een order weer terug gezet wordt naar betaald nadat deze al is verzonden."
 "Show payment charge including tax", "Toon betaalkosten inclusief belasting"
 "Enable this if you want to show the payment charge including tax", "Schakel dit in als je wil dat de betaalkosten inclusief belasting worden getoond"
+"Invoice authorized", "Factuur autoriseren"
+"Create invoice on a authorized transaction","Factuur aanmaken wanneer een transactie geautoriseerd is"
