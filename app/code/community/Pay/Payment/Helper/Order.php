@@ -148,7 +148,7 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
             }
             $paidAmount = round($paidAmount * 1, 2);
             //controleren of het gehele bedrag betaald is
-            if (abs($orderAmount - $paidAmount) >= 0.0001) {
+            if (abs($orderAmount - $paidAmount) >= 0.01) {
                 $order->addStatusHistoryComment('Bedrag komt niet overeen. Order bedrag: ' . $orderAmount . ' Betaald: ' . $paidAmount);
                 $order->setTotalPaid($order->getTotalPaid() + $paidAmount);
                 $order->setBaseTotalPaid($order->getBaseTotalPaid() + $paidAmount);
@@ -162,7 +162,7 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
                 $payment->setCurrencyCode($order->getBaseCurrencyCode());
                 $captureAmount = $paidAmount;
                 // Always register the payment in base currency because other currencies are always suspected fraud
-                if ($order->getOrderCurrency() != $order->getBaseCurrency()) {
+                if ($order->getOrderCurrency() != $order->getBaseCurrency() || abs($paidAmount-$order->getBaseGrandTotal()) < 0.01) {
                     $captureAmount = $order->getBaseGrandTotal();
                 }
                 $payment->setShouldCloseParentTransaction(true);
@@ -263,7 +263,7 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
             ) {
                 $order->setTotalPaid($order->getGrandTotal());
                 $order->setBaseTotalPaid($order->getBaseGrandTotal());
-                $order->addStatusHistoryComment('Pay.nl - Updated totalPaid, because it seems like the payment was not correctly registered');
+                $order->addStatusHistoryComment('Pay.nl - Updated totalPaid, because it seems like the payment was not correctly registered - totalDue ' . $totalDue . ' - totalPaid ' . $totalPaid . ' - paidAmount ' . $paidAmount);
             }
             # If multi payment, reset the paid amount
             if ($payment->getMethod() == 'multipaymentforpos' && $paidAmount == $orderAmount) {
