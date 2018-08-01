@@ -463,7 +463,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
 
         $arrBillingAddress = array(
             'initials' => static::getFirstname($objBillingAddress),
-            'lastName' => $objBillingAddress->getLastname(),
+            'lastName' => substr($objBillingAddress->getLastname(),0,32),
             'streetName' => $address,
             'houseNumber' => $housenumber,
             'zipCode' => $objBillingAddress->getPostcode(),
