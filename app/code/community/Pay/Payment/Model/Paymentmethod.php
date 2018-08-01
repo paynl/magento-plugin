@@ -401,7 +401,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         if ($enduserAddress) {
             $enduser = array_merge($enduser, array(
                 'initials' => static::getFirstname($enduserAddress),
-                'lastName' => $enduserAddress->getLastname(),
+                'lastName' => substr($enduserAddress->getLastname(),0,32),
                 'phoneNumber' => $enduserAddress->getTelephone(),
                 'emailAddress' => $enduserAddress->getEmail()
             ));
@@ -463,7 +463,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
 
         $arrBillingAddress = array(
             'initials' => static::getFirstname($objBillingAddress),
-            'lastName' => $objBillingAddress->getLastname(),
+            'lastName' => substr($objBillingAddress->getLastname(),0,32),
             'streetName' => $address,
             'houseNumber' => $housenumber,
             'zipCode' => $objBillingAddress->getPostcode(),
