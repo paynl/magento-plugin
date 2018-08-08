@@ -315,6 +315,21 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
                 $transactionSave->save();
             }
 
+            $sendMail          = $store->getConfig('payment/' . $payment->getMethod() . '/send_mail');
+            $sendStatusupdates = $store->getConfig('pay_payment/general/send_statusupdates');
+            if ($sendMail == 'start') {
+                // De bevestigingsmail is al verstuurd, we gaan alleen de update sturen
+                if ($sendStatusupdates) {
+                    $order->sendOrderUpdateEmail();
+                }
+            } else {
+                // De bevestigingsmail is nog niet verstuurd, dus doen we het nu
+                if ( ! $order->getEmailSent()) {
+                    $order->sendNewOrderEmail();
+                    $order->setEmailSent(true);
+                }
+            }
+
             $auth_transaction->setIsClosed(0);
             $auth_transaction->save();
             $payment->save();
