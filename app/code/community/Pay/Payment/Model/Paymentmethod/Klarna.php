@@ -29,5 +29,31 @@ class Pay_Payment_Model_Paymentmethod_Klarna extends Pay_Payment_Model_Paymentme
 		return $address->getFirstname();
 	}
 
+    /**
+     * Firstname lastname and country must be equal
+     *
+     * @param Mage_Sales_Model_Quote $quote
+     * @return bool
+     */
+    protected static function addressEqual(Mage_Sales_Model_Quote $quote)
+    {
+        $billingAddress = $quote->getBillingAddress();
+        $shippingAddress = $quote->getShippingAddress();
+
+
+        if (strtolower($billingAddress->getFirstname()) !== strtolower($shippingAddress->getFirstname())) {
+            return false;
+        }
+
+        if (strtolower($billingAddress->getLastname()) !== strtolower($shippingAddress->getLastname())) {
+            return false;
+        }
+
+        if (strtolower($billingAddress->getCountryId()) !== strtolower($shippingAddress->getCountryId())) {
+            return false;
+        }
+
+        return true;
+    }
 }
     
