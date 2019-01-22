@@ -13,5 +13,9 @@ class Pay_Payment_Model_Paymentmethod_Capayable extends Pay_Payment_Model_Paymen
 
         return parent::isApplicableToQuote($quote, $checksBitMask);
     }
+
+    protected static function getFirstname($address){
+        return $address->getFirstname();
+    }
 }
     
