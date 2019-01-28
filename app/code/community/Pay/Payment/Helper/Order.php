@@ -128,10 +128,10 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
             $invoiceEmail = $store->getConfig('payment/' . $payment->getMethod() . '/invoice_email');
         }
         if ($status == Pay_Payment_Model_Transaction::STATE_SUCCESS) {
-            if ( ! empty($hash)) {
+            if (!empty($hash)) {
                 $receiptData = \Paynl\Instore::getReceipt(array('hash' => $hash));
-                $approvalId  = $receiptData->getApprovalId();
-                $receipt     = $receiptData->getReceipt();
+                $approvalId = $receiptData->getApprovalId();
+                $receipt = $receiptData->getReceipt();
                 $payment->setAdditionalInformation('paynl_receipt', $receipt);
                 $payment->setAdditionalInformation('paynl_transaction_id', $approvalId);
             }
@@ -162,7 +162,7 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
                 $payment->setCurrencyCode($order->getBaseCurrencyCode());
                 $captureAmount = $paidAmount;
                 // Always register the payment in base currency because other currencies are always suspected fraud
-                if ($order->getOrderCurrency() != $order->getBaseCurrency() || abs($paidAmount-$order->getBaseGrandTotal()) < 0.01) {
+                if ($order->getOrderCurrency() != $order->getBaseCurrency() || abs($paidAmount - $order->getBaseGrandTotal()) < 0.01) {
                     $captureAmount = $order->getBaseGrandTotal();
                 }
                 $payment->setShouldCloseParentTransaction(true);
@@ -187,7 +187,7 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
                     {
                         $order->setState(Mage_Sales_Model_Order::STATE_PENDING_PAYMENT, true);
                     }
-                    if ( ! $order->canInvoice()) {
+                    if (!$order->canInvoice()) {
                         if ($extended_logging) {
                             $order->addStatusHistoryComment('Pay.nl cannot create invoice');
                         }
@@ -198,7 +198,7 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
                      * @var Mage_Sales_Model_Order_Invoice $invoice
                      */
                     $invoice = Mage::getModel('sales/service_order', $order)->prepareInvoice();
-                    if ( ! $invoice->getTotalQty()) {
+                    if (!$invoice->getTotalQty()) {
                         if ($extended_logging) {
                             $order->addStatusHistoryComment('Pay.nl Cannot create an invoice without products.');
                         }
@@ -208,8 +208,8 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
                     $invoice->setRequestedCaptureCase(Mage_Sales_Model_Order_Invoice::CAPTURE_ONLINE);
                     $invoice->register();
                     $transactionSave = Mage::getModel('core/resource_transaction')
-                                           ->addObject($invoice)
-                                           ->addObject($invoice->getOrder());
+                        ->addObject($invoice)
+                        ->addObject($invoice->getOrder());
                     $transactionSave->save();
                 }
                 if ($invoice) {
@@ -234,7 +234,7 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
             $order->setState(
                 Mage_Sales_Model_Order::STATE_PROCESSING, $processedStatus, $stateMessage, true
             );
-            $sendMail          = $store->getConfig('payment/' . $payment->getMethod() . '/send_mail');
+            $sendMail = $store->getConfig('payment/' . $payment->getMethod() . '/send_mail');
             $sendStatusupdates = $store->getConfig('pay_payment/general/send_statusupdates');
             if ($sendMail == 'start') {
                 // De bevestigingsmail is al verstuurd, we gaan alleen de update sturen
@@ -243,7 +243,7 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
                 }
             } else {
                 // De bevestigingsmail is nog niet verstuurd, dus doen we het nu
-                if ( ! $order->getEmailSent()) {
+                if (!$order->getEmailSent()) {
                     $order->sendNewOrderEmail();
                     $order->setEmailSent(true);
                 }
@@ -252,12 +252,14 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
              * Sometimes totalpaid is not updated, but the payment and invoice are added.
              * If this is the case, update totalpaid to the order amount
              */
-            $totalDue  = round($order->getTotalDue(), 2);
+            $totalDue = round($order->getTotalDue(), 2);
             $totalPaid = round($order->getTotalPaid(), 2);
-            if($extended_logging){
+            if ($extended_logging) {
                 $order->addStatusHistoryComment("TotalDue: $totalDue, TotalPaid: $totalPaid");
             }
-            if ($totalDue != 0 &&
+
+            if ($autoInvoice && // only do this if autoInvoice is enabled
+                $totalDue != 0 &&
                 $totalDue == $paidAmount && // only register the payment if totaldue equals the whole amount
                 $totalPaid == 0 // skip this if this is a partial payment
             ) {
@@ -270,6 +272,7 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
                 $order->setBaseTotalPaid($order->getBaseGrandTotal());
                 $order->setTotalPaid($order->getGrandTotal());
             }
+
             $order->save();
             //transactie in pay tabel updaten
             $transaction->setStatus($status);
