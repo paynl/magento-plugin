@@ -133,9 +133,10 @@ class Pay_Payment_OrderController extends Mage_Core_Controller_Front_Action
             } else {
                 $error = true;
                 $resultMsg = 'ERROR: ';
+                $this->helperData->removeLock($transactionId);
             }
             $resultMsg .= $e->getMessage();
-            $this->helperData->removeLock($transactionId);
+
         } catch (Exception $e) {
             $error = true;
             $resultMsg = 'ERROR: ' . $e->getMessage();
