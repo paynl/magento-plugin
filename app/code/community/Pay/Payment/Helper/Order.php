@@ -286,7 +286,7 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
                     'status' => 'paid'
                 )
             );
-            if ($receiptData) {
+            if (isset($receiptData)) {
                 $eventData['transaction']['receipt'] = $receiptData->getReceipt();
             }
             Mage::dispatchEvent('paynl_transaction_complete', $eventData);
