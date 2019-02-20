@@ -330,7 +330,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
             $arrCompany['name'] = $order->getBillingAddress()->getCompany();
         }
         if ($order->getCustomerTaxvat()) {
-            $arrCompany['vatNumber'] = $order->getCustomerTaxvat();
+            $arrCompany['vatNumber'] = substr($order->getCustomerTaxvat(),0,32);
         }
 
         $countryId = null;
