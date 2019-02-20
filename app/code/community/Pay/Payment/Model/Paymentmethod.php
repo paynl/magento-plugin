@@ -52,6 +52,14 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
             if (in_array($shippingMethod, $disabled_shipping)) return false;
         }
 
+        $limit_currency = Mage::getStoreConfig('payment/'. $this->_code . '/limit_currency', $store);
+        if($limit_currency) {
+            $allowed_currencies = Mage::getStoreConfig('payment/' . $this->_code . '/specificcurrency', $store);
+            $allowed_currencies = explode(',', $allowed_currencies);
+
+            if(!in_array($quote->getQuoteCurrencyCode(), $allowed_currencies)) return false;
+        }
+
         return parent::isApplicableToQuote($quote, $checksBitMask);
     }
 
