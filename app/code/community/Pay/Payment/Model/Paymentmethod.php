@@ -60,6 +60,11 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
             if(!in_array($quote->getQuoteCurrencyCode(), $allowed_currencies)) return false;
         }
 
+        $only_equal_addresses = Mage::getStoreConfig('payment/' . $this->_code . '/only_equal_addresses', $store);
+        if($only_equal_addresses && !$this->addressEqual($quote)){
+            return false;
+        }
+
         return parent::isApplicableToQuote($quote, $checksBitMask);
     }
 

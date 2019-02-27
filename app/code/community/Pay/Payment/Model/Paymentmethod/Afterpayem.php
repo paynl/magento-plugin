@@ -5,13 +5,5 @@ class Pay_Payment_Model_Paymentmethod_Afterpayem extends Pay_Payment_Model_Payme
     protected $_code = 'pay_payment_afterpayem';
     protected $_formBlockType = 'pay_payment/form_afterpayem';
 
-    public function isApplicableToQuote($quote, $checksBitMask)
-    {
-        if(!$this->addressEqual($quote)){
-            return false;
-        }
-
-        return parent::isApplicableToQuote($quote, $checksBitMask);
-    }
 }
     

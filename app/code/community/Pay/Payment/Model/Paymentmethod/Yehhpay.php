@@ -8,12 +8,4 @@ class Pay_Payment_Model_Paymentmethod_Yehhpay extends Pay_Payment_Model_Paymentm
     protected $_code = 'pay_payment_yehhpay';
     protected $_formBlockType = 'pay_payment/form_yehhpay';
 
-    public function isApplicableToQuote($quote, $checksBitMask)
-    {
-        if(!$this->addressEqual($quote)){
-            return false;
-        }
-
-        return parent::isApplicableToQuote($quote, $checksBitMask);
-    }
 }

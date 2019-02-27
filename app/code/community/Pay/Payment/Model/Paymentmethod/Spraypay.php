@@ -5,13 +5,5 @@ class Pay_Payment_Model_Paymentmethod_Spraypay extends Pay_Payment_Model_Payment
     protected $_code = 'pay_payment_spraypay';
     protected $_formBlockType = 'pay_payment/form_spraypay';
 
-    public function isApplicableToQuote($quote, $checksBitMask)
-    {
-        if(!$this->addressEqual($quote)){
-            return false;
-        }
-
-        return parent::isApplicableToQuote($quote, $checksBitMask);
-    }
 }
     

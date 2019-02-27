@@ -274,6 +274,7 @@
                 <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
+                <only_equal_addresses>1</only_equal_addresses>
             </pay_payment_klarna>
             <pay_payment_bitcoin>
                 <active>0</active>
@@ -298,6 +299,7 @@
                 <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
+                <only_equal_addresses>1</only_equal_addresses>
             </pay_payment_capayable>
             <pay_payment_capayablegespreid>
                 <active>0</active>
@@ -310,6 +312,7 @@
                 <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
+                <only_equal_addresses>1</only_equal_addresses>
             </pay_payment_capayablegespreid>
             <pay_payment_cashly>
                 <active>0</active>
@@ -322,6 +325,7 @@
                 <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
+                <only_equal_addresses>1</only_equal_addresses>
             </pay_payment_cashly>
             <pay_payment_mybank>
                 <active>0</active>
@@ -480,6 +484,7 @@
                 <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
+                <only_equal_addresses>1</only_equal_addresses>
             </pay_payment_spraypay>
             <pay_payment_giropay>
                 <active>0</active>
@@ -540,6 +545,7 @@
                 <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
+                <only_equal_addresses>1</only_equal_addresses>
             </pay_payment_afterpay>
             <pay_payment_afterpayem>
                 <active>0</active>
@@ -638,6 +644,7 @@
                 <ask_data_personal>1</ask_data_personal>
                 <ask_data_business>0</ask_data_business>
                 <limit_shipping>0</limit_shipping>
+                <only_equal_addresses>1</only_equal_addresses>
             </pay_payment_billink>
             <pay_payment_givacard>
                 <active>0</active>
@@ -702,6 +709,7 @@
                 <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
+                <only_equal_addresses>1</only_equal_addresses>
             </pay_payment_focum>
             <pay_payment_vvvgiftcard>
                 <active>0</active>
@@ -738,6 +746,7 @@
                 <order_status_verify>pending_payment</order_status_verify>
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
+                <only_equal_addresses>1</only_equal_addresses>
             </pay_payment_yehhpay>
             <pay_payment_cartasi>
                 <active>0</active>

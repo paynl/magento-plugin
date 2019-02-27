@@ -29,13 +29,5 @@ class Pay_Payment_Model_Paymentmethod_Billink extends Pay_Payment_Model_Paymentm
         return parent::assignData($data);
     }
 
-    public function isApplicableToQuote($quote, $checksBitMask)
-    {
-        if(!$this->addressEqual($quote)){
-            return false;
-        }
-
-        return parent::isApplicableToQuote($quote, $checksBitMask);
-    }
 }
     
