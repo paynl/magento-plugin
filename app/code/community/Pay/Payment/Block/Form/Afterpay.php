@@ -6,4 +6,6 @@ class Pay_Payment_Block_Form_Afterpay extends Pay_Payment_Block_Form_Abstract {
     protected $paymentMethodName = 'Afterpay';
     protected $methodCode = 'pay_payment_afterpay';
 
+    protected $template = 'pay/payment/form/afterpay.phtml';
+
 }
