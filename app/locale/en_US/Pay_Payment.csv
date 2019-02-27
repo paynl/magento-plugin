@@ -92,3 +92,9 @@
 "Zweeds", "Swedish"
 "Turks", "Turkish"
 "Browser taal gebruiken", "Use browser language"
+"Gelijke verzend- en factuuradressen", "Equal shipping and invoice addresses",
+"Schakel dit in als het verzend en factuuradres gelijk aan elkaar moeten zijn", "Enable this if the shipping and invoice addresses are required to be the same"
+"Valutas blokkeren", "Limit currencies"
+"Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde valutas", "Enable this if you want to limit currencies for this payment method"
+"Toegestane Valuta's", "Allowed currencies"
+"Selecteer de valutas waarvoor deze betaalmethode beschikbaar is", "Select the currencies that are allowed for this payment method"
