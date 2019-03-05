@@ -12,7 +12,11 @@ class RefundTest extends PHPUnit_Framework_TestCase
         \Paynl\Config::setCurl($curl);
     }
 
-    private function refundAddFull(){
+    /**
+     * @return \Paynl\Result\Refund\Add
+     */
+    private function refundAddFull()
+    {
         return \Paynl\Refund::add(array(
             'amount' => 1,
             'bankAccountHolder' => 'N Klant',
@@ -32,7 +36,8 @@ class RefundTest extends PHPUnit_Framework_TestCase
         ));
     }
 
-    public function testRefundAddNoServiceId(){
+    public function testRefundAddNoServiceId()
+    {
         $this->setDummyData('refund');
         $this->setExpectedException('\Paynl\Error\Required\ServiceId');
 
@@ -42,7 +47,8 @@ class RefundTest extends PHPUnit_Framework_TestCase
         $this->refundAddFull();
     }
 
-    public function testRefundAddNoToken(){
+    public function testRefundAddNoToken()
+    {
         $this->setDummyData('refund');
         $this->setExpectedException('\Paynl\Error\Required\ApiToken');
 
@@ -52,12 +58,26 @@ class RefundTest extends PHPUnit_Framework_TestCase
         $this->refundAddFull();
     }
 
-    public function testRefundAdd(){
+    public function testRefundAdd()
+    {
         $this->setDummyData('refund');
         \Paynl\Config::setApiToken('123456789012345678901234567890');
         \Paynl\Config::setServiceId('SL-1234-5678');
         $result = $this->refundAddFull();
         $this->assertInstanceOf('\Paynl\Result\Refund\Add', $result);
-        $this->assertStringStartsWith('RF-',$result->getRefundId());
+        $this->assertStringStartsWith('RF-', $result->getRefundId());
+    }
+
+    public function testRefundGet(){
+        $this->setDummyData('info');
+
+        \Paynl\Config::setApiToken('123456789012345678901234567890');
+
+        $result = \Paynl\Refund::get('RF-1234-1234-1234');
+
+        $this->assertInstanceOf('\Paynl\Result\Refund\Refund', $result);
+        $this->assertTrue($result->isRefunded());
+        $this->assertInternalType('array', $result->getRefund());
+        $this->assertStringStartsWith('RF-', $result->getId());
     }
 }

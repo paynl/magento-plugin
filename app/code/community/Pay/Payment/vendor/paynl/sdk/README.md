@@ -48,7 +48,8 @@ Set the configuration
 ```php
 require __DIR__ . '/vendor/autoload.php';
 
-// Replace apitoken and serviceId with your own.
+// Replace tokenCode apitoken and serviceId with your own.
+\Paynl\Config::setTokenCode('AT-1234-5678');
 \Paynl\Config::setApiToken('e41f83b246b706291ea9ad798ccfd9f0fee5e0ab');
 \Paynl\Config::setServiceId('SL-3490-4320');
 ```
@@ -57,6 +58,7 @@ Get available payment methods
 ```php
 require __DIR__ . '/vendor/autoload.php';
 
+\Paynl\Config::setTokenCode('AT-1234-5678');
 \Paynl\Config::setApiToken('e41f83b246b706291ea9ad798ccfd9f0fee5e0ab');
 \Paynl\Config::setServiceId('SL-3490-4320');
 
@@ -68,6 +70,7 @@ Start a transaction
 ```php
 require __DIR__ . '/vendor/autoload.php';
 
+\Paynl\Config::setTokenCode('AT-1234-5678');
 \Paynl\Config::setApiToken('e41f83b246b706291ea9ad798ccfd9f0fee5e0ab');
 \Paynl\Config::setServiceId('SL-3490-4320');
 
@@ -143,6 +146,7 @@ On the return page, redirect the user to the thank you page or back to checkout
 ```php
 require __DIR__ . '/vendor/autoload.php';
 
+\Paynl\Config::setTokenCode('AT-1234-5678');
 \Paynl\Config::setApiToken('e41f83b246b706291ea9ad798ccfd9f0fee5e0ab');
 
 $transaction = \Paynl\Transaction::getForReturn();
@@ -161,11 +165,12 @@ On the exchange script, process the order
 ```php
 require __DIR__ . '/vendor/autoload.php';
 
+\Paynl\Config::setTokenCode('AT-1234-5678');
 \Paynl\Config::setApiToken('e41f83b246b706291ea9ad798ccfd9f0fee5e0ab');
 
 $transaction = \Paynl\Transaction::getForExchange();
 
-if($transaction->isPaid()){
+if($transaction->isPaid() || $transaction->isAuthorized()){
     // process the payment
 } elseif($transaction->isCanceled()){
     // payment canceled, restock items
@@ -176,7 +181,7 @@ echo "TRUE| ";
 
 // Optionally you can send a message after TRUE|, you can view these messages in the logs.
 // https://admin.pay.nl/logs/payment_state
-echo $transaction->isPaid()?'Paid':'Not paid';
+echo ($transaction->isPaid() || $transaction->isAuthorized())?'Paid':'Not paid';
 
 
 ```

@@ -28,6 +28,8 @@ use Paynl\Result\Result;
  */
 class Transaction extends Result
 {
+    private $_cachedStatusResult = null;
+
     /**
      * @return bool Transaction is paid
      */
@@ -62,20 +64,31 @@ class Transaction extends Result
         return $this->data['paymentDetails']['state'] < 0;
     }
 
-    public function isAuthorized()
+    public function void()
     {
-        return $this->data['paymentDetails']['state'] == 95;
-    }
-
-    public function void(){
-        if(!$this->isAuthorized()){
+        if (!$this->isAuthorized()) {
             throw new Error('Cannod void transaction, status is not authorized');
         }
 
         return \Paynl\Transaction::void($this->getId());
     }
-    public function capture(){
-        if(!$this->isAuthorized()){
+
+    public function isAuthorized()
+    {
+        return $this->data['paymentDetails']['state'] == 95;
+    }
+
+    /**
+     * @return string The transaction id
+     */
+    public function getId()
+    {
+        return $this->data['transactionId'];
+    }
+
+    public function capture()
+    {
+        if (!$this->isAuthorized()) {
             throw new Error('Cannod capture transaction, status is not authorized');
         }
 
@@ -106,6 +119,22 @@ class Transaction extends Result
     public function isPartiallyRefunded()
     {
         return $this->data['paymentDetails']['stateName'] === 'PARTIAL_REFUND';
+    }
+
+    /**
+     * @return float The amount of the transaction (in EUR)
+     */
+    public function getAmount()
+    {
+        return $this->data['paymentDetails']['amount'] / 100;
+    }
+
+    /**
+     * @return float The amount of the transaction (in the currency)
+     */
+    public function getCurrencyAmount()
+    {
+        return $this->data['paymentDetails']['currenyAmount'] / 100;
     }
 
     /**
@@ -196,6 +225,26 @@ class Transaction extends Result
         return $this->data['statsDetails']['extra3'];
     }
 
+    /**
+     * @return float|int The refunded amount in euro
+     * @throws Error
+     * @throws \Paynl\Error\Api
+     */
+    public function getRefundedAmount()
+    {
+        return $this->getStatus()->getRefundedAmount();
+    }
+
+    /**
+     * @return float|int The refunded amount in the used currency
+     * @throws Error
+     * @throws \Paynl\Error\Api
+     */
+    public function getRefundedCurrencyAmount()
+    {
+        return $this->getStatus()->getRefundedCurrencyAmount();
+    }
+
     public function approve()
     {
         if (!$this->isBeingVerified()) {
@@ -204,7 +253,21 @@ class Transaction extends Result
 
         $result = \Paynl\Transaction::approve($this->getId());
         $this->_reload(); //status is changed, so refresh the object
+
         return $result;
+    }
+
+    /**
+     * @return Status
+     * @throws Error
+     * @throws \Paynl\Error\Api
+     */
+    public function getStatus()
+    {
+        if (is_null($this->_cachedStatusResult)) {
+            $this->_cachedStatusResult = \Paynl\Transaction::status($this->getId());
+        }
+        return $this->_cachedStatusResult;
     }
 
     /**
@@ -215,16 +278,9 @@ class Transaction extends Result
         return $this->data['paymentDetails']['stateName'] === 'VERIFY';
     }
 
-    /**
-     * @return string The transaction id
-     */
-    public function getId()
-    {
-        return $this->data['transactionId'];
-    }
-
     private function _reload()
     {
+        $this->_cachedStatusResult = null;
         $result = \Paynl\Transaction::get($this->getId());
         $this->data = $result->getData();
     }
@@ -237,7 +293,7 @@ class Transaction extends Result
 
         $result = \Paynl\Transaction::decline($this->getId());
         $this->_reload();//status is changed, so refresh the object
+
         return $result;
     }
-
 }

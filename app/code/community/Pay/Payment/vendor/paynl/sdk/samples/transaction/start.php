@@ -31,7 +31,7 @@ try {
         'currency' => 'EUR',
         'expireDate' => new \DateTime('2016-04-01'),
 //        'bank' => 1,
-        'orderNumber' => 'ABCDEFG',
+        'orderNumber' => 'ABCDEFG12346', // max 16 alphanumeric characters
         'description' => '123456',
         'testmode' => 0,
         'extra1' => 'ext1',
@@ -117,6 +117,7 @@ try {
             'city' => 'ITest',
             'country' => 'NL',
         ),
+        'object' => 'Object', // 64 characters max
 
         // Only use this if you are told to
 //        'transferType' => 'merchant',
@@ -126,12 +127,11 @@ try {
 //        'transferValue' => '12345678X260bc5', // The transactionId
     ));
 
-// Save this transactionid and link it to your order
+    // Save this transactionid and link it to your order
     $transactionId = $result->getTransactionId();
 
     echo '<a href="' . $result->getRedirectUrl() . '">' . $result->getRedirectUrl() . '</a>';
     echo "<br />" . $transactionId;
-
 } catch (\Paynl\Error\Error $e) {
     echo "Fout: " . $e->getMessage();
 }

@@ -16,49 +16,53 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Paynl\Api\Transaction;
+namespace Paynl\Api\Refund;
 
 use Paynl\Error;
 
 /**
- * Description of Approve
+ * Description of Info
  *
  * @author Andy Pieters <andy@pay.nl>
  */
-class Void extends Transaction
+class Info extends Refund
 {
     protected $apiTokenRequired = true;
 
     /**
      * @var string
      */
-    private $transactionId;
-
+    private $refundId;
     /**
-     * Set the transactionId
+     * Set the refundId
      *
-     * @param string $transactionId
+     * @param string $refundId
      */
-    public function setTransactionId($transactionId){
-        $this->transactionId = $transactionId;
+    public function setRefundId($refundId)
+    {
+        $this->refundId = $refundId;
     }
 
     /**
      * @inheritdoc
-     * @throws Error\Required TransactionId is required
+     * @throws Error\Required RefundId is required
      */
-    protected function getData() {
-        if(empty($this->transactionId)){
-            throw new Error\Required('TransactionId is required');
+    protected function getData()
+    {
+        if (empty($this->refundId)) {
+            throw new Error\Required('RefundId required');
         }
-        $this->data['transactionId'] = $this->transactionId;
+
+        $this->data['refundId'] = $this->refundId;
+
         return parent::getData();
     }
 
     /**
      * @inheritdoc
      */
-    public function doRequest($endpoint = null, $version = null) {
-        return parent::doRequest('transaction/voidAuthorization');
+    public function doRequest($endpoint = null, $version = null)
+    {
+        return parent::doRequest('refund/info');
     }
 }

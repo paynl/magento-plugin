@@ -18,6 +18,7 @@
 
 namespace Paynl;
 
+use Paynl\Error\Error;
 use Paynl\Result\Refund as Result;
 
 use Paynl\Api\Refund as Api;
@@ -35,7 +36,7 @@ class Refund
      *
      * @param array $options
      * @return Result\Add
-     * @throws Error\Error
+     * @throws Error
      */
     public static function add(array $options = array())
     {
@@ -84,7 +85,7 @@ class Refund
             $api->setCurrency($options['currency']);
         }
         if (isset($options['processDate'])) {
-            if(is_string($options['processDate'])){
+            if (is_string($options['processDate'])) {
                 $options['processDate'] = new \DateTime($options['processDate']);
             }
             $api->setProcessDate($options['processDate']);
@@ -93,5 +94,24 @@ class Refund
         $result = $api->doRequest();
 
         return new Result\Add($result);
+    }
+
+    /**
+     * Get the refund
+     *
+     * @param string $refundId
+     *
+     * @return Result\Refund
+     * @throws Error
+     */
+    public static function get($refundId)
+    {
+        $api = new Api\Info();
+        $api->setRefundId($refundId);
+        $result = $api->doRequest();
+
+        $result['refundId'] = $refundId;
+
+        return new Result\Refund($result);
     }
 }

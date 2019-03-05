@@ -19,6 +19,7 @@
 namespace Paynl\Api\Transaction;
 
 use Paynl\Error;
+use Paynl\Helper;
 
 /**
  * Api class to refund a transaction
@@ -94,9 +95,9 @@ class Refund extends Transaction
         if (!empty($this->amount)) {
             $this->data['amount'] = $this->amount;
         }
-	    if (!empty($this->description)) {
-		    $this->data['description'] = $this->description;
-	    }
+        if (!empty($this->description)) {
+            $this->data['description'] = $this->description;
+        }
         if ($this->processDate instanceof \DateTime) {
             $this->data['processDate'] = $this->processDate->format('d-m-Y');
         }
@@ -104,6 +105,29 @@ class Refund extends Transaction
         return parent::getData();
     }
 
+    /**
+     * @param object|array $result
+     *
+     * @return array
+     * @throws Error\Api
+     */
+    protected function processResult($result)
+    {
+        $output = Helper::objectToArray($result);
+
+        if (!is_array($output)) {
+            throw new Error\Api($output);
+        }
+
+        if (
+            isset($output['request']) &&
+            $output['request']['result'] != 1 &&
+            $output['request']['result'] !== 'TRUE') {
+            throw new Error\Api($output['request']['errorId'] . ' - ' . $output['request']['errorMessage']. ' '. $output['description']);
+        }
+
+        return parent::processResult($result);
+    }
     /**
      * @inheritdoc
      */

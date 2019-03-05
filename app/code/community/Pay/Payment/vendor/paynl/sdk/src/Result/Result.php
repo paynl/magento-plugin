@@ -32,6 +32,11 @@ class Result
         $this->data = $data;
     }
 
+    public function getRequest()
+    {
+        return $this->data['request'];
+    }
+
     /**
      * Get the complete result as an array
      * @return array
