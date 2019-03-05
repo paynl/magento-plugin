@@ -230,14 +230,15 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
     public function lockTransaction($transactionId)
     {
         $transaction  = $this->getTransaction($transactionId);
-        $max_lock     = strtotime('+5 min');
+        $now     = strtotime('now');
         $current_lock = $transaction->getLockDate();
         if ($current_lock !== null) {
             $current_lock = strtotime($current_lock);
+            $current_lock += 60*5;// 5 minutes
         }
-        if ($current_lock !== null && $current_lock < $max_lock) {
+        if ($current_lock !== null && $current_lock > $now) {
             $obj_max_lock = new DateTime();
-            $obj_max_lock->setTimestamp($max_lock);
+            $obj_max_lock->setTimestamp($current_lock);
 
             throw new Pay_Payment_Model_Transaction_LockException('Cannot lock transaction, transaction already locked until: ' . $obj_max_lock->format('H:i:s d-m-Y'));
         }
@@ -265,6 +266,8 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
     public function removeLock($transactionId)
     {
         $transaction = $this->getTransaction($transactionId);
+        if($transaction->isEmpty()) return;
+
         $transaction->setLockDate(null);
         $transaction->save();
     }

@@ -115,6 +115,9 @@ class Pay_Payment_OrderController extends Mage_Core_Controller_Front_Action
             if ($params['action'] == 'pending') {
                 throw Mage::exception('Pay_Payment', 'Ignoring pending', 0);
             }
+            if (substr($params['action'],0,6) == 'refund') {
+                throw Mage::exception('Pay_Payment', 'Ignoring refund', 0);
+            }
 
             $this->helperData->lockTransaction($transactionId);
 
@@ -133,8 +136,9 @@ class Pay_Payment_OrderController extends Mage_Core_Controller_Front_Action
             } else {
                 $error = true;
                 $resultMsg = 'ERROR: ';
-                $this->helperData->removeLock($transactionId);
             }
+
+            $this->helperData->removeLock($transactionId);
             $resultMsg .= $e->getMessage();
 
         } catch (Exception $e) {
