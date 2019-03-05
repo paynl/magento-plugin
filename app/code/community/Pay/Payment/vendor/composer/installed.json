@@ -1,17 +1,56 @@
 [
     {
-        "name": "php-curl-class/php-curl-class",
-        "version": "4.13.0",
-        "version_normalized": "4.13.0.0",
+        "name": "paynl/sdk",
+        "version": "v1.5.9",
+        "version_normalized": "1.5.9.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/php-curl-class/php-curl-class.git",
-            "reference": "debe0a89ee1eb9a2f15c0bb63ce8b347130af50d"
+            "url": "https://github.com/paynl/sdk.git",
+            "reference": "1f0bb23ca18f5435ed234af0806bebe5cbac8d85"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/php-curl-class/php-curl-class/zipball/debe0a89ee1eb9a2f15c0bb63ce8b347130af50d",
-            "reference": "debe0a89ee1eb9a2f15c0bb63ce8b347130af50d",
+            "url": "https://api.github.com/repos/paynl/sdk/zipball/1f0bb23ca18f5435ed234af0806bebe5cbac8d85",
+            "reference": "1f0bb23ca18f5435ed234af0806bebe5cbac8d85",
+            "shasum": ""
+        },
+        "require": {
+            "ext-json": "*",
+            "php-curl-class/php-curl-class": "^8.3"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "^4.8",
+            "satooshi/php-coveralls": "~1.0"
+        },
+        "time": "2019-03-05T15:14:01+00:00",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "Paynl\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "authors": [
+            {
+                "name": "Andy Pieters",
+                "email": "andy@pay.nl"
+            }
+        ]
+    },
+    {
+        "name": "php-curl-class/php-curl-class",
+        "version": "8.5.0",
+        "version_normalized": "8.5.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/php-curl-class/php-curl-class.git",
+            "reference": "2b387e3ef1c8a1d6116a1459c0e3e71643f86806"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/php-curl-class/php-curl-class/zipball/2b387e3ef1c8a1d6116a1459c0e3e71643f86806",
+            "reference": "2b387e3ef1c8a1d6116a1459c0e3e71643f86806",
             "shasum": ""
         },
         "require": {
@@ -19,9 +58,14 @@
             "php": ">=5.3"
         },
         "require-dev": {
-            "phpunit/phpunit": "*"
+            "ext-gd": "*",
+            "phpunit/phpunit": "*",
+            "squizlabs/php_codesniffer": "*"
         },
-        "time": "2016-07-25T19:31:39+00:00",
+        "suggest": {
+            "ext-mbstring": "*"
+        },
+        "time": "2019-01-07T06:43:45+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -38,61 +82,29 @@
                 "name": "Zach Borboa"
             }
         ],
-        "description": "PHP Curl Class is an object-oriented wrapper of the PHP cURL extension.",
+        "description": "PHP Curl Class makes it easy to send HTTP requests and integrate with web APIs.",
         "homepage": "https://github.com/php-curl-class/php-curl-class",
         "keywords": [
+            "API-Client",
             "api",
             "class",
             "client",
             "curl",
             "framework",
             "http",
-            "http client",
+            "http-client",
+            "http-proxy",
             "json",
             "php",
+            "php-curl",
+            "php-curl-library",
+            "proxy",
             "requests",
-            "rest",
             "restful",
-            "web service",
+            "web-scraper",
+            "web-scraping ",
+            "web-service",
             "xml"
-        ]
-    },
-    {
-        "name": "paynl/sdk",
-        "version": "v1.5.0",
-        "version_normalized": "1.5.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/paynl/sdk.git",
-            "reference": "888519b886f84e60a243e6d9bdf5077f66742bae"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/paynl/sdk/zipball/888519b886f84e60a243e6d9bdf5077f66742bae",
-            "reference": "888519b886f84e60a243e6d9bdf5077f66742bae",
-            "shasum": ""
-        },
-        "require": {
-            "php-curl-class/php-curl-class": "^4.8"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "^4.8",
-            "satooshi/php-coveralls": "~1.0"
-        },
-        "time": "2018-02-22T09:20:14+00:00",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-4": {
-                "Paynl\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "authors": [
-            {
-                "name": "Andy Pieters",
-                "email": "andy@pay.nl"
-            }
         ]
     }
 ]
