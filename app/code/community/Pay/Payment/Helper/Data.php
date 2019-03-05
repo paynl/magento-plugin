@@ -271,7 +271,6 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
         $transaction->setLockDate(null);
         $transaction->save();
     }
-
     public function isOrderPaid($orderId)
     {
         /** @var Pay_Payment_Model_Mysql4_Transaction_Collection $transaction */
