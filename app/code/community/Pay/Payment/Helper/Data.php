@@ -40,7 +40,7 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
         } else {
             $the_ip = $_SERVER['REMOTE_ADDR'];
         }
-        $arrIp  = explode(',', $the_ip);
+        $arrIp = explode(',', $the_ip);
         $the_ip = $arrIp[0];
 
         $the_ip = filter_var(trim($the_ip), FILTER_VALIDATE_IP);
@@ -57,7 +57,7 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public static function calculateTaxClass($amountInclTax, $taxAmount)
     {
-        if ( ! $amountInclTax || ! $taxAmount) {
+        if (!$amountInclTax || !$taxAmount) {
             return self::getTaxCodeFromRate(0);
         }
         $amountExclTax = $amountInclTax - $taxAmount;
@@ -78,9 +78,9 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public static function getTaxCodeFromRate($taxRate)
     {
-        $taxClasses     = array(
-            0  => 'N',
-            6  => 'L',
+        $taxClasses = array(
+            0 => 'N',
+            6 => 'L',
             21 => 'H'
         );
         $nearestTaxRate = self::nearest($taxRate, array_keys($taxClasses));
@@ -105,7 +105,7 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
                 $NDat[abs($number - $n)] = $n;
             }
             ksort($NDat);
-            $NDat   = array_values($NDat);
+            $NDat = array_values($NDat);
             $output = $NDat[0];
         }
 
@@ -139,7 +139,7 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
 
             $languages = new Pay_Payment_Model_Source_Language();
 
-            $arrLanguages          = $languages->toOptionArray();
+            $arrLanguages = $languages->toOptionArray();
             $arrAvailableLanguages = array();
             foreach ($arrLanguages as $language) {
                 $arrAvailableLanguages[] = $language['value'];
@@ -155,7 +155,7 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
 
                 if (in_array($languagecode, $arrAvailableLanguages)) {
                     if ($value > $qval) {
-                        $qval    = (float)$value;
+                        $qval = (float)$value;
                         $deflang = $key;
                     }
                 }
@@ -170,27 +170,52 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
         return (string)Mage::getConfig()->getNode()->modules->Pay_Payment->version;
     }
 
-    public function loginSDK($store = null)
+    public function loginSDK($store = null, $gateway = null)
     {
         if ($store == null) {
             $store = Mage::app()->getStore();
         }
 
         $serviceId = $store->getConfig('pay_payment/general/serviceid');
-        $apiToken  = $store->getConfig('pay_payment/general/apitoken');
+        $apiToken = $store->getConfig('pay_payment/general/apitoken');
         $tokenCode = $store->getConfig('pay_payment/general/tokencode');
 
         \Paynl\Config::setApiToken($apiToken);
         \Paynl\Config::setServiceId($serviceId);
-        if ( ! empty($tokenCode)) {
+        if (!empty($tokenCode)) {
             \Paynl\Config::setTokenCode($tokenCode);
+        }
+
+        if(is_null($gateway)){
+            $gateway = $this->getGatewayUrl($store);
+        }
+
+        if(!is_null($gateway)) {
+            Paynl\Config::setApiBase($gateway);
+        }
+
+    }
+
+    /**
+     * Gets the failover gateway url
+     * Returns null when the default is used
+     *
+     * @param null $store
+     * @return mixed|null
+     * @throws Mage_Core_Model_Store_Exception
+     */
+    public function getGatewayUrl($store = null)
+    {
+        if ($store == null) {
+            $store = Mage::app()->getStore();
         }
 
         $useBackupApi = Mage::getStoreConfig('pay_payment/general/use_backup_api', $store);
         $backupApiUrl = Mage::getStoreConfig('pay_payment/general/backup_api_url', $store);
         if ($useBackupApi == 1) {
-            \Paynl\Config::setApiBase($backupApiUrl);
+            return $backupApiUrl;
         }
+        return null;
     }
 
     /**
@@ -208,7 +233,7 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
     {
         $option = $this->getOption($option_id, $store);
 
-        return ! is_null($option->getInternalId());
+        return !is_null($option->getInternalId());
     }
 
     public function getOption($option_id, $store = null)
@@ -220,21 +245,21 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
         //$serviceId = Mage::getStoreConfig('pay_payment/general/serviceid', $store);
 
         $option = Mage::getModel('pay_payment/option')->getCollection()
-                      ->addFieldToFilter('service_id', $serviceId)
-                      ->addFieldToFilter('option_id', $option_id)
-                      ->getFirstItem();
+            ->addFieldToFilter('service_id', $serviceId)
+            ->addFieldToFilter('option_id', $option_id)
+            ->getFirstItem();
 
         return $option;
     }
 
     public function lockTransaction($transactionId)
     {
-        $transaction  = $this->getTransaction($transactionId);
-        $now     = strtotime('now');
+        $transaction = $this->getTransaction($transactionId);
+        $now = strtotime('now');
         $current_lock = $transaction->getLockDate();
         if ($current_lock !== null) {
             $current_lock = strtotime($current_lock);
-            $current_lock += 60*5;// 5 minutes
+            $current_lock += 60 * 5;// 5 minutes
         }
         if ($current_lock !== null && $current_lock > $now) {
             $obj_max_lock = new DateTime();
@@ -256,9 +281,9 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
     public function getTransaction($transactionId)
     {
         $transaction = Mage::getModel('pay_payment/transaction')
-                           ->getCollection()
-                           ->addFieldToFilter('transaction_id', $transactionId)
-                           ->getFirstItem();
+            ->getCollection()
+            ->addFieldToFilter('transaction_id', $transactionId)
+            ->getFirstItem();
 
         return $transaction;
     }
@@ -266,18 +291,19 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
     public function removeLock($transactionId)
     {
         $transaction = $this->getTransaction($transactionId);
-        if($transaction->isEmpty()) return;
+        if ($transaction->isEmpty()) return;
 
         $transaction->setLockDate(null);
         $transaction->save();
     }
+
     public function isOrderPaid($orderId)
     {
         /** @var Pay_Payment_Model_Mysql4_Transaction_Collection $transaction */
         $transaction = Mage::getModel('pay_payment/transaction')
-                           ->getCollection()
-                           ->addFieldToFilter('order_id', $orderId)
-                           ->addFieldToFilter('status', Pay_Payment_Model_Transaction::STATE_SUCCESS);
+            ->getCollection()
+            ->addFieldToFilter('order_id', $orderId)
+            ->addFieldToFilter('status', Pay_Payment_Model_Transaction::STATE_SUCCESS);
 
         return $transaction->count() > 0;
     }
@@ -290,7 +316,7 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
         $serviceId = $store->getConfig('pay_payment/general/serviceid');
 
         $options = Mage::getModel('pay_payment/option')->getCollection()
-                       ->addFieldToFilter('service_id', $serviceId);
+            ->addFieldToFilter('service_id', $serviceId);
 
         return $options;
     }
@@ -328,11 +354,11 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
         if (is_null($quote)) {
             $quote = Mage::getSingleton('checkout/session')->getQuote();
         }
-        $amount  = 0;
+        $amount = 0;
         $address = $quote->isVirtual() ? $quote->getBillingAddress() : $quote->getShippingAddress();
 
 
-        $chargeType  = Mage::getStoreConfig('payment/' . strval($code) . '/charge_type');
+        $chargeType = Mage::getStoreConfig('payment/' . strval($code) . '/charge_type');
         $chargeValue = Mage::getStoreConfig('payment/' . strval($code) . '/charge_value');
 
         if ($chargeType == "percentage") {
@@ -342,7 +368,7 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
             $discount = $address->getDiscountAmount();
 
             $grandTotal = $subTotal + $shipping + $discount;
-            $amount     = $grandTotal * floatval($chargeValue) / 100;
+            $amount = $grandTotal * floatval($chargeValue) / 100;
         } else {
             $amount = floatval($chargeValue);
         }
@@ -383,15 +409,15 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
              * @var Pay_Payment_Model_Option $objOption
              */
             $objOption = Mage::getModel('pay_payment/option')->getCollection()
-                             ->addFieldToFilter('service_id', $serviceId)
-                             ->addFieldToFilter('option_id', $paymentMethod['id'])
-                             ->getFirstItem();
+                ->addFieldToFilter('service_id', $serviceId)
+                ->addFieldToFilter('option_id', $paymentMethod['id'])
+                ->getFirstItem();
 
             $optionData = array(
-                'option_id'   => (string)$paymentMethod['id'],
-                'service_id'  => $serviceId,
-                'name'        => (string)$paymentMethod['visibleName'],
-                'image'       => $image,
+                'option_id' => (string)$paymentMethod['id'],
+                'service_id' => $serviceId,
+                'name' => (string)$paymentMethod['visibleName'],
+                'image' => $image,
                 'update_date' => time(),
             );
 
@@ -408,35 +434,35 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
                 $arrTerminals = $this->getTerminals($store);
                 foreach ($arrTerminals as $terminal) {
                     $paymentMethod['banks'][] = array(
-                        'id'          => $terminal['id'],
-                        'name'        => $terminal['name'],
+                        'id' => $terminal['id'],
+                        'name' => $terminal['name'],
                         'visibleName' => $terminal['name']
                     );
                 }
             }
-            if ( ! empty($paymentMethod['banks']) &&
-                 (
-                     $paymentMethod['id'] == Pay_Payment_Model_Paymentmethod_Ideal::OPTION_ID ||
-                     $paymentMethod['id'] == Pay_Payment_Model_Paymentmethod_Instore::OPTION_ID
-                 )) {
+            if (!empty($paymentMethod['banks']) &&
+                (
+                    $paymentMethod['id'] == Pay_Payment_Model_Paymentmethod_Ideal::OPTION_ID ||
+                    $paymentMethod['id'] == Pay_Payment_Model_Paymentmethod_Instore::OPTION_ID
+                )) {
                 foreach ($paymentMethod['banks'] as $optionSub) {
                     $image = '';
                     if (isset($optionSub['image'])) {
                         $image = $optionSub['image'];
                     }
                     $optionSubData = array(
-                        'option_sub_id'      => $optionSub['id'],
+                        'option_sub_id' => $optionSub['id'],
                         'option_internal_id' => $objOption->getInternalId(),
-                        'name'               => $optionSub['visibleName'],
-                        'image'              => $image,
-                        'active'             => 1
+                        'name' => $optionSub['visibleName'],
+                        'image' => $image,
+                        'active' => 1
                     );
 
                     $objOptionSub = Mage::getModel('pay_payment/optionsub')->getCollection()
-                                        ->addFieldToFilter('option_sub_id', $optionSub['id'])
-                                        ->addFieldToFilter('option_internal_id',
-                                            $objOption->getInternalId())
-                                        ->getFirstItem();
+                        ->addFieldToFilter('option_sub_id', $optionSub['id'])
+                        ->addFieldToFilter('option_internal_id',
+                            $objOption->getInternalId())
+                        ->getFirstItem();
 
                     /* @var $objOptionSub Pay_Payment_Model_Optionsub */
                     $objOptionSub->addData($optionSubData);
@@ -450,20 +476,20 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
              * @var Pay_Payment_Model_Optionsub[] $arrSubsToDelete
              */
             $arrSubsToDelete = Mage::getModel('pay_payment/optionsub')
-                                   ->getCollection()
-                                   ->addFieldToFilter('option_internal_id',
-                                       $objOption->getInternalId())
-                                   ->addFieldToFilter('internal_id',
-                                       array('nin' => $arrUsedOptionSubIds));
+                ->getCollection()
+                ->addFieldToFilter('option_internal_id',
+                    $objOption->getInternalId())
+                ->addFieldToFilter('internal_id',
+                    array('nin' => $arrUsedOptionSubIds));
 
             foreach ($arrSubsToDelete as $subToDelete) {
                 $subToDelete->delete();
             }
         }
         $arrOptionsToDelete = Mage::getModel('pay_payment/option')
-                                  ->getCollection()
-                                  ->addFieldToFilter('service_id', $serviceId)
-                                  ->addFieldToFilter('internal_id', array('nin' => $arrUsedOptionIds));
+            ->getCollection()
+            ->addFieldToFilter('service_id', $serviceId)
+            ->addFieldToFilter('internal_id', array('nin' => $arrUsedOptionIds));
         foreach ($arrOptionsToDelete as $optionToDelete) {
             $optionToDelete->delete();
         }

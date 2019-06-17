@@ -52,16 +52,16 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
             if (in_array($shippingMethod, $disabled_shipping)) return false;
         }
 
-        $limit_currency = Mage::getStoreConfig('payment/'. $this->_code . '/limit_currency', $store);
-        if($limit_currency) {
+        $limit_currency = Mage::getStoreConfig('payment/' . $this->_code . '/limit_currency', $store);
+        if ($limit_currency) {
             $allowed_currencies = Mage::getStoreConfig('payment/' . $this->_code . '/specificcurrency', $store);
             $allowed_currencies = explode(',', $allowed_currencies);
 
-            if(!in_array($quote->getQuoteCurrencyCode(), $allowed_currencies)) return false;
+            if (!in_array($quote->getQuoteCurrencyCode(), $allowed_currencies)) return false;
         }
 
         $only_equal_addresses = Mage::getStoreConfig('payment/' . $this->_code . '/only_equal_addresses', $store);
-        if($only_equal_addresses && !$this->addressEqual($quote)){
+        if ($only_equal_addresses && !$this->addressEqual($quote)) {
             return false;
         }
 
@@ -80,7 +80,9 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         $order = $payment->getOrder();
         $store = $order->getStore();
 
-        $this->helperData->loginSDK($store);
+        $payTransaction = $this->helperData->getTransaction($transactionId);
+
+        $this->helperData->loginSDK($store, $payTransaction->getGatewayUrl());
 
         $this->helperData->lockTransaction($transactionId);
 
@@ -111,8 +113,9 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
 
 
         $this->helperData->lockTransaction($transactionId);
+        $payTransaction = $this->helperData->getTransaction($transactionId);
 
-        $this->helperData->loginSDK($store);
+        $this->helperData->loginSDK($store, $payTransaction->getGatewayUrl());
         $result = \Paynl\Transaction::void($transactionId);
 
         $this->helperData->removeLock($transactionId);
@@ -149,7 +152,6 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         $order = $payment->getOrder();
         $store = $order->getStore();
 
-        $this->helperData->loginSDK($store);
 
         $parentTransactionId = $payment->getParentTransactionId();
 
@@ -157,6 +159,10 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
             $parentTransactionId = substr($parentTransactionId, 0, $pos);
         }
         try {
+            $payTransaction = $this->helperData->getTransaction($parentTransactionId);
+
+            $this->helperData->loginSDK($store, $payTransaction->getGatewayUrl());
+
             \Paynl\Transaction::refund($parentTransactionId, $amount);
         } catch (Exception $e) {
             // exception needs to be thrown this way, otherwise we don't get the message in the admin
@@ -169,18 +175,20 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
     public static function startPayment(Mage_Sales_Model_Order $order, $transaction_amount = null, $subId = null)
     {
         $store = $order->getStore();
-	    $helperData = Mage::helper('pay_payment');
+        /** @var Pay_Payment_Helper_Data $helperData */
+        $helperData = Mage::helper('pay_payment');
 
         $extended_logging = Mage::getStoreConfig('pay_payment/general/extended_logging', $store);
 
-        if($extended_logging) $order->addStatusHistoryComment('Pay.nl starting payment for order: '.$order->getIncrementId());
+        if ($extended_logging) $order->addStatusHistoryComment('Pay.nl starting payment for order: ' . $order->getIncrementId());
 
-	    $helperData->loginSDK($store);
+        $helperData->loginSDK($store);
+        $usedGateway = $helperData->getGatewayUrl($store);
 
         Mage::log('Starting payment for order: ' . $order->getId(), null, 'paynl.log');
 
         $arrStartData = static::getTransactionStartData($order);
-        if($subId !== null){
+        if ($subId !== null) {
             $arrStartData['bank'] = $subId;
         }
 
@@ -191,16 +199,16 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         $arrStartData['amount'] = $transaction_amount;
 
         try {
-            if($extended_logging) $order->addStatusHistoryComment('Calling Pay api to start transaction');
+            if ($extended_logging) $order->addStatusHistoryComment('Calling Pay api to start transaction');
             Mage::log('Calling Pay api to start transaction', null, 'paynl.log');
 
             $time_before = microtime(true);
             $objStartResult = \Paynl\Transaction::start($arrStartData);
             $time_after = microtime(true);
 
-            $duration = $time_after-$time_before;
+            $duration = $time_after - $time_before;
             $duration = number_format($duration, 4);
-            if($extended_logging) $order->addStatusHistoryComment('Transaction started in '.$duration.' seconds');
+            if ($extended_logging) $order->addStatusHistoryComment('Transaction started in ' . $duration . ' seconds');
 
         } catch (Exception $e) {
             $order->addStatusHistoryComment("Creating transaction failed, Exception: " . $e->getMessage());
@@ -244,11 +252,12 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
                 'service_id' => \Paynl\Config::getServiceId(),
                 'option_id' => static::OPTION_ID,
                 'option_sub_id' => null,
-                'amount' => round($transaction_amount*100),
+                'amount' => round($transaction_amount * 100),
                 'order_id' => $order->getId(),
                 'status' => Pay_Payment_Model_Transaction::STATE_PENDING,
                 'created' => time(),
                 'last_update' => time(),
+                'gateway_url' => $usedGateway
             ));
 
         $transaction->save();
@@ -259,14 +268,14 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         $payment = $order->getPayment();
 
         $order->addStatusHistoryComment('Transactie gestart, transactieId: ' . $transactionId);
-        $order->addStatusHistoryComment( $url);
+        $order->addStatusHistoryComment($url);
 
         $sendMail = Mage::getStoreConfig('payment/' . $payment->getMethod() . '/send_mail', $order->getStore());
 
         if ($sendMail == 'start') {
             $order->sendNewOrderEmail();
         }
-        if(isset($objStartResult->getData()['terminal']['hash'])){
+        if (isset($objStartResult->getData()['terminal']['hash'])) {
             $hash = $objStartResult->getData()['terminal']['hash'];
             $payment->setAdditionalInformation('paynl_instore_hash', $hash);
         }
@@ -282,14 +291,13 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         );
 
 
-
         return $result;
     }
 
     protected static function getTransactionStartData(Mage_Sales_Model_Order $order)
     {
         $store = $order->getStore();
-	    $helperData = Mage::helper('pay_payment');
+        $helperData = Mage::helper('pay_payment');
 
         $session = Mage::getSingleton('checkout/session');
 
@@ -310,7 +318,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
 
         $amount = $order->getGrandTotal();
         $currency = $order->getOrderCurrencyCode();
-        if($onlyBaseCurrency){
+        if ($onlyBaseCurrency) {
             $amount = $order->getBaseGrandTotal();
             $currency = $order->getBaseCurrencyCode();
         }
@@ -335,7 +343,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
             $arrCompany['name'] = $order->getBillingAddress()->getCompany();
         }
         if ($order->getCustomerTaxvat()) {
-            $arrCompany['vatNumber'] = substr($order->getCustomerTaxvat(),0,32);
+            $arrCompany['vatNumber'] = substr($order->getCustomerTaxvat(), 0, 32);
         }
 
         $countryId = null;
@@ -414,7 +422,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         if ($enduserAddress) {
             $enduser = array_merge($enduser, array(
                 'initials' => static::getFirstname($enduserAddress),
-                'lastName' => substr($enduserAddress->getLastname(),0,32),
+                'lastName' => substr($enduserAddress->getLastname(), 0, 32),
                 'phoneNumber' => $enduserAddress->getTelephone(),
                 'emailAddress' => $enduserAddress->getEmail()
             ));
@@ -422,8 +430,10 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
 
         return $enduser;
     }
-    protected static function getFirstname($address){
-    	return substr($address->getFirstname(),0,1);
+
+    protected static function getFirstname($address)
+    {
+        return substr($address->getFirstname(), 0, 1);
     }
 
     private static function getShippingAddress(Mage_Sales_Model_Order $order)
@@ -476,7 +486,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
 
         $arrBillingAddress = array(
             'initials' => static::getFirstname($objBillingAddress),
-            'lastName' => substr($objBillingAddress->getLastname(),0,32),
+            'lastName' => substr($objBillingAddress->getLastname(), 0, 32),
             'streetName' => $address,
             'houseNumber' => $housenumber,
             'zipCode' => $objBillingAddress->getPostcode(),
@@ -489,10 +499,10 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
 
     private static function getProducts(Mage_Sales_Model_Order $order)
     {
-        $store  = $order->getStore();
+        $store = $order->getStore();
         $onlyBaseCurrency = $store->getConfig('pay_payment/general/only_base_currency') == 1;
 
-    	$helperData = Mage::helper('pay_payment');
+        $helperData = Mage::helper('pay_payment');
         $arrProducts = array();
 
         $items = $order->getItemsCollection(array(), true);
@@ -504,7 +514,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
                 continue;
             }
             $price = $item->getPriceInclTax();
-            if($onlyBaseCurrency){
+            if ($onlyBaseCurrency) {
                 $price = $item->getBasePriceInclTax();
             }
 
@@ -520,7 +530,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         }
 
         $discountAmount = $order->getDiscountAmount();
-        if($onlyBaseCurrency){
+        if ($onlyBaseCurrency) {
             $discountAmount = $order->getBaseDiscountAmount();
         }
         if ($discountAmount < 0) {
@@ -538,7 +548,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
 
         $shipping = $order->getShippingInclTax();
         $shipping_tax = $order->getShippingTaxAmount();
-        if($onlyBaseCurrency){
+        if ($onlyBaseCurrency) {
             $shipping = $order->getBaseShippingInclTax();
             $shipping_tax = $order->getBaseShippingTaxAmount();
         }
@@ -556,7 +566,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         }
 
         $extraFee = $order->getPaynlPaymentCharge();
-        if($onlyBaseCurrency){
+        if ($onlyBaseCurrency) {
             $extraFee = $order->getPaynlBasePaymentCharge();
         }
 

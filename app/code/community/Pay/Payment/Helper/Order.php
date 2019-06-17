@@ -19,6 +19,9 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
      */
     public function processByTransactionId($transactionId, $store = null)
     {
+
+        $payTransaction = $this->helperData->getTransaction($transactionId);
+
         $order = $this->getOrderByTransactionId($transactionId);
         if ($store == null) {
             $store = $order->getStore();
@@ -28,7 +31,7 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
         if ($extended_logging) {
             $order->addStatusHistoryComment('Exchange call received from pay.nl');
         }
-        $this->helperData->loginSDK($store);
+        $this->helperData->loginSDK($store, $payTransaction->getGatewayUrl());
         $transaction     = \Paynl\Transaction::get($transactionId);
         $methodName      = $transaction->getPaymentMethodName();
         $transactionInfo = $transaction->getData();
@@ -469,7 +472,9 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
     }
     public function getTransactionStatus($transactionId, $store = null)
     {
-        $this->helperData->loginSDK($store);
+        $transaction = $this->helperData->getTransaction($transactionId);
+
+        $this->helperData->loginSDK($store, $transaction->getGatewayUrl());
         $transaction = \Paynl\Transaction::get($transactionId);
         $status = Pay_Payment_Model_Transaction::STATE_PENDING;
         //status bepalen
