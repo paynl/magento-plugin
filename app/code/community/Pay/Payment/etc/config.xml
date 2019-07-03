@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Pay_Payment>
-            <version>3.13.3</version>
+            <version>3.13.4</version>
         </Pay_Payment>
     </modules>
     <global>
@@ -327,6 +327,19 @@
                 <limit_shipping>0</limit_shipping>
                 <only_equal_addresses>1</only_equal_addresses>
             </pay_payment_cashly>
+            <pay_payment_creditclick>
+                <active>0</active>
+                <invoice_email>1</invoice_email>
+                <model>pay_payment/Paymentmethod_Creditclick</model>
+                <title>CreditClick</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
+                <send_mail>success</send_mail>
+                <limit_shipping>0</limit_shipping>
+                <only_equal_addresses>1</only_equal_addresses>
+            </pay_payment_creditclick>
             <pay_payment_mybank>
                 <active>0</active>
                 <invoice_email>1</invoice_email>
@@ -571,6 +584,18 @@
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_telefoon>
+            <pay_payment_tikkie>
+                <active>0</active>
+                <invoice_email>1</invoice_email>
+                <model>pay_payment/Paymentmethod_Tikkie</model>
+                <title>Tikkie</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
+                <send_mail>success</send_mail>
+                <limit_shipping>0</limit_shipping>
+            </pay_payment_tikkie>
             <pay_payment_paysafecard>
                 <active>0</active>
                 <invoice_email>1</invoice_email>
@@ -631,6 +656,18 @@
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_postepay>
+            <pay_payment_przelewy24>
+                <active>0</active>
+                <invoice_email>1</invoice_email>
+                <model>pay_payment/Paymentmethod_Przelewy24</model>
+                <title>Przelewy24</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
+                <send_mail>success</send_mail>
+                <limit_shipping>0</limit_shipping>
+            </pay_payment_przelewy24>
             <pay_payment_billink>
                 <active>0</active>
                 <invoice_email>1</invoice_email>
