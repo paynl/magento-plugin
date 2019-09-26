@@ -22,7 +22,7 @@ SOFORT | PostePay | Gezondheidsbon | Capayable Gespreid betalen | Pay Fixed Pric
 Maestro | Dankort | Fashion Giftcard | Klarna | Instore Payments (POS) |
 Bank Transfer | Cartasi | GivaCard | SprayPay | Przelewy24 | 
 | Tikkie | | YourGift | Creditclick | | 
-| | | Paysafecard |
+| eps-Überweisung | | Paysafecard |
 
 
 ### Quickstart
