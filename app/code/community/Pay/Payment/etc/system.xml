@@ -5043,7 +5043,7 @@
                     </fields>
                 </pay_payment_dankort>
                 <pay_payment_eps type="group" translate="label" module="pay_payment">
-                    <label>Eps-Überweisung</label>
+                    <label>eps-Überweisung</label>
                     <model>pay_payment/Model_Paymentmethod_Eps</model>
                     <sort_order>1800</sort_order>
                     <show_in_default>1</show_in_default>
