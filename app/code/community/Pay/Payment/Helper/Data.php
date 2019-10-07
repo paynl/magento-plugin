@@ -403,7 +403,7 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
 
         $arrUsedOptionIds = array();
         foreach ($paymentMethods as $paymentMethod) {
-            $image = 'https://www.pay.nl/images/payment_profiles/20x20/' . $paymentMethod['id'] . '.png';
+            $image = 'https://static.pay.nl/payment_profiles/20x20/' . $paymentMethod['id'] . '.png';
 
             /**
              * @var Pay_Payment_Model_Option $objOption

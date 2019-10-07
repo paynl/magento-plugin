@@ -3,7 +3,7 @@
 class Pay_Payment_Block_Form_Billink extends Pay_Payment_Block_Form_Abstract {
 
     protected $paymentMethodId = Pay_Payment_Model_Paymentmethod_Billink::OPTION_ID;
-    protected $paymentMethodName = 'Billink';
+    protected $paymentMethodName = 'Achteraf betalen via Billink';
     protected $methodCode = 'pay_payment_billink';
 
     protected $template = 'pay/payment/form/default.phtml';

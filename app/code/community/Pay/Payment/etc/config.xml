@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Pay_Payment>
-            <version>3.13.4</version>
+            <version>3.13.5</version>
         </Pay_Payment>
     </modules>
     <global>
@@ -276,6 +276,19 @@
                 <limit_shipping>0</limit_shipping>
                 <only_equal_addresses>1</only_equal_addresses>
             </pay_payment_klarna>
+            <pay_payment_klarnakp>
+                <active>0</active>
+                <invoice_email>1</invoice_email>
+                <model>pay_payment/Paymentmethod_Klarnakp</model>
+                <title>Klarna KP</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
+                <send_mail>success</send_mail>
+                <limit_shipping>0</limit_shipping>
+                <only_equal_addresses>1</only_equal_addresses>
+            </pay_payment_klarnakp>
             <pay_payment_bitcoin>
                 <active>0</active>
                 <invoice_email>1</invoice_email>
@@ -305,7 +318,7 @@
                 <active>0</active>
                 <invoice_email>1</invoice_email>
                 <model>pay_payment/Paymentmethod_CapayableGespreid</model>
-                <title>Capayable Gespreid</title>
+                <title>in3 keer betalen, 0% rente</title>
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
@@ -672,7 +685,7 @@
                 <active>0</active>
                 <invoice_email>1</invoice_email>
                 <model>pay_payment/Paymentmethod_Billink</model>
-                <title>Billink</title>
+                <title>Achteraf betalen via Billink</title>
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
