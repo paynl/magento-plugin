@@ -39,7 +39,7 @@ Download the latest .tgz release and upload into *Modules* > *Module Manager* > 
 1. Log into the Magento 1 Admin
 2. Go to *System* > *Configuration*
 3. Scroll down to find the PAY. Settings on the left
-4. Enter the TokenCode (AT-&ast;&ast;&ast;&ast;-&ast;&ast;&ast;&ast;), the API token and serviceID (SL-&ast;&ast;&ast;&ast;-&ast;&ast;&ast;&ast;)(these can be found in the PAY. Admin Panel --> https://admin.pay.nl/programs/programs
+4. Enter the TokenCode (AT-&ast;&ast;&ast;&ast;-&ast;&ast;&ast;&ast;), the API token and serviceID (SL-&ast;&ast;&ast;&ast;-&ast;&ast;&ast;&ast;). These can be found in the PAY. Admin Panel --> https://admin.pay.nl/programs/programs.
 6. Save the settings
 7. Enable the desired payment methods and set allowed countries and edit settings per payment method.
 8. Save the settings
