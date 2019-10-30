@@ -18,14 +18,14 @@ With this plug-in by PAY. you can easily add all desired payment methods to your
 | INTERNET BANKING | CREDIT CARDS | PAY LATER | PAY BY INSTALMENT | WALLETS | VOUCHERS & PREPAID |
 |------------------|------------------|--------------------|-------------------|------------|--------------------|
 | iDEAL + QR | Visa | AfterPay | in3 | PayPal | paysafecard |
-| Bancontact + QR | Mastercard | Billink | Spraypay | Amazon Pay | VVV Cadeaukaart |
+| Bancontact + QR | Mastercard | Achteraf betalen via Billink | Spraypay | Amazon Pay | VVV Cadeaukaart |
 | Giropay | American Express | Klarna | Creditclick | WeChat Pay | Webshop Giftcard |
 | Mybank | Postepay | Achterafbetalen.nl |  | AliPay | fashioncheque |
-| SOFORT | Carte Bancaire |  |  | ApplePay | Fashion Giftcard |
+| SOFORT | Carte Bancaire | in3 keer betalen, 0% rente |  | ApplePay | Fashion Giftcard |
 | EPS | Cartasi / Nexi |  |  |  | Gezondheidsbon |
 | Przelewy24 | Dankort |  |  |  | YourGift |
 | Bank Transfer | Maestro |  |  |  | Givacard |
-|  |  |  |  |  | Cashly |
+| eps-Überweisung |  |  |  |  | Cashly |
 
 
 ### Quickstart
