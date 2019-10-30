@@ -1,5 +1,8 @@
-# Pay.nl Magento 1 plugin
-
+<img src="https://cdn.pay.nl/images/logo/pay_logo_150.png"
+     alt="PAY. logo"
+     style="float: left; margin-right: 10px;" />
+     
+# PAY. Magento 1 plugin
 ---
 - [Summary](#summary)
 - [Quickstart](#quickstart)
@@ -8,21 +11,21 @@
 ---
 ### Summary
 
-With this plug-in by Pay.nl you can easily add all desired payment methods to your Magento 1 webshop. Please refer to https://www.pay.nl (Dutch) for an overview of all features and services. 
+With this plug-in by PAY. you can easily add all desired payment methods to your Magento 1 webshop. Please refer to https://www.pay.nl for an overview of all features and services. 
 
 ##### Available payment methods:
 
-Bank Payments  | Creditcards | Gift cards & Vouchers | Pay by invoice | Others | 
-:-----------: | :-----------: | :-----------: | :-----------: | :-----------: |
-iDEAL + QR |Visa | VVV Cadeaukaart | AfterPay | PayPal |
-Bancontact + QR |  Mastercard | Webshop Giftcard | Achteraf betalen via Billink | WeChatPay | 
-Giropay |American Express | FashionCheque |Focum AchterafBetalen.nl | AmazonPay |
-MyBank | Carte Bancaire | Podium Cadeaukaart | in3 keer betalen, 0% rente | Cashly | 
-SOFORT | PostePay | Gezondheidsbon | Capayable Gespreid betalen | Pay Fixed Price (phone) |
-Maestro | Dankort | Fashion Giftcard | Klarna | Instore Payments (POS) |
-Bank Transfer | Cartasi | GivaCard | SprayPay | Przelewy24 | 
-| Tikkie | | YourGift | Creditclick | | 
-| eps-Überweisung | | Paysafecard |
+| INTERNET BANKING | CREDIT CARDS | PAY LATER | PAY BY INSTALMENT | WALLETS | VOUCHERS & PREPAID |
+|------------------|------------------|--------------------|-------------------|------------|--------------------|
+| iDEAL + QR | Visa | AfterPay | in3 | PayPal | paysafecard |
+| Bancontact + QR | Mastercard | Achteraf betalen via Billink | Spraypay | Amazon Pay | VVV Cadeaukaart |
+| Giropay | American Express | Klarna | Creditclick | WeChat Pay | Webshop Giftcard |
+| Mybank | Postepay | Achterafbetalen.nl |  | AliPay | fashioncheque |
+| SOFORT | Carte Bancaire | in3 keer betalen, 0% rente |  | ApplePay | Fashion Giftcard |
+| EPS | Cartasi / Nexi |  |  |  | Gezondheidsbon |
+| Przelewy24 | Dankort |  |  |  | YourGift |
+| Bank Transfer | Maestro |  |  |  | Givacard |
+| eps-Überweisung |  |  |  |  | Cashly |
 
 
 ### Quickstart
@@ -35,10 +38,12 @@ Download the latest .tgz release and upload into *Modules* > *Module Manager* > 
 
 1. Log into the Magento 1 Admin
 2. Go to *System* > *Configuration*
-3. Scroll down to find the Pay.nl Settings on the left
-4. Enter the API token and serviceID (these can be found in the Pay.nl Admin Panel --> https://admin.pay.nl/programs/programs
+3. Scroll down to find the PAY. Settings on the left
+4. Enter the TokenCode (AT-&ast;&ast;&ast;&ast;-&ast;&ast;&ast;&ast;), the API token and serviceID (SL-&ast;&ast;&ast;&ast;-&ast;&ast;&ast;&ast;). These can be found in the PAY. Admin Panel --> https://admin.pay.nl/programs/programs.
 6. Save the settings
 7. Enable the desired payment methods and set allowed countries and edit settings per payment method.
 8. Save the settings
 
 Go to the *Manage* > *Services* tab in the Pay.nl Admin Panel to enable extra payment methods
+
+
