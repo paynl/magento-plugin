@@ -640,6 +640,10 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         $billingAddress = $quote->getBillingAddress();
         $shippingAddress = $quote->getShippingAddress();
 
+        if($shippingAddress->getSameAsBilling()) {
+            return true;
+        }
+
         if (strtolower($billingAddress->getStreet1()) !== strtolower($shippingAddress->getStreet1())) {
             return false;
         }
