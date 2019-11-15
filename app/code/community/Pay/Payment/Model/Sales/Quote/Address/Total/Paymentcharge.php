@@ -61,7 +61,7 @@ class Pay_Payment_Model_Sales_Quote_Address_Total_Paymentcharge extends Mage_Sal
                     $arrRate['amount'] = $arrRate['amount'] + $chargeTax;
                     $arrRate['base_amount'] = $arrRate['base_amount'] + $baseChargeTax;
                 }
-              $rates[] = $arrRate;
+              $rates[$arrRate['id']] = $arrRate;
             }
 
 
