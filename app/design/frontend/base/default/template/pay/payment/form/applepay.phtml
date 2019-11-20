@@ -1,0 +1,17 @@
+<script>
+$('dt_method_pay_payment_applepay').hide();
+
+function isApplePayAvailable()
+{
+    try {
+        return window.ApplePaySession;
+    } catch (e) {
+        console.warn(e);
+        return false;
+    }
+}
+
+if (isApplePayAvailable()) {
+    $('dt_method_pay_payment_applepay').show();
+}
+</script>
