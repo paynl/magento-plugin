@@ -329,6 +329,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
             'returnUrl' => Mage::getUrl('pay_payment/order/return', array('_store' => $store->getCode())),
             'exchangeUrl' => Mage::getUrl('pay_payment/order/exchange', array('_store' => $store->getCode())),
             'paymentMethod' => $optionId,
+            'orderNumber' => $order->getIncrementId(),
             'description' => $order->getIncrementId(),
             'currency' => $currency,
             'extra1' => $order->getIncrementId(),
