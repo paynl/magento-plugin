@@ -335,7 +335,8 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
             'extra1' => $order->getIncrementId(),
             'extra2' => $order->getCustomerEmail(),
             'ipAddress' => $ipAddress,
-            'language' => $helperData->getLanguage($order->getStore())
+            'language' => $helperData->getLanguage($order->getStore()),
+            'object' => 'magento1 ' . Mage::helper('pay_payment')->getVersion()
         );
         $arrCompany = array();
         if ($order->getShippingAddress() && $order->getShippingAddress()->getCompany()) {
