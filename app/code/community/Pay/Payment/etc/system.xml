@@ -9282,7 +9282,7 @@
                 <pay_payment_multibanco type="group" translate="label" module="pay_payment">
                     <label>Multibanco</label>
                     <model>pay_payment/Model_Paymentmethod_Multibanco</model>
-                    <sort_order>3000</sort_order>
+                    <sort_order>3050</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
@@ -10167,7 +10167,7 @@
                 <pay_payment_payconiq type="group" translate="label" module="pay_payment">
                     <label>Payconiq</label>
                     <model>pay_payment/Model_Paymentmethod_Payconiq</model>
-                    <sort_order>3300</sort_order>
+                    <sort_order>3250</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
