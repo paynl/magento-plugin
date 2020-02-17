@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Pay_Payment>
-            <version>3.13.7</version>
+            <version>3.13.8</version>
         </Pay_Payment>
     </modules>
     <global>
@@ -463,6 +463,18 @@
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_instore>
+            <pay_payment_payconiq>
+                <active>0</active>
+                <invoice_email>1</invoice_email>
+                <model>pay_payment/Paymentmethod_Payconiq</model>
+                <title>Payconiq</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
+                <send_mail>success</send_mail>
+                <limit_shipping>0</limit_shipping>
+            </pay_payment_payconiq>
             <pay_payment_paypal>
                 <active>0</active>
                 <invoice_email>1</invoice_email>
@@ -487,6 +499,18 @@
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_mistercash>
+            <pay_payment_multibanco>
+                <active>0</active>
+                <invoice_email>1</invoice_email>
+                <model>pay_payment/Paymentmethod_Multibanco</model>
+                <title>Multibanco</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
+                <send_mail>success</send_mail>
+                <limit_shipping>0</limit_shipping>
+            </pay_payment_multibanco>
             <pay_payment_sofortbanking>
                 <active>0</active>
                 <invoice_email>1</invoice_email>
