@@ -151,7 +151,7 @@
         <pdf>
             <totals>
                 <payment_charge translate="title">
-                    <title>Pay.nl betaalmethode kosten</title>
+                    <title>PAY. betaalmethode kosten</title>
                     <source_field>paynl_payment_charge</source_field>
                     <font_size>7</font_size>
                     <display_zero>0</display_zero>
@@ -815,7 +815,7 @@
                 <active>1</active>
                 <invoice_email>1</invoice_email>
                 <model>pay_payment/Paymentmethod_Paylink</model>
-                <title>Pay.nl Betaallink</title>
+                <title>PAY. Betaallink</title>
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>

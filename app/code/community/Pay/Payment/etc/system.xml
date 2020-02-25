@@ -3,15 +3,14 @@
     <tabs>
         <pay_payment translate="label" module="pay_payment">
             <label>
-                <![CDATA[<img src='http://pay.nl/images/header_logo.gif' style='width:50px;height:50px;' />]]></label>
+                <![CDATA[<img src='https://static.pay.nl/generic/images/50x50/logo.png' />]]></label>
             <sort_order>1</sort_order>
         </pay_payment>
     </tabs>
     <sections>
         <!--        Algemene instellingen-->
         <pay_payment translate="label" module="pay_payment">
-            <label>
-                <![CDATA[<img alt='Pay.nl instellingen' title='Pay.nl instellingen' style='margin-top:3px;margin-bottom:-3px;height:14px;' src='/media/pay_payment/logo.png' />]]></label>
+            <label>PAY. Betaalmethoden</label>
             <tab>sales</tab>
             <sort_order>350</sort_order>
             <show_in_default>1</show_in_default>
@@ -27,7 +26,7 @@
                     <expanded>1</expanded>
                     <fields>
                         <version translate="label">
-                            <label>Pay.nl plugin versie</label>
+                            <label>PAY. plugin versie</label>
                             <frontend_type>select</frontend_type>
                             <frontend_model>Pay_Payment_Block_Adminhtml_Version</frontend_model>
                             <sort_order>10</sort_order>
@@ -164,7 +163,7 @@
                         </page_canceled>
                         <user_language translate="label comment">
                             <label>Gebruikers taal</label>
-                            <comment><![CDATA[De taalcode die naar pay.nl moet worden gestuurd, dit is van invloed op de taal van het betaalscherm en de eventuele email die naar de gebruiker wordt gestuurd door pay (bijvoorbeeld bij bankoverschrijving)]]></comment>
+                            <comment><![CDATA[De taalcode die naar PAY. moet worden gestuurd, dit is van invloed op de taal van het betaalscherm en de eventuele email die naar de gebruiker wordt gestuurd door pay (bijvoorbeeld bij bankoverschrijving)]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_language</source_model>
                             <sort_order>130</sort_order>
@@ -233,7 +232,7 @@
                         </text_payment_charge>
                         <use_backup_api translate="label comment">
                             <label>Gateway</label>
-                            <comment><![CDATA[Gebruik de standard gateway, op <a href='http://status-pay.nl'>status-pay.nl</a> kunt u de status van onze techniek volgen]]></comment>
+                            <comment><![CDATA[Gebruik de standard gateway, op <a href='https://status-pay.nl'>status-pay.nl</a> kunt u de status van onze techniek volgen]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>pay_payment/source_gateway</source_model>
                             <sort_order>500</sort_order>
@@ -243,7 +242,7 @@
                             <depends>
                                 <use_backup_api>1</use_backup_api>
                             </depends>
-                            <comment>Vul hier de locatie van de failover gateway in die door pay.nl is verstrekt</comment>
+                            <comment>Vul hier de locatie van de failover gateway in die door PAY. is verstrekt</comment>
                             <label>Failover gateway</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>600</sort_order>
@@ -315,7 +314,7 @@
                     <fields>
                         <test123 translate="label comment">
                             <label>Beschikbaar</label>
-                            <comment>Hierboven ziet u de betaalmethoden die voor uw account bij pay.nl beschikbaar zijn</comment>
+                            <comment>Hierboven ziet u de betaalmethoden die voor uw account bij PAY. beschikbaar zijn</comment>
                             <sort_order>3</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
@@ -15216,7 +15215,7 @@
                 <totals_sort translate="label">
                     <fields>
                         <payment_charge>
-                            <label>Pay.nl betaalmethode kosten</label>
+                            <label>PAY. betaalmethode kosten</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>10</sort_order>
                             <show_in_default>1</show_in_default>

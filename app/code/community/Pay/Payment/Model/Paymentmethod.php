@@ -180,7 +180,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
 
         $extended_logging = Mage::getStoreConfig('pay_payment/general/extended_logging', $store);
 
-        if ($extended_logging) $order->addStatusHistoryComment('Pay.nl starting payment for order: ' . $order->getIncrementId());
+        if ($extended_logging) $order->addStatusHistoryComment('PAY. starting payment for order: ' . $order->getIncrementId());
 
         $helperData->loginSDK($store);
         $usedGateway = $helperData->getGatewayUrl($store);
