@@ -1,4 +1,4 @@
-<img src="https://cdn.pay.nl/images/logo/pay_logo_150.png"
+<img src="https://static.pay.nl/generic/images/100x100/logo.png"
      alt="PAY. logo"
      style="float: left; margin-right: 10px;" />
      
@@ -15,17 +15,17 @@ With this plug-in by PAY. you can easily add all desired payment methods to your
 
 ##### Available payment methods:
 
-| INTERNET BANKING | CREDIT CARDS | PAY LATER | PAY BY INSTALMENT | WALLETS | VOUCHERS & PREPAID |
-|------------------|------------------|--------------------|-------------------|------------|--------------------|
-| iDEAL + QR | Visa | AfterPay | In3 keer betalen, 0% rente | PayPal | Paysafecard |
-| Bancontact + QR | Mastercard | Achteraf betalen via Billink | Spraypay | Amazon Pay | VVV Cadeaukaart |
-| Giropay | American Express | Klarna | Creditclick | WeChat Pay | Webshop Giftcard |
-| Mybank | Postepay | Achterafbetalen.nl |  | AliPay | fashioncheque |
-| SOFORT | Carte Bancaire |  |  | ApplePay | Fashion Giftcard |
-| EPS-Überweisung | Cartasi / Nexi |  |  |  | Gezondheidsbon |
-| Przelewy24 | Dankort |  |  |  | YourGift |
-| Bank Transfer | Maestro |  |  |  | Givacard |
-|  |  |  |  |  | Cashly |
+Bank Payments  | Creditcards | Gift cards & Vouchers | Pay by invoice | Others | 
+:-----------: | :-----------: | :-----------: | :-----------: | :-----------: |
+iDEAL + QR |Visa | VVV Cadeaukaart | AfterPay | PayPal |
+Bancontact + QR |  Mastercard | Webshop Giftcard | Achteraf betalen via Billink | WeChatPay | 
+Giropay |American Express | FashionCheque | Focum AchterafBetalen.nl | AmazonPay |
+MyBank | Carte Bancaire | Podium Cadeaukaart | Capayable Achteraf Betalen | Cashly | 
+SOFORT | PostePay | Gezondheidsbon | in3 keer betalen, 0% rente | Pay Fixed Price (phone) |
+Maestro | Dankort | Fashion Giftcard | Klarna | Instore Payments (POS) |
+Bank Transfer | Cartasi | GivaCard | SprayPay | Przelewy24 | 
+| Tikkie | | YourGift | Creditclick | Apple Pay | 
+| Multibanco | | Paysafecard | | Payconiq
 
 
 ### Quickstart
@@ -44,6 +44,6 @@ Download the latest .tgz release and upload into *Modules* > *Module Manager* > 
 7. Enable the desired payment methods and set allowed countries and edit settings per payment method.
 8. Save the settings
 
-Go to the *Manage* > *Services* tab in the Pay.nl Admin Panel to enable extra payment methods
+Go to the *Manage* > *Services* tab in the PAY. Admin Panel to enable extra payment methods
 
 

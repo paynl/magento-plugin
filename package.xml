@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <package>
     <name>Pay_NL</name>
-    <version>3.5.2</version>
+    <version>3.5.3</version>
     <stability>stable</stability>
     <license>Pay</license>
     <channel>community</channel>
     <extends/>
-    <summary>Betaalmethoden van pay.nl</summary>
-    <description>Magento plugin voor betaalmethoden van pay.nl</description>
+    <summary>Betaalmethoden van PAY.</summary>
+    <description>Magento plugin voor betaalmethoden van PAY.</description>
     <notes>Update invoice tax payment fee</notes>
     <authors><author><name>Andy Pieters</name><user>andy</user><email>andy@pay.nl</email></author></authors>
     <date>2016-02-16</date>

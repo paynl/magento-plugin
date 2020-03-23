@@ -29,7 +29,7 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
         $extended_logging = Mage::getStoreConfig('pay_payment/general/extended_logging', $store);
         $blockCapture     = $store->getConfig('pay_payment/general/block_capture') == 1;
         if ($extended_logging) {
-            $order->addStatusHistoryComment('Exchange call received from pay.nl');
+            $order->addStatusHistoryComment('Exchange call received from PAY.');
         }
         $this->helperData->loginSDK($store, $payTransaction->getGatewayUrl());
         $transaction     = \Paynl\Transaction::get($transactionId);
@@ -192,7 +192,7 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
                     }
                     if (!$order->canInvoice()) {
                         if ($extended_logging) {
-                            $order->addStatusHistoryComment('Pay.nl cannot create invoice');
+                            $order->addStatusHistoryComment('PAY. cannot create invoice');
                         }
                         $order->save();
                         die('Cannot create an invoice.');
@@ -203,7 +203,7 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
                     $invoice = Mage::getModel('sales/service_order', $order)->prepareInvoice();
                     if (!$invoice->getTotalQty()) {
                         if ($extended_logging) {
-                            $order->addStatusHistoryComment('Pay.nl Cannot create an invoice without products.');
+                            $order->addStatusHistoryComment('PAY. Cannot create an invoice without products.');
                         }
                         $order->save();
                         die('Cannot create an invoice without products.');
@@ -268,7 +268,7 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
             ) {
                 $order->setTotalPaid($order->getGrandTotal());
                 $order->setBaseTotalPaid($order->getBaseGrandTotal());
-                $order->addStatusHistoryComment('Pay.nl - Updated totalPaid, because it seems like the payment was not correctly registered - totalDue ' . $totalDue . ' - totalPaid ' . $totalPaid . ' - paidAmount ' . $paidAmount);
+                $order->addStatusHistoryComment('PAY. - Updated totalPaid, because it seems like the payment was not correctly registered - totalDue ' . $totalDue . ' - totalPaid ' . $totalPaid . ' - paidAmount ' . $paidAmount);
             }
             # If multi payment, reset the paid amount
             if ($payment->getMethod() == 'multipaymentforpos' && $paidAmount == $orderAmount) {
@@ -310,7 +310,7 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
                 $invoice = Mage::getModel('sales/service_order', $order)->prepareInvoice();
                 if ( ! $invoice->getTotalQty()) {
                     if ($extended_logging) {
-                        $order->addStatusHistoryComment('Pay.nl Cannot create an invoice without products.');
+                        $order->addStatusHistoryComment('PAY. Cannot create an invoice without products.');
                     }
                     $order->save();
                     die('Cannot create an invoice without products.');
