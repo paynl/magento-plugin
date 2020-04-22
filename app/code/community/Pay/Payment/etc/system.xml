@@ -302,6 +302,15 @@
                             <sort_order>1200</sort_order>
                             <show_in_default>1</show_in_default>
                         </invoice_authorized>
+                        <testipaddress translate="label comment">
+                            <label>Test Ip address</label>
+                            <comment>Forces testmode on these Ip addresses, separate ip's by comma's for multiple ip's</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1300</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </testipaddress>
                     </fields>
                 </general>
                 <loaded_payment_methods translate="label" module="pay_payment">
