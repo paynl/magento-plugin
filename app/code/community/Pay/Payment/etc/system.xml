@@ -303,8 +303,8 @@
                             <show_in_default>1</show_in_default>
                         </invoice_authorized>
                         <testipaddress translate="label comment">
-                            <label>Test Ip address</label>
-                            <comment>Forces testmode on these Ip addresses, separate ip's by comma's for multiple ip's</comment>
+                            <label>Test IP address</label>
+                            <comment>Forces testmode on these IP addresses, separate IP's by comma's for multiple IP's</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>1300</sort_order>
                             <show_in_default>1</show_in_default>
