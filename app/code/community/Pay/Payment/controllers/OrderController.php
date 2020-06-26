@@ -89,8 +89,6 @@ class Pay_Payment_OrderController extends Mage_Core_Controller_Front_Action
         $error = false;
         $params = $this->getRequest()->getParams();
 
-        Mage::log(PHP_EOL.PHP_EOL.'Exchange action: '.$params['action'], null, 'paynl.log', true);
-
         $transactionId = $params['order_id'];
         if (empty($transactionId)) {
             $get = $this->getRequest()->setParamSources(array('_GET'))->getParams();
