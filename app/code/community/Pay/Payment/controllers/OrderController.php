@@ -89,6 +89,8 @@ class Pay_Payment_OrderController extends Mage_Core_Controller_Front_Action
         $error = false;
         $params = $this->getRequest()->getParams();
 
+        Mage::log(PHP_EOL.PHP_EOL.'Exchange action: '.$params['action'], null, 'paynl.log', true);
+
         $transactionId = $params['order_id'];
         if (empty($transactionId)) {
             $get = $this->getRequest()->setParamSources(array('_GET'))->getParams();
@@ -121,13 +123,12 @@ class Pay_Payment_OrderController extends Mage_Core_Controller_Front_Action
             if (substr($params['action'],0,6) == 'refund') {
                 throw Mage::exception('Pay_Payment', 'Ignoring refund', 0);
             }
+            $payTransaction = $this->helperData->lockTransaction($transactionId);
 
-            $this->helperData->lockTransaction($transactionId);
+            $status = $this->helperOrder->processByTransactionId($transactionId, null, $payTransaction);
 
-            $status = $this->helperOrder->processByTransactionId($transactionId);
-
-            $this->helperData->removeLock($transactionId);
-
+            $this->helperData->removeLock($transactionId, $payTransaction);
+  
             $resultMsg = 'Status updated to ' . $status;
         } catch (Pay_Payment_Model_Transaction_LockException $e) {
             $error = true;
