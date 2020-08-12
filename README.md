@@ -33,7 +33,7 @@ Bank Transfer | Cartasi | GivaCard | SprayPay | Przelewy24 |
 # Installation
 ##### Installing
 
-Download the latest .tgz release and upload into *Modules* > *Module Manager* > *Upload a module*
+Download the latest .tgz release and upload into system > Magento Connect > Magento connect manager. Under the row "Direct package file upload".
 
 ##### Setup
 
@@ -49,6 +49,8 @@ Go to the *Manage* > *Services* tab in the PAY. Admin Panel to enable extra paym
 
 #### Update instructions
 
+1. Uninstall the old version
+2. install the newest version of the plugin.
 
 # Usage
 
