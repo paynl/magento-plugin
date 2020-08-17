@@ -1,11 +1,11 @@
 <p align="center">
   <img src="https://www.pay.nl/uploads/1/brands/main_logo.png" />
 </p>
-<h1 align="center">PAY. Magento</h1>
+<h1 align="center">PAY. Magento plugin</h1>
 
 # Description
 
-With this plug-in by PAY. you can easily add all desired payment methods to your Magento 1 webshop. Please refer to https://www.pay.nl for an overview of all features and services. 
+With this plug-in by PAY. you can easily add all desired payment methods to your Magento webshop. Please refer to https://www.pay.nl for an overview of all features and services. 
 
 - [Description](#description)
 - [Available payment methods](#available-payment-methods)
