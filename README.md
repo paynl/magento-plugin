@@ -1,7 +1,7 @@
 <p align="center">
   <img src="https://www.pay.nl/uploads/1/brands/main_logo.png" />
 </p>
-<h1 align="center">PAY. Magento 1 plugin</h1>
+<h1 align="center">PAY. Magento</h1>
 
 # Description
 
@@ -54,7 +54,7 @@ Go to the *Manage* > *Services* tab in the PAY. Admin Panel to enable extra paym
 
 # Usage
 
-**More information on this plugin can be found on https://docs.pay.nl/**
+**More information on this plugin can be found on https://docs.pay.nl/plugins#magento**
 
 # Support
 https://www.pay.nl
