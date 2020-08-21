@@ -89,6 +89,7 @@ class Pay_Payment_OrderController extends Mage_Core_Controller_Front_Action
         $error = false;
         $params = $this->getRequest()->getParams();
 
+        $action = $params['action'];
         $transactionId = $params['order_id'];
         if (empty($transactionId)) {
             $get = $this->getRequest()->setParamSources(array('_GET'))->getParams();
@@ -124,21 +125,21 @@ class Pay_Payment_OrderController extends Mage_Core_Controller_Front_Action
 
             $this->helperData->lockTransaction($transactionId);
 
-            $status = $this->helperOrder->processByTransactionId($transactionId);
+            $status = $this->helperOrder->processByTransactionId($transactionId, null, $action);
 
             $this->helperData->removeLock($transactionId);
 
             $resultMsg = 'Status updated to ' . $status;
         } catch (Pay_Payment_Model_Transaction_LockException $e) {
             $error = true;
-            $resultMsg = 'ERROR: ';
+            $resultMsg = 'ERROR EX1: ';
             $resultMsg .= $e->getMessage();
         } catch (Pay_Payment_Exception $e) {
             if ($e->getCode() == 0) {
                 $resultMsg = 'NOTICE: ';
             } else {
                 $error = true;
-                $resultMsg = 'ERROR: ';
+                $resultMsg = 'ERROR EX2: ';
             }
 
             $this->helperData->removeLock($transactionId);
@@ -146,7 +147,7 @@ class Pay_Payment_OrderController extends Mage_Core_Controller_Front_Action
 
         } catch (Exception $e) {
             $error = true;
-            $resultMsg = 'ERROR: ' . $e->getMessage();
+            $resultMsg = 'ERROR EX3: ' . $e->getMessage();
             $this->helperData->removeLock($transactionId);
         }
 
