@@ -14,10 +14,11 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
      *
      * @param string $transactionId
      * @param Mage_Core_Model_Store $store
+     * @param string $action
      *
      * @return string|null the new status
      */
-    public function processByTransactionId($transactionId, $store = null)
+    public function processByTransactionId($transactionId, $store = null, $action = null)
     {
 
         $payTransaction = $this->helperData->getTransaction($transactionId);
@@ -46,7 +47,9 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
         } elseif ($transaction->isBeingVerified()) {
             $status = Pay_Payment_Model_Transaction::STATE_VERIFY;
         } else {
-            $status = Pay_Payment_Model_Transaction::STATE_PENDING;
+            if (!empty($action) && strtolower($action) == 'new_ppt') {
+              throw Mage::exception('Pay_Payment', 'Status is still pending', 101);
+            }
             if ($extended_logging) {
                 $order->addStatusHistoryComment('Status is pending, exiting');
             }
