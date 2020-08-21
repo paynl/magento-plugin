@@ -304,7 +304,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
         $sendOrderData = $store->getConfig('pay_payment/general/send_order_data');
         $onlyBaseCurrency = $store->getConfig('pay_payment/general/only_base_currency') == 1;
         $testMode = $store->getConfig('pay_payment/general/testmode');
-        $ip = isset($_SERVER['HTTP_CLIENT_IP']) ? $_SERVER['HTTP_CLIENT_IP'] : isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : $_SERVER['REMOTE_ADDR'];
+        $ip = isset($_SERVER['HTTP_CLIENT_IP']) ? $_SERVER['HTTP_CLIENT_IP'] : (isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : $_SERVER['REMOTE_ADDR']);
         $ipconfig = $store->getConfig('pay_payment/general/testipaddress');
         $allowed_ips = explode(',', $ipconfig);       
         if(in_array($ip, $allowed_ips)){
