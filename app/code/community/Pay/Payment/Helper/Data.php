@@ -270,7 +270,7 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
         $transaction->setLockDate(strtotime('now'));
         $transaction->save();
 
-        return true;
+        return $transaction;
     }
 
     /**
@@ -288,9 +288,17 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
         return $transaction;
     }
 
-    public function removeLock($transactionId)
+  /**
+   * Remove lock
+   *
+   * @param $transactionId
+   * @param null $transaction
+   */
+    public function removeLock($transactionId, $transaction = null)
     {
+      if(empty($transaction)) {
         $transaction = $this->getTransaction($transactionId);
+      }
         if ($transaction->isEmpty()) return;
 
         $transaction->setLockDate(null);

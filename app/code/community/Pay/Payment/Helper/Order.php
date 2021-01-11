@@ -9,19 +9,22 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
     {
         $this->helperData = Mage::helper('pay_payment');
     }
-    /**
-     * Processes the order by transactionId, the data is collected by calling the pay api
-     *
-     * @param string $transactionId
-     * @param Mage_Core_Model_Store $store
-     * @param string $action
-     *
-     * @return string|null the new status
-     */
-    public function processByTransactionId($transactionId, $store = null, $action = null)
-    {
 
-        $payTransaction = $this->helperData->getTransaction($transactionId);
+  /**
+   * Processes the order by transactionId, the data is collected by calling the pay api
+   * @param $transactionId
+   * @param null $store
+   * @param null $payTransaction
+   * @return string|void
+   * @throws Mage_Core_Exception
+   * @throws \Paynl\Error\Api
+   * @throws \Paynl\Error\Error
+   */
+    public function processByTransactionId($transactionId, $store = null, $payTransaction = null)
+    {
+        if (empty($payTransaction)) {
+          $payTransaction = $this->helperData->getTransaction($transactionId);
+        }
 
         $order = $this->getOrderByTransactionId($transactionId);
         if ($store == null) {
@@ -75,10 +78,11 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
         $endUserId = $transaction->getAccountNumber();
         if ($extended_logging) {
             $order->addStatusHistoryComment('Processing exchange with status ' . $status);
+            $order->save();
         }
-        $order->save();
+
         // alle data is opgehaald status updaten
-        $this->updateState($transactionId, $status, $methodName, $paidAmount, $endUserId, $store);
+        $this->updateState($transactionId, $status, $methodName, $paidAmount, $endUserId, $store, $payTransaction, $order);
         return $status;
     }
     /**
@@ -104,14 +108,22 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
         $methodName,
         $paidAmount = null,
         $endUserId = null,
-        $store = null
+        $store = null,
+        $transaction = null,
+        $order = null
     ) {
         //transactie ophalen uit pay tabel
         /** @var Pay_Payment_Helper_Data $helperData */
         $helperData  = Mage::helper('pay_payment');
-        $transaction = $helperData->getTransaction($transactionId);
+        if (is_null($transaction)) {
+          $transaction = $helperData->getTransaction($transactionId);
+        }
+
         /** @var Mage_Sales_Model_Order $order */
-        $order = $this->getOrderByTransactionId($transactionId);
+        if(empty($order)) {
+          $order = $this->getOrderByTransactionId($transactionId);
+        }
+
         if ($store == null) {
             $store = $order->getStore();
         }
