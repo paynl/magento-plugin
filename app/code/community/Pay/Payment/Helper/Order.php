@@ -10,8 +10,8 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
         $this->helperData = Mage::helper('pay_payment');
     }
 
-    /**
-     * Processes the order by transactionId, the data is collected by calling the pay api
+  /**
+   * Processes the order by transactionId, the data is collected by calling the pay api
    * @param $transactionId
    * @param null $store
    * @param null $payTransaction
@@ -50,7 +50,9 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
         } elseif ($transaction->isBeingVerified()) {
             $status = Pay_Payment_Model_Transaction::STATE_VERIFY;
         } else {
-            $status = Pay_Payment_Model_Transaction::STATE_PENDING;
+            if (!empty($action) && strtolower($action) == 'new_ppt') {
+              throw Mage::exception('Pay_Payment', 'Status is still pending', 101);
+            }
             if ($extended_logging) {
                 $order->addStatusHistoryComment('Status is pending, exiting');
             }

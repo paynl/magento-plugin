@@ -1,19 +1,21 @@
-<img src="https://static.pay.nl/generic/images/100x100/logo.png"
-     alt="PAY. logo"
-     style="float: left; margin-right: 10px;" />
-     
-# PAY. Magento 1 plugin
----
-- [Summary](#summary)
-- [Quickstart](#quickstart)
-- [Setup](#setup)
+<p align="center">
+  <img src="https://www.pay.nl/uploads/1/brands/main_logo.png" />
+</p>
+<h1 align="center">PAY. Magento plugin</h1>
 
----
-### Summary
+# Description
 
-With this plug-in by PAY. you can easily add all desired payment methods to your Magento 1 webshop. Please refer to https://www.pay.nl for an overview of all features and services. 
+With this plug-in by PAY. you can easily add all desired payment methods to your Magento webshop. Please refer to https://www.pay.nl for an overview of all features and services. 
 
-##### Available payment methods:
+- [Description](#description)
+- [Available payment methods](#available-payment-methods)
+- [Installation](#installation)
+- [Update instructions](#update-instructions)
+- [Usage](#usage)
+- [Support](#support)
+
+
+# Available payment methods
 
 Bank Payments  | Creditcards | Gift cards & Vouchers | Pay by invoice | Others | 
 :-----------: | :-----------: | :-----------: | :-----------: | :-----------: |
@@ -28,11 +30,10 @@ Bank Transfer | Cartasi | GivaCard | SprayPay | Przelewy24 |
 | Multibanco | | Paysafecard | | Payconiq
 
 
-### Quickstart
-
+# Installation
 ##### Installing
 
-Download the latest .tgz release and upload into *Modules* > *Module Manager* > *Upload a module*
+Download the latest .tgz release and upload into system > Magento Connect > Magento connect manager. Under the row "Direct package file upload".
 
 ##### Setup
 
@@ -45,5 +46,20 @@ Download the latest .tgz release and upload into *Modules* > *Module Manager* > 
 8. Save the settings
 
 Go to the *Manage* > *Services* tab in the PAY. Admin Panel to enable extra payment methods
+
+#### Update instructions
+
+1. Uninstall the old version
+2. install the newest version of the plugin.
+
+# Usage
+
+**More information on this plugin can be found on https://docs.pay.nl/plugins#magento**
+
+# Support
+https://www.pay.nl
+
+Contact us: support@pay.nl
+
 
 
