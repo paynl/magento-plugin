@@ -9,14 +9,18 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
     {
         $this->helperData = Mage::helper('pay_payment');
     }
+
     /**
      * Processes the order by transactionId, the data is collected by calling the pay api
      *
-     * @param string $transactionId
-     * @param Mage_Core_Model_Store $store
-     * @param string $action
-     *
-     * @return string|null the new status
+     * @param $transactionId
+     * @param null $store
+     * @param null $action
+     * @return string|void
+     * @throws Mage_Core_Exception
+     * @throws \Paynl\Error\Api
+     * @throws \Paynl\Error\Error
+     * @throws Exception
      */
     public function processByTransactionId($transactionId, $store = null, $action = null)
     {
@@ -48,26 +52,26 @@ class Pay_Payment_Helper_Order extends Mage_Core_Helper_Abstract
             $status = Pay_Payment_Model_Transaction::STATE_VERIFY;
         } else {
             if (!empty($action) && strtolower($action) == 'new_ppt') {
-              throw Mage::exception('Pay_Payment', 'Status is still pending', 101);
+                throw Mage::exception('Pay_Payment', 'Status is still pending', 101);
             }
             if ($extended_logging) {
                 $order->addStatusHistoryComment('Status is pending, exiting');
             }
             $order->save();
-            //we gaan geen update doen
+
+            # No update needed
             return;
         }
-        $authTransaction = $order->getPayment()->getAuthorizationTransaction();
-        if ($status == Pay_Payment_Model_Transaction::STATE_SUCCESS &&
-            $authTransaction &&
-            $blockCapture
-        ) {
+
+        $authTransaction = $order->getPayment() ? $order->getPayment()->getAuthorizationTransaction() : false;
+        if ($status == Pay_Payment_Model_Transaction::STATE_SUCCESS && $authTransaction && $blockCapture) {
             if ($extended_logging) {
                 $order->addStatusHistoryComment('Blocking capture because block capture is enabled and an authorize transaction is present.');
             }
             $order->save();
             return $status;
         }
+
         $paidAmount = $transaction->getPaidCurrencyAmount();
         if ($store->getConfig('pay_payment/general/only_base_currency') == 1) {
             $paidAmount = $transaction->getPaidAmount();
