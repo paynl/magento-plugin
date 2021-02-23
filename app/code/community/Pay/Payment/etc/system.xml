@@ -181,6 +181,16 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </show_icons>
+                        <icon_size translate="label comment">
+                            <label>Icon size</label>
+                            <comment><![CDATA[Selecteer hoe groot de icoontjes van de betaalmethoden moeten zijn]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_iconsize</source_model>
+                            <sort_order>141</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </icon_size>
                         <show_fee translate="label comment">
                             <label>Betaalkosten weergeven</label>
                             <comment><![CDATA[Kosten voor de betaalmethode weergeven in de checkout]]></comment>
@@ -211,16 +221,6 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </deduct_tax_fee_invoicing>
-                        <icon_size translate="label comment">
-                            <label>Icon size</label>
-                            <comment><![CDATA[Selecteer hoe groot de icoontjes van de betaalmethoden moeten zijn]]></comment>
-                            <frontend_type>select</frontend_type>
-                            <source_model>pay_payment/source_iconsize</source_model>
-                            <sort_order>300</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </icon_size>
                         <text_payment_charge translate="label comment">
                             <label>Text betalingskosten</label>
                             <comment><![CDATA[De text die wordt weergegeven bij de betalingskosten]]></comment>
@@ -230,6 +230,15 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </text_payment_charge>
+                        <exclude_fee_refund translate="label comment">
+                            <label>Betaalkosten niet terugbetalen</label>
+                            <comment>Bij terugbetaling(refund) niet de betaalkosten terugbetalen</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                        </exclude_fee_refund>
+
                         <use_backup_api translate="label comment">
                             <label>Gateway</label>
                             <comment><![CDATA[Gebruik de standard gateway, op <a href='https://status-pay.nl'>status-pay.nl</a> kunt u de status van onze techniek volgen]]></comment>
@@ -311,6 +320,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </testipaddress>
+
                     </fields>
                 </general>
                 <loaded_payment_methods translate="label" module="pay_payment">
