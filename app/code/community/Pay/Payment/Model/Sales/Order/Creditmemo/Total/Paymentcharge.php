@@ -5,6 +5,12 @@ class Pay_Payment_Model_Sales_Order_Creditmemo_Total_Paymentcharge extends Mage_
     public function collect(Mage_Sales_Model_Order_Creditmemo $creditmemo)
     {
         $order = $creditmemo->getOrder();
+        $store = $order->getStore();
+
+        $exclude_fee_refund = $store->getConfig('pay_payment/general/exclude_fee_refund');
+        if($exclude_fee_refund) {
+            return  $this;
+        }
 
         $paymentCharge = $order->getPaynlPaymentCharge();
         $basePaymentCharge = $order->getPaynlBasePaymentCharge();

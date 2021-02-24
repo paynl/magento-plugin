@@ -35,6 +35,8 @@
 "Kosten voor de betaalmethode weergeven in de checkout","Show the charge of the payment method in the checkout"
 "Selecteer hoe groot de icoontjes van de betaalmethoden moeten zijn","Select the size of the payment method icons"
 "Text betalingskosten","Payment charge label"
+"Betaalkosten niet terugbetalen","Exclude paymentfee from refund"
+"Bij terugbetaling(refund) niet de betaalkosten terugbetalen","Dont include the payment fee in refunds"
 "De text die wordt weergegeven bij de betalingskosten","The text that is shown for the payment charge"
 "Gateway","Gateway"
 "Gebruik de standard gateway, op <a href='https://status-pay.nl'>status-pay.nl</a> kunt u de status van onze techniek volgen","Use the standard gateway, on <a href='https://status-pay.nl'>status-pay.nl</a> you can view the status of our services"
