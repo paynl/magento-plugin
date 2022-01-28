@@ -432,7 +432,7 @@ class Pay_Payment_Model_Paymentmethod extends Mage_Payment_Model_Method_Abstract
                 'initials' => static::getFirstname($enduserAddress),
                 'lastName' => substr($enduserAddress->getLastname(), 0, 32),
                 'phoneNumber' => $enduserAddress->getTelephone(),
-                'emailAddress' => $enduserAddress->getEmail()
+                'emailAddress' =>  !empty($enduserAddress->getEmail()) ? $enduserAddress->getEmail() : $order->getCustomerEmail()
             ));
         }
 
