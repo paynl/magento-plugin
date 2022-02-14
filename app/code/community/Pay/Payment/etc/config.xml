@@ -835,6 +835,18 @@
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_good4fun>
+            <pay_payment_googlepay>
+                <active>0</active>
+                <invoice_email>1</invoice_email>
+                <model>pay_payment/Paymentmethod_Googlepay</model>
+                <title>Google Pay</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
+                <send_mail>success</send_mail>
+                <limit_shipping>0</limit_shipping>
+            </pay_payment_googlepay>
             <pay_payment_trustly>
                 <active>0</active>
                 <invoice_email>1</invoice_email>
