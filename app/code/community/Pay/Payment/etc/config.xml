@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Pay_Payment>
-            <version>3.15.1</version>
+            <version>3.16.0</version>
         </Pay_Payment>
     </modules>
     <global>
@@ -798,6 +798,20 @@
                 <ask_data_business>0</ask_data_business>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_applepay>
+            <pay_payment_biller>
+                <active>0</active>
+                <invoice_email>1</invoice_email>
+                <model>pay_payment/Paymentmethod_Biller</model>
+                <title>Biller</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
+                <send_mail>success</send_mail>
+                <ask_data_personal>0</ask_data_personal>
+                <ask_data_business>0</ask_data_business>
+                <limit_shipping>0</limit_shipping>
+            </pay_payment_biller>
             <pay_payment_focum>
                 <active>0</active>
                 <invoice_email>1</invoice_email>
