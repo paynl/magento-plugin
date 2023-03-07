@@ -15,3 +15,11 @@ if (isApplePayAvailable()) {
     $('dt_method_pay_payment_applepay').show();
 }
 </script>
+
+<ul class="form-list" id="payment_form_<?php echo $_code ?>" style="display:none;">
+    <?php
+if (!empty($instructions)) {
+    echo "<li>" . nl2br($instructions) . "</li>";
+}
+?>
+</ul>
