@@ -34,7 +34,7 @@ class Pay_Payment_Block_Adminhtml_Paymentmethods extends Mage_Adminhtml_Block_Sy
       $output = '';
       foreach ($arrOptions as $option)
       {
-        $output .= '<img src="' . $option->getImage() . '" /> ' . $option->getName() . '<br />';
+        $output .= '<img src="' . $option->getImage() . '" width="20"/>' . $option->getName() . '<br />';
       }
     } catch (Exception $e)
     {
