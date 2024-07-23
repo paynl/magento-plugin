@@ -41,7 +41,7 @@ class Pay_Payment_Block_Form_Abstract extends Mage_Payment_Block_Form
             ->setIconSizeWidth('')
             ->setIconSizeHeight('');
 
-        if ($this->paymentMethodId == 1813){
+        if ($this->paymentMethodId == 1813) {
             $iconSize = explode("x", $iconSize);
 
             $mark->setTemplate('pay/payment/mark.phtml')
