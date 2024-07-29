@@ -405,6 +405,10 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
         foreach ($paymentMethods as $paymentMethod) {
             $image = 'https://static.pay.nl/payment_profiles/20x20/' . $paymentMethod['id'] . '.png';
 
+            if ($paymentMethod['id'] == 1813) {
+                $image = 'https://static.pay.nl/payment_profiles/100x100/' . $paymentMethod['id'] . '.svg';
+            }
+
             /**
              * @var Pay_Payment_Model_Option $objOption
              */
