@@ -1720,6 +1720,598 @@
                         </instructions>
                     </fields>
                 </pay_payment_alipay>
+                <pay_payment_alipayplus type="group" translate="label" module="pay_payment">
+                    <label>AliPay Plus</label>
+                    <model>pay_payment/Model_Paymentmethod_Alipayplus</model>
+                    <sort_order>1100</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Actief</label>
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_paymentmethod_alipayplus_active</source_model>
+                            <config_path>payment/pay_payment_alipayplus/active</config_path>
+                        </active>
+                        <title translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Titel van de betaalmethode</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_alipayplus/title</config_path>
+                        </title>
+                        <sort_order translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Betaalmethode sorteer volgorde</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_alipayplus/sort_order</config_path>
+                        </sort_order>
+                        <min_order_total translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Minimum bedrag</label>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_alipayplus/min_order_total</config_path>
+                        </min_order_total>
+                        <max_order_total translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Maximum bedrag</label>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden
+                            </comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_alipayplus/max_order_total</config_path>
+                        </max_order_total>
+                        <allowspecific translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Beschikbaarheid per land</label>
+                            <frontend_type>allowspecific</frontend_type>
+                            <source_model>adminhtml/system_config_source_payment_allspecificcountries
+                            </source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_alipayplus/allowspecific</config_path>
+                        </allowspecific>
+                        <specificcountry translate="label">
+                            <depends>
+                                <active>1</active>
+                                <allowspecific>1</allowspecific>
+                            </depends>
+                            <label>Toegestane landen</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_country</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
+                            <config_path>payment/pay_payment_alipayplus/specificcountry</config_path>
+                        </specificcountry>
+                        <limit_currency translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Valutas blokkeren</label>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde valutas</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_alipayplus/limit_currency</config_path>
+                        </limit_currency>
+                        <specificcurrency translate="label comment">
+                            <depends>
+                                <active>1</active>
+                                <limit_currency>1</limit_currency>
+                            </depends>
+                            <label>Toegestane Valuta's</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_currency</source_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Selecteer de valutas waarvoor deze betaalmethode beschikbaar is</comment>
+                            <config_path>payment/pay_payment_alipayplus/specificcurrency</config_path>
+                        </specificcurrency>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_alipayplus/limit_shipping</config_path>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_alipayplus/disabled_shippingmethods</config_path>
+                        </disabled_shippingmethods>
+                        <order_status translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Nieuwe order status</label>
+                            <comment>De status die een order moet krijgen bij het toevoegen</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_pendingPayment</source_model>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_alipayplus/order_status</config_path>
+                        </order_status>
+                        <order_status_success translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Gelukt order status</label>
+                            <comment>De status die een order moet krijgen na succesvolle betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_alipayplus/order_status_success</config_path>
+                        </order_status_success>
+                        <order_status_verify translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verify order status</label>
+                            <comment>De status die een order moet krijgen wanneer de transactie gecontroleerd moet worden</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_pendingPayment</source_model>
+                            <sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_alipayplus/order_status_verify</config_path>
+                        </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_alipayplus/order_status_authorized</config_path>
+                        </order_status_authorized>
+                        <charge_type translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Extra kosten rekenen</label>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/system_config_source_chargetype</source_model>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_alipayplus/charge_type</config_path>
+                        </charge_type>
+                        <charge_value translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Extra kosten</label>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>201</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_alipayplus/charge_value</config_path>
+                        </charge_value>
+                        <charge_tax_class translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Btw voor extra kosten</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_taxclass</source_model>
+                            <sort_order>202</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_alipayplus/charge_tax_class</config_path>
+                        </charge_tax_class>
+                        <send_mail translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Bevestigingsmail sturen</label>
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
+                            <sort_order>300</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_sendmail</source_model>
+                            <config_path>payment/pay_payment_alipayplus/send_mail</config_path>
+                        </send_mail>
+                        <invoice_email translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Emailen bij factureren</label>
+                            <comment><![CDATA[Een email sturen met de factuur, LET OP: De email wordt alleen gestuurd als je bovenaan bij Algemene instellingen emailen bij factureren aan hebt staan]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>400</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_alipayplus/invoice_email</config_path>
+                        </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_alipayplus/instructions</config_path>
+                        </instructions>
+                    </fields>
+                </pay_payment_alipayplus>
+                <pay_payment_alma type="group" translate="label" module="pay_payment">
+                    <label>Alma</label>
+                    <model>pay_payment/Model_Paymentmethod_Alma</model>
+                    <sort_order>1125</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Actief</label>
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_paymentmethod_alma_active</source_model>
+                            <config_path>payment/pay_payment_alma/active</config_path>
+                        </active>
+                        <title translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Titel van de betaalmethode</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_alma/title</config_path>
+                        </title>
+                        <sort_order translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Betaalmethode sorteer volgorde</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_alma/sort_order</config_path>
+                        </sort_order>
+                        <min_order_total translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Minimum bedrag</label>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_alma/min_order_total</config_path>
+                        </min_order_total>
+                        <max_order_total translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Maximum bedrag</label>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden
+                            </comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_alma/max_order_total</config_path>
+                        </max_order_total>
+                        <allowspecific translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Beschikbaarheid per land</label>
+                            <frontend_type>allowspecific</frontend_type>
+                            <source_model>adminhtml/system_config_source_payment_allspecificcountries
+                            </source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_alma/allowspecific</config_path>
+                        </allowspecific>
+                        <specificcountry translate="label">
+                            <depends>
+                                <active>1</active>
+                                <allowspecific>1</allowspecific>
+                            </depends>
+                            <label>Toegestane landen</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_country</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
+                            <config_path>payment/pay_payment_alma/specificcountry</config_path>
+                        </specificcountry>
+                        <limit_currency translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Valutas blokkeren</label>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde valutas</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_alma/limit_currency</config_path>
+                        </limit_currency>
+                        <specificcurrency translate="label comment">
+                            <depends>
+                                <active>1</active>
+                                <limit_currency>1</limit_currency>
+                            </depends>
+                            <label>Toegestane Valuta's</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_currency</source_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Selecteer de valutas waarvoor deze betaalmethode beschikbaar is</comment>
+                            <config_path>payment/pay_payment_alma/specificcurrency</config_path>
+                        </specificcurrency>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_alma/limit_shipping</config_path>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_alma/disabled_shippingmethods</config_path>
+                        </disabled_shippingmethods>
+                        <order_status translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Nieuwe order status</label>
+                            <comment>De status die een order moet krijgen bij het toevoegen</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_pendingPayment</source_model>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_alma/order_status</config_path>
+                        </order_status>
+                        <order_status_success translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Gelukt order status</label>
+                            <comment>De status die een order moet krijgen na succesvolle betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_alma/order_status_success</config_path>
+                        </order_status_success>
+                        <order_status_verify translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verify order status</label>
+                            <comment>De status die een order moet krijgen wanneer de transactie gecontroleerd moet worden</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_pendingPayment</source_model>
+                            <sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_alma/order_status_verify</config_path>
+                        </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_alma/order_status_authorized</config_path>
+                        </order_status_authorized>
+                        <charge_type translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Extra kosten rekenen</label>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/system_config_source_chargetype</source_model>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_alma/charge_type</config_path>
+                        </charge_type>
+                        <charge_value translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Extra kosten</label>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>201</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_alma/charge_value</config_path>
+                        </charge_value>
+                        <charge_tax_class translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Btw voor extra kosten</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_taxclass</source_model>
+                            <sort_order>202</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_alma/charge_tax_class</config_path>
+                        </charge_tax_class>
+                        <send_mail translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Bevestigingsmail sturen</label>
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
+                            <sort_order>300</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_sendmail</source_model>
+                            <config_path>payment/pay_payment_alma/send_mail</config_path>
+                        </send_mail>
+                        <invoice_email translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Emailen bij factureren</label>
+                            <comment><![CDATA[Een email sturen met de factuur, LET OP: De email wordt alleen gestuurd als je bovenaan bij Algemene instellingen emailen bij factureren aan hebt staan]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>400</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_alma/invoice_email</config_path>
+                        </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_alma/instructions</config_path>
+                        </instructions>
+                    </fields>
+                </pay_payment_alma>
                 <pay_payment_amazonpay type="group" translate="label" module="pay_payment">
                     <label>Amazon Pay</label>
                     <model>pay_payment/Model_Paymentmethod_Amazonpay</model>
@@ -6553,6 +7145,302 @@
                         </instructions>
                     </fields>
                 </pay_payment_fashiongiftcard>
+                <pay_payment_flyingblueplus type="group" translate="label" module="pay_payment">
+                    <label>Flying blue+</label>
+                    <model>pay_payment/Model_Paymentmethod_Flyingblueplus</model>
+                    <sort_order>2075</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Actief</label>
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_paymentmethod_flyingblueplus_active</source_model>
+                            <config_path>payment/pay_payment_flyingblueplus/active</config_path>
+                        </active>
+                        <title translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Titel van de betaalmethode</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_flyingblueplus/title</config_path>
+                        </title>
+                        <sort_order translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Betaalmethode sorteer volgorde</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_flyingblueplus/sort_order</config_path>
+                        </sort_order>
+                        <min_order_total translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Minimum bedrag</label>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_flyingblueplus/min_order_total</config_path>
+                        </min_order_total>
+                        <max_order_total translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Maximum bedrag</label>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden
+                            </comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_flyingblueplus/max_order_total</config_path>
+                        </max_order_total>
+                        <allowspecific translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Beschikbaarheid per land</label>
+                            <frontend_type>allowspecific</frontend_type>
+                            <source_model>adminhtml/system_config_source_payment_allspecificcountries
+                            </source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_flyingblueplus/allowspecific</config_path>
+                        </allowspecific>
+                        <specificcountry translate="label">
+                            <depends>
+                                <active>1</active>
+                                <allowspecific>1</allowspecific>
+                            </depends>
+                            <label>Toegestane landen</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_country</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
+                            <config_path>payment/pay_payment_flyingblueplus/specificcountry</config_path>
+                        </specificcountry>
+                        <limit_currency translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Valutas blokkeren</label>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde valutas</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_flyingblueplus/limit_currency</config_path>
+                        </limit_currency>
+                        <specificcurrency translate="label comment">
+                            <depends>
+                                <active>1</active>
+                                <limit_currency>1</limit_currency>
+                            </depends>
+                            <label>Toegestane Valuta's</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_currency</source_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Selecteer de valutas waarvoor deze betaalmethode beschikbaar is</comment>
+                            <config_path>payment/pay_payment_flyingblueplus/specificcurrency</config_path>
+                        </specificcurrency>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_flyingblueplus/limit_shipping</config_path>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_flyingblueplus/disabled_shippingmethods</config_path>
+                        </disabled_shippingmethods>
+                        <order_status translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Nieuwe order status</label>
+                            <comment>De status die een order moet krijgen bij het toevoegen</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_pendingPayment</source_model>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_flyingblueplus/order_status</config_path>
+                        </order_status>
+                        <order_status_success translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Gelukt order status</label>
+                            <comment>De status die een order moet krijgen na succesvolle betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_flyingblueplus/order_status_success</config_path>
+                        </order_status_success>
+                        <order_status_verify translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verify order status</label>
+                            <comment>De status die een order moet krijgen wanneer de transactie gecontroleerd moet worden</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_pendingPayment</source_model>
+                            <sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_flyingblueplus/order_status_verify</config_path>
+                        </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_flyingblueplus/order_status_authorized</config_path>
+                        </order_status_authorized>
+                        <charge_type translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Extra kosten rekenen</label>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/system_config_source_chargetype</source_model>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_flyingblueplus/charge_type</config_path>
+                        </charge_type>
+                        <charge_value translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Extra kosten</label>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>201</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_flyingblueplus/charge_value</config_path>
+                        </charge_value>
+                        <charge_tax_class translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Btw voor extra kosten</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_taxclass</source_model>
+                            <sort_order>202</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_flyingblueplus/charge_tax_class</config_path>
+                        </charge_tax_class>
+                        <send_mail translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Bevestigingsmail sturen</label>
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
+                            <sort_order>300</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_sendmail</source_model>
+                            <config_path>payment/pay_payment_flyingblueplus/send_mail</config_path>
+                        </send_mail>
+                        <invoice_email translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Emailen bij factureren</label>
+                            <comment><![CDATA[Een email sturen met de factuur, LET OP: De email wordt alleen gestuurd als je bovenaan bij Algemene instellingen emailen bij factureren aan hebt staan]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>400</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_flyingblueplus/invoice_email</config_path>
+                        </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_flyingblueplus/instructions</config_path>
+                        </instructions>
+                    </fields>
+                </pay_payment_flyingblueplus>
                 <pay_payment_focum type="group" translate="label" module="pay_payment">
                     <label>Focum</label>
                     <model>pay_payment/Model_Paymentmethod_Focum</model>
@@ -9282,6 +10170,302 @@
                         </instructions>
                     </fields>
                 </pay_payment_instore>
+                <pay_payment_kidsorteen type="group" translate="label" module="pay_payment">
+                    <label>Kids or teen</label>
+                    <model>pay_payment/Model_Paymentmethod_Kidsorteen</model>
+                    <sort_order>2675</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Actief</label>
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_paymentmethod_kidsorteen_active</source_model>
+                            <config_path>payment/pay_payment_kidsorteen/active</config_path>
+                        </active>
+                        <title translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Titel van de betaalmethode</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_kidsorteen/title</config_path>
+                        </title>
+                        <sort_order translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Betaalmethode sorteer volgorde</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_kidsorteen/sort_order</config_path>
+                        </sort_order>
+                        <min_order_total translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Minimum bedrag</label>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_kidsorteen/min_order_total</config_path>
+                        </min_order_total>
+                        <max_order_total translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Maximum bedrag</label>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden
+                            </comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_kidsorteen/max_order_total</config_path>
+                        </max_order_total>
+                        <allowspecific translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Beschikbaarheid per land</label>
+                            <frontend_type>allowspecific</frontend_type>
+                            <source_model>adminhtml/system_config_source_payment_allspecificcountries
+                            </source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_kidsorteen/allowspecific</config_path>
+                        </allowspecific>
+                        <specificcountry translate="label">
+                            <depends>
+                                <active>1</active>
+                                <allowspecific>1</allowspecific>
+                            </depends>
+                            <label>Toegestane landen</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_country</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
+                            <config_path>payment/pay_payment_kidsorteen/specificcountry</config_path>
+                        </specificcountry>
+                        <limit_currency translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Valutas blokkeren</label>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde valutas</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_kidsorteen/limit_currency</config_path>
+                        </limit_currency>
+                        <specificcurrency translate="label comment">
+                            <depends>
+                                <active>1</active>
+                                <limit_currency>1</limit_currency>
+                            </depends>
+                            <label>Toegestane Valuta's</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_currency</source_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Selecteer de valutas waarvoor deze betaalmethode beschikbaar is</comment>
+                            <config_path>payment/pay_payment_kidsorteen/specificcurrency</config_path>
+                        </specificcurrency>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_kidsorteen/limit_shipping</config_path>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_kidsorteen/disabled_shippingmethods</config_path>
+                        </disabled_shippingmethods>
+                        <order_status translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Nieuwe order status</label>
+                            <comment>De status die een order moet krijgen bij het toevoegen</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_pendingPayment</source_model>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_kidsorteen/order_status</config_path>
+                        </order_status>
+                        <order_status_success translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Gelukt order status</label>
+                            <comment>De status die een order moet krijgen na succesvolle betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_kidsorteen/order_status_success</config_path>
+                        </order_status_success>
+                        <order_status_verify translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verify order status</label>
+                            <comment>De status die een order moet krijgen wanneer de transactie gecontroleerd moet worden</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_pendingPayment</source_model>
+                            <sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_kidsorteen/order_status_verify</config_path>
+                        </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_kidsorteen/order_status_authorized</config_path>
+                        </order_status_authorized>
+                        <charge_type translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Extra kosten rekenen</label>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/system_config_source_chargetype</source_model>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_kidsorteen/charge_type</config_path>
+                        </charge_type>
+                        <charge_value translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Extra kosten</label>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>201</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_kidsorteen/charge_value</config_path>
+                        </charge_value>
+                        <charge_tax_class translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Btw voor extra kosten</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_taxclass</source_model>
+                            <sort_order>202</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_kidsorteen/charge_tax_class</config_path>
+                        </charge_tax_class>
+                        <send_mail translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Bevestigingsmail sturen</label>
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
+                            <sort_order>300</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_sendmail</source_model>
+                            <config_path>payment/pay_payment_kidsorteen/send_mail</config_path>
+                        </send_mail>
+                        <invoice_email translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Emailen bij factureren</label>
+                            <comment><![CDATA[Een email sturen met de factuur, LET OP: De email wordt alleen gestuurd als je bovenaan bij Algemene instellingen emailen bij factureren aan hebt staan]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>400</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_kidsorteen/invoice_email</config_path>
+                        </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_kidsorteen/instructions</config_path>
+                        </instructions>
+                    </fields>
+                </pay_payment_kidsorteen>
                 <pay_payment_klarna type="group" translate="label" module="pay_payment">
                     <label>Klarna</label>
                     <model>pay_payment/Model_Paymentmethod_Klarna</model>
@@ -9904,6 +11088,302 @@
                         </instructions>
                     </fields>
                 </pay_payment_klarnakp>
+                <pay_payment_kunstencultuurkaart type="group" translate="label" module="pay_payment">
+                    <label>Kunst en Cultuur Kaart</label>
+                    <model>pay_payment/Model_Paymentmethod_Kunstencultuurkaart</model>
+                    <sort_order>2775</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Actief</label>
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_paymentmethod_kunstencultuurkaart_active</source_model>
+                            <config_path>payment/pay_payment_kunstencultuurkaart/active</config_path>
+                        </active>
+                        <title translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Titel van de betaalmethode</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_kunstencultuurkaart/title</config_path>
+                        </title>
+                        <sort_order translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Betaalmethode sorteer volgorde</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_kunstencultuurkaart/sort_order</config_path>
+                        </sort_order>
+                        <min_order_total translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Minimum bedrag</label>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_kunstencultuurkaart/min_order_total</config_path>
+                        </min_order_total>
+                        <max_order_total translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Maximum bedrag</label>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden
+                            </comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_kunstencultuurkaart/max_order_total</config_path>
+                        </max_order_total>
+                        <allowspecific translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Beschikbaarheid per land</label>
+                            <frontend_type>allowspecific</frontend_type>
+                            <source_model>adminhtml/system_config_source_payment_allspecificcountries
+                            </source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_kunstencultuurkaart/allowspecific</config_path>
+                        </allowspecific>
+                        <specificcountry translate="label">
+                            <depends>
+                                <active>1</active>
+                                <allowspecific>1</allowspecific>
+                            </depends>
+                            <label>Toegestane landen</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_country</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
+                            <config_path>payment/pay_payment_kunstencultuurkaart/specificcountry</config_path>
+                        </specificcountry>
+                        <limit_currency translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Valutas blokkeren</label>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde valutas</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_kunstencultuurkaart/limit_currency</config_path>
+                        </limit_currency>
+                        <specificcurrency translate="label comment">
+                            <depends>
+                                <active>1</active>
+                                <limit_currency>1</limit_currency>
+                            </depends>
+                            <label>Toegestane Valuta's</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_currency</source_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Selecteer de valutas waarvoor deze betaalmethode beschikbaar is</comment>
+                            <config_path>payment/pay_payment_kunstencultuurkaart/specificcurrency</config_path>
+                        </specificcurrency>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_kunstencultuurkaart/limit_shipping</config_path>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_kunstencultuurkaart/disabled_shippingmethods</config_path>
+                        </disabled_shippingmethods>
+                        <order_status translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Nieuwe order status</label>
+                            <comment>De status die een order moet krijgen bij het toevoegen</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_pendingPayment</source_model>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_kunstencultuurkaart/order_status</config_path>
+                        </order_status>
+                        <order_status_success translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Gelukt order status</label>
+                            <comment>De status die een order moet krijgen na succesvolle betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_kunstencultuurkaart/order_status_success</config_path>
+                        </order_status_success>
+                        <order_status_verify translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verify order status</label>
+                            <comment>De status die een order moet krijgen wanneer de transactie gecontroleerd moet worden</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_pendingPayment</source_model>
+                            <sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_kunstencultuurkaart/order_status_verify</config_path>
+                        </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_kunstencultuurkaart/order_status_authorized</config_path>
+                        </order_status_authorized>
+                        <charge_type translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Extra kosten rekenen</label>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/system_config_source_chargetype</source_model>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_kunstencultuurkaart/charge_type</config_path>
+                        </charge_type>
+                        <charge_value translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Extra kosten</label>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>201</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_kunstencultuurkaart/charge_value</config_path>
+                        </charge_value>
+                        <charge_tax_class translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Btw voor extra kosten</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_taxclass</source_model>
+                            <sort_order>202</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_kunstencultuurkaart/charge_tax_class</config_path>
+                        </charge_tax_class>
+                        <send_mail translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Bevestigingsmail sturen</label>
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
+                            <sort_order>300</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_sendmail</source_model>
+                            <config_path>payment/pay_payment_kunstencultuurkaart/send_mail</config_path>
+                        </send_mail>
+                        <invoice_email translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Emailen bij factureren</label>
+                            <comment><![CDATA[Een email sturen met de factuur, LET OP: De email wordt alleen gestuurd als je bovenaan bij Algemene instellingen emailen bij factureren aan hebt staan]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>400</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_kunstencultuurkaart/invoice_email</config_path>
+                        </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_kunstencultuurkaart/instructions</config_path>
+                        </instructions>
+                    </fields>
+                </pay_payment_kunstencultuurkaart>
                 <pay_payment_maestro type="group" translate="label" module="pay_payment">
                     <label>Maestro</label>
                     <model>pay_payment/Model_Paymentmethod_Maestro</model>
@@ -10494,6 +11974,302 @@
                         </instructions>
                     </fields>
                 </pay_payment_mistercash>
+                <pay_payment_mobilepay type="group" translate="label" module="pay_payment">
+                    <label>MobilePAY</label>
+                    <model>pay_payment/Model_Paymentmethod_Mobilepay</model>
+                    <sort_order>3025</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Actief</label>
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_paymentmethod_mobilepay_active</source_model>
+                            <config_path>payment/pay_payment_mobilepay/active</config_path>
+                        </active>
+                        <title translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Titel van de betaalmethode</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_mobilepay/title</config_path>
+                        </title>
+                        <sort_order translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Betaalmethode sorteer volgorde</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_mobilepay/sort_order</config_path>
+                        </sort_order>
+                        <min_order_total translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Minimum bedrag</label>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_mobilepay/min_order_total</config_path>
+                        </min_order_total>
+                        <max_order_total translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Maximum bedrag</label>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden
+                            </comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_mobilepay/max_order_total</config_path>
+                        </max_order_total>
+                        <allowspecific translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Beschikbaarheid per land</label>
+                            <frontend_type>allowspecific</frontend_type>
+                            <source_model>adminhtml/system_config_source_payment_allspecificcountries
+                            </source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_mobilepay/allowspecific</config_path>
+                        </allowspecific>
+                        <specificcountry translate="label">
+                            <depends>
+                                <active>1</active>
+                                <allowspecific>1</allowspecific>
+                            </depends>
+                            <label>Toegestane landen</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_country</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
+                            <config_path>payment/pay_payment_mobilepay/specificcountry</config_path>
+                        </specificcountry>
+                        <limit_currency translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Valutas blokkeren</label>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde valutas</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_mobilepay/limit_currency</config_path>
+                        </limit_currency>
+                        <specificcurrency translate="label comment">
+                            <depends>
+                                <active>1</active>
+                                <limit_currency>1</limit_currency>
+                            </depends>
+                            <label>Toegestane Valuta's</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_currency</source_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Selecteer de valutas waarvoor deze betaalmethode beschikbaar is</comment>
+                            <config_path>payment/pay_payment_mobilepay/specificcurrency</config_path>
+                        </specificcurrency>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_mobilepay/limit_shipping</config_path>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_mobilepay/disabled_shippingmethods</config_path>
+                        </disabled_shippingmethods>
+                        <order_status translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Nieuwe order status</label>
+                            <comment>De status die een order moet krijgen bij het toevoegen</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_pendingPayment</source_model>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_mobilepay/order_status</config_path>
+                        </order_status>
+                        <order_status_success translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Gelukt order status</label>
+                            <comment>De status die een order moet krijgen na succesvolle betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_mobilepay/order_status_success</config_path>
+                        </order_status_success>
+                        <order_status_verify translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verify order status</label>
+                            <comment>De status die een order moet krijgen wanneer de transactie gecontroleerd moet worden</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_pendingPayment</source_model>
+                            <sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_mobilepay/order_status_verify</config_path>
+                        </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_mobilepay/order_status_authorized</config_path>
+                        </order_status_authorized>
+                        <charge_type translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Extra kosten rekenen</label>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/system_config_source_chargetype</source_model>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_mobilepay/charge_type</config_path>
+                        </charge_type>
+                        <charge_value translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Extra kosten</label>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>201</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_mobilepay/charge_value</config_path>
+                        </charge_value>
+                        <charge_tax_class translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Btw voor extra kosten</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_taxclass</source_model>
+                            <sort_order>202</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_mobilepay/charge_tax_class</config_path>
+                        </charge_tax_class>
+                        <send_mail translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Bevestigingsmail sturen</label>
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
+                            <sort_order>300</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_sendmail</source_model>
+                            <config_path>payment/pay_payment_mobilepay/send_mail</config_path>
+                        </send_mail>
+                        <invoice_email translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Emailen bij factureren</label>
+                            <comment><![CDATA[Een email sturen met de factuur, LET OP: De email wordt alleen gestuurd als je bovenaan bij Algemene instellingen emailen bij factureren aan hebt staan]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>400</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_mobilepay/invoice_email</config_path>
+                        </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_mobilepay/instructions</config_path>
+                        </instructions>
+                    </fields>
+                </pay_payment_mobilepay>
                 <pay_payment_multibanco type="group" translate="label" module="pay_payment">
                     <label>Multibanco</label>
                     <model>pay_payment/Model_Paymentmethod_Multibanco</model>
@@ -13151,6 +14927,302 @@
                         </instructions>
                     </fields>
                 </pay_payment_przelewy24>
+                <pay_payment_rotterdamcitycard type="group" translate="label" module="pay_payment">
+                    <label>Rotterdam Citycard</label>
+                    <model>pay_payment/Model_Paymentmethod_Rotterdamcitycard</model>
+                    <sort_order>3675</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Actief</label>
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_paymentmethod_rotterdamcitycard_active</source_model>
+                            <config_path>payment/pay_payment_rotterdamcitycard/active</config_path>
+                        </active>
+                        <title translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Titel van de betaalmethode</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_rotterdamcitycard/title</config_path>
+                        </title>
+                        <sort_order translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Betaalmethode sorteer volgorde</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_rotterdamcitycard/sort_order</config_path>
+                        </sort_order>
+                        <min_order_total translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Minimum bedrag</label>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_rotterdamcitycard/min_order_total</config_path>
+                        </min_order_total>
+                        <max_order_total translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Maximum bedrag</label>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden
+                            </comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_rotterdamcitycard/max_order_total</config_path>
+                        </max_order_total>
+                        <allowspecific translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Beschikbaarheid per land</label>
+                            <frontend_type>allowspecific</frontend_type>
+                            <source_model>adminhtml/system_config_source_payment_allspecificcountries
+                            </source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_rotterdamcitycard/allowspecific</config_path>
+                        </allowspecific>
+                        <specificcountry translate="label">
+                            <depends>
+                                <active>1</active>
+                                <allowspecific>1</allowspecific>
+                            </depends>
+                            <label>Toegestane landen</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_country</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
+                            <config_path>payment/pay_payment_rotterdamcitycard/specificcountry</config_path>
+                        </specificcountry>
+                        <limit_currency translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Valutas blokkeren</label>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde valutas</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_rotterdamcitycard/limit_currency</config_path>
+                        </limit_currency>
+                        <specificcurrency translate="label comment">
+                            <depends>
+                                <active>1</active>
+                                <limit_currency>1</limit_currency>
+                            </depends>
+                            <label>Toegestane Valuta's</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_currency</source_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Selecteer de valutas waarvoor deze betaalmethode beschikbaar is</comment>
+                            <config_path>payment/pay_payment_rotterdamcitycard/specificcurrency</config_path>
+                        </specificcurrency>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_rotterdamcitycard/limit_shipping</config_path>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_rotterdamcitycard/disabled_shippingmethods</config_path>
+                        </disabled_shippingmethods>
+                        <order_status translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Nieuwe order status</label>
+                            <comment>De status die een order moet krijgen bij het toevoegen</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_pendingPayment</source_model>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_rotterdamcitycard/order_status</config_path>
+                        </order_status>
+                        <order_status_success translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Gelukt order status</label>
+                            <comment>De status die een order moet krijgen na succesvolle betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_rotterdamcitycard/order_status_success</config_path>
+                        </order_status_success>
+                        <order_status_verify translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verify order status</label>
+                            <comment>De status die een order moet krijgen wanneer de transactie gecontroleerd moet worden</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_pendingPayment</source_model>
+                            <sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_rotterdamcitycard/order_status_verify</config_path>
+                        </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_rotterdamcitycard/order_status_authorized</config_path>
+                        </order_status_authorized>
+                        <charge_type translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Extra kosten rekenen</label>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/system_config_source_chargetype</source_model>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_rotterdamcitycard/charge_type</config_path>
+                        </charge_type>
+                        <charge_value translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Extra kosten</label>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>201</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_rotterdamcitycard/charge_value</config_path>
+                        </charge_value>
+                        <charge_tax_class translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Btw voor extra kosten</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_taxclass</source_model>
+                            <sort_order>202</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_rotterdamcitycard/charge_tax_class</config_path>
+                        </charge_tax_class>
+                        <send_mail translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Bevestigingsmail sturen</label>
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
+                            <sort_order>300</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_sendmail</source_model>
+                            <config_path>payment/pay_payment_rotterdamcitycard/send_mail</config_path>
+                        </send_mail>
+                        <invoice_email translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Emailen bij factureren</label>
+                            <comment><![CDATA[Een email sturen met de factuur, LET OP: De email wordt alleen gestuurd als je bovenaan bij Algemene instellingen emailen bij factureren aan hebt staan]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>400</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_rotterdamcitycard/invoice_email</config_path>
+                        </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_rotterdamcitycard/instructions</config_path>
+                        </instructions>
+                    </fields>
+                </pay_payment_rotterdamcitycard>
                 <pay_payment_sofortbanking type="group" translate="label" module="pay_payment">
                     <label>Sofortbanking</label>
                     <model>pay_payment/Model_Paymentmethod_Sofortbanking</model>
@@ -13755,6 +15827,302 @@
                         </instructions>
                     </fields>
                 </pay_payment_spraypay>
+                <pay_payment_stadspasamsterdam type="group" translate="label" module="pay_payment">
+                    <label>Stadspas Amsterdam</label>
+                    <model>pay_payment/Model_Paymentmethod_Stadspasamsterdam</model>
+                    <sort_order>3750</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Actief</label>
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_paymentmethod_stadspasamsterdam_active</source_model>
+                            <config_path>payment/pay_payment_stadspasamsterdam/active</config_path>
+                        </active>
+                        <title translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Titel van de betaalmethode</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_stadspasamsterdam/title</config_path>
+                        </title>
+                        <sort_order translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Betaalmethode sorteer volgorde</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_stadspasamsterdam/sort_order</config_path>
+                        </sort_order>
+                        <min_order_total translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Minimum bedrag</label>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_stadspasamsterdam/min_order_total</config_path>
+                        </min_order_total>
+                        <max_order_total translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Maximum bedrag</label>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden
+                            </comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_stadspasamsterdam/max_order_total</config_path>
+                        </max_order_total>
+                        <allowspecific translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Beschikbaarheid per land</label>
+                            <frontend_type>allowspecific</frontend_type>
+                            <source_model>adminhtml/system_config_source_payment_allspecificcountries
+                            </source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_stadspasamsterdam/allowspecific</config_path>
+                        </allowspecific>
+                        <specificcountry translate="label">
+                            <depends>
+                                <active>1</active>
+                                <allowspecific>1</allowspecific>
+                            </depends>
+                            <label>Toegestane landen</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_country</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
+                            <config_path>payment/pay_payment_stadspasamsterdam/specificcountry</config_path>
+                        </specificcountry>
+                        <limit_currency translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Valutas blokkeren</label>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde valutas</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_stadspasamsterdam/limit_currency</config_path>
+                        </limit_currency>
+                        <specificcurrency translate="label comment">
+                            <depends>
+                                <active>1</active>
+                                <limit_currency>1</limit_currency>
+                            </depends>
+                            <label>Toegestane Valuta's</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_currency</source_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Selecteer de valutas waarvoor deze betaalmethode beschikbaar is</comment>
+                            <config_path>payment/pay_payment_stadspasamsterdam/specificcurrency</config_path>
+                        </specificcurrency>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_stadspasamsterdam/limit_shipping</config_path>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_stadspasamsterdam/disabled_shippingmethods</config_path>
+                        </disabled_shippingmethods>
+                        <order_status translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Nieuwe order status</label>
+                            <comment>De status die een order moet krijgen bij het toevoegen</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_pendingPayment</source_model>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_stadspasamsterdam/order_status</config_path>
+                        </order_status>
+                        <order_status_success translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Gelukt order status</label>
+                            <comment>De status die een order moet krijgen na succesvolle betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_stadspasamsterdam/order_status_success</config_path>
+                        </order_status_success>
+                        <order_status_verify translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verify order status</label>
+                            <comment>De status die een order moet krijgen wanneer de transactie gecontroleerd moet worden</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_pendingPayment</source_model>
+                            <sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_stadspasamsterdam/order_status_verify</config_path>
+                        </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_stadspasamsterdam/order_status_authorized</config_path>
+                        </order_status_authorized>
+                        <charge_type translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Extra kosten rekenen</label>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/system_config_source_chargetype</source_model>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_stadspasamsterdam/charge_type</config_path>
+                        </charge_type>
+                        <charge_value translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Extra kosten</label>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>201</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_stadspasamsterdam/charge_value</config_path>
+                        </charge_value>
+                        <charge_tax_class translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Btw voor extra kosten</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_taxclass</source_model>
+                            <sort_order>202</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_stadspasamsterdam/charge_tax_class</config_path>
+                        </charge_tax_class>
+                        <send_mail translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Bevestigingsmail sturen</label>
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
+                            <sort_order>300</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_sendmail</source_model>
+                            <config_path>payment/pay_payment_stadspasamsterdam/send_mail</config_path>
+                        </send_mail>
+                        <invoice_email translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Emailen bij factureren</label>
+                            <comment><![CDATA[Een email sturen met de factuur, LET OP: De email wordt alleen gestuurd als je bovenaan bij Algemene instellingen emailen bij factureren aan hebt staan]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>400</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_stadspasamsterdam/invoice_email</config_path>
+                        </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_stadspasamsterdam/instructions</config_path>
+                        </instructions>
+                    </fields>
+                </pay_payment_stadspasamsterdam>
                 <pay_payment_telefoon type="group" translate="label" module="pay_payment">
                     <label>Betalen per telefoon</label>
                     <model>pay_payment/Model_Paymentmethod_Telefoon</model>
@@ -16410,6 +18778,302 @@
                         </instructions>
                     </fields>
                 </pay_payment_wijncadeau>
+                <pay_payment_xafaxmynetpay type="group" translate="label" module="pay_payment">
+                    <label>Xafax Mynetpay</label>
+                    <model>pay_payment/Model_Paymentmethod_Xafaxmynetpay</model>
+                    <sort_order>4225</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Actief</label>
+                            <comment>Wilt u deze betaalmethode gebruiken</comment>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_paymentmethod_xafaxmynetpay_active</source_model>
+                            <config_path>payment/pay_payment_xafaxmynetpay/active</config_path>
+                        </active>
+                        <title translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Titel van de betaalmethode</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_xafaxmynetpay/title</config_path>
+                        </title>
+                        <sort_order translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Betaalmethode sorteer volgorde</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_xafaxmynetpay/sort_order</config_path>
+                        </sort_order>
+                        <min_order_total translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Minimum bedrag</label>
+                            <comment>Het minimum bedrag waarvoor deze betaalmethode gebruikt mag worden</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_xafaxmynetpay/min_order_total</config_path>
+                        </min_order_total>
+                        <max_order_total translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Maximum bedrag</label>
+                            <comment>Het maximum bedrag waarvoor deze betaalmethode gebruikt mag worden
+                            </comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_xafaxmynetpay/max_order_total</config_path>
+                        </max_order_total>
+                        <allowspecific translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Beschikbaarheid per land</label>
+                            <frontend_type>allowspecific</frontend_type>
+                            <source_model>adminhtml/system_config_source_payment_allspecificcountries
+                            </source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_xafaxmynetpay/allowspecific</config_path>
+                        </allowspecific>
+                        <specificcountry translate="label">
+                            <depends>
+                                <active>1</active>
+                                <allowspecific>1</allowspecific>
+                            </depends>
+                            <label>Toegestane landen</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_country</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Selecteer de landen waarvoor deze betaalmethode beschikbaar is</comment>
+                            <config_path>payment/pay_payment_xafaxmynetpay/specificcountry</config_path>
+                        </specificcountry>
+                        <limit_currency translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Valutas blokkeren</label>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde valutas</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_xafaxmynetpay/limit_currency</config_path>
+                        </limit_currency>
+                        <specificcurrency translate="label comment">
+                            <depends>
+                                <active>1</active>
+                                <limit_currency>1</limit_currency>
+                            </depends>
+                            <label>Toegestane Valuta's</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_currency</source_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Selecteer de valutas waarvoor deze betaalmethode beschikbaar is</comment>
+                            <config_path>payment/pay_payment_xafaxmynetpay/specificcurrency</config_path>
+                        </specificcurrency>
+                        <limit_shipping translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verzendmethoden blokkeren</label>
+                            <comment>Schakel dit in als u deze betaalmethode wilt blokkeren voor bepaalde verzendmethoden</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_xafaxmynetpay/limit_shipping</config_path>
+                        </limit_shipping>
+                        <disabled_shippingmethods>
+                            <depends>
+                                <active>1</active>
+                                <limit_shipping>1</limit_shipping>
+                            </depends>
+                            <comment>Selecteer de verzendmethoden waarvoor deze betaalmethode NIET beschikbaar is</comment>
+                            <label>Geblokkeerde verzendmethoden</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_allmethods</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_xafaxmynetpay/disabled_shippingmethods</config_path>
+                        </disabled_shippingmethods>
+                        <order_status translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Nieuwe order status</label>
+                            <comment>De status die een order moet krijgen bij het toevoegen</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_pendingPayment</source_model>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_xafaxmynetpay/order_status</config_path>
+                        </order_status>
+                        <order_status_success translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Gelukt order status</label>
+                            <comment>De status die een order moet krijgen na succesvolle betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_xafaxmynetpay/order_status_success</config_path>
+                        </order_status_success>
+                        <order_status_verify translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Verify order status</label>
+                            <comment>De status die een order moet krijgen wanneer de transactie gecontroleerd moet worden</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_pendingPayment</source_model>
+                            <sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_xafaxmynetpay/order_status_verify</config_path>
+                        </order_status_verify>
+                        <order_status_authorized translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Authorized order status</label>
+                            <comment>De status die een order moet krijgen bij een geauthoriseerde betaling</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_status_processing</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_xafaxmynetpay/order_status_authorized</config_path>
+                        </order_status_authorized>
+                        <charge_type translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Extra kosten rekenen</label>
+                            <comment>Geef hier aan of u extra kosten wilt rekenen op basis van een percentage van het totaalbedrag of een vast bedrag</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/system_config_source_chargetype</source_model>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_xafaxmynetpay/charge_type</config_path>
+                        </charge_type>
+                        <charge_value translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Extra kosten</label>
+                            <comment>Geef hier aan hoeveel extra kosten u wilt rekenen, gebruik een punt voor decimalen, als u geen extra kosten wilt rekenen vult u niets in</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>201</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_xafaxmynetpay/charge_value</config_path>
+                        </charge_value>
+                        <charge_tax_class translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Btw voor extra kosten</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_shipping_taxclass</source_model>
+                            <sort_order>202</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_xafaxmynetpay/charge_tax_class</config_path>
+                        </charge_tax_class>
+                        <send_mail translate="label">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Bevestigingsmail sturen</label>
+                            <comment>Wanneer wilt u dat de bevestigingsmail wordt verstuurd</comment>
+                            <sort_order>300</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_type>select</frontend_type>
+                            <source_model>pay_payment/source_sendmail</source_model>
+                            <config_path>payment/pay_payment_xafaxmynetpay/send_mail</config_path>
+                        </send_mail>
+                        <invoice_email translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Emailen bij factureren</label>
+                            <comment><![CDATA[Een email sturen met de factuur, LET OP: De email wordt alleen gestuurd als je bovenaan bij Algemene instellingen emailen bij factureren aan hebt staan]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>400</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_xafaxmynetpay/invoice_email</config_path>
+                        </invoice_email>
+                        <instructions translate="label comment">
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                            <label>Instructions</label>
+                            <comment><![CDATA[If you want to show instructions to the user, you can add them here]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>payment/pay_payment_xafaxmynetpay/instructions</config_path>
+                        </instructions>
+                    </fields>
+                </pay_payment_xafaxmynetpay>
                 <pay_payment_yehhpay type="group" translate="label" module="pay_payment">
                     <label>Yehhpay</label>
                     <model>pay_payment/Model_Paymentmethod_Yehhpay</model>
