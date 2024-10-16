@@ -405,7 +405,7 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
         foreach ($paymentMethods as $paymentMethod) {
             $image = 'https://static.pay.nl/payment_profiles/20x20/' . $paymentMethod['id'] . '.png';
 
-            $differentIconArray = array(1813, 3144, 3183, 3192, 2856);
+            $differentIconArray = array(1813, 3144, 3183, 3192, 2856, 2907, 3552, 3258, 3609, 3597, 3603, 3558, 3633, 3615);
 
             if (in_array($paymentMethod['id'], $differentIconArray)) {
                 $image = 'https://static.pay.nl/payment_profiles/100x100/' . $paymentMethod['id'] . '.svg';

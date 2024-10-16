@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Pay_Payment>
-            <version>3.17.1</version>
+            <version>3.18.0</version>
         </Pay_Payment>
     </modules>
     <global>
@@ -389,6 +389,18 @@
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_fashiongiftcard>
+            <pay_payment_flyingblueplus>
+                <active>0</active>
+                <invoice_email>1</invoice_email>
+                <model>pay_payment/Paymentmethod_Flyingblueplus</model>
+                <title>Flying blue+</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
+                <send_mail>success</send_mail>
+                <limit_shipping>0</limit_shipping>
+            </pay_payment_flyingblueplus>
             <pay_payment_gezondheidsbon>
                 <active>0</active>
                 <invoice_email>1</invoice_email>
@@ -475,6 +487,30 @@
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_instore>
+            <pay_payment_kidsorteen>
+                <active>0</active>
+                <invoice_email>1</invoice_email>
+                <model>pay_payment/Paymentmethod_Kidsorteen</model>
+                <title>Kids or teen</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
+                <send_mail>success</send_mail>
+                <limit_shipping>0</limit_shipping>
+            </pay_payment_kidsorteen>
+            <pay_payment_kunstencultuurkaart>
+                <active>0</active>
+                <invoice_email>1</invoice_email>
+                <model>pay_payment/Paymentmethod_Kunstencultuurkaart</model>
+                <title>Kunst en Cultuur Kaart</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
+                <send_mail>success</send_mail>
+                <limit_shipping>0</limit_shipping>
+            </pay_payment_kunstencultuurkaart>
             <pay_payment_payconiq>
                 <active>0</active>
                 <invoice_email>1</invoice_email>
@@ -511,6 +547,18 @@
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_mistercash>
+            <pay_payment_mobilepay>
+                <active>0</active>
+                <invoice_email>1</invoice_email>
+                <model>pay_payment/Paymentmethod_Mobilepay</model>
+                <title>MobilePAY</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
+                <send_mail>success</send_mail>
+                <limit_shipping>0</limit_shipping>
+            </pay_payment_mobilepay>
             <pay_payment_multibanco>
                 <active>0</active>
                 <invoice_email>1</invoice_email>
@@ -548,6 +596,18 @@
                 <limit_shipping>0</limit_shipping>
                 <only_equal_addresses>1</only_equal_addresses>
             </pay_payment_spraypay>
+            <pay_payment_stadspasamsterdam>
+                <active>0</active>
+                <invoice_email>1</invoice_email>
+                <model>pay_payment/Paymentmethod_Stadspasamsterdam</model>
+                <title>Stadspas Amsterdam</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
+                <send_mail>success</send_mail>
+                <limit_shipping>0</limit_shipping>
+            </pay_payment_stadspasamsterdam>
             <pay_payment_giropay>
                 <active>0</active>
                 <invoice_email>1</invoice_email>
@@ -596,6 +656,30 @@
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_alipay>
+            <pay_payment_alipayplus>
+                <active>0</active>
+                <invoice_email>1</invoice_email>
+                <model>pay_payment/Paymentmethod_Alipayplus</model>
+                <title>AliPay Plus</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
+                <send_mail>success</send_mail>
+                <limit_shipping>0</limit_shipping>
+            </pay_payment_alipayplus>
+            <pay_payment_alma>
+                <active>0</active>
+                <invoice_email>1</invoice_email>
+                <model>pay_payment/Paymentmethod_Alma</model>
+                <title>Alma</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
+                <send_mail>success</send_mail>
+                <limit_shipping>0</limit_shipping>
+            </pay_payment_alma>
             <pay_payment_afterpay>
                 <active>0</active>
                 <invoice_email>1</invoice_email>
@@ -729,6 +813,18 @@
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_przelewy24>
+            <pay_payment_rotterdamcitycard>
+                <active>0</active>
+                <invoice_email>1</invoice_email>
+                <model>pay_payment/Paymentmethod_Rotterdamcitycard</model>
+                <title>Rotterdam Citycard</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
+                <send_mail>success</send_mail>
+                <limit_shipping>0</limit_shipping>
+            </pay_payment_rotterdamcitycard>
             <pay_payment_billink>
                 <active>0</active>
                 <invoice_email>1</invoice_email>
@@ -768,6 +864,18 @@
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_wijncadeau>
+            <pay_payment_xafaxmynetpay>
+                <active>0</active>
+                <invoice_email>1</invoice_email>
+                <model>pay_payment/Paymentmethod_Xafaxmynetpay</model>
+                <title>Xafax Mynetpay</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
+                <send_mail>success</send_mail>
+                <limit_shipping>0</limit_shipping>
+            </pay_payment_xafaxmynetpay>
             <pay_payment_amazonpay>
                 <active>0</active>
                 <invoice_email>1</invoice_email>
