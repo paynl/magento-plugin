@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Pay_Payment>
-            <version>3.18.1</version>
+            <version>3.19.0</version>
         </Pay_Payment>
     </modules>
     <global>
@@ -453,7 +453,7 @@
                 <active>0</active>
                 <invoice_email>1</invoice_email>
                 <model>pay_payment/Paymentmethod_In3business</model>
-                <title>In3 Business</title>
+                <title>Mondu</title>
                 <payment_action>authorize</payment_action>
                 <order_status>pending_payment</order_status>
                 <order_status_success>processing</order_status_success>
@@ -864,6 +864,18 @@
                 <send_mail>success</send_mail>
                 <limit_shipping>0</limit_shipping>
             </pay_payment_wijncadeau>
+            <pay_payment_wisselcadeaukaart>
+                <active>0</active>
+                <invoice_email>1</invoice_email>
+                <model>pay_payment/Paymentmethod_Wisselcadeaukaart</model>
+                <title>Wissel Cadeaukaart</title>
+                <payment_action>authorize</payment_action>
+                <order_status>pending_payment</order_status>
+                <order_status_success>processing</order_status_success>
+                <order_status_verify>pending_payment</order_status_verify>
+                <send_mail>success</send_mail>
+                <limit_shipping>0</limit_shipping>
+            </pay_payment_wisselcadeaukaart>
             <pay_payment_xafaxmynetpay>
                 <active>0</active>
                 <invoice_email>1</invoice_email>
