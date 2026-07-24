@@ -26,7 +26,7 @@ class Pay_Payment_OrderController extends Mage_Core_Controller_Front_Action
 
         $transactionId = $params['orderId'];
 
-        if (empty($transactionId) || empty($status) || empty($order)) {
+        if (empty($transactionId)) {
             Mage::log('Error in returnAction, cannot find transactionId', null, 'return.log');
             $this->_redirect('checkout/cart');
         }
