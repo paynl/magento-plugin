@@ -123,7 +123,7 @@ class Pay_Payment_OrderController extends Mage_Core_Controller_Front_Action
             Mage::log('_POST was: ' . json_encode($post), null, 'exchange.log');
         }
         if(empty($transactionId)){
-            die('Error: TransactionId not found in _GET or _POST');
+            return;
         }
 
         try {
