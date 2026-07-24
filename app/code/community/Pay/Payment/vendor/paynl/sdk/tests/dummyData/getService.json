@@ -157,6 +157,17 @@
           "paymentMethodId": "4",
           "paymentOptionSubList": ""
         },
+        "3762": {
+          "id": "3762",
+          "name": "WERO",
+          "visibleName": "WERO",
+          "img": "3762.gif",
+          "path": "\/payment_profiles\/",
+          "state": "1",
+          "useOnlyInStore": "0",
+          "paymentMethodId": "4",
+          "paymentOptionSubList": ""
+        },
         "1666": {
           "id": "1666",
           "name": "WijnCadeau",
