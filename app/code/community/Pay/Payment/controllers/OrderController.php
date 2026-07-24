@@ -29,6 +29,7 @@ class Pay_Payment_OrderController extends Mage_Core_Controller_Front_Action
         if (empty($transactionId)) {
             Mage::log('Error in returnAction, cannot find transactionId', null, 'return.log');
             $this->_redirect('checkout/cart');
+            return;
         }
 
         try {
@@ -38,6 +39,7 @@ class Pay_Payment_OrderController extends Mage_Core_Controller_Front_Action
         } catch (\Throwable $e) {
             Mage::log('Error in returnAction, ' . $e->getMessage(), null, 'return.log');
             $this->_redirect('checkout/cart');
+            return;
         }
 
         $extended_logging = Mage::getStoreConfig('pay_payment/general/extended_logging', $store);
