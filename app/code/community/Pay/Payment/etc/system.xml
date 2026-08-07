@@ -21709,7 +21709,7 @@
                         </instructions>
                     </fields>
                 </pay_payment_wechatpay>
-                <pay_payment_ideal type="group" translate="label" module="pay_payment">
+                <pay_payment_wero type="group" translate="label" module="pay_payment"> 
                     <label>WERO</label>
                     <model>pay_payment/Model_Paymentmethod_Wero</model>
                     <sort_order>4151</sort_order>
