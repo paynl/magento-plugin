@@ -7,7 +7,7 @@
  */
 
 class Pay_Payment_Block_Form_Wero extends Pay_Payment_Block_Form_Abstract {
-    protected $paymentMethodId = 10;
+    protected $paymentMethodId = 3762;
     protected $paymentMethodName = 'WERO';
     protected $methodCode = 'pay_payment_wero';
     protected $template = 'pay/payment/form/default.phtml';
