@@ -70,7 +70,8 @@ class Pay_Payment_Block_Form_Abstract extends Mage_Payment_Block_Form
             4803,
             4815,
             4809,
-            5177
+            5177,
+            3762
         );
 
         if (in_array($this->paymentMethodId, $differentIconArray)) {

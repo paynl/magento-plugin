@@ -434,7 +434,8 @@ class Pay_Payment_Helper_Data extends Mage_Core_Helper_Abstract
                 4803,
                 4815,
                 4809,
-                5177
+                5177,
+                3762
             );
 
             if (in_array($paymentMethod['id'], $differentIconArray)) {
