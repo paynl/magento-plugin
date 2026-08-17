@@ -26,21 +26,33 @@ class Pay_Payment_OrderController extends Mage_Core_Controller_Front_Action
 
         $transactionId = $params['orderId'];
 
-        $status = $this->helperOrder->getTransactionStatus($transactionId);
-        $order = $this->helperOrder->getOrderByTransactionId($transactionId);
-        $store = $order->getStore();
+        if (empty($transactionId)) {
+            Mage::log('Error in returnAction, cannot find transactionId', null, 'return.log');
+            $this->_redirect('checkout/cart');
+            return;
+        }
+
+        try {
+            $status = $this->helperOrder->getTransactionStatus($transactionId);
+            $order = $this->helperOrder->getOrderByTransactionId($transactionId);
+            $store = $order->getStore();
+        } catch (\Throwable $e) {
+            Mage::log('Error in returnAction, ' . $e->getMessage(), null, 'return.log');
+            $this->_redirect('checkout/cart');
+            return;
+        }
 
         $extended_logging = Mage::getStoreConfig('pay_payment/general/extended_logging', $store);
 
         $pageSuccess = $store->getConfig('pay_payment/general/page_success');
         $pagePending = $store->getConfig('pay_payment/general/page_pending');
         $pageCanceled = $store->getConfig('pay_payment/general/page_canceled');
-
+        
 	    /**
 	     * @var $orderPayment Mage_Sales_Model_Order_Payment
 	     */
 	    $orderPayment = $order->getPayment();
-	    $hash = $orderPayment->getAdditionalInformation( 'paynl_hash');
+	    $hash = $orderPayment->getAdditionalInformation('paynl_hash');
 	    if(!empty($hash)){
 	    	$instoreStatus = \Paynl\Instore::status(array(
 	    		'hash' => $hash
@@ -111,7 +123,7 @@ class Pay_Payment_OrderController extends Mage_Core_Controller_Front_Action
             Mage::log('_POST was: ' . json_encode($post), null, 'exchange.log');
         }
         if(empty($transactionId)){
-            die('Error: TransactionId not found in _GET or _POST');
+            return;
         }
 
         try {
